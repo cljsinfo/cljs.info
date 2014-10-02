@@ -1,0 +1,17 @@
+{
+  "name": "clojurescript.info",
+  "homepage": "http://clojurescript.info",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oakmac/clojurescript.info"
+  },
+  "dependencies": {
+    "express": "4.9.5",
+    "grunt": "0.4.x",
+    "grunt-contrib-less": "0.11.4",
+    "grunt-contrib-watch": "0.6.1",
+    "compression": "1.0.10",
+    "moment": "2.6.0"
+  }
+}
