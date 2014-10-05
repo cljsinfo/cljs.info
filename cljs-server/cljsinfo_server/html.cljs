@@ -31,6 +31,12 @@
     [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge"}]
     [:title "ClojureScript.info &raquo; " page-title]
     [:meta {:name "viewport" :content "width=device-width"}]
+    [:link {:href "http://fonts.googleapis.com/css?family=PT+Serif:400,700"
+            :rel "stylesheet"
+            :type "text/css"}]
+    [:link {:href "http://fonts.googleapis.com/css?family=Open+Sans:400,300"
+            :rel "stylesheet"
+            :type "text/css"}]
     [:link {:rel "stylesheet" :href (asset "css/main.min.css")}]]
   "<body>")
 
@@ -44,5 +50,11 @@
 
 (hiccups/defhtml homepage []
   (site-head "Home")
-  [:h1 "Welcome to ClojureScript.info!"]
+  [:div.wrapper-cc101
+    [:div.js-48d1f "JavaScript"]
+    [:div.made-6bccb "made"]
+    [:div.simple-ef853 "Simple"]
+    ;;[:h1.title-0b151 [:span "JavaScript"] [:span.made-6bccb "made"] "Simple"]
+    ]
+  ;;[:h1 "Welcome to ClojureScript.info!"]
   (site-footer))
