@@ -1,3 +1,20 @@
+## Can I use ClojureScript with node.js?
+
+Yes. See examples 4000, 4001 and this tutorial.
+
+## Is ClojureScript fast?
+
+Yes.
+
+TODO: longer answer explaining that you can write slow code in any language and
+that often architecture decisions effect speed much more than implementation,
+etc
+
+Persistent data structures can be much faster than their mutable equivalents
+for certain kinds of operations. (link to David Nolen's talk about this)
+
+Link to examples of the Core team focusing on speed. Speed tests, etc.
+
 ## Can I use jQuery with ClojureScript?
 
 Absolutely! You can use any JavaScript library from ClojureScript. Check out
@@ -47,3 +64,11 @@ their fundamentally similar syntax allow for a lot of useful overlap in tooling.
 `project.clj` is a Leiningen project file. If you are familiar with common
 node.js conventions, `project.clj` acts like a combination of `package.json` and
 `Gruntfile.js`. TODO: need more language comparisons here
+
+## Can I share ClojureScript code between the client and a node.js server?
+
+Yes. TODO: link to tutorial on how to do this
+
+## Where can I find ClojureScript libraries?
+
+TODO: this is a damn good question that I don't know the answer to right now
