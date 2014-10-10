@@ -22,6 +22,8 @@
 * Namespaces and the require statement
 * Using macros
 * Writing macros
+* How to debug compiler/libraries/plugins and contribute fixes
+    * (by using `lein install` to modify a lein package's source code for easy testing)
 
 ### URLs
 
