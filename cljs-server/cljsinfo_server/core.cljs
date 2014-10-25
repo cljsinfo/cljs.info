@@ -21,6 +21,9 @@
 (defn- homepage [_js-req js-res]
   (.send js-res (html/homepage)))
 
+(defn- cheatsheet [_js-req js-res]
+  (.send js-res (html/cheatsheet)))
+
 ;;------------------------------------------------------------------------------
 ;; Main
 ;;------------------------------------------------------------------------------
@@ -35,6 +38,7 @@
 
       ;; pages
       (.get "/" homepage)
+      (.get "/cheatsheet" cheatsheet)
 
       ;; serve static files out of /public
       (.use (.static js-express (str js/__dirname "/public"))))

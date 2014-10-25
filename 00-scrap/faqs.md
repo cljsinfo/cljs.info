@@ -58,6 +58,7 @@ and Leiningen to compile ClojureScript files.
 The relationship between Clojure and ClojureScript may seem odd to persons
 coming from singular language ecosystems, but the symbiosis between the two and
 their fundamentally similar syntax allow for a lot of useful overlap in tooling.
+Leiningen is a good example of this.
 
 ## What is `project.clj`?
 

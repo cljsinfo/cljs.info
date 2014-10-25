@@ -22,8 +22,6 @@
 * Namespaces and the require statement
 * Using macros
 * Writing macros
-* How to debug compiler/libraries/plugins and contribute fixes
-    * (by using `lein install` to modify a lein package's source code for easy testing)
 
 ### URLs
 
@@ -54,6 +52,11 @@
 * cljs.info/faqs#use-with-node.js
 * cljs.info/faqs#leiningen
 * cljs.info/faqs#project.clj
+* cljs.info/faqs#sharing-code
+
+* cljs.info/docs
+* cljs.info/docs#core/assoc
+* cljs.info/faqs#sharing-code
 * cljs.info/faqs#sharing-code
 
 ### Motivation
