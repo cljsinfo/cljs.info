@@ -47,6 +47,10 @@
   "<body>")
 
 (hiccups/defhtml site-footer []
+  [:script {:src "/js/libs/jquery-2.1.1.min.js"}]
+  (if (:minified-client config)
+    [:script {:src (asset "/js/client.min.js")}]
+    [:script {:src (asset "/js/client.js")}])
   "</body>"
   "</html>")
 
@@ -75,7 +79,7 @@
     [:h1 "ClojureScript Cheatsheet"]
 
     [:div.section-31efe
-      [:h3.section-title-8ccf5 "Strings" [:span.info-a8579 "info"]]
+      [:h3.section-title-8ccf5 "Strings" [:i.fa.fa-info-circle.tooltip-0e91b]]
       [:table
         [:tbody
           [:tr.odd-372e6
@@ -90,24 +94,22 @@
               [:a.fn-a8476 "get"]]]]]]
 
     [:div.section-31efe
-      [:h3.section-title-8ccf5
-        ;;[:span.big-literal-3beb2 "[]"]
-        "Vectors"
-        [:span.info-a8579 "info"]]
+      [:h3.section-title-8ccf5 "Vectors"
+        [:i.fa.fa-info-circle.tooltip-0e91b {:data-tooltip-id "1356"}]]
       [:table
         [:tbody
           [:tr.odd-372e6
             [:td.label-9e0b7 "Create"]
             [:td
-              [:span.literal-c3029 "[1 \"b\" :c]"]
-              [:span.literal-c3029 "(into [] coll)"]
+              [:span.literal-block-5dec8 "[0 \"a\" :kwd]"]
+              [:span.literal-block-5dec8 "(into [] my-coll)"]
               [:a.fn-a8476 "vector"]
               [:a.fn-a8476 "vec"]]]
           [:tr.even-ff837
             [:td.label-9e0b7 "Examine"]
             [:td
-              [:span.literal-c3029.block-4a5f9 "(my-vec idx)"]
-              [:span.literal-c3029.block-4a5f9 "(" [:a.inside-fn-c7607 "nth"] " my-vec idx)"]
+              [:span.literal-block-5dec8 "(my-vec idx)" [:i.fa.fa-info-circle.tooltip-0e91b]]
+              [:span.literal-block-5dec8 "(" [:a.inside-fn-c7607 "nth"] " my-vec idx)"]
               [:a.fn-a8476 "get"]
               [:a.fn-a8476 "peek"]]]
           [:tr.odd-372e6
@@ -127,29 +129,53 @@
               [:a.fn-a8476 "reduce-kv"]]]]]]
 
     [:div.section-31efe
-      [:h3.section-title-8ccf5
-        "JavaScript Interop"
-        [:span.info-a8579 "info"]]
+      [:h3.section-title-8ccf5 "Maps" [:i.fa.fa-info-circle.tooltip-0e91b]]
       [:table
         [:tbody
           [:tr.odd-372e6
-            [:td.label-9e0b7 "Data"]
+            [:td.label-9e0b7 "Create"]
+            [:td
+              [:span.literal-block-5dec8 "{:key1 \"a\" :key2 \"b\"}"]
+              [:a.fn-a8476 "hash-map"]
+              [:a.fn-a8476 "array-map"]
+              [:a.fn-a8476 "zipmap"]
+              [:a.fn-a8476 "sorted-map"]
+              [:a.fn-a8476 "sorted-map-by"]
+              [:a.fn-a8476 "frequencies"]
+              [:a.fn-a8476 "group-by"]
+
+              ]]
+          [:tr.even-ff837
+            [:td.label-9e0b7 "Examine"]
+            [:td
+              [:span.literal-block-5dec8 "(.-innerHTML el)"]
+              [:span.literal-block-5dec8 "(" [:a.inside-fn-c7607 "aget"] " el \"innerHTML\")"]]]
+          [:tr.odd-372e6
+            [:td.label-9e0b7 "'Change'"]
+            [:td
+              [:span.literal-block-5dec8 "(set! (.-innerHTML el) \"Hi!\")"]
+              [:span.literal-block-5dec8 "(" [:a.inside-fn-c7607 "aset"] " el \"innerHTML\" \"Hi!\")"]]]]]]
+
+    [:div.section-31efe
+      [:h3.section-title-8ccf5 "JavaScript Interop" [:i.fa.fa-info-circle.tooltip-0e91b]]
+      [:table
+        [:tbody
+          [:tr.odd-372e6
+            [:td.label-9e0b7 "Create" [:br] "Native"]
             [:td
               [:a.fn-a8476 "array"]
               [:a.fn-a8476 "js-obj"]]]
           [:tr.even-ff837
             [:td.label-9e0b7 "Property" [:br] "Access"]
             [:td
-              [:span.literal-c3029.block-4a5f9 "(.-innerHTML el)"]
-              [:span.literal-c3029 "(" [:a.inside-fn-c7607 "aget"] " el \"innerHTML\")"]]]
+              [:span.literal-block-5dec8 "(.-innerHTML el)"]
+              [:span.literal-block-5dec8 "(" [:a.inside-fn-c7607 "aget"] " el \"innerHTML\")"]]]
           [:tr.odd-372e6
             [:td.label-9e0b7 "Property" [:br] "Setting"]
             [:td
-              [:span.literal-c3029.block-4a5f9 "(set! (.-innerHTML el) \"Hi!\")"]
-              [:span.literal-c3029 "(" [:a.inside-fn-c7607 "aset"] " el \"innerHTML\" \"Hi!\")"]]]
+              [:span.literal-block-5dec8 "(set! (.-innerHTML el) \"Hi!\")"]
+              [:span.literal-block-5dec8 "(" [:a.inside-fn-c7607 "aset"] " el \"innerHTML\" \"Hi!\")"]]]]]]
 
-        ]]]
-
-
-                ]
+    [:div#tooltip-1356 {:style "display:none"} "Example Tooltip"]
+  ]
   (site-footer))

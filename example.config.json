@@ -1,3 +1,4 @@
 {
+  "minified-client": false,
   "port": 9292
 }

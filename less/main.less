@@ -1,11 +1,19 @@
 @import "normalize-3.0.1.less";
 @import "elements-0.9.less";
+@import "font-awesome-4.2.0.less";
 
 //------------------------------------------------------------------------------
 // Fonts
 //------------------------------------------------------------------------------
 
-// TODO: pick a font
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/SourceCodePro-Regular.eot');
+  src: local('Source Code Pro'), local('SourceCodePro-Regular'),
+    url('../fonts/SourceCodePro-Regular.woff') format('woff');
+}
 
 //------------------------------------------------------------------------------
 // Variables
@@ -76,6 +84,13 @@ body {
   margin-bottom: 15px;
 }
 
+.tooltip-0e91b {
+  color: #888;
+  font-size: 12px;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
 .label-9e0b7 {
   color: #888;
   font-size: 12px;
@@ -121,8 +136,11 @@ body {
   text-decoration: underline;
 }
 
-.block-4a5f9 {
+.literal-block-5dec8 {
+  .code();
+  color: #000;
   display: block;
+  margin: 3px 10px 3px 0;
 }
 
 .odd-372e6 {
