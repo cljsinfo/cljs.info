@@ -25,10 +25,6 @@
   [tt-el]
   (= "true" (.attr ($ tt-el) "data-pinned")))
 
-;;------------------------------------------------------------------------------
-;; Init and Events
-;;------------------------------------------------------------------------------
-
 (defn- pin-down! [tooltip-id]
   ;; TODO: write me
   )
@@ -36,6 +32,16 @@
 (defn- remove-pin! [tooltip-id]
   ;; TODO: write me
   )
+
+;;------------------------------------------------------------------------------
+;; Events
+;;------------------------------------------------------------------------------
+
+(defn- on-click [js-evt]
+  (if-let [tooltip-id (evt->tt-num js-evt)]
+    (if (pinned? (by-id tooltip-id))
+      (remove-pin! tooltip-id)
+      (pin-down! tooltip-id))))
 
 (defn- on-mouseenter [js-evt]
   (if-let [tooltip-id (evt->tt-num js-evt)]
@@ -48,12 +54,6 @@
   (if-let [tooltip-id (evt->tt-num js-evt)]
     (hide-el! tooltip-id)))
 
-(defn- on-click [js-evt]
-  (if-let [tooltip-id (evt->tt-num js-evt)]
-    (if (pinned? (by-id tooltip-id))
-      (remove-pin! tooltip-id)
-      (pin-down! tooltip-id))))
-
 ;;------------------------------------------------------------------------------
 ;; Init
 ;;------------------------------------------------------------------------------
@@ -62,6 +62,6 @@
   "Initialize tooltip events."
   []
   (doto ($ "body")
+    (.on "click" ".tooltip-link-0e91b" on-click)
     (.on "mouseenter" ".tooltip-link-0e91b" on-mouseenter)
-    (.on "mouseleave" ".tooltip-link-0e91b" on-mouseleave)
-    (.on "click" ".tooltip-link-0e91b" on-click)))
+    (.on "mouseleave" ".tooltip-link-0e91b" on-mouseleave)))
