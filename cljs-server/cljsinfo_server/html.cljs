@@ -79,7 +79,8 @@
     [:h1 "ClojureScript Cheatsheet"]
 
     [:div.section-31efe
-      [:h3.section-title-8ccf5 "Strings" [:i.fa.fa-info-circle.tooltip-link-0e91b]]
+      [:h3.section-title-8ccf5 "Strings"
+        [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "strings"}]]
       [:table
         [:tbody
           [:tr.odd-372e6
@@ -95,7 +96,7 @@
 
     [:div.section-31efe
       [:h3.section-title-8ccf5 "Vectors"
-        [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "1356"}]]
+        [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "vectors"}]]
       [:table
         [:tbody
           [:tr.odd-372e6
@@ -129,7 +130,8 @@
               [:a.fn-a8476 "reduce-kv"]]]]]]
 
     [:div.section-31efe
-      [:h3.section-title-8ccf5 "Maps" [:i.fa.fa-info-circle.tooltip-link-0e91b]]
+      [:h3.section-title-8ccf5 "Maps"
+        [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "maps"}]]
       [:table
         [:tbody
           [:tr.odd-372e6
@@ -176,9 +178,33 @@
               [:span.literal-block-5dec8 "(set! (.-innerHTML el) \"Hi!\")"]
               [:span.literal-block-5dec8 "(" [:a.inside-fn-c7607 "aset"] " el \"innerHTML\" \"Hi!\")"]]]]]]
   ]
-  [:div#tooltip-1356.tooltip-53dde {:style "display:none"}
+
+  [:div#tooltip-strings.tooltip-53dde {:style "display:none"}
+    [:i.fa.fa-thumb-tack.pin-0ad63]
+    [:h4.tt-title-02d39 "Strings"]
+    [:p "ClojureScript Strings are JavaScript Strings and have all of the native"
+      " methods and properties that a JavaScript String has."]
+    [:p "ClojureScript Strings must be defined using double quotes."]
+    [:p "The " [:code "clojure.string"] " namespace provides a host of useful functions"
+      " for dealing with strings."]]
+
+  [:div#tooltip-vectors.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
     [:h4.tt-title-02d39 "Vectors"]
     [:p "All vectors are collections and support the generic collection functions."]
-    [:p "All vectors are also sequences and support the generic sequence functions."]]
+    [:p "All vectors are also sequences and support the generic sequence functions."]
+    [:p "A ClojureScript Vector is not the same thing as a JavaScript Array."
+      " ie: " [:code "(.indexOf my-vec)"] " will not work on a ClojureScript Vector."]]
+
+  [:div#tooltip-maps.tooltip-53dde {:style "display:none"}
+    [:i.fa.fa-thumb-tack.pin-0ad63]
+    [:h4.tt-title-02d39 "Maps"]
+    [:p "Maps - or hash maps - are a powerful data structure used often in ClojureScript programs."]
+    [:p "In JavaScript, Objects are commonly used as a de-facto hash map using strings as keys. "
+      "A key in a ClojureScript Map can be any value, although commonly keywords are used."]
+    [:p "All maps are collections and support the generic collection functions."]
+    [:p "Maps are not a sequence, but most generic sequence functions can be used on a map. "
+      "Sequence functions used on a map will return a sequence."]
+  ]
+
   (site-footer))
