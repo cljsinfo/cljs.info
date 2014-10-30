@@ -7,12 +7,57 @@
 //------------------------------------------------------------------------------
 
 @font-face {
+  font-family: 'Open Sans Light';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../fonts/OpenSans-Light.eot');
+  src: local('Open Sans Light'), local('OpenSans-Light'),
+    url('../fonts/OpenSans-Light.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/OpenSans.eot');
+  src: local('Open Sans'), local('OpenSans'),
+    url('../fonts/OpenSans.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../fonts/OpenSans-Semibold.eot');
+  src: local('Open Sans Semibold'), local('OpenSans-Semibold'),
+    url('../fonts/OpenSans-Semibold.woff') format('woff');
+}
+
+@font-face {
   font-family: 'Source Code Pro';
   font-style: normal;
   font-weight: 400;
   src: url('../fonts/SourceCodePro-Regular.eot');
   src: local('Source Code Pro'), local('SourceCodePro-Regular'),
     url('../fonts/SourceCodePro-Regular.woff') format('woff');
+}
+
+.font-light(@size) {
+  font-family: 'Open Sans Light';
+  font-size: @size;
+  font-weight: 300;
+}
+
+.font-normal(@size) {
+  font-family: 'Open Sans';
+  font-size: @size;
+  font-weight: 400;
+}
+
+.font-bold(@size) {
+  font-family: 'Open Sans';
+  font-size: @size;
+  font-weight: 600;
 }
 
 //------------------------------------------------------------------------------
@@ -84,7 +129,7 @@ body {
   margin-bottom: 15px;
 }
 
-.tooltip-0e91b {
+.tooltip-link-0e91b {
   color: #888;
   cursor: pointer;
   font-size: 12px;
@@ -158,4 +203,50 @@ body {
   font-size: 24px;
   font-weight: 400;
   margin-right: 10px;
+}
+
+.tooltip-53dde {
+  background: #363636;
+  color: #fff;
+  margin: -20px 0 0 20px;
+  max-width: 350px;
+  padding: 15px;
+  position: absolute;
+  .rounded(6px);
+  z-index: 10;
+}
+
+.tooltip-53dde:after {
+  right: 100%;
+  top: 26px;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(54, 54, 54, 0);
+  border-right-color: #363636;
+  border-width: 8px;
+  margin-top: -8px;
+}
+
+.tt-title-02d39 {
+  .font-light(24px);
+  margin: 0 0 15px 0;
+  padding: 0;
+}
+
+.pin-msg-3fae4 {
+  float: right;
+  font-size: 12px;
+  font-style: italic;
+  top: 15px;
+}
+
+.pin-0ad63 {
+  float: right;
+  font-size: 12px;
+  top: 15px;
+  .transform(rotate(45deg));
 }

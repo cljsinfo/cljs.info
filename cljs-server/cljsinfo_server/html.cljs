@@ -79,7 +79,7 @@
     [:h1 "ClojureScript Cheatsheet"]
 
     [:div.section-31efe
-      [:h3.section-title-8ccf5 "Strings" [:i.fa.fa-info-circle.tooltip-0e91b]]
+      [:h3.section-title-8ccf5 "Strings" [:i.fa.fa-info-circle.tooltip-link-0e91b]]
       [:table
         [:tbody
           [:tr.odd-372e6
@@ -95,7 +95,7 @@
 
     [:div.section-31efe
       [:h3.section-title-8ccf5 "Vectors"
-        [:i.fa.fa-info-circle.tooltip-0e91b {:data-tooltip-id "1356"}]]
+        [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "1356"}]]
       [:table
         [:tbody
           [:tr.odd-372e6
@@ -108,7 +108,7 @@
           [:tr.even-ff837
             [:td.label-9e0b7 "Examine"]
             [:td
-              [:span.literal-block-5dec8 "(my-vec idx)" [:i.fa.fa-info-circle.tooltip-0e91b]]
+              [:span.literal-block-5dec8 "(my-vec idx)" [:i.fa.fa-info-circle.tooltip-link-0e91b]]
               [:span.literal-block-5dec8 "(" [:a.inside-fn-c7607 "nth"] " my-vec idx)"]
               [:a.fn-a8476 "get"]
               [:a.fn-a8476 "peek"]]]
@@ -129,7 +129,7 @@
               [:a.fn-a8476 "reduce-kv"]]]]]]
 
     [:div.section-31efe
-      [:h3.section-title-8ccf5 "Maps" [:i.fa.fa-info-circle.tooltip-0e91b]]
+      [:h3.section-title-8ccf5 "Maps" [:i.fa.fa-info-circle.tooltip-link-0e91b]]
       [:table
         [:tbody
           [:tr.odd-372e6
@@ -157,7 +157,7 @@
               [:span.literal-block-5dec8 "(" [:a.inside-fn-c7607 "aset"] " el \"innerHTML\" \"Hi!\")"]]]]]]
 
     [:div.section-31efe
-      [:h3.section-title-8ccf5 "JavaScript Interop" [:i.fa.fa-info-circle.tooltip-0e91b]]
+      [:h3.section-title-8ccf5 "JavaScript Interop" [:i.fa.fa-info-circle.tooltip-link-0e91b]]
       [:table
         [:tbody
           [:tr.odd-372e6
@@ -175,7 +175,10 @@
             [:td
               [:span.literal-block-5dec8 "(set! (.-innerHTML el) \"Hi!\")"]
               [:span.literal-block-5dec8 "(" [:a.inside-fn-c7607 "aset"] " el \"innerHTML\" \"Hi!\")"]]]]]]
-
-    [:div#tooltip-1356 {:style "display:none"} "Example Tooltip"]
   ]
+  [:div#tooltip-1356.tooltip-53dde {:style "display:none"}
+    [:i.fa.fa-thumb-tack.pin-0ad63]
+    [:h4.tt-title-02d39 "Vectors"]
+    [:p "All vectors are collections and support the generic collection functions."]
+    [:p "All vectors are also sequences and support the generic sequence functions."]]
   (site-footer))
