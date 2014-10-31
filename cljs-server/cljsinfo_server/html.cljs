@@ -109,7 +109,8 @@
           [:tr.even-ff837
             [:td.label-9e0b7 "Examine"]
             [:td
-              [:span.literal-block-5dec8 "(my-vec idx)" [:i.fa.fa-info-circle.tooltip-link-0e91b]]
+              [:span.literal-block-5dec8 "(my-vec idx)"
+                [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "vector-as-fn"}]]
               [:span.literal-block-5dec8 "(" [:a.inside-fn-c7607 "nth"] " my-vec idx)"]
               [:a.fn-a8476 "get"]
               [:a.fn-a8476 "peek"]]]
@@ -195,6 +196,15 @@
     [:p "All vectors are also sequences and support the generic sequence functions."]
     [:p "A ClojureScript Vector is not the same thing as a JavaScript Array."
       " ie: " [:code "(.indexOf my-vec)"] " will not work on a ClojureScript Vector."]]
+
+  [:div#tooltip-vector-as-fn.tooltip-53dde {:style "display:none"}
+    [:i.fa.fa-thumb-tack.pin-0ad63]
+    ;;[:h4.tt-title-02d39 "Vectors"]
+    [:p "A Vector can be used as a function in order to access it's elements."]
+    ;;[:p "All vectors are also sequences and support the generic sequence functions."]
+    ; [:p "A ClojureScript Vector is not the same thing as a JavaScript Array."
+    ;   " ie: " [:code "(.indexOf my-vec)"] " will not work on a ClojureScript Vector."]
+      ]
 
   [:div#tooltip-maps.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
