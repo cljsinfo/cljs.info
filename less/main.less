@@ -64,17 +64,21 @@
 // Variables
 //------------------------------------------------------------------------------
 
-@linkBlue: blue;
+@linkBlue: #0000ee;
 
 //------------------------------------------------------------------------------
 // Tag Selectors
 //------------------------------------------------------------------------------
 
 body {
-  color: #444;
+  color: #222;
   font-family: "Open Sans";
   font-size: 16px;
   font-weight: 400;
+}
+
+.clr-43e49 {
+  clear: both;
 }
 
 .wrapper-cc101 {
@@ -82,8 +86,25 @@ body {
   width: 1200px;
 }
 
+.header-2a8a6 {
+  margin: 15px 0 30px 0;
+}
+
+.logo-6ced3 {
+  display: block;
+  float: left;
+  margin-right: 15px;
+  width: 75px;
+}
+
+.title-7a29c {
+  float: left;
+  .font-light(36px);
+  margin: 12px 0 0 0;
+  padding: 0;
+}
+
 .title-0b151 {
-  color: #444;
   font-family: "Open Sans";
   font-weight: 300;
   font-size: 82px;
@@ -102,7 +123,6 @@ body {
 }
 
 .js-48d1f {
-  color: #444;
   font-family: "Open Sans";
   font-size: 64px;
   font-weight: 300;
@@ -110,40 +130,56 @@ body {
 }
 
 .simple-ef853 {
-  color: #444;
   font-family: "Open Sans";
   font-size: 124px;
   font-weight: 300;
   text-align: center;
 }
 
+.group-title-68f3c {
+  border-bottom: 2px solid #ddd;
+  clear: both;
+  .font-bold(14px);
+  margin-bottom: 20px;
+  padding: 0 0 5px 0;
+  text-transform: uppercase;
+}
+
 .section-31efe {
-  font-family: "Source Sans Pro", Helvetica, sans-serif;
-  margin-bottom: 30px;
+  float: left;
+  margin: 0 15px 40px 0;
+  width: 380px;
 }
 
 .section-title-8ccf5 {
-  font-size: 24px;
-  font-weight: 400;
-  padding: 0;
+  .font-light(28px);
   margin: 0;
   margin-bottom: 15px;
+  padding: 0;
+}
+
+.tbl-902f0 {
+  width: 100%;
 }
 
 .tooltip-link-0e91b {
   color: #888;
   cursor: pointer;
   font-size: 12px;
-  margin-left: 5px;
+  margin-left: 6px;
   vertical-align: middle;
 }
 
 .label-9e0b7 {
-  color: #888;
-  font-size: 12px;
-  font-weight: 600;
+  color: #666;
+  .font-bold(11px);
   padding: 10px;
   text-transform: uppercase;
+  width: 60px;
+}
+
+.body-885f4 {
+  padding: 8px 8px 0 8px;
 }
 
 .info-a8579 {
@@ -158,20 +194,23 @@ body {
 
 .code() {
   display: inline-block;
-  font-family: "Source Code Pro", monospace;
-  font-size: 15px;
+  font-family: "Droid Sans Mono", monospace;
+  font-size: 14px;
 }
 
 .literal-c3029 {
   .code();
   color: #000;
-  margin: 3px 10px 3px 0;
+  margin: 0 12px 8px 0;
 }
 
 .inside-fn-c7607 {
   .code();
   color: @linkBlue;
   cursor: pointer;
+}
+
+.inside-fn-c7607:hover {
   text-decoration: underline;
 }
 
@@ -179,7 +218,10 @@ body {
   .code();
   color: @linkBlue;
   cursor: pointer;
-  margin: 3px 10px 3px 0;
+  margin: 0 12px 8px 0;
+}
+
+.fn-a8476:hover {
   text-decoration: underline;
 }
 
@@ -187,15 +229,15 @@ body {
   .code();
   color: #000;
   display: block;
-  margin: 3px 10px 3px 0;
+  margin: 0 12px 8px 0;
 }
 
 .odd-372e6 {
-  background-color: #f1f1f1;
+  background-color: #e2e2e2;
 }
 
 .even-ff837 {
-  background-color: #fcfcfc;
+  background-color: #f1f1f1;
 }
 
 .big-literal-3beb2 {
@@ -207,7 +249,7 @@ body {
 }
 
 .tooltip-53dde {
-  background: #363636;
+  background: #333;
   color: #fff;
   margin: -20px 0 0 20px;
   max-width: 350px;
