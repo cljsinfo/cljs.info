@@ -40,13 +40,17 @@
     [:link {:rel "stylesheet" :href (asset "css/main.min.css")}]]
   "<body>")
 
-(hiccups/defhtml site-footer []
-  [:script {:src "/js/libs/jquery-2.1.1.min.js"}]
-  (if (:minified-client config)
-    [:script {:src (asset "/js/client.min.js")}]
-    [:script {:src (asset "/js/client.js")}])
-  "</body>"
-  "</html>")
+(hiccups/defhtml site-footer
+  ([] (site-footer false))
+  ([init-page]
+    [:script {:src "/js/libs/jquery-2.1.1.min.js"}]
+    (if (:minified-client config)
+      [:script {:src (asset "/js/client.min.js")}]
+      [:script {:src (asset "/js/client.js")}])
+    (if init-page
+      [:script "CLJSINFO.init('" init-page "');"])
+    "</body>"
+    "</html>"))
 
 ;;------------------------------------------------------------------------------
 ;; Homepage
@@ -62,7 +66,7 @@
     ;;[:h1.title-0b151 [:span "JavaScript"] [:span.made-6bccb "made"] "Simple"]
     ]
   ;;[:h1 "Welcome to ClojureScript.info!"]
-  (site-footer))
+  (site-footer "homepage"))
 
 ;;------------------------------------------------------------------------------
 ;; Cheatsheet
@@ -74,6 +78,11 @@
     [:div.header-2a8a6
       [:img.logo-6ced3 {:src "/img/clojure-logo.png" :alt "Clojure Logo"}]
       [:h1.title-7a29c "ClojureScript Cheatsheet"]
+      [:div.clr-43e49]]
+
+    [:div.toolbar-2aa89
+      [:input.search-70fb8 {:type "text" :placeholder "Search"}]
+      [:label#toggleTooltips.tooltips-label-68aa0 [:i.fa.fa-check-square-o] "Show tooltips?"]
       [:div.clr-43e49]]
 
     [:h2.group-title-68f3c "Basics"]
@@ -239,4 +248,4 @@
       "Sequence functions used on a map will return a sequence."]
   ]
 
-  (site-footer))
+  (site-footer "cheatsheet"))
