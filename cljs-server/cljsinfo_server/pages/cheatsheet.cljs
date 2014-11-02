@@ -116,8 +116,7 @@
 
 (hiccups/defhtml js-interop-section []
   [:div.section-31efe
-    [:h3.section-title-8ccf5 "JavaScript Interop"
-      [:i.fa.fa-info-circle.tooltip-link-0e91b]]
+    [:h3.section-title-8ccf5 "JavaScript Interop"]
     [:table.tbl-902f0
       [:tbody
         [:tr.odd-372e6
@@ -134,7 +133,19 @@
           [:td.label-9e0b7 "Property Setting"]
           [:td.body-885f4
             [:span.literal-row-5dec8 "(set! (.-innerHTML el) \"Hi!\")"]
-            [:span.literal-row-5dec8 "(" [:a.inside-fn-c7607 "aset"] " el \"innerHTML\" \"Hi!\")"]]]]]])
+            [:span.literal-row-5dec8 "(" [:a.inside-fn-c7607 "aset"] " el \"innerHTML\" \"Hi!\")"]]]
+        [:tr.even-ff837
+          [:td.label-9e0b7 "Convert Between"]
+          [:td.body-885f4
+            [:a.fn-a8476 "js-&gt;clj"]
+            [:a.fn-a8476 "clj-&gt;js"]]]
+        [:tr.odd-372e6
+          [:td.label-9e0b7 "Exceptions"]
+          [:td.body-885f4
+            [:a.fn-a8476 "try"]
+            [:a.fn-a8476 "catch"]
+            [:a.fn-a8476 "finally"]
+            [:a.fn-a8476 "throw"]]]]]])
 
 (hiccups/defhtml collections-section []
   [:div.section-31efe
@@ -574,25 +585,31 @@
       [:div.clr-43e49]]
 
     [:h2.group-title-68f3c "Basics"]
-    (numbers-section)
-    (strings-section)
-    (js-interop-section)
+    [:div.col-left-d5f6d
+      (numbers-section)]
+    [:div.col-mid-bb1aa
+      (strings-section)]
+    [:div.col-right-0f4a3
+      (js-interop-section)]
 
     [:h2.group-title-68f3c "Collections"]
-    (collections-section)
-    (lists-section)
-    (vectors-section)
-    [:div.clr-43e49]
-    (sets-section)
-    (maps-section)
+    [:div.col-left-d5f6d
+      (collections-section)
+      (lists-section)]
+    [:div.col-mid-bb1aa
+      (vectors-section)
+      (sets-section)]
+    [:div.col-right-0f4a3
+      (maps-section)]
 
     [:h2.group-title-68f3c "Sequences"]
-    (create-seq-section)
-    (seq-in-out-section)
-    (use-seq-section)
+    [:div.col-left-d5f6d (create-seq-section)]
+    [:div.col-mid-bb1aa (seq-in-out-section)]
+    [:div.col-right-0f4a3 (use-seq-section)]
 
     [:h2.group-title-68f3c "Misc"]
-    (js-interop-section)
+    [:div.col-left-d5f6d
+      (js-interop-section)]
     [:div.clr-43e49]]
 
   (tooltips))
