@@ -41,7 +41,7 @@
   "<body>")
 
 (hiccups/defhtml site-footer
-  ([] (site-footer false))
+  ([] (site-footer nil))
   ([init-page]
     [:script {:src "/js/libs/jquery-2.1.1.min.js"}]
     (if (:minified-client config)
@@ -90,15 +90,37 @@
       [:table.tbl-902f0
         [:tbody
           [:tr.odd-372e6
-            [:td.label-9e0b7 "Create"]
+            [:td.label-9e0b7 "Literals"]
             [:td.body-885f4
-              [:span.literal-c3029 "\"abc\""]
-              [:a.fn-a8476 "str"]]]
+              [:span.literal-c3029 "7"]
+              [:span.literal-c3029 "3.14"]
+              [:span.literal-c3029 "-1e3"]
+              ]]
           [:tr.even-ff837
-            [:td.label-9e0b7 "Use"]
+            [:td.label-9e0b7 "Arithmetic"]
             [:td.body-885f4
-              [:a.fn-a8476 "count"]
-              [:a.fn-a8476 "get"]]]]]]
+              [:a.fn-a8476 "+"]
+              [:a.fn-a8476 "-"]
+              [:a.fn-a8476 "*"]
+              [:a.fn-a8476 "/"]
+              [:a.fn-a8476 "quot"]
+              [:a.fn-a8476 "rem"]
+              [:a.fn-a8476 "mod"]
+              [:a.fn-a8476 "inc"]
+              [:a.fn-a8476 "dec"]
+              [:a.fn-a8476 "max"]
+              [:a.fn-a8476 "min"]]]
+          [:tr.odd-372e6
+            [:td.label-9e0b7 "Compare"]
+            [:td.body-885f4
+              [:a.fn-a8476 "="]
+              [:a.fn-a8476 "=="]
+              [:a.fn-a8476 "not="]
+              [:a.fn-a8476 "&lt;"]
+              [:a.fn-a8476 "&gt;"]
+              [:a.fn-a8476 "&lt;="]
+              [:a.fn-a8476 "&gt;="]]]
+              ]]]
 
     [:div.section-31efe
       [:h3.section-title-8ccf5 "Strings"
@@ -184,6 +206,9 @@
 
     [:h2.group-title-68f3c "Sequences"]
 
+    ;; Tooltip for sequences: most sequence functions work on Strings as well.
+    ;; You're welcome.
+
     [:div.section-31efe
       [:h3.section-title-8ccf5 "JavaScript Interop" [:i.fa.fa-info-circle.tooltip-link-0e91b]]
       [:table.tbl-902f0
@@ -204,9 +229,14 @@
               [:span.literal-block-5dec8 "(set! (.-innerHTML el) \"Hi!\")"]
               [:span.literal-block-5dec8 "(" [:a.inside-fn-c7607 "aset"] " el \"innerHTML\" \"Hi!\")"]]]]]]
 
-
     [:div.clr-43e49]
   ]
+
+  [:div#tooltip-numbers.tooltip-53dde {:style "display:none"}
+    [:i.fa.fa-thumb-tack.pin-0ad63]
+    [:h4.tt-title-02d39 "Numbers"]
+    [:p "All ClojureScript Numbers are IEEE 754 Double Precision floating point."
+      " The same as JavaScript."]]
 
   [:div#tooltip-strings.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
