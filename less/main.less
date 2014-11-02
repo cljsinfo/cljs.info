@@ -65,6 +65,7 @@
 //------------------------------------------------------------------------------
 
 @linkBlue: #0000ee;
+@tooltipBackgroundColor: #333;
 
 //------------------------------------------------------------------------------
 // Tag Selectors
@@ -201,7 +202,7 @@ code {
 }
 
 .body-885f4 {
-  padding: 8px 8px 0 8px;
+  //padding: 8px 8px 0 8px;
 }
 
 .info-a8579 {
@@ -223,7 +224,7 @@ code {
 .literal-c3029 {
   .code();
   color: #000;
-  margin: 0 12px 8px 0;
+  margin: 0 12px 6px 0;
 }
 
 .inside-fn-c7607 {
@@ -240,18 +241,18 @@ code {
   .code();
   color: @linkBlue;
   cursor: pointer;
-  margin: 0 12px 8px 0;
+  margin: 0 12px 6px 0;
 }
 
 .fn-a8476:hover {
   text-decoration: underline;
 }
 
-.literal-block-5dec8 {
+.literal-row-5dec8 {
   .code();
   color: #000;
   display: block;
-  margin: 0 12px 8px 0;
+  margin: 6px 0 8px 0;
 }
 
 .odd-372e6 {
@@ -271,21 +272,20 @@ code {
 }
 
 .tooltip-53dde {
-  background: #333;
+  background: @tooltipBackgroundColor;
   color: #fff;
-  margin: -20px 0 0 20px;
+  margin-top: -20px;
+
+  // NOTE: this value needs to stay in sync with
+  // cljsinfo-client.tooltips/max-tooltip-width
   max-width: 350px;
-  padding: 15px;
+  padding: 5px 20px;
   position: absolute;
   .rounded(6px);
   z-index: 10;
-
-  p {
-    font-size: 14px;
-  }
 }
 
-.tooltip-53dde:after {
+.left-arr-42ea1:after {
   right: 100%;
   top: 26px;
   border: solid transparent;
@@ -294,10 +294,31 @@ code {
   width: 0;
   position: absolute;
   pointer-events: none;
-  border-color: rgba(54, 54, 54, 0);
-  border-right-color: #363636;
+  border-color: rgba(51, 51, 51, 0);
+  border-right-color: @tooltipBackgroundColor;
   border-width: 8px;
   margin-top: -8px;
+}
+
+.right-arr-d3345:after {
+  left: 100%;
+  top: 26px;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(51, 51, 51, 0);
+  border-left-color: @tooltipBackgroundColor;
+  border-width: 8px;
+  margin-top: -8px;
+}
+
+.info-2e4f9 {
+  .font-normal(14px);
+  margin: 1em 0;
+  padding: 0;
 }
 
 .tt-title-02d39 {
@@ -314,8 +335,9 @@ code {
 }
 
 .pin-0ad63 {
-  float: right;
   font-size: 12px;
-  top: 15px;
+  position: absolute;
+  top: 12px;
+  right: 14px;
   .transform(rotate(45deg));
 }

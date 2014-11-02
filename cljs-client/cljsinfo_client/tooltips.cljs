@@ -43,12 +43,29 @@
       (remove-pin! tooltip-id)
       (pin-down! tooltip-id))))
 
+;; NOTE: this value needs to stay in sync with the .tooltip-53ddee class
+;; in /less/main.less
+(def max-tooltip-width 350)
+
 (defn- on-mouseenter [js-evt]
   (if-let [tooltip-id (evt->tt-num js-evt)]
     (let [current-target (aget js-evt "currentTarget")
-          target-coords (.offset ($ current-target))]
-      (.css ($ (str "#" tooltip-id)) target-coords)
-      (show-el! tooltip-id))))
+          coords (.offset ($ current-target))
+          target-x (aget coords "left")
+          target-y (aget coords "top")
+          browser-width (.width ($ js/window))
+          $tooltip-el ($ (str "#" tooltip-id))
+          tooltip-width (.width $tooltip-el)
+          flip? (> (+ target-x max-tooltip-width 50) browser-width)]
+      (.removeClass $tooltip-el "left-arr-42ea1 right-arr-d3345")
+      (if flip?
+        (.addClass $tooltip-el "right-arr-d3345")
+        (.addClass $tooltip-el "left-arr-42ea1"))
+      (.css $tooltip-el (js-obj
+        "display" ""
+        "left" target-x
+        "marginLeft" (if flip? (- 0 tooltip-width 50) 20)
+        "top" target-y )))))
 
 (defn- on-mouseleave [js-evt]
   (if-let [tooltip-id (evt->tt-num js-evt)]

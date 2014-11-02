@@ -124,7 +124,7 @@
               ]]]
 
     [:div.section-31efe
-      [:h3.section-title-8ccf5 "Strings"
+      [:h3.section-title-8ccf5 "\" \" Strings"
         [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "strings"}]]
       [:table.tbl-902f0
         [:tbody
@@ -138,6 +138,27 @@
             [:td.body-885f4
               [:a.fn-a8476 "count"]
               [:a.fn-a8476 "get"]]]]]]
+
+    [:div.section-31efe
+      [:h3.section-title-8ccf5 "JavaScript Interop"
+        [:i.fa.fa-info-circle.tooltip-link-0e91b]]
+      [:table.tbl-902f0
+        [:tbody
+          [:tr.odd-372e6
+            [:td.label-9e0b7 "Create Native"]
+            [:td.body-885f4
+              [:a.fn-a8476 "array"]
+              [:a.fn-a8476 "js-obj"]]]
+          [:tr.even-ff837
+            [:td.label-9e0b7 "Property Access"]
+            [:td.body-885f4
+              [:span.literal-row-5dec8 "(.-innerHTML el)"]
+              [:span.literal-row-5dec8 "(" [:a.inside-fn-c7607 "aget"] " el \"innerHTML\")"]]]
+          [:tr.odd-372e6
+            [:td.label-9e0b7 "Property Setting"]
+            [:td.body-885f4
+              [:span.literal-row-5dec8 "(set! (.-innerHTML el) \"Hi!\")"]
+              [:span.literal-row-5dec8 "(" [:a.inside-fn-c7607 "aset"] " el \"innerHTML\" \"Hi!\")"]]]]]]
 
     [:h2.group-title-68f3c "Collections"]
 
@@ -180,73 +201,60 @@
               [:a.fn-a8476 "vector?"]
               [:a.fn-a8476 "set?"]
               [:a.fn-a8476 "map?"]
-              [:a.fn-a8476 "seq?"]
-              [:a.fn-a8476 "record?"]]]]]]
+              [:a.fn-a8476 "seq?"]]]]]]
 
     [:div.section-31efe
-      [:h3.section-title-8ccf5 "Lists"
+      [:h3.section-title-8ccf5 "( ) Lists"
         [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "lists"}]]
       [:table.tbl-902f0
         [:tbody
           [:tr.odd-372e6
             [:td.label-9e0b7 "Create"]
             [:td.body-885f4
-              [:span.literal-block-5dec8 "'()"]
-              [:span.literal-block-5dec8 "(into [] my-coll)"]
-              [:a.fn-a8476 "vector"]
-              [:a.fn-a8476 "vec"]]]
+              [:span.literal-c3029 "'()"]
+              [:a.fn-a8476 "list"]
+              [:a.fn-a8476 "list*"]]]
           [:tr.even-ff837
             [:td.label-9e0b7 "Examine"]
             [:td.body-885f4
-              [:span.literal-block-5dec8 "(my-vec idx)"
-                [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "vector-as-fn"}]]
-              [:span.literal-block-5dec8 "(" [:a.inside-fn-c7607 "nth"] " my-vec idx)"]
-              [:a.fn-a8476 "get"]
+              [:a.fn-a8476 "first"]
+              [:a.fn-a8476 "nth"]
               [:a.fn-a8476 "peek"]]]
           [:tr.odd-372e6
             [:td.label-9e0b7 "'Change'"]
             [:td.body-885f4
-              [:a.fn-a8476 "assoc"]
+              [:a.fn-a8476 "cons"]
               [:a.fn-a8476 "conj"]
-              [:a.fn-a8476 "pop"]
-              [:a.fn-a8476 "subvec"]
-              [:a.fn-a8476 "replace"]
-              [:a.fn-a8476 "rseq"]]]
-          [:tr.even-ff837
-            [:td.label-9e0b7 "Loop"]
-            [:td.body-885f4
-              [:a.fn-a8476 "mapv"]
-              [:a.fn-a8476 "filterv"]
-              [:a.fn-a8476 "reduce-kv"]]]]]]
+              [:a.fn-a8476 "rest"]
+              [:a.fn-a8476 "pop"]]]]]]
 
     [:div.section-31efe
-      [:h3.section-title-8ccf5 "Vectors"
+      [:h3.section-title-8ccf5 "[ ] Vectors"
         [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "vectors"}]]
       [:table.tbl-902f0
         [:tbody
           [:tr.odd-372e6
             [:td.label-9e0b7 "Create"]
             [:td.body-885f4
-              [:span.literal-block-5dec8 "[0 \"a\" :kwd]"]
-              [:span.literal-block-5dec8 "(into [] my-coll)"]
+              [:span.literal-c3029 "[]"]
               [:a.fn-a8476 "vector"]
               [:a.fn-a8476 "vec"]]]
           [:tr.even-ff837
             [:td.label-9e0b7 "Examine"]
             [:td.body-885f4
-              [:span.literal-block-5dec8 "(my-vec idx)"
+              [:span.literal-row-5dec8
+                "(my-vec idx) &rarr; (" [:a.inside-fn-c7607 "nth"] " my-vec idx)"
                 [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "vector-as-fn"}]]
-              [:span.literal-block-5dec8 "(" [:a.inside-fn-c7607 "nth"] " my-vec idx)"]
               [:a.fn-a8476 "get"]
               [:a.fn-a8476 "peek"]]]
           [:tr.odd-372e6
             [:td.label-9e0b7 "'Change'"]
             [:td.body-885f4
               [:a.fn-a8476 "assoc"]
-              [:a.fn-a8476 "conj"]
               [:a.fn-a8476 "pop"]
               [:a.fn-a8476 "subvec"]
               [:a.fn-a8476 "replace"]
+              [:a.fn-a8476 "conj"]
               [:a.fn-a8476 "rseq"]]]
           [:tr.even-ff837
             [:td.label-9e0b7 "Loop"]
@@ -255,47 +263,57 @@
               [:a.fn-a8476 "filterv"]
               [:a.fn-a8476 "reduce-kv"]]]]]]
 
+    [:div.clr-43e49]
+
     [:div.section-31efe
-      [:h3.section-title-8ccf5 "Sets"
+      [:h3.section-title-8ccf5 "#{ } Sets"
         [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "sets"}]]
       [:table.tbl-902f0
         [:tbody
           [:tr.odd-372e6
             [:td.label-9e0b7 "Create"]
             [:td.body-885f4
-              [:span.literal-block-5dec8 "#{0 \"a\" :kwd}"]
-              [:span.literal-block-5dec8 "(into #{} my-coll)"]
+              [:span.literal-c3029 "#{}"]
               [:a.fn-a8476 "set"]
-              [:a.fn-a8476 "hash-set"]]]
+              [:a.fn-a8476 "hash-set"]
+              [:a.fn-a8476 "sorted-set"]
+              [:a.fn-a8476 "sorted-set-by"]]]
           [:tr.even-ff837
             [:td.label-9e0b7 "Examine"]
             [:td.body-885f4
-              [:span.literal-block-5dec8 "(my-vec idx)"
-                [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "vector-as-fn"}]]
-              [:span.literal-block-5dec8 "(" [:a.inside-fn-c7607 "nth"] " my-vec idx)"]
-              [:a.fn-a8476 "get"]
-              [:a.fn-a8476 "peek"]]]
+              [:span.literal-row-5dec8
+                "(my-set itm) &rarr; (" [:a.inside-fn-c7607 "get"] " my-set itm)"
+                [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "set-as-fn"}]]
+              [:a.fn-a8476 "contains?"]]]
           [:tr.odd-372e6
             [:td.label-9e0b7 "'Change'"]
             [:td.body-885f4
               [:a.fn-a8476 "conj"]
               [:a.fn-a8476 "disj"]]]
           [:tr.even-ff837
-            [:td.label-9e0b7 "Loop"]
+            [:td.label-9e0b7 "Set Ops"]
             [:td.body-885f4
-              [:a.fn-a8476 "mapv"]
-              [:a.fn-a8476 "filterv"]
-              [:a.fn-a8476 "reduce-kv"]]]]]]
+              [:span.literal-c3029 "(clojure.set/)"]
+              [:a.fn-a8476 "union"]
+              [:a.fn-a8476 "difference"]
+              [:a.fn-a8476 "intersection"]
+              [:a.fn-a8476 "select"]]]
+          [:tr.odd-372e6
+            [:td.label-9e0b7 "Test"]
+            [:td.body-885f4
+              [:span.literal-c3029 "(clojure.set/)"]
+              [:a.fn-a8476 "subset?"]
+              [:a.fn-a8476 "superset?"]]]]]]
 
     [:div.section-31efe
-      [:h3.section-title-8ccf5 "Maps"
+      [:h3.section-title-8ccf5 "{ } Maps"
         [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "maps"}]]
       [:table.tbl-902f0
         [:tbody
           [:tr.odd-372e6
             [:td.label-9e0b7 "Create"]
             [:td.body-885f4
-              [:span.literal-block-5dec8 "{:key1 \"a\" :key2 \"b\"}"]
+              [:span.literal-row-5dec8 "{:key1 \"a\" :key2 \"b\"}"]
               [:a.fn-a8476 "hash-map"]
               [:a.fn-a8476 "array-map"]
               [:a.fn-a8476 "zipmap"]
@@ -306,18 +324,208 @@
           [:tr.even-ff837
             [:td.label-9e0b7 "Examine"]
             [:td.body-885f4
-              [:span.literal-block-5dec8 "(.-innerHTML el)"]
-              [:span.literal-block-5dec8 "(" [:a.inside-fn-c7607 "aget"] " el \"innerHTML\")"]]]
+              [:span.literal-row-5dec8
+                "(:key my-map) &rarr; (" [:a.inside-fn-c7607 "get"] " my-map :key)"
+                [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "keywords-as-fn"}]]
+              [:a.fn-a8476 "get-in"]
+              [:a.fn-a8476 "contains?"]
+              [:a.fn-a8476 "find"]
+              [:a.fn-a8476 "keys"]
+              [:a.fn-a8476 "vals"]]]
           [:tr.odd-372e6
             [:td.label-9e0b7 "'Change'"]
             [:td.body-885f4
-              [:span.literal-block-5dec8 "(set! (.-innerHTML el) \"Hi!\")"]
-              [:span.literal-block-5dec8 "(" [:a.inside-fn-c7607 "aset"] " el \"innerHTML\" \"Hi!\")"]]]]]]
+              [:a.fn-a8476 "assoc"]
+              [:a.fn-a8476 "assoc-in"]
+              [:a.fn-a8476 "dissoc"]
+              [:a.fn-a8476 "merge"]
+              [:a.fn-a8476 "merge-with"]
+              [:a.fn-a8476 "select-keys"]
+              [:a.fn-a8476 "update-in"]]]
+          [:tr.even-ff837
+            [:td.label-9e0b7 "Entry"]
+            [:td.body-885f4
+              [:a.fn-a8476 "key"]
+              [:a.fn-a8476 "val"]]]
+          [:tr.odd-372e6
+            [:td.label-9e0b7 "Sorted Maps"]
+            [:td.body-885f4
+              [:a.fn-a8476 "rseq"]
+              [:a.fn-a8476 "subseq"]
+              [:a.fn-a8476 "rsubseq"]]]]]]
 
     [:h2.group-title-68f3c "Sequences"]
 
     ;; Tooltip for sequences: most sequence functions work on Strings as well.
     ;; You're welcome.
+
+    [:div.section-31efe
+      [:h3.section-title-8ccf5 "Create a Seq"]
+      [:table.tbl-902f0
+        [:tbody
+          [:tr.odd-372e6
+            [:td.label-9e0b7 "From Collection"]
+            [:td.body-885f4
+              [:a.fn-a8476 "seq"]
+              [:a.fn-a8476 "vals"]
+              [:a.fn-a8476 "keys"]
+              [:a.fn-a8476 "rseq"]
+              [:a.fn-a8476 "subseq"]
+              [:a.fn-a8476 "rsubseq"]]]
+          [:tr.even-ff837
+            [:td.label-9e0b7 "Producer Functions"]
+            [:td.body-885f4
+              [:a.fn-a8476 "lazy-seq"]
+              [:a.fn-a8476 "repeatedly"]
+              [:a.fn-a8476 "iterate"]]]
+          [:tr.odd-372e6
+            [:td.label-9e0b7 "From Constant"]
+            [:td.body-885f4
+              [:a.fn-a8476 "repeat"]
+              [:a.fn-a8476 "range"]]]
+          [:tr.even-ff837
+            [:td.label-9e0b7 "From Other"]
+            [:td.body-885f4
+              [:a.fn-a8476 "re-seq"]
+              [:a.fn-a8476 "tree-seq"]]]
+          [:tr.odd-372e6
+            [:td.label-9e0b7 "From Sequence"]
+            [:td.body-885f4
+              [:a.fn-a8476 "keep"]
+              [:a.fn-a8476 "keep-indexed"]]]]]]
+
+    [:div.section-31efe
+      [:h3.section-title-8ccf5 "Seq in, Seq out"]
+      [:table.tbl-902f0
+        [:tbody
+          [:tr.odd-372e6
+            [:td.label-9e0b7 "Get Shorter"]
+            [:td.body-885f4
+              [:a.fn-a8476 "distinct"]
+              [:a.fn-a8476 "filter"]
+              [:a.fn-a8476 "remove"]
+              [:a.fn-a8476 "take-nth"]
+              [:a.fn-a8476 "for"]]]
+          [:tr.even-ff837
+            [:td.label-9e0b7 "Get Longer"]
+            [:td.body-885f4
+              [:a.fn-a8476 "cons"]
+              [:a.fn-a8476 "conj"]
+              [:a.fn-a8476 "concat"]
+              [:a.fn-a8476 "lazy-cat"]
+              [:a.fn-a8476 "mapcat"]
+              [:a.fn-a8476 "cycle"]
+              [:a.fn-a8476 "interleave"]
+              [:a.fn-a8476 "interpose"]]]
+          [:tr.odd-372e6
+            [:td.label-9e0b7 "Get From Tail"]
+            [:td.body-885f4
+              [:a.fn-a8476 "rest"]
+              [:a.fn-a8476 "nthrest"]
+              [:a.fn-a8476 "next"]
+              [:a.fn-a8476 "fnext"]
+              [:a.fn-a8476 "nnext"]
+              [:a.fn-a8476 "drop"]
+              [:a.fn-a8476 "drop-while"]
+              [:a.fn-a8476 "take-last"]
+              [:a.fn-a8476 "for"]]]
+          [:tr.even-ff837
+            [:td.label-9e0b7 "Get From Head"]
+            [:td.body-885f4
+              [:a.fn-a8476 "take"]
+              [:a.fn-a8476 "take-while"]
+              [:a.fn-a8476 "butlast"]
+              [:a.fn-a8476 "drop-last"]
+              [:a.fn-a8476 "for"]]]
+          [:tr.odd-372e6
+            [:td.label-9e0b7 "'Change'"]
+            [:td.body-885f4
+              [:a.fn-a8476 "conj"]
+              [:a.fn-a8476 "concat"]
+              [:a.fn-a8476 "distinct"]
+              [:a.fn-a8476 "flatten"]
+              [:a.fn-a8476 "group-by"]
+              [:a.fn-a8476 "partition"]
+              [:a.fn-a8476 "partition-all"]
+              [:a.fn-a8476 "partition-by"]
+              [:a.fn-a8476 "split-at"]
+              [:a.fn-a8476 "split-with"]
+              [:a.fn-a8476 "filter"]
+              [:a.fn-a8476 "remove"]
+              [:a.fn-a8476 "replace"]
+              [:a.fn-a8476 "shuffle"]]]
+          [:tr.even-ff837
+            [:td.label-9e0b7 "Rearrange"]
+            [:td.body-885f4
+              [:a.fn-a8476 "reverse"]
+              [:a.fn-a8476 "sort"]
+              [:a.fn-a8476 "sort-by"]
+              [:a.fn-a8476 "compare"]]]
+          [:tr.odd-372e6
+            [:td.label-9e0b7 "Process Items"]
+            [:td.body-885f4
+              [:a.fn-a8476 "map"]
+              [:a.fn-a8476 "pmap"]
+              [:a.fn-a8476 "map-indexed"]
+              [:a.fn-a8476 "mapcat"]
+              [:a.fn-a8476 "for"]
+              [:a.fn-a8476 "replace"]
+              [:a.fn-a8476 "seque"]]]]]]
+
+    [:div.section-31efe
+      [:h3.section-title-8ccf5 "Using a Seq"]
+      [:table.tbl-902f0
+        [:tbody
+          [:tr.odd-372e6
+            [:td.label-9e0b7 "Extract Item"]
+            [:td.body-885f4
+              [:a.fn-a8476 "first"]
+              [:a.fn-a8476 "second"]
+              [:a.fn-a8476 "last"]
+              [:a.fn-a8476 "rest"]
+              [:a.fn-a8476 "next"]
+              [:a.fn-a8476 "ffirst"]
+              [:a.fn-a8476 "nfirst"]
+              [:a.fn-a8476 "fnext"]
+              [:a.fn-a8476 "nnext"]
+              [:a.fn-a8476 "nth"]
+              [:a.fn-a8476 "nthnext"]
+              [:a.fn-a8476 "rand-nth"]
+              [:a.fn-a8476 "when-first"]
+              [:a.fn-a8476 "max-key"]
+              [:a.fn-a8476 "min-key"]]]
+          [:tr.even-ff837
+            [:td.label-9e0b7 "Construct Collection"]
+            [:td.body-885f4
+              [:a.fn-a8476 "zipmap"]
+              [:a.fn-a8476 "into"]
+              [:a.fn-a8476 "reduce"]
+              [:a.fn-a8476 "reductions"]
+              [:a.fn-a8476 "set"]
+              [:a.fn-a8476 "vec"]
+              [:a.fn-a8476 "into-array"]
+              [:a.fn-a8476 "to-array-2d"]]]
+          [:tr.odd-372e6
+            [:td.label-9e0b7 "Pass to Function"]
+            [:td.body-885f4
+              [:a.fn-a8476 "apply"]]]
+          [:tr.even-ff837
+            [:td.label-9e0b7 "Search"]
+            [:td.body-885f4
+              [:a.fn-a8476 "some"]
+              [:a.fn-a8476 "filter"]]]
+          [:tr.odd-372e6
+            [:td.label-9e0b7 "Force Evaluation"]
+            [:td.body-885f4
+              [:a.fn-a8476 "doseq"]
+              [:a.fn-a8476 "dorun"]
+              [:a.fn-a8476 "doall"]]]
+          [:tr.even-ff837
+            [:td.label-9e0b7 "Check For Forced"]
+            [:td.body-885f4
+              [:a.fn-a8476 "realized?"]]]]]]
+
+    [:h2.group-title-68f3c "Misc"]
 
     [:div.section-31efe
       [:h3.section-title-8ccf5 "JavaScript Interop" [:i.fa.fa-info-circle.tooltip-link-0e91b]]
@@ -331,58 +539,65 @@
           [:tr.even-ff837
             [:td.label-9e0b7 "Property Access"]
             [:td.body-885f4
-              [:span.literal-block-5dec8 "(.-innerHTML el)"]
-              [:span.literal-block-5dec8 "(" [:a.inside-fn-c7607 "aget"] " el \"innerHTML\")"]]]
+              [:span.literal-row-5dec8 "(.-innerHTML el)"]
+              [:span.literal-row-5dec8 "(" [:a.inside-fn-c7607 "aget"] " el \"innerHTML\")"]]]
           [:tr.odd-372e6
             [:td.label-9e0b7 "Property Setting"]
             [:td.body-885f4
-              [:span.literal-block-5dec8 "(set! (.-innerHTML el) \"Hi!\")"]
-              [:span.literal-block-5dec8 "(" [:a.inside-fn-c7607 "aset"] " el \"innerHTML\" \"Hi!\")"]]]]]]
+              [:span.literal-row-5dec8 "(set! (.-innerHTML el) \"Hi!\")"]
+              [:span.literal-row-5dec8 "(" [:a.inside-fn-c7607 "aset"] " el \"innerHTML\" \"Hi!\")"]]]]]]
 
     [:div.clr-43e49]
   ]
 
   [:div#tooltip-numbers.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
-    [:h4.tt-title-02d39 "Numbers"]
-    [:p "All ClojureScript Numbers are IEEE 754 Double Precision floating point."
-      " The same as JavaScript."]]
+    [:p.info-2e4f9
+      "All ClojureScript Numbers are IEEE 754 Double Precision floating point. "
+      "The same as JavaScript."]]
 
   [:div#tooltip-strings.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
-    [:h4.tt-title-02d39 "Strings"]
-    [:p "ClojureScript Strings are JavaScript Strings and have all of the native"
-      " methods and properties that a JavaScript String has."]
-    [:p "ClojureScript Strings must be defined using double quotes."]
-    [:p "The " [:code "clojure.string"] " namespace provides a host of useful functions"
-      " for dealing with strings."]]
+    [:p.info-2e4f9
+      "ClojureScript Strings are JavaScript Strings and have all of the native "
+      "methods and properties that a JavaScript String has."]
+    [:p.info-2e4f9
+      "ClojureScript Strings must be defined using double quotes."]
+    [:p.info-2e4f9
+      "The " [:code "clojure.string"] " namespace provides a host of useful "
+      "functions for dealing with strings."]]
 
   [:div#tooltip-vectors.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
-    [:h4.tt-title-02d39 "Vectors"]
-    [:p "All vectors are collections and support the generic collection functions."]
-    [:p "All vectors are also sequences and support the generic sequence functions."]
-    [:p "A ClojureScript Vector is not the same thing as a JavaScript Array."
-      " ie: " [:code "(.indexOf my-vec)"] " will not work on a ClojureScript Vector."]]
+    [:p.info-2e4f9 "All vectors are collections and support the generic collection functions."]
+    [:p.info-2e4f9 "All vectors are also sequences and support the generic sequence functions."]
+    [:p.info-2e4f9
+      "A ClojureScript Vector is not the same thing as a JavaScript Array. "
+      "ie: " [:code "(.indexOf my-vec)"] " will not work on a ClojureScript Vector."]]
 
   [:div#tooltip-vector-as-fn.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
-    ;;[:h4.tt-title-02d39 "Vectors"]
-    [:p "A Vector can be used as a function in order to access it's elements."]
-    ;;[:p "All vectors are also sequences and support the generic sequence functions."]
-    ; [:p "A ClojureScript Vector is not the same thing as a JavaScript Array."
-    ;   " ie: " [:code "(.indexOf my-vec)"] " will not work on a ClojureScript Vector."]
-      ]
+    [:p.info-2e4f9
+      "A Vector can be used as a function to access it's elements."]]
+
+  [:div#tooltip-set-as-fn.tooltip-53dde {:style "display:none"}
+    [:i.fa.fa-thumb-tack.pin-0ad63]
+    [:p.info-2e4f9
+      "A Set can be used as a function to access it's elements."]]
 
   [:div#tooltip-maps.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
-    [:h4.tt-title-02d39 "Maps"]
-    [:p "Maps - or hash maps - are a powerful data structure used often in ClojureScript programs."]
-    [:p "In JavaScript, Objects are commonly used as a de-facto hash map using strings as keys. "
+    [:p.info-2e4f9 "Maps - or hash maps - are a powerful data structure used often in ClojureScript programs."]
+    [:p.info-2e4f9 "In JavaScript, Objects are commonly used as a de-facto hash map using strings as keys. "
       "A key in a ClojureScript Map can be any value, although commonly keywords are used."]
-    [:p "All maps are collections and support the generic collection functions."]
-    [:p "Maps are not a sequence, but most generic sequence functions can be used on a map. "
-      "Sequence functions used on a map will return a sequence."]
-  ]
+    [:p.info-2e4f9 "All maps are collections and support the generic collection functions."]
+    [:p.info-2e4f9 "Maps are not a sequence, but most generic sequence functions can be used on a map. "
+      "Sequence functions used on a map will return a sequence."]]
+
+  [:div#tooltip-keywords-as-fn.tooltip-53dde {:style "display:none"}
+    [:i.fa.fa-thumb-tack.pin-0ad63]
+    [:p.info-2e4f9
+      "Keywords can be used as functions to get a value from a map. "
+      "They are commonly used as map keys for this reason."]]
 
   (site-footer "cheatsheet"))
