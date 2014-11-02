@@ -74,6 +74,7 @@
 
 (hiccups/defhtml cheatsheet []
   (site-head "Cheatsheet")
+
   [:div.wrapper-cc101
     [:div.header-2a8a6
       [:img.logo-6ced3 {:src "/img/clojure-logo.png" :alt "Clojure Logo"}]
@@ -138,8 +139,85 @@
               [:a.fn-a8476 "count"]
               [:a.fn-a8476 "get"]]]]]]
 
-    ;;[:div.clr-43e49]
     [:h2.group-title-68f3c "Collections"]
+
+    [:div.section-31efe
+      [:h3.section-title-8ccf5 "Collections"
+        [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "collections"}]]
+      [:table.tbl-902f0
+        [:tbody
+          [:tr.odd-372e6
+            [:td.label-9e0b7 "General"]
+            [:td.body-885f4
+              [:a.fn-a8476 "count"]
+              [:a.fn-a8476 "empty"]
+              [:a.fn-a8476 "not-empty"]
+              [:a.fn-a8476 "into"]
+              [:a.fn-a8476 "conj"]]]
+          [:tr.even-ff837
+            [:td.label-9e0b7 "Content Tests"]
+            [:td.body-885f4
+              [:a.fn-a8476 "distinct?"]
+              [:a.fn-a8476 "empty?"]
+              [:a.fn-a8476 "every?"]
+              [:a.fn-a8476 "not-every?"]
+              [:a.fn-a8476 "some"]
+              [:a.fn-a8476 "not-any?"]
+              ]]
+          [:tr.odd-372e6
+            [:td.label-9e0b7 "Capabilities"]
+            [:td.body-885f4
+              [:a.fn-a8476 "sequential?"]
+              [:a.fn-a8476 "associative?"]
+              [:a.fn-a8476 "sorted?"]
+              [:a.fn-a8476 "counted?"]
+              [:a.fn-a8476 "reversible?"]]]
+          [:tr.even-ff837
+            [:td.label-9e0b7 "Type Tests"]
+            [:td.body-885f4
+              [:a.fn-a8476 "coll?"]
+              [:a.fn-a8476 "list?"]
+              [:a.fn-a8476 "vector?"]
+              [:a.fn-a8476 "set?"]
+              [:a.fn-a8476 "map?"]
+              [:a.fn-a8476 "seq?"]
+              [:a.fn-a8476 "record?"]]]]]]
+
+    [:div.section-31efe
+      [:h3.section-title-8ccf5 "Lists"
+        [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "lists"}]]
+      [:table.tbl-902f0
+        [:tbody
+          [:tr.odd-372e6
+            [:td.label-9e0b7 "Create"]
+            [:td.body-885f4
+              [:span.literal-block-5dec8 "'()"]
+              [:span.literal-block-5dec8 "(into [] my-coll)"]
+              [:a.fn-a8476 "vector"]
+              [:a.fn-a8476 "vec"]]]
+          [:tr.even-ff837
+            [:td.label-9e0b7 "Examine"]
+            [:td.body-885f4
+              [:span.literal-block-5dec8 "(my-vec idx)"
+                [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "vector-as-fn"}]]
+              [:span.literal-block-5dec8 "(" [:a.inside-fn-c7607 "nth"] " my-vec idx)"]
+              [:a.fn-a8476 "get"]
+              [:a.fn-a8476 "peek"]]]
+          [:tr.odd-372e6
+            [:td.label-9e0b7 "'Change'"]
+            [:td.body-885f4
+              [:a.fn-a8476 "assoc"]
+              [:a.fn-a8476 "conj"]
+              [:a.fn-a8476 "pop"]
+              [:a.fn-a8476 "subvec"]
+              [:a.fn-a8476 "replace"]
+              [:a.fn-a8476 "rseq"]]]
+          [:tr.even-ff837
+            [:td.label-9e0b7 "Loop"]
+            [:td.body-885f4
+              [:a.fn-a8476 "mapv"]
+              [:a.fn-a8476 "filterv"]
+              [:a.fn-a8476 "reduce-kv"]]]]]]
 
     [:div.section-31efe
       [:h3.section-title-8ccf5 "Vectors"
@@ -170,6 +248,38 @@
               [:a.fn-a8476 "subvec"]
               [:a.fn-a8476 "replace"]
               [:a.fn-a8476 "rseq"]]]
+          [:tr.even-ff837
+            [:td.label-9e0b7 "Loop"]
+            [:td.body-885f4
+              [:a.fn-a8476 "mapv"]
+              [:a.fn-a8476 "filterv"]
+              [:a.fn-a8476 "reduce-kv"]]]]]]
+
+    [:div.section-31efe
+      [:h3.section-title-8ccf5 "Sets"
+        [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "sets"}]]
+      [:table.tbl-902f0
+        [:tbody
+          [:tr.odd-372e6
+            [:td.label-9e0b7 "Create"]
+            [:td.body-885f4
+              [:span.literal-block-5dec8 "#{0 \"a\" :kwd}"]
+              [:span.literal-block-5dec8 "(into #{} my-coll)"]
+              [:a.fn-a8476 "set"]
+              [:a.fn-a8476 "hash-set"]]]
+          [:tr.even-ff837
+            [:td.label-9e0b7 "Examine"]
+            [:td.body-885f4
+              [:span.literal-block-5dec8 "(my-vec idx)"
+                [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "vector-as-fn"}]]
+              [:span.literal-block-5dec8 "(" [:a.inside-fn-c7607 "nth"] " my-vec idx)"]
+              [:a.fn-a8476 "get"]
+              [:a.fn-a8476 "peek"]]]
+          [:tr.odd-372e6
+            [:td.label-9e0b7 "'Change'"]
+            [:td.body-885f4
+              [:a.fn-a8476 "conj"]
+              [:a.fn-a8476 "disj"]]]
           [:tr.even-ff837
             [:td.label-9e0b7 "Loop"]
             [:td.body-885f4
