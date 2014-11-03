@@ -2,7 +2,7 @@
   (:require-macros [hiccups.core :as hiccups])
   (:require
     hiccups.runtime
-    [cljsinfo-server.util :as util]))
+    [cljsinfo-server.util :refer [js-log log]]))
 
 ;;------------------------------------------------------------------------------
 ;; Function Lists
@@ -17,6 +17,38 @@
 ;;------------------------------------------------------------------------------
 ;; Sections
 ;;------------------------------------------------------------------------------
+
+(hiccups/defhtml basics-section []
+  [:div.section-31efe
+    [:h3.section-title-8ccf5 "Basics"
+      [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "basics"}]]
+    [:table.tbl-902f0
+      [:tbody
+        [:tr.odd-372e6
+          [:td.label-9e0b7 "Define"]
+          [:td.body-885f4
+            [:a.fn-a8476 "def"]
+            [:a.fn-a8476 "defn"]
+            [:a.fn-a8476 "defn-"]
+            [:a.fn-a8476 "let"]
+            [:a.fn-a8476 "declare"]
+            ]]
+        [:tr.even-ff837
+          [:td.label-9e0b7 "Branch"]
+          [:td.body-885f4
+            (fns-list ["if" "if-not" "when" "when-not" "when-let" "when-first" "if-let" "cond" "condp" "case"])]]
+        [:tr.odd-372e6
+          [:td.label-9e0b7 "Compare"]
+          [:td.body-885f4
+            (fns-list ["and" "or"])]]
+        [:tr.even-ff837
+          [:td.label-9e0b7 "Loop"]
+          [:td.body-885f4
+            (fns-list ["map" "map-indexed" "reduce" "for" "doseq" "dotimes" "while"])]]
+        [:tr.odd-372e6
+          [:td.label-9e0b7 "Test"]
+          [:td.body-885f4
+            (fns-list ["true?" "false?" "instance?" "nil?" "some?"])]]]]])
 
 (hiccups/defhtml numbers-section []
   [:div.section-31efe
@@ -41,12 +73,11 @@
         [:tr.even-ff837
           [:td.label-9e0b7 "Cast"]
           [:td.body-885f4
-            (fns-list ["byte" "short" "int" "long" "float" "double" "num"])]]
+            (fns-list ["int" "float"])]]
         [:tr.odd-372e6
           [:td.label-9e0b7 "Test"]
           [:td.body-885f4
-            (fns-list ["zero?" "pos?" "neg?" "even?" "odd?" "number?"
-              "rational?" "integer?" "decimal?" "float?"])]]
+            (fns-list ["zero?" "pos?" "neg?" "even?" "odd?" "number?" "integer?"])]]
         [:tr.even-ff837
           [:td.label-9e0b7 "Random"]
           [:td.body-885f4
@@ -109,7 +140,6 @@
           [:td.label-9e0b7 "Test"]
           [:td.body-885f4
             [:a.fn-a8476 "char"]
-            [:a.fn-a8476 "char?"]
             [:a.fn-a8476 "string?"]
             [:span.literal-c3029 "(clojure.string/)"]
             [:a.fn-a8476 "blank?"]]]]]])
@@ -120,32 +150,53 @@
     [:table.tbl-902f0
       [:tbody
         [:tr.odd-372e6
-          [:td.label-9e0b7 "Create Native"]
+          [:td.label-9e0b7 "Create Object"]
           [:td.body-885f4
-            [:a.fn-a8476 "array"]
+            [:span.literal-c3029 "#js {}"]
             [:a.fn-a8476 "js-obj"]]]
         [:tr.even-ff837
+          [:td.label-9e0b7 "Create Array"]
+          [:td.body-885f4
+            [:span.literal-c3029 "#js []"]
+            [:a.fn-a8476 "array"]
+            [:a.fn-a8476 "make-array"]
+            [:a.fn-a8476 "aclone"]]]
+        [:tr.odd-372e6
           [:td.label-9e0b7 "Property Access"]
           [:td.body-885f4
             [:span.literal-row-5dec8 "(.-innerHTML el)"]
             [:span.literal-row-5dec8 "(" [:a.inside-fn-c7607 "aget"] " el \"innerHTML\")"]]]
-        [:tr.odd-372e6
+        [:tr.even-ff837
           [:td.label-9e0b7 "Property Setting"]
           [:td.body-885f4
-            [:span.literal-row-5dec8 "(set! (.-innerHTML el) \"Hi!\")"]
+            [:span.literal-row-5dec8 "(" [:a.inside-fn-c7607 "set!"] " (.-innerHTML el) \"Hi!\")"]
             [:span.literal-row-5dec8 "(" [:a.inside-fn-c7607 "aset"] " el \"innerHTML\" \"Hi!\")"]]]
-        [:tr.even-ff837
+        [:tr.odd-372e6
           [:td.label-9e0b7 "Convert Between"]
           [:td.body-885f4
-            [:a.fn-a8476 "js-&gt;clj"]
-            [:a.fn-a8476 "clj-&gt;js"]]]
+            [:a.fn-a8476 "clj-&gt;js"]
+            [:a.fn-a8476 "js-&gt;clj"]]]
+        [:tr.even-ff837
+          [:td.label-9e0b7 "Type Tests"]
+          [:td.body-885f4
+            [:a.fn-a8476 "array?"]
+            [:a.fn-a8476 "fn?"]
+            [:a.fn-a8476 "number?"]
+            [:a.fn-a8476 "object?"]
+            [:a.fn-a8476 "string?"]]]
         [:tr.odd-372e6
           [:td.label-9e0b7 "Exceptions"]
           [:td.body-885f4
             [:a.fn-a8476 "try"]
             [:a.fn-a8476 "catch"]
             [:a.fn-a8476 "finally"]
-            [:a.fn-a8476 "throw"]]]]]])
+            [:a.fn-a8476 "throw"]]]
+        [:tr.even-ff837
+          [:td.label-9e0b7 "External Library"]
+          [:td.body-885f4
+            [:span.literal-row-5dec8 "(js/alert \"Hello world!\")"]
+            [:span.literal-row-5dec8 "(js/console.log my-obj)"]
+            [:span.literal-row-5dec8 "(.html (js/jQuery \"#myDiv\") \"Hi!\")"]]]]]])
 
 (hiccups/defhtml collections-section []
   [:div.section-31efe
@@ -558,12 +609,16 @@
 
   [:div#tooltip-maps.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
-    [:p.info-2e4f9 "Maps - or hash maps - are a powerful data structure used often in ClojureScript programs."]
-    [:p.info-2e4f9 "In JavaScript, Objects are commonly used as a de-facto hash map using strings as keys. "
+    [:p.info-2e4f9
+      "Maps - or hash maps - are a powerful data structure used often in ClojureScript programs."]
+    [:p.info-2e4f9
+      "In JavaScript, Objects are commonly used as a de-facto hash map using strings as keys. "
       "A key in a ClojureScript Map can be any value, although commonly keywords are used."]
-    [:p.info-2e4f9 "All maps are collections and support the generic collection functions."]
-    [:p.info-2e4f9 "Maps are not a sequence, but most generic sequence functions can be used on a map. "
-      "Sequence functions used on a map will return a sequence."]]
+    [:p.info-2e4f9
+      "All maps are collections and support the generic collection functions."]
+    [:p.info-2e4f9
+      "Maps are not a sequence, but most sequence functions can be used on a map. "
+      "Sequence functions used on a map return a sequence."]]
 
   [:div#tooltip-keywords-as-fn.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
@@ -586,6 +641,7 @@
 
     [:h2.group-title-68f3c "Basics"]
     [:div.col-left-d5f6d
+      (basics-section)
       (numbers-section)]
     [:div.col-mid-bb1aa
       (strings-section)]
