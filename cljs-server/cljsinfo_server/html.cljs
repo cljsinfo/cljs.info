@@ -32,12 +32,6 @@
     [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge"}]
     [:title "ClojureScript.info &raquo; " page-title]
     [:meta {:name "viewport" :content "width=device-width"}]
-    [:link {:href "http://fonts.googleapis.com/css?family=Open+Sans:300,400,600"
-            :rel "stylesheet"
-            :type "text/css"}]
-    [:link {:href "http://fonts.googleapis.com/css?family=Droid+Sans+Mono"
-            :rel "stylesheet"
-            :type "text/css"}]
     [:link {:rel "stylesheet" :href (asset "css/main.min.css")}]]
   "<body>")
 

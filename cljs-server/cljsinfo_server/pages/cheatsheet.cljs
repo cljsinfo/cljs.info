@@ -56,7 +56,8 @@
         [:tr.odd-372e6
           [:td.label-9e0b7 "Create"]
           [:td.body-885f4
-            [:div.row-5dec8 "#(...) &rarr; (fn [args] (...))"]
+            [:div.row-5dec8 "#(...) &rarr; (fn [args] (...))"
+              (tt-icon "function-shorthand")]
             (fns-list [
               "fn"
               "defn"
@@ -645,6 +646,11 @@
     [:i.fa.fa-thumb-tack.pin-0ad63]
     [:p.info-2e4f9
       "TODO: functions tooltip content"]]
+
+  [:div#tooltip-function-shorthand.tooltip-53dde {:style "display:none"}
+    [:i.fa.fa-thumb-tack.pin-0ad63]
+    [:p.info-2e4f9
+      "TODO: function shorthand examples"]]
 
   [:div#tooltip-atoms.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
