@@ -67,6 +67,9 @@
 @linkBlue: #0000ee;
 @tooltipBackgroundColor: #333;
 
+@oddColor: #e2e2e2;
+@evenColor: #f1f1f1;
+
 //------------------------------------------------------------------------------
 // Tag Selectors
 //------------------------------------------------------------------------------
@@ -239,7 +242,6 @@ code {
 .literal-c3029 {
   .code();
   color: #000;
-  //margin: 0 12px 0 0;
   margin-right: 10px;
 }
 
@@ -257,7 +259,6 @@ code {
   .code();
   color: @linkBlue;
   cursor: pointer;
-  //margin: 0 12px 0 0;
   margin-right: 10px;
   text-decoration: none;
 }
@@ -274,11 +275,16 @@ code {
 }
 
 .odd-372e6 {
-  background-color: #e2e2e2;
+  background-color: @oddColor;
 }
 
 .even-ff837 {
-  background-color: #f1f1f1;
+  background-color: @evenColor;
+}
+
+.solo-section-d5309 {
+  background-color: @oddColor;
+  padding: 10px;
 }
 
 .big-literal-3beb2 {

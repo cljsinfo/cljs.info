@@ -61,7 +61,8 @@
           [:td.body-885f4
             [:span.literal-c3029 "7"]
             [:span.literal-c3029 "3.14"]
-            [:span.literal-c3029 "-1e3"]]]
+            [:span.literal-c3029 "-1.2e3"]
+            [:span.literal-c3029 "0x0000ff"]]]
         [:tr.even-ff837
           [:td.label-9e0b7 "Arithmetic"]
           [:td.body-885f4
@@ -562,6 +563,14 @@
           [:td.body-885f4
             [:a.fn-a8476 "realized?"]]]]]])
 
+(hiccups/defhtml bitwise-section []
+  [:div.section-31efe
+    [:h3.section-title-8ccf5 "Bitwise"]
+    [:div.solo-section-d5309
+      (fns-list ["bit-and" "bit-or" "bit-xor" "bit-not" "bit-flip"
+        "bit-set" "bit-shift-right" "bit-shift-left" "bit-and-not"
+        "bit-clear" "bit-test" "unsigned-bit-shift-right"])]])
+
 ;;------------------------------------------------------------------------------
 ;; Tooltips
 ;;------------------------------------------------------------------------------
@@ -665,7 +674,7 @@
 
     [:h2.group-title-68f3c "Misc"]
     [:div.col-left-d5f6d
-      (js-interop-section)]
+      (bitwise-section)]
     [:div.clr-43e49]]
 
   (tooltips))
