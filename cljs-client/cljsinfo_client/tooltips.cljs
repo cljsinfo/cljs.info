@@ -67,6 +67,11 @@
         "marginLeft" (if flip? (- 0 tooltip-width 50) 20)
         "top" target-y )))))
 
+;; TODO: IE fires the mouseleave event while the mouse cursor is still inside
+;; the tooltip icon, causing a very distracting flicker effect.
+;; Need to find a fix. Maybe capture the x/y of everything on mouseenter and
+;; add a "listenOnce" event on the body for the exit?
+;; https://github.com/oakmac/clojurescript.info/issues/11
 (defn- on-mouseleave [js-evt]
   (if-let [tooltip-id (evt->tt-num js-evt)]
     (hide-el! tooltip-id)))

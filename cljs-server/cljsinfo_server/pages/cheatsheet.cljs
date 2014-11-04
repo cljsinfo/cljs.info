@@ -9,8 +9,7 @@
 ;;------------------------------------------------------------------------------
 
 (hiccups/defhtml tt-icon [tt-id]
-  [:i.fa.fa-info-circle.tooltip-link-0e91b
-    {:data-tooltip-id tt-id}])
+  [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id tt-id}])
 
 (hiccups/defhtml fn-link [nme href]
   [:a.fn-a8476 #_{:href href} nme])
