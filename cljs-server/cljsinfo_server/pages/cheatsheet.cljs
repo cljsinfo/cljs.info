@@ -600,12 +600,12 @@
   [:div#tooltip-vector-as-fn.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
     [:p.info-2e4f9
-      "A Vector can be used as a function to access it's elements."]]
+      "A Vector can be used as a function to access its elements."]]
 
   [:div#tooltip-set-as-fn.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
     [:p.info-2e4f9
-      "A Set can be used as a function to access it's elements."]]
+      "A Set can be used as a function to access its elements."]]
 
   [:div#tooltip-maps.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
