@@ -5,8 +5,12 @@
     [cljsinfo-server.util :refer [js-log log]]))
 
 ;;------------------------------------------------------------------------------
-;; Function Lists
+;; Helpers
 ;;------------------------------------------------------------------------------
+
+(hiccups/defhtml tt-icon [tt-id]
+  [:i.fa.fa-info-circle.tooltip-link-0e91b
+    {:data-tooltip-id tt-id}])
 
 (hiccups/defhtml fn-link [nme href]
   [:a.fn-a8476 #_{:href href} nme])
@@ -20,8 +24,7 @@
 
 (hiccups/defhtml basics-section []
   [:div.section-31efe
-    [:h3.section-title-8ccf5 "Basics"
-      [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "basics"}]]
+    [:h3.section-title-8ccf5 "Basics" (tt-icon "basics")]
     [:table.tbl-902f0
       [:tbody
         [:tr.odd-372e6
@@ -48,8 +51,7 @@
 
 (hiccups/defhtml functions-section []
   [:div.section-31efe
-    [:h3.section-title-8ccf5 "#( ) Functions"
-      [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "functions"}]]
+    [:h3.section-title-8ccf5 "#( ) Functions" (tt-icon "functions")]
     [:table.tbl-902f0
       [:tbody
         [:tr.odd-372e6
@@ -84,8 +86,7 @@
 
 (hiccups/defhtml numbers-section []
   [:div.section-31efe
-    [:h3.section-title-8ccf5 "Numbers"
-      [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "numbers"}]]
+    [:h3.section-title-8ccf5 "Numbers" (tt-icon "numbers")]
     [:table.tbl-902f0
       [:tbody
         [:tr.odd-372e6
@@ -119,8 +120,7 @@
 
 (hiccups/defhtml strings-section []
   [:div.section-31efe
-    [:h3.section-title-8ccf5 "\" \" Strings"
-      [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "strings"}]]
+    [:h3.section-title-8ccf5 "\" \" Strings" (tt-icon "strings")]
     [:table.tbl-902f0
       [:tbody
         [:tr.odd-372e6
@@ -176,6 +176,36 @@
             [:a.fn-a8476 "string?"]
             [:span.literal-c3029 "(clojure.string/)"]
             [:a.fn-a8476 "blank?"]]]]]])
+
+(hiccups/defhtml atoms-section []
+  [:div.section-31efe
+    [:h3.section-title-8ccf5 "Atoms / State" (tt-icon "atoms")]
+    [:table.tbl-902f0
+      [:tbody
+        [:tr.odd-372e6
+          [:td.label-9e0b7 "Create"]
+          [:td.body-885f4
+            [:a.fn-a8476 "atom"]]]
+        [:tr.even-ff837
+          [:td.label-9e0b7 "Get Value"]
+          [:td.body-885f4
+            [:span.literal-c3029 "@my-atom &rarr; (" [:span.inside-fn-c7607 "deref"] " my-atom)"]]]
+        [:tr.odd-372e6
+          [:td.label-9e0b7 "Set Value"]
+          [:td.body-885f4
+            [:a.fn-a8476 "swap!"]
+            [:a.fn-a8476 "reset!"]
+            [:a.fn-a8476 "compare-and-set!"]]]
+        [:tr.even-ff837
+          [:td.label-9e0b7 "Watch for Changes"]
+          [:td.body-885f4
+            [:a.fn-a8476 "add-watch"]
+            [:a.fn-a8476 "remove-watch"]]]
+        [:tr.odd-372e6
+          [:td.label-9e0b7 "Validators"]
+          [:td.body-885f4
+            [:a.fn-a8476 "set-validator!"]
+            [:a.fn-a8476 "get-validator"]]]]]])
 
 (hiccups/defhtml js-interop-section []
   [:div.section-31efe
@@ -233,8 +263,7 @@
 
 (hiccups/defhtml collections-section []
   [:div.section-31efe
-    [:h3.section-title-8ccf5 "Collections"
-      [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "collections"}]]
+    [:h3.section-title-8ccf5 "Collections" (tt-icon "collections")]
     [:table.tbl-902f0
       [:tbody
         [:tr.odd-372e6
@@ -275,8 +304,7 @@
 
 (hiccups/defhtml lists-section []
   [:div.section-31efe
-    [:h3.section-title-8ccf5 "( ) Lists"
-      [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "lists"}]]
+    [:h3.section-title-8ccf5 "( ) Lists" (tt-icon "lists")]
     [:table.tbl-902f0
       [:tbody
         [:tr.odd-372e6
@@ -301,8 +329,7 @@
 
 (hiccups/defhtml vectors-section []
   [:div.section-31efe
-    [:h3.section-title-8ccf5 "[ ] Vectors"
-      [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "vectors"}]]
+    [:h3.section-title-8ccf5 "[ ] Vectors" (tt-icon "vectors")]
     [:table.tbl-902f0
       [:tbody
         [:tr.odd-372e6
@@ -316,7 +343,7 @@
           [:td.body-885f4
             [:div.row-5dec8
               "(my-vec idx) &rarr; (" [:a.inside-fn-c7607 "nth"] " my-vec idx)"
-              [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "vector-as-fn"}]]
+              (tt-icon "vector-as-fn")]
             [:a.fn-a8476 "get"]
             [:a.fn-a8476 "peek"]]]
         [:tr.odd-372e6
@@ -337,8 +364,7 @@
 
 (hiccups/defhtml sets-section []
   [:div.section-31efe
-    [:h3.section-title-8ccf5 "#{ } Sets"
-      [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "sets"}]]
+    [:h3.section-title-8ccf5 "#{ } Sets" (tt-icon "sets")]
     [:table.tbl-902f0
       [:tbody
         [:tr.odd-372e6
@@ -354,7 +380,7 @@
           [:td.body-885f4
             [:div.row-5dec8
               "(my-set itm) &rarr; (" [:a.inside-fn-c7607 "get"] " my-set itm)"
-              [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "set-as-fn"}]]
+              (tt-icon "set-as-fn")]
             [:a.fn-a8476 "contains?"]]]
         [:tr.odd-372e6
           [:td.label-9e0b7 "'Change'"]
@@ -378,8 +404,7 @@
 
 (hiccups/defhtml maps-section []
   [:div.section-31efe
-    [:h3.section-title-8ccf5 "{ } Maps"
-      [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "maps"}]]
+    [:h3.section-title-8ccf5 "{ } Maps" (tt-icon "maps")]
     [:table.tbl-902f0
       [:tbody
         [:tr.odd-372e6
@@ -398,7 +423,7 @@
           [:td.body-885f4
             [:div.row-5dec8
               "(:key my-map) &rarr; (" [:a.inside-fn-c7607 "get"] " my-map :key)"
-              [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "keywords-as-fn"}]]
+              (tt-icon "keywords-as-fn")]
             [:a.fn-a8476 "get-in"]
             [:a.fn-a8476 "contains?"]
             [:a.fn-a8476 "find"]
@@ -611,6 +636,22 @@
 ;; You're welcome.
 
 (hiccups/defhtml tooltips []
+
+  [:div#tooltip-basics.tooltip-53dde {:style "display:none"}
+    [:i.fa.fa-thumb-tack.pin-0ad63]
+    [:p.info-2e4f9
+      "TODO: basics tooltip content"]]
+
+  [:div#tooltip-functions.tooltip-53dde {:style "display:none"}
+    [:i.fa.fa-thumb-tack.pin-0ad63]
+    [:p.info-2e4f9
+      "TODO: functions tooltip content"]]
+
+  [:div#tooltip-atoms.tooltip-53dde {:style "display:none"}
+    [:i.fa.fa-thumb-tack.pin-0ad63]
+    [:p.info-2e4f9
+      "TODO: atoms tooltip content"]]
+
   [:div#tooltip-numbers.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
     [:p.info-2e4f9
@@ -627,6 +668,21 @@
     [:p.info-2e4f9
       "The " [:code "clojure.string"] " namespace provides many useful "
       "functions for dealing with strings."]]
+
+  [:div#tooltip-collections.tooltip-53dde {:style "display:none"}
+    [:i.fa.fa-thumb-tack.pin-0ad63]
+    [:p.info-2e4f9
+      "TODO: collections tooltip content"]]
+
+  [:div#tooltip-lists.tooltip-53dde {:style "display:none"}
+    [:i.fa.fa-thumb-tack.pin-0ad63]
+    [:p.info-2e4f9
+      "TODO: lists tooltip content"]]
+
+  [:div#tooltip-sets.tooltip-53dde {:style "display:none"}
+    [:i.fa.fa-thumb-tack.pin-0ad63]
+    [:p.info-2e4f9
+      "TODO: sets tooltip content"]]
 
   [:div#tooltip-vectors.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
@@ -683,11 +739,12 @@
     [:h2.group-title-68f3c "Basics"]
     [:div.col-left-d5f6d
       (basics-section)
-      (numbers-section)]
+      (functions-section)]
     [:div.col-mid-bb1aa
-      (functions-section)
+      (numbers-section)
       (strings-section)]
     [:div.col-right-0f4a3
+      (atoms-section)
       (js-interop-section)]
 
     [:h2.group-title-68f3c "Collections"]
