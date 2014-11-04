@@ -27,16 +27,12 @@
         [:tr.odd-372e6
           [:td.label-9e0b7 "Define"]
           [:td.body-885f4
-            [:a.fn-a8476 "def"]
-            [:a.fn-a8476 "defn"]
-            [:a.fn-a8476 "defn-"]
-            [:a.fn-a8476 "let"]
-            [:a.fn-a8476 "declare"]
-            ]]
+            (fns-list ["def" "defn" "defn-" "let" "declare" "ns"])]]
         [:tr.even-ff837
           [:td.label-9e0b7 "Branch"]
           [:td.body-885f4
-            (fns-list ["if" "if-not" "when" "when-not" "when-let" "when-first" "if-let" "cond" "condp" "case"])]]
+            (fns-list ["if" "if-not" "when" "when-not" "when-let" "when-first"
+              "if-let" "cond" "condp" "case" "when-some" "if-some"])]]
         [:tr.odd-372e6
           [:td.label-9e0b7 "Compare"]
           [:td.body-885f4
@@ -49,6 +45,42 @@
           [:td.label-9e0b7 "Test"]
           [:td.body-885f4
             (fns-list ["true?" "false?" "instance?" "nil?" "some?"])]]]]])
+
+(hiccups/defhtml functions-section []
+  [:div.section-31efe
+    [:h3.section-title-8ccf5 "#( ) Functions"
+      [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "functions"}]]
+    [:table.tbl-902f0
+      [:tbody
+        [:tr.odd-372e6
+          [:td.label-9e0b7 "Create"]
+          [:td.body-885f4
+            [:div.row-5dec8 "#(...) &rarr; (fn [args] (...))"]
+            (fns-list [
+              "fn"
+              "defn"
+              "defn-"
+              "definline"
+              "identity"
+              "constantly"
+              "memfn"
+              "comp"
+              "complement"
+              "partial"
+              "juxt"
+              "memoize"
+              "fnil"
+              "every-pred"
+              "some-fn"])]
+        [:tr.even-ff837
+          [:td.label-9e0b7 "Call"]
+          [:td.body-885f4
+            (fns-list ["apply" "-&gt;" "-&gt;&gt;" "as-&gt;" "cond-&gt;"
+              "cond-&gt;&gt;" "some-&gt;" "some-&gt;&gt;"])]]
+        [:tr.odd-372e6
+          [:td.label-9e0b7 "Test"]
+          [:td.body-885f4
+            (fns-list ["fn?" "ifn?"])]]]]]])
 
 (hiccups/defhtml numbers-section []
   [:div.section-31efe
@@ -165,13 +197,13 @@
         [:tr.odd-372e6
           [:td.label-9e0b7 "Property Access"]
           [:td.body-885f4
-            [:span.literal-row-5dec8 "(.-innerHTML el)"]
-            [:span.literal-row-5dec8 "(" [:a.inside-fn-c7607 "aget"] " el \"innerHTML\")"]]]
+            [:div.row-5dec8 "(.-innerHTML el)"]
+            [:div.row-5dec8 "(" [:a.inside-fn-c7607 "aget"] " el \"innerHTML\")"]]]
         [:tr.even-ff837
           [:td.label-9e0b7 "Property Setting"]
           [:td.body-885f4
-            [:span.literal-row-5dec8 "(" [:a.inside-fn-c7607 "set!"] " (.-innerHTML el) \"Hi!\")"]
-            [:span.literal-row-5dec8 "(" [:a.inside-fn-c7607 "aset"] " el \"innerHTML\" \"Hi!\")"]]]
+            [:div.row-5dec8 "(" [:a.inside-fn-c7607 "set!"] " (.-innerHTML el) \"Hi!\")"]
+            [:div.row-5dec8 "(" [:a.inside-fn-c7607 "aset"] " el \"innerHTML\" \"Hi!\")"]]]
         [:tr.odd-372e6
           [:td.label-9e0b7 "Convert Between"]
           [:td.body-885f4
@@ -195,9 +227,9 @@
         [:tr.even-ff837
           [:td.label-9e0b7 "External Library"]
           [:td.body-885f4
-            [:span.literal-row-5dec8 "(js/alert \"Hello world!\")"]
-            [:span.literal-row-5dec8 "(js/console.log my-obj)"]
-            [:span.literal-row-5dec8 "(.html (js/jQuery \"#myDiv\") \"Hi!\")"]]]]]])
+            [:div.row-5dec8 "(js/alert \"Hello world!\")"]
+            [:div.row-5dec8 "(js/console.log my-obj)"]
+            [:div.row-5dec8 "(.html (js/jQuery \"#myDiv\") \"Hi!\")"]]]]]])
 
 (hiccups/defhtml collections-section []
   [:div.section-31efe
@@ -282,7 +314,7 @@
         [:tr.even-ff837
           [:td.label-9e0b7 "Examine"]
           [:td.body-885f4
-            [:span.literal-row-5dec8
+            [:div.row-5dec8
               "(my-vec idx) &rarr; (" [:a.inside-fn-c7607 "nth"] " my-vec idx)"
               [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "vector-as-fn"}]]
             [:a.fn-a8476 "get"]
@@ -320,7 +352,7 @@
         [:tr.even-ff837
           [:td.label-9e0b7 "Examine"]
           [:td.body-885f4
-            [:span.literal-row-5dec8
+            [:div.row-5dec8
               "(my-set itm) &rarr; (" [:a.inside-fn-c7607 "get"] " my-set itm)"
               [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "set-as-fn"}]]
             [:a.fn-a8476 "contains?"]]]
@@ -353,7 +385,7 @@
         [:tr.odd-372e6
           [:td.label-9e0b7 "Create"]
           [:td.body-885f4
-            [:span.literal-row-5dec8 "{:key1 \"a\" :key2 \"b\"}"]
+            [:div.row-5dec8 "{:key1 \"a\" :key2 \"b\"}"]
             [:a.fn-a8476 "hash-map"]
             [:a.fn-a8476 "array-map"]
             [:a.fn-a8476 "zipmap"]
@@ -364,7 +396,7 @@
         [:tr.even-ff837
           [:td.label-9e0b7 "Examine"]
           [:td.body-885f4
-            [:span.literal-row-5dec8
+            [:div.row-5dec8
               "(:key my-map) &rarr; (" [:a.inside-fn-c7607 "get"] " my-map :key)"
               [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id "keywords-as-fn"}]]
             [:a.fn-a8476 "get-in"]
@@ -653,6 +685,7 @@
       (basics-section)
       (numbers-section)]
     [:div.col-mid-bb1aa
+      (functions-section)
       (strings-section)]
     [:div.col-right-0f4a3
       (js-interop-section)]
