@@ -677,26 +677,55 @@
   [:div#tooltip-collections.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
     [:p.info-2e4f9
-      "TODO: collections tooltip content"]]
+      "ClojureScript provides 4 collection types: Lists, Vectors, Sets, and Maps. "
+      "These four data types have unique strengths and are used heavily in "
+      "ClojureScript programs."]
+    [:p.info-2e4f9
+      "All ClojureScript collections are immutable and persistent, which means "
+      "they preserve the previous versions of themselves when they are modified. "
+      "Creating a \"changed\" version of any collection is an efficient "
+      "operation in ClojureScript."]
+    [:p.info-2e4f9
+      "All 4 collections can be represented literally:"]
+    [:table.tt-tbl-42d9f
+      [:tbody
+        [:tr
+          [:td.tt-cell-e6fd2 "List"]
+          [:td.tt-arrow-d1a18 "&rarr;"]
+          [:td.form-7537f [:code "()"]]]
+        [:tr
+          [:td.tt-cell-e6fd2 "Vector"]
+          [:td.tt-arrow-d1a18 "&rarr;"]
+          [:td.form-7537f [:code "[]"]]]
+        [:tr
+          [:td.tt-cell-e6fd2 "Set"]
+          [:td.tt-arrow-d1a18 "&rarr;"]
+          [:td.form-7537f [:code "#{}"]]]
+        [:tr
+          [:td.tt-cell-e6fd2 "Map"]
+          [:td.tt-arrow-d1a18 "&rarr;"]
+          [:td.form-7537f [:code "{}"]]]]]]
 
   [:div#tooltip-lists.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
     [:p.info-2e4f9
-      "TODO: lists tooltip content"]]
+      "Lists are a sequence of values, similar to a Vector."]
+    [:p.info-2e4f9
+      "Most literal lists in a ClojureScript program represent a function call."]
+    [:p.info-2e4f9
+      " ie: " [:code "(a b c)"] " is a list of three things, and it also means "
+      "\"call the function a with two arguments: b and c\""]]
 
   [:div#tooltip-sets.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
-    [:p.info-2e4f9
-      "TODO: sets tooltip content"]]
+    [:p.info-2e4f9 "Sets are collections of unique values."]]
 
   [:div#tooltip-vectors.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
     [:p.info-2e4f9
-      "All vectors are collections and support the generic collection functions."]
+      "Vectors are collections of values that are indexed by sequential integers."]
     [:p.info-2e4f9
-      "All vectors are also sequences and support the generic sequence functions."]
-    [:p.info-2e4f9
-      "A ClojureScript Vector is not the same thing as a JavaScript Array. "
+      "Though similar, a ClojureScript Vector is not the same thing as a JavaScript Array. "
       "ie: " [:code "(.indexOf my-vec)"] " will not work on a ClojureScript Vector."]]
 
   [:div#tooltip-vector-as-fn.tooltip-53dde {:style "display:none"}
@@ -715,12 +744,7 @@
       "Maps - or hash maps - are a powerful data structure used often in ClojureScript programs."]
     [:p.info-2e4f9
       "In JavaScript, Objects are commonly used as a de-facto hash map using strings as keys. "
-      "A key in a ClojureScript Map can be any value, although commonly keywords are used."]
-    [:p.info-2e4f9
-      "All maps are collections and support the generic collection functions."]
-    [:p.info-2e4f9
-      "Maps are not a sequence, but most sequence functions can be used on a map. "
-      "Sequence functions used on a map return a sequence."]]
+      "A key in a ClojureScript Map can be any value, although commonly keywords are used."]]
 
   [:div#tooltip-keywords-as-fn.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
