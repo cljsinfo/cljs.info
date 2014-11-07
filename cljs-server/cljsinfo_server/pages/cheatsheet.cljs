@@ -687,6 +687,8 @@
       "operation in ClojureScript."]
     [:p.info-2e4f9
       "All 4 collections can be represented literally:"]
+    ;; TODO: not sure about this; it should probably just be a list?
+    ;; do we need the arrows?
     [:table.tt-tbl-42d9f
       [:tbody
         [:tr
