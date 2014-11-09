@@ -295,7 +295,7 @@ code {
   text-transform: lowercase;
 }
 
-.code() {
+.code(@size: 12px) {
   display: inline-block;
   font-family: "Droid Sans Mono", monospace;
   font-size: 12px;
@@ -420,19 +420,37 @@ code {
   .transform(rotate(45deg));
 }
 
-.tt-tbl-42d9f {
-  margin-bottom: 15px;
+.exmpl-tbl-42d9f {
+  margin: 15px 0;
+  width: 100%;
 }
 
 .tt-cell-e6fd2 {
-  padding: 2px 5px 2px 0;
+  padding: 5px 0;
+
+  pre {
+    font-family: "Droid Sans Mono";
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+  }
 }
 
-.tt-arrow-d1a18 {
-  padding: 0 5px;
+.code-72fa0 {
+  font-family: "Droid Sans Mono";
+  font-size: 12px;
+  padding: 10px 0;
+  vertical-align: top;
+
+  pre {
+    margin: 0;
+    padding: 0;
+  }
 }
 
-.form-7537f {
-  padding-left: 5px;
-  text-align: right;
+.hdr-5bd04 {
+  .font-bold(11px);
+  color: #888;
+  text-align: left;
+  text-transform: uppercase;
 }

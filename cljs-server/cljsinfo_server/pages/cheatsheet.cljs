@@ -23,7 +23,7 @@
 
 (hiccups/defhtml basics-section []
   [:div.section-31efe
-    [:h3.section-title-8ccf5 "Basics" (tt-icon "basics")]
+    [:h3.section-title-8ccf5 "Basics"]
     [:table.tbl-902f0
       [:tbody
         [:tr.odd-372e6
@@ -637,20 +637,40 @@
 
 (hiccups/defhtml tooltips []
 
-  [:div#tooltip-basics.tooltip-53dde {:style "display:none"}
-    [:i.fa.fa-thumb-tack.pin-0ad63]
-    [:p.info-2e4f9
-      "TODO: basics tooltip content"]]
-
   [:div#tooltip-functions.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
     [:p.info-2e4f9
-      "TODO: functions tooltip content"]]
+      "ClojureScript Functions are JavaScript Functions and can be called and "
+      "used in all the ways that JavaScript Functions can."]
+    [:p.info-2e4f9
+      "In addition, ClojureScript provides a variety of useful...TODO"
+      " and a convenient shorthand for creating anonymous functions."]
+    ]
 
   [:div#tooltip-function-shorthand.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
     [:p.info-2e4f9
-      "TODO: function shorthand examples"]]
+      "The " [:code "#()"] " function shorthand is a convenient way to write a "
+      "small function definition and is often used to pass closures from one "
+      "scope to another."]
+    [:p.info-2e4f9
+      [:code "#()"] " forms cannot be nested."]
+    [:table.exmpl-tbl-42d9f
+      [:thead
+        [:tr
+          [:th.hdr-5bd04 {:style "width:45%"} "Shorthand"]
+          [:th.hdr-5bd04 "Expands To"]]]
+      [:tbody
+        [:tr
+          [:td.code-72fa0 "#(str \"Hello \" %)"]
+          [:td.code-72fa0 [:pre "(fn [n]\n  (str \"Hello \" n))"]]]
+        [:tr
+          [:td.code-72fa0 "#(my-fn %1 %2 %3)"]
+          [:td.code-72fa0 [:pre "(fn [a b c]\n  (my-fn a b c))"]]]
+        [:tr
+          [:td.code-72fa0 "#(* % (apply + %&))"]
+          [:td.code-72fa0 [:pre "(fn [x & the-rest]\n  (* x (apply + the-rest)))"]]]
+          ]]]
 
   [:div#tooltip-atoms.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
@@ -658,18 +678,14 @@
       "Atoms provide a way to manage state in a ClojureScript program."]
     [:p.info-2e4f9
       "Unlike JavaScript, everything in ClojureScript is immutable by default. "
-      "Meaning that you cannot change the value of something after it has been defined."]
+      "This means that you cannot change the value of something after it has "
+      "been defined."]
     [:p.info-2e4f9
-      "Atoms allow for mutability and distinguish between setting and reading a value, "
-      "which makes state easier to reason about."]
+      "Atoms allow for mutability and distinguish between setting and reading "
+      "a value, which makes state easier to reason about."]
     [:p.info-2e4f9
       "Watcher functions execute when a value changes, providing a powerful UI "
-      "pattern at the language level when your value maps to interface state."
-      ; "Watcher functions execute when a value changes, passing in both the old "
-      ; "value and the new value. "
-      ; "This can be a powerful pattern for UI programming when your value maps "
-      ; "to the state of your interface."
-      ]]
+      "pattern when your value maps to interface state."]]
 
   [:div#tooltip-numbers.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
@@ -691,41 +707,39 @@
   [:div#tooltip-collections.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
     [:p.info-2e4f9
-      "ClojureScript provides 4 collection types: Lists, Vectors, Sets, and Maps. "
-      "These four data types have unique strengths and are used heavily in "
-      "ClojureScript programs."]
+      "ClojureScript provides four collection types: lists, vectors, sets, and "
+      "maps. "
+      "These data types have unique strengths and are used heavily in programs."]
     [:p.info-2e4f9
-      "All ClojureScript collections are immutable and persistent, which means "
-      "they preserve the previous versions of themselves when they are modified. "
+      "All collections are immutable and persistent, which means they preserve "
+      "the previous versions of themselves when they are modified. "
       "Creating a \"changed\" version of any collection is an efficient "
-      "operation in ClojureScript."]
+      "operation."]
     [:p.info-2e4f9
-      "All 4 collections can be represented literally:"]
-    ;; TODO: not sure about this; it should probably just be a list?
-    ;; do we need the arrows?
-    [:table.tt-tbl-42d9f
+      "Collections can be represented literally:"]
+    [:table.exmpl-tbl-42d9f
+      [:thead
+        [:tr
+          [:th.hdr-5bd04 {:style "width:25%"} "Collection"]
+          [:th.hdr-5bd04 "Literal Form"]]]
       [:tbody
         [:tr
-          [:td.tt-cell-e6fd2 "List"]
-          [:td.tt-arrow-d1a18 "&rarr;"]
-          [:td.form-7537f [:code "()"]]]
+          [:td.tt-cell-e6fd2 "list"]
+          [:td.tt-cell-e6fd2 [:code "()"]]]
         [:tr
-          [:td.tt-cell-e6fd2 "Vector"]
-          [:td.tt-arrow-d1a18 "&rarr;"]
-          [:td.form-7537f [:code "[]"]]]
+          [:td.tt-cell-e6fd2 "vector"]
+          [:td.tt-cell-e6fd2 [:code "[]"]]]
         [:tr
-          [:td.tt-cell-e6fd2 "Set"]
-          [:td.tt-arrow-d1a18 "&rarr;"]
-          [:td.form-7537f [:code "#{}"]]]
+          [:td.tt-cell-e6fd2 "set"]
+          [:td.tt-cell-e6fd2 [:code "#{}"]]]
         [:tr
-          [:td.tt-cell-e6fd2 "Map"]
-          [:td.tt-arrow-d1a18 "&rarr;"]
-          [:td.form-7537f [:code "{}"]]]]]]
+          [:td.tt-cell-e6fd2 "map"]
+          [:td.tt-cell-e6fd2 [:code "{}"]]]]]]
 
   [:div#tooltip-lists.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
     [:p.info-2e4f9
-      "Lists are a sequence of values, similar to a Vector."]
+      "Lists are a sequence of values, similar to a vector."]
     [:p.info-2e4f9
       "Most literal lists in a ClojureScript program represent a function call."]
     [:p.info-2e4f9
@@ -760,8 +774,10 @@
       "A Map is a collection that maps keys to values. "
       "Accessing a value in a map using a key is very fast."]
     [:p.info-2e4f9
-      "In JavaScript, Objects are commonly used as a de-facto hash map using strings as keys. "
-      "A key in a ClojureScript Map can be any value, although commonly keywords are used."]]
+      "In JavaScript, Objects are commonly used as a de facto map using "
+      "strings as keys. "
+      "A key in a ClojureScript Map can be any value, although keywords are "
+      "commonly used."]]
 
   [:div#tooltip-keywords-as-fn.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
