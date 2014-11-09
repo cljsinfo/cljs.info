@@ -655,7 +655,21 @@
   [:div#tooltip-atoms.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
     [:p.info-2e4f9
-      "TODO: atoms tooltip content"]]
+      "Atoms provide a way to manage state in a ClojureScript program."]
+    [:p.info-2e4f9
+      "Unlike JavaScript, everything in ClojureScript is immutable by default. "
+      "Meaning that you cannot change the value of something after it has been defined."]
+    [:p.info-2e4f9
+      "Atoms allow for mutability and distinguish between setting and reading a value, "
+      "which makes state easier to reason about."]
+    [:p.info-2e4f9
+      "Watcher functions execute when a value changes, providing a powerful UI "
+      "pattern at the language level when your value maps to interface state."
+      ; "Watcher functions execute when a value changes, passing in both the old "
+      ; "value and the new value. "
+      ; "This can be a powerful pattern for UI programming when your value maps "
+      ; "to the state of your interface."
+      ]]
 
   [:div#tooltip-numbers.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
@@ -715,7 +729,7 @@
     [:p.info-2e4f9
       "Most literal lists in a ClojureScript program represent a function call."]
     [:p.info-2e4f9
-      " ie: " [:code "(a b c)"] " is a list of three things, and it also means "
+      "ie: " [:code "(a b c)"] " is a list of three things, and it also means "
       "\"call the function a with two arguments: b and c\""]]
 
   [:div#tooltip-sets.tooltip-53dde {:style "display:none"}
@@ -743,7 +757,8 @@
   [:div#tooltip-maps.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
     [:p.info-2e4f9
-      "Maps - or hash maps - are a powerful data structure used often in ClojureScript programs."]
+      "A Map is a collection that maps keys to values. "
+      "Accessing a value in a map using a key is very fast."]
     [:p.info-2e4f9
       "In JavaScript, Objects are commonly used as a de-facto hash map using strings as keys. "
       "A key in a ClojureScript Map can be any value, although commonly keywords are used."]]
