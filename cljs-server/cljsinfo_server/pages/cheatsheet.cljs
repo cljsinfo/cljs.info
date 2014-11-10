@@ -654,7 +654,7 @@
       "small function definition and is often used to pass closures from one "
       "scope to another."]
     [:p.info-2e4f9
-      [:code "#()"] " forms cannot be nested."]
+      [:code "#()"] " forms cannot be nested."]]
     [:table.exmpl-tbl-42d9f
       [:thead
         [:tr
@@ -709,10 +709,10 @@
     [:p.info-2e4f9
       "ClojureScript provides four collection types: lists, vectors, sets, and "
       "maps. "
-      "These data types have unique strengths and are used heavily in programs."]
+      "Each of these data types has unique strengths and are used heavily."]
     [:p.info-2e4f9
       "All collections are immutable and persistent, which means they preserve "
-      "the previous versions of themselves when they are modified. "
+      "the previous version(s) of themselves when they are modified. "
       "Creating a \"changed\" version of any collection is an efficient "
       "operation."]
     [:p.info-2e4f9
@@ -720,7 +720,7 @@
     [:table.exmpl-tbl-42d9f
       [:thead
         [:tr
-          [:th.hdr-5bd04 {:style "width:25%"} "Collection"]
+          [:th.hdr-5bd04 {:style "width: 24%"} "Collection"]
           [:th.hdr-5bd04 "Literal Form"]]]
       [:tbody
         [:tr
