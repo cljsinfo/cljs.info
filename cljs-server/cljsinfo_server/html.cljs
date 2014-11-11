@@ -32,6 +32,10 @@
     [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge"}]
     [:title "ClojureScript.info &raquo; " page-title]
     [:meta {:name "viewport" :content "width=device-width"}]
+    ;; TODO: need to download Italics and add them to the project
+    ; [:link {:href "http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,600,300"
+    ;         :rel "stylesheet"
+    ;         :type "text/css"}]
     [:link {:rel "stylesheet" :href (asset "css/main.min.css")}]]
   "<body>")
 

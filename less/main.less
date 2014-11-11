@@ -36,6 +36,32 @@
     url('../fonts/OpenSans-Semibold.woff') format('woff');
 }
 
+// TODO: need to download the Italic .eot files
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 300;
+  src: local('Open Sans Light Italic'), local('OpenSansLight-Italic'),
+    url('../fonts/OpenSansLight-Italic.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Open Sans Italic'), local('OpenSans-Italic'),
+    url('../fonts/OpenSans-Italic.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 600;
+  src: local('Open Sans Semibold Italic'), local('OpenSans-SemiboldItalic'),
+    url('../fonts/OpenSans-SemiboldItalic.woff') format('woff');
+}
+
 @font-face {
   font-family: 'Droid Sans Mono';
   font-style: normal;
@@ -88,6 +114,12 @@ body {
 
 code {
   font-family: "Droid Sans Mono";
+}
+
+em {
+  font-style: italic;
+  font-family: "Open Sans";
+  font-weight: 400;
 }
 
 .clr-43e49 {
@@ -436,7 +468,7 @@ code {
 }
 
 .tt-cell-e6fd2 {
-  padding: 10px;
+  padding: 8px 10px;
 
   pre {
     font-family: "Droid Sans Mono";
@@ -459,7 +491,7 @@ code {
 }
 
 .right-border-c1b54 {
-  border-right: 1px solid rgba(136, 136, 136, 0.35);
+  border-right: 1px solid rgba(136, 136, 136, 0.4);
 }
 
 .hdr-5bd04, .tbl-hdr-e0564 {

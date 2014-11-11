@@ -254,6 +254,10 @@
             [:a.fn-a8476 "catch"]
             [:a.fn-a8476 "finally"]
             [:a.fn-a8476 "throw"]]]
+
+        ;; TODO: add "Export Symbol" section here
+        ;; show ^:export metadata and goog.exportSymbol
+
         [:tr.even-ff837
           [:td.label-9e0b7 "External Library"]
           [:td.body-885f4
@@ -632,10 +636,28 @@
 ;; Tooltips
 ;;------------------------------------------------------------------------------
 
-;; NOTE: Tooltip for sequences: most sequence functions work on Strings as well.
-;; You're welcome.
+(hiccups/defhtml basics-tooltips []
 
-(hiccups/defhtml tooltips []
+  [:div#tooltip-numbers.tooltip-53dde {:style "display:none"}
+    [:i.fa.fa-thumb-tack.pin-0ad63]
+    [:p.info-2e4f9
+      "All ClojureScript Numbers are IEEE 754 Double Precision floating point. "
+      "The same as JavaScript."]]
+
+  [:div#tooltip-atoms.tooltip-53dde {:style "display:none"}
+    [:i.fa.fa-thumb-tack.pin-0ad63]
+    [:p.info-2e4f9
+      "Atoms provide a way to manage state in a ClojureScript program."]
+    [:p.info-2e4f9
+      "Unlike JavaScript, everything in ClojureScript is immutable by default. "
+      "This means that you cannot change the value of something after it has "
+      "been defined."]
+    [:p.info-2e4f9
+      "Atoms allow for mutability and distinguish between setting and reading "
+      "a value, which makes state easier to reason about."]
+    [:p.info-2e4f9
+      "Watcher functions execute when a value changes, providing a powerful UI "
+      "pattern when your value maps to interface state."]]
 
   [:div#tooltip-functions.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
@@ -672,27 +694,6 @@
             "(fn [x & the-rest]\n"
             "  (* x (apply + the-rest)))"]]]]]]
 
-  [:div#tooltip-atoms.tooltip-53dde {:style "display:none"}
-    [:i.fa.fa-thumb-tack.pin-0ad63]
-    [:p.info-2e4f9
-      "Atoms provide a way to manage state in a ClojureScript program."]
-    [:p.info-2e4f9
-      "Unlike JavaScript, everything in ClojureScript is immutable by default. "
-      "This means that you cannot change the value of something after it has "
-      "been defined."]
-    [:p.info-2e4f9
-      "Atoms allow for mutability and distinguish between setting and reading "
-      "a value, which makes state easier to reason about."]
-    [:p.info-2e4f9
-      "Watcher functions execute when a value changes, providing a powerful UI "
-      "pattern when your value maps to interface state."]]
-
-  [:div#tooltip-numbers.tooltip-53dde {:style "display:none"}
-    [:i.fa.fa-thumb-tack.pin-0ad63]
-    [:p.info-2e4f9
-      "All ClojureScript Numbers are IEEE 754 Double Precision floating point. "
-      "The same as JavaScript."]]
-
   [:div#tooltip-strings.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
     [:p.info-2e4f9
@@ -702,8 +703,9 @@
       "ClojureScript Strings must be defined using double quotes."]
     [:p.info-2e4f9
       "The " [:code "clojure.string"] " namespace provides many useful "
-      "functions for dealing with strings."]]
+      "functions for dealing with strings."]])
 
+(hiccups/defhtml collections-tooltips []
   [:div#tooltip-collections.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
     [:p.info-2e4f9
@@ -742,49 +744,61 @@
     [:p.info-2e4f9
       "Lists are a sequence of values, similar to a vector."]
     [:p.info-2e4f9
-      "Most literal lists in a ClojureScript program represent a function call."]
+      "Most literal lists represent a function call."]
     [:p.info-2e4f9
-      "ie: " [:code "(a b c)"] " is a list of three things, and it also means "
-      "\"call the function a with two arguments: b and c\""]]
-
-  [:div#tooltip-sets.tooltip-53dde {:style "display:none"}
-    [:i.fa.fa-thumb-tack.pin-0ad63]
-    [:p.info-2e4f9 "Sets are collections of unique values."]]
+      [:code "(a b c)"] " is a list of three things, and it also means "
+      "\"call the function " [:em "a"] " with two arguments: " [:em "b"]
+      " and " [:em "c"] "\""]]
 
   [:div#tooltip-vectors.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
     [:p.info-2e4f9
       "Vectors are collections of values that are indexed by sequential integers."]
     [:p.info-2e4f9
-      "Though similar, a ClojureScript Vector is not the same thing as a JavaScript Array. "
-      "ie: " [:code "(.indexOf my-vec)"] " will not work on a ClojureScript Vector."]]
+      "Though similar, a JavaScript Array is not the same thing as a "
+      "ClojureScript vector. "
+      "ie: " [:code "(.indexOf my-vec)"] " will not work on a vector."]]
 
   [:div#tooltip-vector-as-fn.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
     [:p.info-2e4f9
-      "A Vector can be used as a function to access its elements."]]
+      "A vector can be used as a function to access its elements."]]
+
+  [:div#tooltip-sets.tooltip-53dde {:style "display:none"}
+    [:i.fa.fa-thumb-tack.pin-0ad63]
+    [:p.info-2e4f9 "Sets are collections of unique values."]]
 
   [:div#tooltip-set-as-fn.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
     [:p.info-2e4f9
-      "A Set can be used as a function to access its elements."]]
+      "A set can be used as a function to access its elements."]]
 
   [:div#tooltip-maps.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
     [:p.info-2e4f9
-      "A Map is a collection that maps keys to values. "
+      "A map is a collection that maps keys to values. "
       "Accessing a value in a map using a key is very fast."]
     [:p.info-2e4f9
       "In JavaScript, Objects are commonly used as a de facto map using "
       "strings as keys. "
-      "A key in a ClojureScript Map can be any value, although keywords are "
+      "A key in a ClojureScript map can be any value, although keywords are "
       "commonly used."]]
 
   [:div#tooltip-keywords-as-fn.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
     [:p.info-2e4f9
-      "Keywords can be used as functions to get a value from a map. "
+      "Keywords can be used as a function to get a value from a map. "
       "They are commonly used as map keys for this reason."]])
+
+(hiccups/defhtml tooltips []
+  (basics-tooltips)
+  (collections-tooltips)
+
+  ;; TODO: Sequences tooltip
+  ;; NOTE: Tooltip for sequences: most sequence functions work on Strings as well.
+  ;; You're welcome.
+
+  )
 
 ;;------------------------------------------------------------------------------
 ;; Page
