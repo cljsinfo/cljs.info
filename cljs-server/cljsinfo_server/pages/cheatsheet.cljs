@@ -5,9 +5,6 @@
     clojure.string
     [cljsinfo-server.util :refer [js-log log]]))
 
-;; TODO: text for footer:
-;; "Please copy, improve, and share this work."
-
 (def encode js/goog.string.htmlEscape)
 (def encode-uri js/encodeURIComponent)
 
@@ -814,17 +811,17 @@
           [:th.tbl-hdr-e0564 "Literal Form"]]]
       [:tbody
         [:tr.dark-odd-7aff7
-          [:td.tt-cell-e6fd2.right-border-c1b54 "list"]
-          [:td.tt-cell-e6fd2 [:code "()"]]]
+          [:td.cell-e6fd2.right-border-c1b54 "list"]
+          [:td.cell-e6fd2 [:code "()"]]]
         [:tr.dark-even-6cd97
-          [:td.tt-cell-e6fd2.right-border-c1b54 "vector"]
-          [:td.tt-cell-e6fd2 [:code "[]"]]]
+          [:td.cell-e6fd2.right-border-c1b54 "vector"]
+          [:td.cell-e6fd2 [:code "[]"]]]
         [:tr.dark-odd-7aff7
-          [:td.tt-cell-e6fd2.right-border-c1b54 "set"]
-          [:td.tt-cell-e6fd2 [:code "#{}"]]]
+          [:td.cell-e6fd2.right-border-c1b54 "set"]
+          [:td.cell-e6fd2 [:code "#{}"]]]
         [:tr.dark-even-6cd97
-          [:td.tt-cell-e6fd2.right-border-c1b54 "map"]
-          [:td.tt-cell-e6fd2 [:code "{}"]]]]]]
+          [:td.cell-e6fd2.right-border-c1b54 "map"]
+          [:td.cell-e6fd2 [:code "{}"]]]]]]
 
   [:div#tooltip-lists.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
@@ -888,7 +885,7 @@
   )
 
 ;;------------------------------------------------------------------------------
-;; Header
+;; Header and Footer
 ;;------------------------------------------------------------------------------
 
 (hiccups/defhtml header []
@@ -899,6 +896,11 @@
     [:label#toggleTooltips.tooltips-label-68aa0
       [:i.fa.fa-check-square-o] "Show tooltips?"]
     [:div.clr-43e49]])
+
+;; TODO: text for footer:
+;; "Please copy, improve, and share this work."
+(hiccups/defhtml footer []
+  [:div.footer-2137e {:style "display:none"} "TODO: write me"])
 
 ;;------------------------------------------------------------------------------
 ;; Section Layouts
@@ -1009,4 +1011,5 @@
   (three-col-layout)
   (two-col-layout)
   (one-col-layout)
+  (footer)
   (tooltips))

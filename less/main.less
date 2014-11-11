@@ -147,6 +147,13 @@ em {
   margin: 10px auto 20px auto;
 }
 
+.footer-2137e {
+  border-top: 1px solid orange;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px 0;
+}
+
 .title-7a29c {
   .font-light(28px);
   float: left;
@@ -164,7 +171,7 @@ em {
 .sml-5dcf3 {
   .med-wrapper-87a24 { display: none; }
   .lrg-wrapper-cc101 { display: none; }
-  .header-2a8a6 { padding: 0 4px; }
+  .header-2a8a6, .footer-2137e { padding: 0 4px; }
 
   .title-7a29c {
     display: block;
@@ -188,13 +195,13 @@ em {
 .med-0000a {
   .sml-wrapper-7eff3 { display: none; }
   .lrg-wrapper-cc101 { display: none; }
-  .header-2a8a6 { padding: 0 10px; }
+  .header-2a8a6, .footer-2137e { padding: 0 10px; }
 }
 
 .lrg-92b4d {
   .med-wrapper-87a24 { display: none; }
   .sml-wrapper-7eff3 { display: none; }
-  .header-2a8a6 { padding: 0 20px; }
+  .header-2a8a6, .footer-2137e { padding: 0 20px; }
 }
 
 .tooltips-label-68aa0 {
@@ -432,6 +439,9 @@ em {
 }
 
 .pin-0ad63 {
+  // NOTE: hide the pins for now until they are functional
+  display: none;
+
   font-size: 12px;
   position: absolute;
   top: 12px;
@@ -444,7 +454,7 @@ em {
   width: 100%;
 }
 
-.tt-cell-e6fd2 {
+.cell-e6fd2 {
   padding: 8px 10px;
 
   pre {
