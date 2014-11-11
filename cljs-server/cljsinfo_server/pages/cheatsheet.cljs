@@ -973,7 +973,7 @@
 (hiccups/defhtml one-col-layout []
   [:div.sml-wrapper-7eff3
     [:h2.group-title-68f3c "Basics"]
-    [:div.sml-col-d8a7e
+    [:div
       (basics-section)
       (functions-section)
       (numbers-section)
@@ -982,7 +982,7 @@
       (atoms-section)]
 
     [:h2.group-title-68f3c "Collections"]
-    [:div.sml-col-d8a7e
+    [:div
       (collections-section)
       (lists-section)
       (vectors-section)
@@ -990,13 +990,13 @@
       (maps-section)]
 
     [:h2.group-title-68f3c "Sequences"]
-    [:div.sml-col-d8a7e
+    [:div
       (create-seq-section)
       (use-seq-section)
       (seq-in-out-section)]
 
     [:h2.group-title-68f3c "Misc"]
-    [:div.sml-col-d8a7e
+    [:div
       (bitwise-section)]
     [:div.clr-43e49]])
 
