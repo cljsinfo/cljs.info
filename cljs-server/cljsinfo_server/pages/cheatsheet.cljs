@@ -7,6 +7,8 @@
 ;; TODO: text for footer:
 ;; "Please copy, improve, and share this work."
 
+(def encode js/goog.string.htmlEscape)
+
 ;;------------------------------------------------------------------------------
 ;; Helpers
 ;;------------------------------------------------------------------------------
@@ -17,13 +19,8 @@
 (hiccups/defhtml literal [n]
   [:span.literal-c3029 n])
 
-(hiccups/defhtml fn-link
-  ([nme] (fn-link nme nil))
-  ([nme href]
-     [:a.fn-a8476 #_{:href href} nme]))
-
-(defn- fns-list [fns]
-  (map (fn [x] (fn-link x "/#")) fns))
+(hiccups/defhtml fn-link [nme]
+  [:a.fn-a8476 (encode nme)])
 
 ;;------------------------------------------------------------------------------
 ;; Sections
@@ -111,13 +108,13 @@
           [:td.label-9e0b7 "Call"]
           [:td.body-885f4
             (fn-link "apply")
-            (fn-link "-&gt;")
-            (fn-link "-&gt;&gt;")
-            (fn-link "as-&gt;")
-            (fn-link "cond-&gt;")
-            (fn-link "cond-&gt;&gt;")
-            (fn-link "some-&gt;")
-            (fn-link "some-&gt;&gt;")]]
+            (fn-link "->")
+            (fn-link "->>")
+            (fn-link "as->")
+            (fn-link "cond->")
+            (fn-link "cond->>")
+            (fn-link "some->")
+            (fn-link "some->>")]]
         [:tr.odd-372e6
           [:td.label-9e0b7 "Test"]
           [:td.body-885f4
@@ -139,19 +136,42 @@
         [:tr.even-ff837
           [:td.label-9e0b7 "Arithmetic"]
           [:td.body-885f4
-            (fns-list ["+" "-" "*" "/" "quot" "rem" "mod" "inc" "dec" "max" "min"])]]
+            (fn-link "+")
+            (fn-link "-")
+            (fn-link "*")
+            (fn-link "/")
+            (fn-link "quot")
+            (fn-link "rem")
+            (fn-link "mod")
+            (fn-link "inc")
+            (fn-link "dec")
+            (fn-link "max")
+            (fn-link "min")]]
         [:tr.odd-372e6
           [:td.label-9e0b7 "Compare"]
           [:td.body-885f4
-            (fns-list ["=" "==" "not=" "&lt;" "&gt;" "&lt;=" "&gt;="])]]
+            (fn-link "=")
+            (fn-link "==")
+            (fn-link "not=")
+            (fn-link "<")
+            (fn-link ">")
+            (fn-link "<=")
+            (fn-link ">=")]]
         [:tr.even-ff837
           [:td.label-9e0b7 "Cast"]
           [:td.body-885f4
-            (fns-list ["int" "float"])]]
+            (fn-link "int")
+            (fn-link "float")]]
         [:tr.odd-372e6
           [:td.label-9e0b7 "Test"]
           [:td.body-885f4
-            (fns-list ["zero?" "pos?" "neg?" "even?" "odd?" "number?" "integer?"])]]
+            (fn-link "zero?")
+            (fn-link "pos?")
+            (fn-link "neg?")
+            (fn-link "even?")
+            (fn-link "odd?")
+            (fn-link "number?")
+            (fn-link "integer?")]]
         [:tr.even-ff837
           [:td.label-9e0b7 "Random"]
           [:td.body-885f4
@@ -277,8 +297,8 @@
         [:tr.odd-372e6
           [:td.label-9e0b7 "Convert Between"]
           [:td.body-885f4
-            (fn-link "clj-&gt;js")
-            (fn-link "js-&gt;clj")]]
+            (fn-link "clj->js")
+            (fn-link "js->clj")]]
         [:tr.even-ff837
           [:td.label-9e0b7 "Type Tests"]
           [:td.body-885f4
