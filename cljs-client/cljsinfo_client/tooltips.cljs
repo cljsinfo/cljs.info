@@ -45,7 +45,7 @@
 
 ;; NOTE: this value needs to stay in sync with the .tooltip-53ddee class
 ;; in /less/main.less
-(def max-tooltip-width 350)
+(def max-tooltip-width 360)
 
 (defn- on-mouseenter [js-evt]
   (if-let [tooltip-id (evt->tt-num js-evt)]
@@ -64,7 +64,7 @@
       (.css $tooltip-el (js-obj
         "display" ""
         "left" target-x
-        "marginLeft" (if flip? (- 0 tooltip-width 50) 20)
+        "marginLeft" (if flip? (- 0 tooltip-width 30) 20)
         "top" target-y )))))
 
 ;; TODO: IE fires the mouseleave event while the mouse cursor is still inside

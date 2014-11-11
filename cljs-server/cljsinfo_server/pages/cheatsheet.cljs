@@ -643,9 +643,8 @@
       "ClojureScript Functions are JavaScript Functions and can be called and "
       "used in all the ways that JavaScript Functions can."]
     [:p.info-2e4f9
-      "In addition, ClojureScript provides a variety of useful...TODO"
-      " and a convenient shorthand for creating anonymous functions."]
-    ]
+      "The core library provides many useful higher-order functions and there "
+      "is a convenient shorthand for creating anonymous functions."]]
 
   [:div#tooltip-function-shorthand.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
@@ -654,23 +653,24 @@
       "small function definition and is often used to pass closures from one "
       "scope to another."]
     [:p.info-2e4f9
-      [:code "#()"] " forms cannot be nested."]]
+      [:code "#()"] " forms cannot be nested and it is idiomatic to keep them short."]
     [:table.exmpl-tbl-42d9f
       [:thead
         [:tr
-          [:th.hdr-5bd04 {:style "width:45%"} "Shorthand"]
-          [:th.hdr-5bd04 "Expands To"]]]
+          [:th.tbl-hdr-e0564 "Shorthand"]
+          [:th.tbl-hdr-e0564 "Expands To"]]]
       [:tbody
-        [:tr
-          [:td.code-72fa0 "#(str \"Hello \" %)"]
+        [:tr.dark-odd-7aff7
+          [:td.code-72fa0.right-border-c1b54 "#(str \"Hello \" %)"]
           [:td.code-72fa0 [:pre "(fn [n]\n  (str \"Hello \" n))"]]]
-        [:tr
-          [:td.code-72fa0 "#(my-fn %1 %2 %3)"]
+        [:tr.dark-even-6cd97
+          [:td.code-72fa0.right-border-c1b54 "#(my-fn %1 %2 %3)"]
           [:td.code-72fa0 [:pre "(fn [a b c]\n  (my-fn a b c))"]]]
-        [:tr
-          [:td.code-72fa0 "#(* % (apply + %&))"]
-          [:td.code-72fa0 [:pre "(fn [x & the-rest]\n  (* x (apply + the-rest)))"]]]
-          ]]]
+        [:tr.dark-odd-7aff7
+          [:td.code-72fa0.right-border-c1b54 "#(* % (apply + %&))"]
+          [:td.code-72fa0 [:pre {:style "font-size:10px"}
+            "(fn [x & the-rest]\n"
+            "  (* x (apply + the-rest)))"]]]]]]
 
   [:div#tooltip-atoms.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
@@ -709,7 +709,8 @@
     [:p.info-2e4f9
       "ClojureScript provides four collection types: lists, vectors, sets, and "
       "maps. "
-      "Each of these data types has unique strengths and are used heavily."]
+      "Each of these data types has unique strengths and are used heavily in "
+      "most programs."]
     [:p.info-2e4f9
       "All collections are immutable and persistent, which means they preserve "
       "the previous version(s) of themselves when they are modified. "
@@ -717,23 +718,23 @@
       "operation."]
     [:p.info-2e4f9
       "Collections can be represented literally:"]
-    [:table.exmpl-tbl-42d9f
+    [:table.tbl-3160a
       [:thead
         [:tr
-          [:th.hdr-5bd04 {:style "width: 24%"} "Collection"]
-          [:th.hdr-5bd04 "Literal Form"]]]
+          [:th.tbl-hdr-e0564 "Collection"]
+          [:th.tbl-hdr-e0564 "Literal Form"]]]
       [:tbody
-        [:tr
-          [:td.tt-cell-e6fd2 "list"]
+        [:tr.dark-odd-7aff7
+          [:td.tt-cell-e6fd2.right-border-c1b54 "list"]
           [:td.tt-cell-e6fd2 [:code "()"]]]
-        [:tr
-          [:td.tt-cell-e6fd2 "vector"]
+        [:tr.dark-even-6cd97
+          [:td.tt-cell-e6fd2.right-border-c1b54 "vector"]
           [:td.tt-cell-e6fd2 [:code "[]"]]]
-        [:tr
-          [:td.tt-cell-e6fd2 "set"]
+        [:tr.dark-odd-7aff7
+          [:td.tt-cell-e6fd2.right-border-c1b54 "set"]
           [:td.tt-cell-e6fd2 [:code "#{}"]]]
-        [:tr
-          [:td.tt-cell-e6fd2 "map"]
+        [:tr.dark-even-6cd97
+          [:td.tt-cell-e6fd2.right-border-c1b54 "map"]
           [:td.tt-cell-e6fd2 [:code "{}"]]]]]]
 
   [:div#tooltip-lists.tooltip-53dde {:style "display:none"}
