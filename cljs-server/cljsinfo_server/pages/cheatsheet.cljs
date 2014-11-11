@@ -2,12 +2,17 @@
   (:require-macros [hiccups.core :as hiccups])
   (:require
     hiccups.runtime
+    clojure.string
     [cljsinfo-server.util :refer [js-log log]]))
 
 ;; TODO: text for footer:
 ;; "Please copy, improve, and share this work."
 
 (def encode js/goog.string.htmlEscape)
+(def encode-uri js/encodeURIComponent)
+
+(def clj-string "clojure.string")
+(def clj-set "clojure.set")
 
 ;;------------------------------------------------------------------------------
 ;; Helpers
@@ -19,8 +24,22 @@
 (hiccups/defhtml literal [n]
   [:span.literal-c3029 n])
 
-(hiccups/defhtml fn-link [nme]
-  [:a.fn-a8476 (encode nme)])
+(defn- nme->cljdocs-url [nme]
+  (-> nme
+    (clojure.string/replace "?" "_q")
+    encode-uri))
+
+(defn- docs-href [nme nme-space]
+  (str "http://clojuredocs.org/"
+       (encode-uri nme-space) "/"
+       (nme->cljdocs-url nme)))
+
+(hiccups/defhtml fn-link
+  ([nme] (fn-link nme "clojure.core"))
+  ([nme nme-space]
+    [:a.fn-a8476
+      {:href (docs-href nme nme-space)}
+      (encode nme)]))
 
 ;;------------------------------------------------------------------------------
 ;; Sections
@@ -196,13 +215,13 @@
             (fn-link "get")
             (fn-link "subs")
             (literal "(clojure.string/)")
-            (fn-link "join")
-            (fn-link "escape")
-            (fn-link "split")
-            (fn-link "split-lines")
-            (fn-link "replace")
-            (fn-link "replace-first")
-            (fn-link "reverse")]]
+            (fn-link "join" clj-string)
+            (fn-link "escape" clj-string)
+            (fn-link "split" clj-string)
+            (fn-link "split-lines" clj-string)
+            (fn-link "replace" clj-string)
+            (fn-link "replace-first" clj-string)
+            (fn-link "reverse" clj-string)]]
         [:tr.odd-372e6
           [:td.label-9e0b7 "Regex"]
           [:td.body-885f4
@@ -212,30 +231,30 @@
             (fn-link "re-matches")
             (fn-link "re-pattern")
             (literal "(clojure.string/)")
-            (fn-link "replace")
-            (fn-link "replace-first")]]
+            (fn-link "replace" clj-string)
+            (fn-link "replace-first" clj-string)]]
         [:tr.even-ff837
           [:td.label-9e0b7 "Letters"]
           [:td.body-885f4
             (literal "(clojure.string/)")
-            (fn-link "capitalize")
-            (fn-link "lower-case")
-            (fn-link "upper-case")]]
+            (fn-link "capitalize" clj-string)
+            (fn-link "lower-case" clj-string)
+            (fn-link "upper-case" clj-string)]]
         [:tr.odd-372e6
           [:td.label-9e0b7 "Trim"]
           [:td.body-885f4
             (literal "(clojure.string/)")
-            (fn-link "trim")
-            (fn-link "trim-newline")
-            (fn-link "triml")
-            (fn-link "trimr")]]
+            (fn-link "trim" clj-string)
+            (fn-link "trim-newline" clj-string)
+            (fn-link "triml" clj-string)
+            (fn-link "trimr" clj-string)]]
         [:tr.even-ff837
           [:td.label-9e0b7 "Test"]
           [:td.body-885f4
             (fn-link "char")
             (fn-link "string?")
             (literal "(clojure.string/)")
-            (fn-link "blank?")]]]]])
+            (fn-link "blank?" clj-string)]]]]])
 
 (hiccups/defhtml atoms-section []
   [:div.section-31efe
@@ -454,16 +473,16 @@
           [:td.label-9e0b7 "Set Ops"]
           [:td.body-885f4
             (literal "(clojure.set/)")
-            (fn-link "union")
-            (fn-link "difference")
-            (fn-link "intersection")
-            (fn-link "select")]]
+            (fn-link "union" clj-set)
+            (fn-link "difference" clj-set)
+            (fn-link "intersection" clj-set)
+            (fn-link "select" clj-set)]]
         [:tr.odd-372e6
           [:td.label-9e0b7 "Test"]
           [:td.body-885f4
             (literal "(clojure.set/)")
-            (fn-link "subset?")
-            (fn-link "superset?")]]]]])
+            (fn-link "subset?" clj-set)
+            (fn-link "superset?" clj-set)]]]]])
 
 (hiccups/defhtml maps-section []
   [:div.section-31efe
