@@ -908,74 +908,87 @@
 
 (hiccups/defhtml three-col-layout []
   [:div.lrg-wrapper-cc101
-    [:h2.group-title-68f3c "Basics"]
-    [:div.lrg-col-left-d5f6d
-      (basics-section)
-      (functions-section)]
-    [:div.lrg-col-cntr-bb1aa
-      (numbers-section)
-      (strings-section)]
-    [:div.lrg-col-right-0f4a3
-      (atoms-section)
-      (js-interop-section)]
 
-    [:h2.group-title-68f3c "Collections"]
-    [:div.lrg-col-left-d5f6d
-      (collections-section)
-      (lists-section)]
-    [:div.lrg-col-cntr-bb1aa
-      (vectors-section)
-      (sets-section)]
-    [:div.lrg-col-right-0f4a3
-      (maps-section)]
+    [:div.group-2be36
+      [:h2.group-title-68f3c "Basics"]
+      [:div.lrg-col-left-d5f6d
+        (basics-section)
+        (functions-section)]
+      [:div.lrg-col-cntr-bb1aa
+        (numbers-section)
+        (strings-section)]
+      [:div.lrg-col-right-0f4a3
+        (atoms-section)
+        (js-interop-section)]]
 
-    [:h2.group-title-68f3c "Sequences"]
-    [:div.lrg-col-left-d5f6d (create-seq-section)]
-    [:div.lrg-col-cntr-bb1aa (seq-in-out-section)]
-    [:div.lrg-col-right-0f4a3 (use-seq-section)]
+    [:div.group-2be36
+      [:h2.group-title-68f3c "Collections"]
+      [:div.lrg-col-left-d5f6d
+        (collections-section)
+        (lists-section)]
+      [:div.lrg-col-cntr-bb1aa
+        (vectors-section)
+        (sets-section)]
+      [:div.lrg-col-right-0f4a3
+        (maps-section)]]
 
-    [:h2.group-title-68f3c "Misc"]
-    [:div.lrg-col-left-d5f6d
-      (bitwise-section)]
+    [:div.group-2be36
+      [:h2.group-title-68f3c "Sequences"]
+      [:div.lrg-col-left-d5f6d (create-seq-section)]
+      [:div.lrg-col-cntr-bb1aa (seq-in-out-section)]
+      [:div.lrg-col-right-0f4a3 (use-seq-section)]]
+
+    [:div.group-2be36
+      [:h2.group-title-68f3c "Misc"]
+      [:div.lrg-col-left-d5f6d
+        (bitwise-section)]]
+
     [:div.clr-43e49]])
 
 (hiccups/defhtml two-col-layout []
   [:div.med-wrapper-87a24
-    [:h2.group-title-68f3c "Basics"]
-    [:div.med-col-left-06d5d
-      (basics-section)
-      (numbers-section)
-      (js-interop-section)]
-    [:div.med-col-right-eb5c2
-      (functions-section)
-      (strings-section)
-      (atoms-section)]
 
-    [:h2.group-title-68f3c "Collections"]
-    [:div.med-col-left-06d5d
-      (collections-section)
-      (lists-section)
-      (maps-section)]
-    [:div.med-col-right-eb5c2
-      (vectors-section)
-      (sets-section)]
+    [:div.group-2be36
+      [:h2.group-title-68f3c "Basics"]
+      [:div.med-col-left-06d5d
+        (basics-section)
+        (numbers-section)
+        (js-interop-section)]
+      [:div.med-col-right-eb5c2
+        (functions-section)
+        (strings-section)
+        (atoms-section)]]
 
-    [:h2.group-title-68f3c "Sequences"]
-    [:div.med-col-left-06d5d
-      (create-seq-section)
-      (use-seq-section)]
-    [:div.med-col-right-eb5c2
-      (seq-in-out-section)]
+    [:div.group-2be36
+      [:h2.group-title-68f3c "Collections"]
+      [:div.med-col-left-06d5d
+        (collections-section)
+        (lists-section)
+        (maps-section)]
+      [:div.med-col-right-eb5c2
+        (vectors-section)
+        (sets-section)]]
 
-    [:h2.group-title-68f3c "Misc"]
-    [:div.med-col-left-06d5d
-      (bitwise-section)]
+    [:div.group-2be36
+      [:h2.group-title-68f3c "Sequences"]
+      [:div.med-col-left-06d5d
+        (create-seq-section)
+        (use-seq-section)]
+      [:div.med-col-right-eb5c2
+        (seq-in-out-section)]]
+
+    [:div.group-2be36
+      [:h2.group-title-68f3c "Misc"]
+      [:div.med-col-left-06d5d
+        (bitwise-section)]]
+
     [:div.clr-43e49]])
 
 (hiccups/defhtml one-col-layout []
   [:div.sml-wrapper-7eff3
-    [:h2.group-title-68f3c "Basics"]
-    [:div
+
+    [:div.group-2be36
+      [:h2.group-title-68f3c "Basics"]
       (basics-section)
       (functions-section)
       (numbers-section)
@@ -983,23 +996,24 @@
       (js-interop-section)
       (atoms-section)]
 
-    [:h2.group-title-68f3c "Collections"]
-    [:div
+    [:div.group-2be36
+      [:h2.group-title-68f3c "Collections"]
       (collections-section)
       (lists-section)
       (vectors-section)
       (sets-section)
       (maps-section)]
 
-    [:h2.group-title-68f3c "Sequences"]
-    [:div
+    [:div.group-2be36
+      [:h2.group-title-68f3c "Sequences"]
       (create-seq-section)
       (use-seq-section)
       (seq-in-out-section)]
 
-    [:h2.group-title-68f3c "Misc"]
-    [:div
+    [:div.group-2be36
+      [:h2.group-title-68f3c "Misc"]
       (bitwise-section)]
+
     [:div.clr-43e49]])
 
 ;;------------------------------------------------------------------------------
