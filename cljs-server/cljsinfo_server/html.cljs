@@ -30,7 +30,7 @@
   [:head
     [:meta {:charset "utf-8"}]
     [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge"}]
-    [:title "ClojureScript.info &raquo; " page-title]
+    [:title page-title]
     [:meta {:name "viewport" :content "width=device-width"}]
     [:link {:rel "stylesheet" :href (asset "css/main.min.css")}]]
   "<body>")
@@ -38,10 +38,10 @@
 (hiccups/defhtml site-footer
   ([] (site-footer nil))
   ([init-page]
-    [:script {:src "/js/libs/jquery-2.1.1.min.js"}]
+    [:script {:src "js/libs/jquery-2.1.1.min.js"}]
     (if (:minified-client config)
-      [:script {:src (asset "/js/client.min.js")}]
-      [:script {:src (asset "/js/client.js")}])
+      [:script {:src (asset "js/client.min.js")}]
+      [:script {:src (asset "js/client.js")}])
     (if init-page
       [:script "CLJSINFO.init('" init-page "');"])
     "</body>"
@@ -68,6 +68,6 @@
 ;;------------------------------------------------------------------------------
 
 (hiccups/defhtml cheatsheet []
-  (site-head "Cheatsheet")
+  (site-head "ClojureScript Cheatsheet")
   (csheet/page)
   (site-footer "cheatsheet"))

@@ -773,9 +773,9 @@
           [:td.code-72fa0.right-border-c1b54 "#(my-fn %1 %2 %3)"]
           [:td.code-72fa0 [:pre "(fn [a b c]\n  (my-fn a b c))"]]]
         [:tr.dark-odd-7aff7
-          [:td.code-72fa0.right-border-c1b54 "#(* % (apply + %&))"]
+          [:td.code-72fa0.right-border-c1b54 "#(* % (apply + %&amp;))"]
           [:td.code-72fa0 [:pre {:style "font-size:10px"}
-            "(fn [x & the-rest]\n"
+            "(fn [x &amp; the-rest]\n"
             "  (* x (apply + the-rest)))"]]]]]]
 
   [:div#tooltip-strings.tooltip-53dde {:style "display:none"}
@@ -890,7 +890,7 @@
 
 (hiccups/defhtml header []
   [:div.header-2a8a6
-    [:img.logo-6ced3 {:src "/img/clojure-logo.png" :alt "Clojure Logo"}]
+    [:img.logo-6ced3 {:src "img/clojure-logo.png" :alt "Clojure Logo"}]
     [:h1.title-7a29c "ClojureScript Cheatsheet"]
     [:input#searchInput.search-70fb8 {:type "text" :placeholder "Search"}]
     [:label#toggleTooltips.tooltips-label-68aa0
