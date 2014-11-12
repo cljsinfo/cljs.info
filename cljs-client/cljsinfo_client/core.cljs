@@ -1,6 +1,7 @@
 (ns cljsinfo-client.core
   (:require
     [cljsinfo-client.cheatsheet :as cheatsheet]
+    [cljsinfo-client.threading-macro :as threading-macro]
     [cljsinfo-client.tooltips :as tooltips]
     [cljsinfo-client.util :refer [js-log log]]))
 
@@ -18,6 +19,7 @@
   (case page
     ;;"homepage" ()
     "cheatsheet" (cheatsheet/init!)
+    "threading-macro" (threading-macro/init!)
     nil))
 
 (js/goog.exportSymbol "CLJSINFO.init" init!)

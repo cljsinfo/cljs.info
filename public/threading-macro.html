@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang='en-us'>
+<head>
+<meta charset="utf-8" />
+<meta content="IE=edge" http-equiv="X-UA-Compatible" />
+<title>Threading Macro Animations</title>
+<meta content="width=device-width" name="viewport" />
+<link href="css/main.min.css" rel="stylesheet" />
+<style>
+html {
+  background-color: #272822;
+}
+#threadingMacroBody {
+  margin: 150px auto 0 auto;
+  position: relative;
+  width: 1000px;
+}
+#threadingMacroBody div {
+  color: #fff;
+  font-family: "Droid Sans Mono";
+  font-size: 80px;
+  position: absolute;
+  text-align: center;
+}
+.arrow {
+  color: #f92672 !important;
+}
+</style>
+</head>
+<body>
+
+<div id="threadingMacroBody"></div>
+
+<script src="js/libs/jquery-2.1.1.min.js"></script>
+<script src="js/libs/velocity-1.1.0.min.js"></script>
+<script src="js/client.js"></script>
+<script>CLJSINFO.init('threading-macro');</script>
+</body>
+</html>
