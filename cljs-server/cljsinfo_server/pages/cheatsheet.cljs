@@ -893,8 +893,8 @@
     [:img.logo-6ced3 {:src "img/clojure-logo.png" :alt "Clojure Logo"}]
     [:h1.title-7a29c "ClojureScript Cheatsheet"]
     [:input#searchInput.search-70fb8 {:type "text" :placeholder "Search"}]
-    [:label#toggleTooltips.tooltips-label-68aa0
-      [:i.fa.fa-check-square-o] "Show tooltips?"]
+    ; [:label#toggleTooltips.tooltips-label-68aa0
+    ;   [:i.fa.fa-check-square-o] "Show tooltips?"]
     [:div.clr-43e49]])
 
 ;; TODO: text for footer:
