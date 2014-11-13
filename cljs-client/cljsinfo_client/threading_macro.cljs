@@ -5,16 +5,48 @@
     [cljsinfo-client.dom :refer [by-id set-html! show-el! hide-el!]]
     [cljsinfo-client.util :refer [js-log log uuid]]))
 
-(def $ js/jQuery)
+(declare grid)
 
-;;------------------------------------------------------------------------------
-;; HTML
-;;------------------------------------------------------------------------------
+(def $ js/jQuery)
 
 (def x-unit 50)
 (def y-unit 100)
 
-(def position-1 {
+;; labels:
+;; "thread-first"
+;; "thread-last"
+
+;;------------------------------------------------------------------------------
+;; Example 1
+;;------------------------------------------------------------------------------
+
+(hiccups/defhtml ex1-html []
+  [:div#line1.line-num "1"]
+  [:div#line2.line-num "2"]
+  [:div#line3.line-num "3"]
+
+  [:div#openParen1 "("]
+
+  [:div#arrow1.arrow "-"]
+  [:div#arrow2.arrow ">"]
+  [:div#symbolA "a"]
+
+  [:div#openParen2 "("]
+  [:div#symbolB "b"]
+  [:div#symbolC "c"]
+  [:div#symbolD "d"]
+  [:div#closeParen2 ")"]
+
+  [:div#openParen3 "("]
+  [:div#symbolX "x"]
+  [:div#symbolY "y"]
+  [:div#symbolZ "z"]
+  [:div#closeParen3 ")"]
+
+  [:div#closeParen1 ")"]
+  )
+
+(def ex1-pos1 {
   :openParen1 [1 1]
 
   :arrow1 [2 1]
@@ -35,7 +67,7 @@
 
   :closeParen1 [10 3]})
 
-(def position-2 {
+(def ex1-pos2 {
   :openParen1 [1 1]
 
   :arrow1 [2 1]
@@ -56,7 +88,7 @@
 
   :closeParen1 [10 3]})
 
-(def position-3 {
+(def ex1-pos3 {
   :openParen1 [1 1]
 
   :arrow1 [2 1]
@@ -77,7 +109,7 @@
 
   :closeParen1 [10 2]})
 
-(def position-4 {
+(def ex1-pos4 {
   :openParen1 [1 1]
 
   :arrow1 [2 1]
@@ -97,11 +129,11 @@
 
   :closeParen1 [20 2]})
 
-(def position-5 {
-  :openParen1 :fade-out
+(def ex1-pos5 {
+  :openParen1 nil
 
-  :arrow1 :fade-out
-  :arrow2 :fade-out
+  :arrow1 nil
+  :arrow2 nil
 
   :openParen3 [3 2]
   :symbolX [4 2]
@@ -115,9 +147,13 @@
   :symbolZ [18 2]
   :closeParen3 [19 2]
 
-  :closeParen1 :fade-out})
+  :closeParen1 nil})
 
-(def position-6 {
+(def ex1-pos6 {
+  :openParen1 nil
+  :arrow1 nil
+  :arrow2 nil
+
   :openParen3 [1 1]
   :symbolX [2 1]
   :openParen2 [4 1]
@@ -128,25 +164,89 @@
   :closeParen2 [12 1]
   :symbolY [14 1]
   :symbolZ [16 1]
-  :closeParen3 [17 1]})
+  :closeParen3 [17 1]
+
+  :closeParen1 nil})
+
+;;------------------------------------------------------------------------------
+;; Example 2
+;;------------------------------------------------------------------------------
+
+(hiccups/defhtml ex2-html []
+  [:div#line1.line-num (grid -1 1) "1"]
+  [:div#line2.line-num (grid -1 2) "2"]
+  [:div#line3.line-num (grid -1 3) "3"]
+
+  [:div#openParen1 "("]
+
+  [:div#arrow1.arrow "-"]
+  [:div#arrow2.arrow ">"]
+
+  [:div#symbolM "m"]
+
+  [:div#kwdA1 ":"]
+  [:div#kwdA2 "a"]
+
+  [:div#kwdB1 ":"]
+  [:div#kwdB2 "b"]
+
+  [:div#kwdC1 ":"]
+  [:div#kwdC2 "c"]
+
+  [:div#openParen2 "("]
+  [:div#closeParen2 ")"]
+
+  [:div#openParen3 "("]
+  [:div#closeParen3 ")"]
+
+  [:div#closeParen1  ")"]
+  )
+
+(def ex2-pos1 {
+  :openParen1 [1 1]
+  :arrow1 [2 1]
+  :arrow2 [3 1]
+
+  :symbolM [5 1]
+
+  :kwdA1 [7 1]
+  :kwdA2 [8 1]
+
+  :kwdB1 [9 1]
+  :kwdB2 [10 1]
+
+  :kwdC1 [12 1]
+  :kwdC2 [13 1]
+
+  :openParen2 nil
+  :closeParen2 nil
+
+  :openParen3 nil
+  :closeParen3 nil
+
+  :closeParen1 [14 1]
+  })
+
+;;------------------------------------------------------------------------------
+;; Animation
+;;------------------------------------------------------------------------------
 
 (def animation-duration 800)
 
 (defn- animate-single [[k v]]
-  (let [fade-out? (= v :fade-out)
+  (let [fade-out? (nil? v)
         sel (str "#" (name k))
         $el ($ sel)]
     (.velocity $el
       (if fade-out?
         (js-obj "opacity" 0)
         (js-obj "left" (* x-unit (dec (first v)))
+                "opacity" 1
                 "top" (* y-unit (dec (second v)))))
       (js-obj "duration" animation-duration))))
 
 (defn- animate-to-position [pos]
   (doall (map animate-single pos)))
-
-
 
 (defn- coords->style [x y]
   (str "left: " (* x-unit (dec x)) "px; "
@@ -157,27 +257,22 @@
 (defn- grid [x y]
   {:style (coords->style x y)})
 
-(hiccups/defhtml shell []
-  [:div#openParen1 (grid 1 1) "("]
+(defn- set-single! [[k v]]
+  (let [fade-out? (nil? v)
+        sel (str "#" (name k))
+        $el ($ sel)]
+    (.css $el
+      (if fade-out?
+        (js-obj "opacity" 0)
+        (js-obj
+          "left" (* x-unit (dec (first v)))
+          "opacity" 1
+          "top" (* y-unit (dec (second v))))))))
 
-  [:div#arrow1.arrow (grid 2 1) "-"]
-  [:div#arrow2.arrow (grid 3 1) ">"]
-  [:div#symbolA (grid 5 1) "a"]
+(defn- set-position-instant! [pos]
+  (doall (map set-single! pos)))
 
-  [:div#openParen2 (grid 3 2) "("]
-  [:div#symbolB (grid 4 2) "b"]
-  [:div#symbolC (grid 6 2) "c"]
-  [:div#symbolD (grid 8 2) "d"]
-  [:div#closeParen2 (grid 9 2) ")"]
 
-  [:div#openParen3 (grid 3 3) "("]
-  [:div#symbolX (grid 4 3) "x"]
-  [:div#symbolY (grid 6 3) "y"]
-  [:div#symbolZ (grid 8 3) "z"]
-  [:div#closeParen3 (grid 9 3) ")"]
-
-  [:div#closeParen1 (grid 10 3) ")"]
-  )
 
 ;;------------------------------------------------------------------------------
 ;; Events
@@ -194,16 +289,29 @@
   (* n (+ animation-duration time-between)))
 
 (defn- animate! []
-  (js/setTimeout #(animate-to-position position-2) (round 1))
-  (js/setTimeout #(animate-to-position position-3) (round 2))
-  (js/setTimeout #(animate-to-position position-4) (round 3))
-  (js/setTimeout #(animate-to-position position-5) (round 4))
-  (js/setTimeout #(animate-to-position position-6) (round 5))
+  ; (js/setTimeout #(animate-to-position ex1-pos2) (round 1))
+  ; (js/setTimeout #(animate-to-position ex1-pos3) (round 2))
+  ; (js/setTimeout #(animate-to-position ex1-pos4) (round 3))
+  ; (js/setTimeout #(animate-to-position ex1-pos5) (round 4))
+  ; (js/setTimeout #(animate-to-position ex1-pos6) (round 5))
+
+  ; (set-position-instant! ex1-pos6)
+  ; (js/setTimeout #(animate-to-position ex1-pos5) (round 2))
+  ; (js/setTimeout #(animate-to-position ex1-pos4) (round 3))
+  ; (js/setTimeout #(animate-to-position ex1-pos3) (round 4))
+  ; (js/setTimeout #(animate-to-position ex1-pos2) (round 5))
+  ; (js/setTimeout #(animate-to-position ex1-pos1) (round 6))
+
+
+  (set-position-instant! ex2-pos1)
+
+
   )
 
 (defn init!
   "Initialize the threading macro page."
   []
-  (set-html! "threadingMacroBody" (shell))
+  ;(set-html! "threadingMacroBody" (ex1-html))
+  (set-html! "threadingMacroBody" (ex2-html))
   (animate!)
   )
