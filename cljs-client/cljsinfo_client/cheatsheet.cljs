@@ -14,6 +14,10 @@
 ;; - move this to CSS media queries?
 ;; - create a 4 column layout
 
+(def sml-layout-class "sml-5dcf3")
+(def med-layout-class "med-0000a")
+(def lrg-layout-class "lrg-92b4d")
+
 (defn- width->size [w]
   (cond
     (>= w 1060) :large
@@ -24,12 +28,14 @@
 
 (defn- on-change-size [_ _ _ new-size]
   (-> ($ "body")
-    (.removeClass "sml-5dcf3 med-0000a lrg-92b4d")
+    (.removeClass (str sml-layout-class " "
+                       med-layout-class " "
+                       lrg-layout-class))
     (.addClass
       (case new-size
-        :small  "sml-5dcf3"
-        :medium "med-0000a"
-        :large  "lrg-92b4d"
+        :small  sml-layout-class
+        :medium med-layout-class
+        :large  lrg-layout-class
         :else nil))))
 
 (add-watch current-size :change on-change-size)
