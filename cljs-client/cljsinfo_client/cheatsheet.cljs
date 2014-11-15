@@ -43,7 +43,7 @@
 (def matched-search-class "matched-e5c67")
 (def matched-search-sel (str "." matched-search-class))
 (def no-results-class "no-results-5d3ea")
-(def fn-link-sel ".fn-a8476")
+(def fn-link-sel ".fn-a8476, .inside-fn-c7607")
 (def group-sel ".group-2be36")
 (def section-sel ".section-31efe")
 (def search-input-id "searchInput")
@@ -55,7 +55,7 @@
 
 (defn- toggle-el!
   "Show / hide an element based on whether it contains a search match or not."
-  [idx el]
+  [_idx el]
   (let [$el ($ el)
         $matched (.find $el matched-search-sel)
         matches-in-el? (pos? (aget $matched "length"))]
@@ -74,7 +74,7 @@
       (aget "length")
       pos?))
 
-(defn- toggle-fn-link [idx el search-txt]
+(defn- toggle-fn-link [el search-txt]
   (let [$link ($ el)
         link-txt (.text $link)
         match? (not= -1 (.indexOf link-txt search-txt))]
@@ -84,7 +84,7 @@
 
 (defn- toggle-fn-matches! [search-txt]
   (let [$links ($ fn-link-sel)]
-    (.each $links #(toggle-fn-link %1 %2 search-txt))))
+    (.each $links #(toggle-fn-link %2 search-txt))))
 
 (defn- clear-search! []
   (.removeClass ($ search-input-sel) no-results-class)
