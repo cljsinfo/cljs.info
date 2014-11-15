@@ -76,7 +76,7 @@
 
 (defn- toggle-fn-link [el search-txt]
   (let [$link ($ el)
-        link-txt (.text $link)
+        link-txt (-> $link .text .toLowerCase)
         match? (not= -1 (.indexOf link-txt search-txt))]
     (if match?
       (.addClass $link matched-search-class)
@@ -126,7 +126,7 @@
       (reset! current-size new-size))))
 
 (defn- keydown-search-input2 []
-  (let [txt (.val ($ search-input-sel))]
+  (let [txt (-> ($ search-input-sel) .val .toLowerCase)]
     (when (not= txt @current-search-txt)
       (reset! current-search-txt txt))))
 
