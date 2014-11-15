@@ -17,6 +17,9 @@
 (def sml-layout-class "sml-5dcf3")
 (def med-layout-class "med-0000a")
 (def lrg-layout-class "lrg-92b4d")
+(def layout-classes (str sml-layout-class " "
+                         med-layout-class " "
+                         lrg-layout-class))
 
 (defn- width->size [w]
   (cond
@@ -28,9 +31,7 @@
 
 (defn- on-change-size [_ _ _ new-size]
   (-> ($ "body")
-    (.removeClass (str sml-layout-class " "
-                       med-layout-class " "
-                       lrg-layout-class))
+    (.removeClass layout-classes)
     (.addClass
       (case new-size
         :small  sml-layout-class
@@ -70,7 +71,8 @@
       (.hide $el))))
 
 (defn- toggle-groups-and-sections!
-  "Show / hide groups and sections based on whether they contain a search match or not."
+  "Show / hide groups and sections based on whether they contain a search match
+   or not."
   []
   (.each ($ section-sel) toggle-el!)
   (.each ($ group-sel) toggle-el!))
