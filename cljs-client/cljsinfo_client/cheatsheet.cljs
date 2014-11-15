@@ -148,6 +148,7 @@
   []
   (add-events)
   (on-resize)
+  (keydown-search-input2)
 
   ;; put focus on the search field initially
   (if-let [search-input-el (by-id search-input-id)]
