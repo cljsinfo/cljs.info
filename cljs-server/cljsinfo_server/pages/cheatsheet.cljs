@@ -38,6 +38,13 @@
       {:href (docs-href nme nme-space)}
       (encode-html nme)]))
 
+(hiccups/defhtml inside-fn-link
+  ([nme] (inside-fn-link nme "clojure.core"))
+  ([nme nme-space]
+    [:a.inside-fn-c7607
+      {:href (docs-href nme nme-space)}
+      (encode-html nme)]))
+
 ;;------------------------------------------------------------------------------
 ;; Sections
 ;;------------------------------------------------------------------------------
@@ -265,7 +272,7 @@
         [:tr.even-ff837
           [:td.label-9e0b7 "Get Value"]
           [:td.body-885f4
-            [:span.literal-c3029 "@my-atom &rarr; (" [:span.inside-fn-c7607 "deref"] " my-atom)"]]]
+            [:span.literal-c3029 "@my-atom &rarr; (" (inside-fn-link "deref") " my-atom)"]]]
         [:tr.odd-372e6
           [:td.label-9e0b7 "Set Value"]
           [:td.body-885f4
@@ -304,12 +311,12 @@
           [:td.label-9e0b7 "Property Access"]
           [:td.body-885f4
             [:div.row-5dec8 "(.-innerHTML el)"]
-            [:div.row-5dec8 "(" [:a.inside-fn-c7607 "aget"] " el \"innerHTML\")"]]]
+            [:div.row-5dec8 "(" (inside-fn-link "aget") " el \"innerHTML\")"]]]
         [:tr.even-ff837
           [:td.label-9e0b7 "Property Setting"]
           [:td.body-885f4
-            [:div.row-5dec8 "(" [:a.inside-fn-c7607 "set!"] " (.-innerHTML el) \"Hi!\")"]
-            [:div.row-5dec8 "(" [:a.inside-fn-c7607 "aset"] " el \"innerHTML\" \"Hi!\")"]]]
+            [:div.row-5dec8 "(" (inside-fn-link "set!") " (.-innerHTML el) \"Hi!\")"]
+            [:div.row-5dec8 "(" (inside-fn-link "aset") " el \"innerHTML\" \"Hi!\")"]]]
         [:tr.odd-372e6
           [:td.label-9e0b7 "Convert Between"]
           [:td.body-885f4
@@ -421,7 +428,7 @@
           [:td.label-9e0b7 "Examine"]
           [:td.body-885f4
             [:div.row-5dec8
-              "(my-vec idx) &rarr; (" [:a.inside-fn-c7607 "nth"] " my-vec idx)"
+              "(my-vec idx) &rarr; (" (inside-fn-link "nth") " my-vec idx)"
               (tt-icon "vector-as-fn")]
             (fn-link "get")
             (fn-link "peek")]]
@@ -458,7 +465,7 @@
           [:td.label-9e0b7 "Examine"]
           [:td.body-885f4
             [:div.row-5dec8
-              "(my-set itm) &rarr; (" [:a.inside-fn-c7607 "get"] " my-set itm)"
+              "(my-set itm) &rarr; (" (inside-fn-link "get") " my-set itm)"
               (tt-icon "set-as-fn")]
             (fn-link "contains?")]]
         [:tr.odd-372e6
@@ -501,7 +508,7 @@
           [:td.label-9e0b7 "Examine"]
           [:td.body-885f4
             [:div.row-5dec8
-              "(:key my-map) &rarr; (" [:a.inside-fn-c7607 "get"] " my-map :key)"
+              "(:key my-map) &rarr; (" (inside-fn-link "get") " my-map :key)"
               (tt-icon "keywords-as-fn")]
             (fn-link "get-in")
             (fn-link "contains?")
