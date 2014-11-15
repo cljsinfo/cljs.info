@@ -130,7 +130,7 @@ grunt.initConfig({
 grunt.loadNpmTasks('grunt-contrib-less');
 grunt.loadNpmTasks('grunt-contrib-watch');
 
-grunt.registerTask('snowflake-count', snowflakeCount);
+grunt.registerTask('snowflake', snowflakeCount);
 grunt.registerTask('default', ['less']);
 
 // end module.exports

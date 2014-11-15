@@ -5,7 +5,7 @@
     clojure.string
     [cljsinfo-server.util :refer [js-log log]]))
 
-(def encode js/goog.string.htmlEscape)
+(def encode-html js/goog.string.htmlEscape)
 (def encode-uri js/encodeURIComponent)
 
 (def clj-string "clojure.string")
@@ -36,7 +36,7 @@
   ([nme nme-space]
     [:a.fn-a8476
       {:href (docs-href nme nme-space)}
-      (encode nme)]))
+      (encode-html nme)]))
 
 ;;------------------------------------------------------------------------------
 ;; Sections
