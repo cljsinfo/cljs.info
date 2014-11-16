@@ -310,12 +310,12 @@
             (fn-link "make-array")
             (fn-link "aclone")]]
         [:tr.odd-372e6
-          [:td.label-9e0b7 "Property Access"]
+          [:td.label-9e0b7 "Get Property"]
           [:td.body-885f4
             [:div.row-5dec8 "(.-innerHTML el)"]
             [:div.row-5dec8 "(" (inside-fn-link "aget") " el \"innerHTML\")"]]]
         [:tr.even-ff837
-          [:td.label-9e0b7 "Property Setting"]
+          [:td.label-9e0b7 "Set Property"]
           [:td.body-885f4
             [:div.row-5dec8 "(" (inside-fn-link "set!") " (.-innerHTML el) \"Hi!\")"]
             [:div.row-5dec8 "(" (inside-fn-link "aset") " el \"innerHTML\" \"Hi!\")"]]]
@@ -339,10 +339,6 @@
             (fn-link "catch")
             (fn-link "finally")
             (fn-link "throw")]]
-
-        ;; TODO: add "Export Symbol" section here
-        ;; show ^:export metadata and goog.exportSymbol
-
         [:tr.even-ff837
           [:td.label-9e0b7 "External Library"]
           [:td.body-885f4
@@ -577,7 +573,7 @@
 
 (hiccups/defhtml seq-in-out-section []
   [:div.section-31efe
-    [:h3.section-title-8ccf5 "Seq in, Seq out"]
+    [:h3.section-title-8ccf5 "Seq in, Seq out" (tt-icon "sequences")]
     [:table.tbl-902f0
       [:tbody
         [:tr.odd-372e6
@@ -724,6 +720,10 @@
       (fn-link "bit-clear")
       (fn-link "bit-test")
       (fn-link "unsigned-bit-shift-right")]])
+
+;; TODO: create "Export to JavaScript" section
+;; include ^:export and goog.exportSymbol functions
+;; and a sentence about how it works
 
 ;;------------------------------------------------------------------------------
 ;; Tooltips
@@ -883,15 +883,30 @@
       "Keywords can be used as a function to get a value from a map. "
       "They are commonly used as map keys for this reason."]])
 
+(hiccups/defhtml sequences-tooltips []
+  [:div#tooltip-sequences.tooltip-53dde {:style "display:none"}
+    [:i.fa.fa-thumb-tack.pin-0ad63]
+    [:p.info-2e4f9
+      "Many core algorithms are defined in terms of sequences. A sequence is "
+      "an interface to a list-like structure."]
+    [:p.info-2e4f9
+      "Every sequence is a collection, and every collection can be converted "
+      "into a sequence using the " [:code "seq"] " function. In fact, this is "
+      "what happens internally when a collection is passed to a sequence "
+      "function."]
+    [:p.info-2e4f9
+      "Most of the sequence functions are lazy, which means that they consume "
+      "their elements step-by-step as needed. For example, it is possible to "
+      "have an infinite sequence."]
+    [:p.info-2e4f9
+      "You can force a sequence to evaluate all its elements with the "
+      [:code "doall"] " function. This is useful when you want to see the "
+      "results of a side-effecting function over an entire sequence."]])
+
 (hiccups/defhtml tooltips []
   (basics-tooltips)
   (collections-tooltips)
-
-  ;; TODO: Sequences tooltip
-  ;; NOTE: Tooltip for sequences: most sequence functions work on Strings as well.
-  ;; You're welcome.
-
-  )
+  (sequences-tooltips))
 
 ;;------------------------------------------------------------------------------
 ;; Header and Footer
@@ -943,9 +958,9 @@
 
     [:div.group-2be36
       [:h2.group-title-68f3c "Sequences"]
-      [:div.lrg-col-left-d5f6d (create-seq-section)]
-      [:div.lrg-col-cntr-bb1aa (seq-in-out-section)]
-      [:div.lrg-col-right-0f4a3 (use-seq-section)]]
+      [:div.lrg-col-left-d5f6d (seq-in-out-section)]
+      [:div.lrg-col-cntr-bb1aa (use-seq-section)]
+      [:div.lrg-col-right-0f4a3 (create-seq-section)]]
 
     [:div.group-2be36
       [:h2.group-title-68f3c "Misc"]
@@ -981,10 +996,10 @@
     [:div.group-2be36
       [:h2.group-title-68f3c "Sequences"]
       [:div.med-col-left-06d5d
-        (create-seq-section)
-        (use-seq-section)]
+        (seq-in-out-section)]
       [:div.med-col-right-eb5c2
-        (seq-in-out-section)]]
+        (use-seq-section)
+        (create-seq-section)]]
 
     [:div.group-2be36
       [:h2.group-title-68f3c "Misc"]
@@ -1015,9 +1030,9 @@
 
     [:div.group-2be36
       [:h2.group-title-68f3c "Sequences"]
-      (create-seq-section)
+      (seq-in-out-section)
       (use-seq-section)
-      (seq-in-out-section)]
+      (create-seq-section)]
 
     [:div.group-2be36
       [:h2.group-title-68f3c "Misc"]
