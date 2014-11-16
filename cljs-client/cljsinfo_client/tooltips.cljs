@@ -36,6 +36,44 @@
   )
 
 ;;------------------------------------------------------------------------------
+;; Show / Hide Tooltips
+;;------------------------------------------------------------------------------
+
+(def left-arrow-class "left-arr-42ea1")
+(def right-arrow-class "right-arr-d3345")
+(def arrow-classes (str left-arrow-class " " right-arrow-class))
+
+;; NOTE: this value needs to stay in sync with the .tooltip-53ddee class
+;; in /less/main.less
+(def max-tooltip-width 360)
+
+(defn- show-tooltip! [target-el tooltip-id]
+  (let [$target-el ($ target-el)
+        target-height (.height $target-el)
+        target-width (.width $target-el)
+        target-coords (.offset $target-el)
+        target-x (+ (aget target-coords "left") (/ target-width 2))
+        target-y (+ (aget target-coords "top") (/ target-height 2))
+        browser-width (.width ($ js/window))
+        $tooltip-el ($ (str "#" tooltip-id))
+        tooltip-width (.width $tooltip-el)
+        flip? (> (+ target-x max-tooltip-width 50) browser-width)]
+    (.removeClass $tooltip-el arrow-classes)
+    (if flip?
+      (.addClass $tooltip-el right-arrow-class)
+      (.addClass $tooltip-el left-arrow-class))
+    (.css $tooltip-el (js-obj
+      "display" ""
+      "left" target-x
+      "marginLeft" (if flip? (- 0 tooltip-width 30) 18)
+      "top" target-y ))))
+
+(def tooltip-sel ".tooltip-53dde")
+
+(defn- hide-all-tooltips! []
+  (.hide ($ tooltip-sel)))
+
+;;------------------------------------------------------------------------------
 ;; Events
 ;;------------------------------------------------------------------------------
 
@@ -45,31 +83,9 @@
       (remove-pin! tooltip-id)
       (pin-down! tooltip-id))))
 
-;; NOTE: this value needs to stay in sync with the .tooltip-53ddee class
-;; in /less/main.less
-(def max-tooltip-width 360)
-
 (defn- on-mouseenter [js-evt]
   (when-let [tooltip-id (evt->tt-num js-evt)]
-    (let [$target-el ($ (aget js-evt "currentTarget"))
-          target-height (.height $target-el)
-          target-width (.width $target-el)
-          target-coords (.offset $target-el)
-          target-x (+ (aget target-coords "left") (/ target-width 2))
-          target-y (+ (aget target-coords "top") (/ target-height 2))
-          browser-width (.width ($ js/window))
-          $tooltip-el ($ (str "#" tooltip-id))
-          tooltip-width (.width $tooltip-el)
-          flip? (> (+ target-x max-tooltip-width 50) browser-width)]
-      (.removeClass $tooltip-el "left-arr-42ea1 right-arr-d3345")
-      (if flip?
-        (.addClass $tooltip-el "right-arr-d3345")
-        (.addClass $tooltip-el "left-arr-42ea1"))
-      (.css $tooltip-el (js-obj
-        "display" ""
-        "left" target-x
-        "marginLeft" (if flip? (- 0 tooltip-width 30) 18)
-        "top" target-y )))))
+    (show-tooltip! (aget js-evt "currentTarget") tooltip-id)))
 
 ;; TODO: IE fires the mouseleave event while the mouse cursor is still inside
 ;; the tooltip icon, causing a very distracting flicker effect.
@@ -80,9 +96,13 @@
   (if-let [tooltip-id (evt->tt-num js-evt)]
     (hide-el! tooltip-id)))
 
-(defn- on-touchstart [js-evt]
-  nil
-  )
+(defn- on-touchend-body [js-evt]
+  (hide-all-tooltips!))
+
+(defn- on-touchend-icon [js-evt]
+  (.stopPropagation js-evt)
+  (if-let [tooltip-id (evt->tt-num js-evt)]
+    (show-tooltip! (aget js-evt "currentTarget") tooltip-id)))
 
 ;;------------------------------------------------------------------------------
 ;; Init and Events
@@ -92,8 +112,8 @@
 
 (defn- add-touch-events! []
   (doto ($ "body")
-    (.on "touchstart" tt-link-sel on-touchstart)
-    ))
+    (.on "touchend" on-touchend-body)
+    (.on "touchend" tt-link-sel on-touchend-icon)))
 
 (defn init!
   "Initialize tooltip events."
@@ -102,6 +122,5 @@
     (.on "click" tt-link-sel on-click)
     (.on "mouseenter" tt-link-sel on-mouseenter)
     (.on "mouseleave" tt-link-sel on-mouseleave))
-  ; (when has-touch-events?
-  ;   (add-touch-events!))
-  )
+  (when has-touch-events?
+    (add-touch-events!)))
