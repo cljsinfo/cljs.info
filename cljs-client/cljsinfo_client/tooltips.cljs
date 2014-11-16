@@ -43,30 +43,26 @@
 (def right-arrow-class "right-arr-d3345")
 (def arrow-classes (str left-arrow-class " " right-arrow-class))
 
-;; NOTE: this value needs to stay in sync with the .tooltip-53ddee class
-;; in /less/main.less
-(def max-tooltip-width 360)
-
-(defn- show-tooltip! [target-el tooltip-id]
-  (let [$target-el ($ target-el)
-        target-height (.height $target-el)
-        target-width (.width $target-el)
-        target-coords (.offset $target-el)
-        target-x (+ (aget target-coords "left") (/ target-width 2))
-        target-y (+ (aget target-coords "top") (/ target-height 2))
+(defn- show-tooltip! [icon-el tooltip-id]
+  (let [$icon-el ($ icon-el)
+        icon-height (.height $icon-el)
+        icon-width (.width $icon-el)
+        icon-coords (.offset $icon-el)
+        icon-x (+ (aget icon-coords "left") (/ icon-width 2))
+        icon-y (+ (aget icon-coords "top") (/ icon-height 2))
         browser-width (.width ($ js/window))
         $tooltip-el ($ (str "#" tooltip-id))
         tooltip-width (.width $tooltip-el)
-        flip? (> (+ target-x max-tooltip-width 50) browser-width)]
+        flip? (> (+ icon-x tooltip-width 50) browser-width)]
     (.removeClass $tooltip-el arrow-classes)
     (if flip?
       (.addClass $tooltip-el right-arrow-class)
       (.addClass $tooltip-el left-arrow-class))
     (.css $tooltip-el (js-obj
       "display" ""
-      "left" target-x
-      "marginLeft" (if flip? (- 0 tooltip-width 30) 18)
-      "top" target-y ))))
+      "left" icon-x
+      "marginLeft" (if flip? (- 0 tooltip-width 31) 18)
+      "top" (- icon-y 22)))))
 
 (def tooltip-sel ".tooltip-53dde")
 
