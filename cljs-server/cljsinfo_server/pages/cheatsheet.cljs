@@ -15,10 +15,13 @@
 ;; Helpers
 ;;------------------------------------------------------------------------------
 
-(hiccups/defhtml tt-icon [tt-id]
-  [:span.tooltip-link-0e91b {:data-tooltip-id tt-id}
-    "&#xf05a;" ;; NOTE: this is FontAwesome's "fa-info-circle"
-    ])
+(hiccups/defhtml tt-icon
+  ([tt-id] (tt-icon tt-id nil))
+  ([tt-id style]
+    [:span.tooltip-link-0e91b
+      {:data-tooltip-id tt-id
+       :style (if style style)}
+      "&#xf05a;"])) ;; NOTE: this is FontAwesome's "fa-info-circle"
 
 (hiccups/defhtml literal [n]
   [:span.literal-c3029 n])
@@ -57,7 +60,7 @@
     [:table.tbl-902f0
       [:tbody
         [:tr.odd-372e6
-          [:td.label-9e0b7 "Define"]
+          [:td.label-9e0b7 "Define" (tt-icon "define" "margin: 0;")]
           [:td.body-885f4
             (fn-link "def")
             (fn-link "defn")
@@ -66,7 +69,7 @@
             (fn-link "declare")
             (fn-link "ns")]]
         [:tr.even-ff837
-          [:td.label-9e0b7 "Branch"]
+          [:td.label-9e0b7 "Branch" (tt-icon "branch" "margin: 0; padding-right: 0;")]
           [:td.body-885f4
             (fn-link "if")
             (fn-link "if-not")
@@ -730,6 +733,18 @@
 ;;------------------------------------------------------------------------------
 
 (hiccups/defhtml basics-tooltips []
+
+  [:div#tooltip-define.tooltip-53dde {:style "display:none"}
+    [:i.fa.fa-thumb-tack.pin-0ad63]
+    [:p.info-2e4f9
+      "Everything in ClojureScript is immutable by default, meaning that the "
+      "value of a symbol cannot be changed after it is defined."]]
+
+  [:div#tooltip-branch.tooltip-53dde {:style "display:none"}
+    [:i.fa.fa-thumb-tack.pin-0ad63]
+    [:p.info-2e4f9
+      "In conditional statements, everything evaluates to " [:code "true"] " except for "
+      [:code "false"] " and " [:code "nil"] "."]]
 
   [:div#tooltip-numbers.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
