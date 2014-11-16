@@ -138,12 +138,12 @@
     (when (not= txt @current-search-txt)
       (reset! current-search-txt txt))))
 
-;; reset the stack
+;; reset the stack so we can grab the value out of the text field
 (defn- keydown-search-input []
   (js/setTimeout keydown-search-input2 1))
 
-(defn- add-events []
-  (.on ($ "#toggleTooltips") "click" click-toggle-tooltips)
+(defn- add-events! []
+  ;; (.on ($ "#toggleTooltips") "click" click-toggle-tooltips)
   (.on ($ search-input-sel) "keydown" keydown-search-input)
   (aset js/window "onresize" on-resize))
 
@@ -154,7 +154,7 @@
 (defn init!
   "Initialize the cheatsheet page."
   []
-  (add-events)
+  (add-events!)
   (on-resize)
   (keydown-search-input2)
 

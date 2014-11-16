@@ -6,6 +6,8 @@
 
 (def $ js/jQuery)
 
+(def has-touch-events? (aget js/window "hasTouchEvents"))
+
 ;;------------------------------------------------------------------------------
 ;; Helper
 ;;------------------------------------------------------------------------------
@@ -48,11 +50,13 @@
 (def max-tooltip-width 360)
 
 (defn- on-mouseenter [js-evt]
-  (if-let [tooltip-id (evt->tt-num js-evt)]
-    (let [current-target (aget js-evt "currentTarget")
-          coords (.offset ($ current-target))
-          target-x (aget coords "left")
-          target-y (aget coords "top")
+  (when-let [tooltip-id (evt->tt-num js-evt)]
+    (let [$target-el ($ (aget js-evt "currentTarget"))
+          target-height (.height $target-el)
+          target-width (.width $target-el)
+          target-coords (.offset $target-el)
+          target-x (+ (aget target-coords "left") (/ target-width 2))
+          target-y (+ (aget target-coords "top") (/ target-height 2))
           browser-width (.width ($ js/window))
           $tooltip-el ($ (str "#" tooltip-id))
           tooltip-width (.width $tooltip-el)
@@ -64,7 +68,7 @@
       (.css $tooltip-el (js-obj
         "display" ""
         "left" target-x
-        "marginLeft" (if flip? (- 0 tooltip-width 30) 20)
+        "marginLeft" (if flip? (- 0 tooltip-width 30) 18)
         "top" target-y )))))
 
 ;; TODO: IE fires the mouseleave event while the mouse cursor is still inside
@@ -76,14 +80,28 @@
   (if-let [tooltip-id (evt->tt-num js-evt)]
     (hide-el! tooltip-id)))
 
+(defn- on-touchstart [js-evt]
+  nil
+  )
+
 ;;------------------------------------------------------------------------------
-;; Init
+;; Init and Events
 ;;------------------------------------------------------------------------------
+
+(def tt-link-sel ".tooltip-link-0e91b")
+
+(defn- add-touch-events! []
+  (doto ($ "body")
+    (.on "touchstart" tt-link-sel on-touchstart)
+    ))
 
 (defn init!
   "Initialize tooltip events."
   []
   (doto ($ "body")
-    (.on "click" ".tooltip-link-0e91b" on-click)
-    (.on "mouseenter" ".tooltip-link-0e91b" on-mouseenter)
-    (.on "mouseleave" ".tooltip-link-0e91b" on-mouseleave)))
+    (.on "click" tt-link-sel on-click)
+    (.on "mouseenter" tt-link-sel on-mouseenter)
+    (.on "mouseleave" tt-link-sel on-mouseleave))
+  ; (when has-touch-events?
+  ;   (add-touch-events!))
+  )

@@ -16,7 +16,9 @@
 ;;------------------------------------------------------------------------------
 
 (hiccups/defhtml tt-icon [tt-id]
-  [:i.fa.fa-info-circle.tooltip-link-0e91b {:data-tooltip-id tt-id}])
+  [:span.tooltip-link-0e91b {:data-tooltip-id tt-id}
+    "&#xf05a;" ;; NOTE: this is FontAwesome's "fa-info-circle"
+    ])
 
 (hiccups/defhtml literal [n]
   [:span.literal-c3029 n])
@@ -1032,5 +1034,10 @@
   (three-col-layout)
   (two-col-layout)
   (one-col-layout)
+  ;; NOTE: the JS "in" operator is not currently available in CLJS
+  ;; haha - Shaun asked about this in IRC tonight (15 Nov 2014) and David Nolen
+  ;; added it right away
+  [:script
+    "window.hasTouchEvents = 'ontouchstart' in window;"]
   (footer)
   (tooltips))
