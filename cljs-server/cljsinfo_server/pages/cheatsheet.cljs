@@ -743,8 +743,8 @@
   [:div#tooltip-branch.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
     [:p.info-2e4f9
-      "In conditional statements, everything evaluates to " [:code "true"] " except for "
-      [:code "false"] " and " [:code "nil"] "."]]
+      "In conditional statements, everything evaluates to " [:code "true"]
+      " except for " [:code "false"] " and " [:code "nil"] "."]]
 
   [:div#tooltip-numbers.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
