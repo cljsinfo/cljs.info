@@ -941,7 +941,8 @@
     [:i.fa.fa-thumb-tack.pin-0ad63]
     [:p.info-2e4f9
       "Many core algorithms are defined in terms of sequences. A sequence is "
-      "an interface to a list-like structure."]
+      "an interface to a list structure that allows for algorithms to be "
+      "written in a generic way."]
     [:p.info-2e4f9
       "Every sequence is a collection, and every collection can be converted "
       "into a sequence using the " [:code "seq"] " function. In fact, this is "
@@ -949,7 +950,7 @@
       "function."]
     [:p.info-2e4f9
       "Most of the sequence functions are lazy, which means that they consume "
-      "their elements step-by-step as needed. For example, it is possible to "
+      "their elements incrementally as needed. For example, it is possible to "
       "have an infinite sequence."]
     [:p.info-2e4f9
       "You can force a sequence to evaluate all its elements with the "
