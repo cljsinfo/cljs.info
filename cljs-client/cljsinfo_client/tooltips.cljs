@@ -1,4 +1,4 @@
-  (ns cljsinfo-client.tooltips
+(ns cljsinfo-client.tooltips
   (:require
     [clojure.set :refer [difference]]
     [cljsinfo-client.dom :refer [by-id set-html! show-el! hide-el!]]
