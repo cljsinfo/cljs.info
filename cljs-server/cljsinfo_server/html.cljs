@@ -32,7 +32,8 @@
     [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge"}]
     [:title page-title]
     [:meta {:name "viewport" :content "width=device-width"}]
-    [:link {:rel "stylesheet" :href (asset "css/main.min.css")}]]
+    [:link {:rel "shortcut icon" :href "favicon.png" :type "image/png"}]]
+    [:link {:rel "stylesheet" :href (asset "css/main.min.css")}]
   "<body>")
 
 (hiccups/defhtml site-footer
