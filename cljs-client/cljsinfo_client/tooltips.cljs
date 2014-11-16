@@ -61,7 +61,7 @@
     (.css $tooltip-el (js-obj
       "display" ""
       "left" icon-x
-      "marginLeft" (if flip? (- 0 tooltip-width 31) 18)
+      "marginLeft" (if flip? (- 0 tooltip-width 30) 18)
       "top" (- icon-y 22)))))
 
 (def tooltip-sel ".tooltip-53dde")
