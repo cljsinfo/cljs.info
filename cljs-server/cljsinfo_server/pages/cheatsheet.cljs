@@ -744,7 +744,45 @@
     [:i.fa.fa-thumb-tack.pin-0ad63]
     [:p.info-2e4f9
       "In conditional statements, everything evaluates to " [:code "true"]
-      " except for " [:code "false"] " and " [:code "nil"] "."]]
+      " except for " [:code "false"] " and " [:code "nil"] "."]
+    [:p.info-2e4f9
+      "This is much simpler than JavaScript, which has complex rules for "
+      "truthiness."]
+    [:table.tbl-3160a
+      [:thead
+        [:tr
+          [:th.tbl-hdr-e0564 "Name"]
+          [:th.tbl-hdr-e0564 "Code"]
+          [:th.tbl-hdr-e0564 "Boolean Value"]]]
+      [:tbody
+        [:tr.dark-odd-7aff7
+          [:td.cell-e6fd2.right-border-c1b54 "Empty string"]
+          [:td.cell-e6fd2.right-border-c1b54 [:code "\"\""]]
+          [:td.cell-e6fd2 [:code "true"]]]
+        [:tr.dark-even-6cd97
+          [:td.cell-e6fd2.right-border-c1b54 "Zero"]
+          [:td.cell-e6fd2.right-border-c1b54 [:code "0"]]
+          [:td.cell-e6fd2 [:code "true"]]]
+        [:tr.dark-odd-7aff7
+          [:td.cell-e6fd2.right-border-c1b54 "Not a number"]
+          [:td.cell-e6fd2.right-border-c1b54 [:code "js/NaN"]]
+          [:td.cell-e6fd2 [:code "true"]]]
+        [:tr.dark-even-6cd97
+          [:td.cell-e6fd2.right-border-c1b54 "Empty vector"]
+          [:td.cell-e6fd2.right-border-c1b54 [:code "[]"]]
+          [:td.cell-e6fd2 [:code "true"]]]
+        [:tr.dark-odd-7aff7
+          [:td.cell-e6fd2.right-border-c1b54 "Empty array"]
+          [:td.cell-e6fd2.right-border-c1b54 [:code "(array)"]]
+          [:td.cell-e6fd2 [:code "true"]]]
+        [:tr.dark-even-6cd97
+          [:td.cell-e6fd2.right-border-c1b54 "False"]
+          [:td.cell-e6fd2.right-border-c1b54 [:code "false"]]
+          [:td.cell-e6fd2 [:code "false"]]]
+        [:tr.dark-odd-7aff7
+          [:td.cell-e6fd2.right-border-c1b54 "Nil"]
+          [:td.cell-e6fd2.right-border-c1b54 [:code "nil"]]
+          [:td.cell-e6fd2 [:code "false"]]]]]]
 
   [:div#tooltip-numbers.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
@@ -835,16 +873,16 @@
           [:th.tbl-hdr-e0564 "Literal Form"]]]
       [:tbody
         [:tr.dark-odd-7aff7
-          [:td.cell-e6fd2.right-border-c1b54 "list"]
+          [:td.cell-e6fd2.right-border-c1b54 "List"]
           [:td.cell-e6fd2 [:code "()"]]]
         [:tr.dark-even-6cd97
-          [:td.cell-e6fd2.right-border-c1b54 "vector"]
+          [:td.cell-e6fd2.right-border-c1b54 "Vector"]
           [:td.cell-e6fd2 [:code "[]"]]]
         [:tr.dark-odd-7aff7
-          [:td.cell-e6fd2.right-border-c1b54 "set"]
+          [:td.cell-e6fd2.right-border-c1b54 "Set"]
           [:td.cell-e6fd2 [:code "#{}"]]]
         [:tr.dark-even-6cd97
-          [:td.cell-e6fd2.right-border-c1b54 "map"]
+          [:td.cell-e6fd2.right-border-c1b54 "Map"]
           [:td.cell-e6fd2 [:code "{}"]]]]]]
 
   [:div#tooltip-lists.tooltip-53dde {:style "display:none"}
