@@ -10,6 +10,7 @@ pom.xml
 
 *.swp
 
+00-publish
 app.js
 config.json
 /node_modules/

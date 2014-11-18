@@ -1,3 +1,5 @@
+var md5 = require('MD5');
+
 module.exports = function(grunt) {
 'use strict';
 
@@ -103,7 +105,29 @@ function snowflakeCount() {
 
 grunt.initConfig({
 
-  // LESS conversion
+  clean: {
+    options: {
+      force: true
+    },
+
+    // remove all the files in the 00-publish folder
+    pre: ['00-publish']
+  },
+
+  copy: {
+    cheatsheet: {
+      files: [
+        { src: 'public/cheatsheet/index.html', dest: '00-publish/cheatsheet/index.html' },
+        { src: 'public/css/main.min.css', dest: '00-publish/css/main.min.css' },
+        { src: 'public/fonts/*', dest: '00-publish/fonts/', expand: true, flatten: true },
+        { src: 'public/img/*', dest: '00-publish/img/', expand: true, flatten: true },
+        { src: 'public/js/cheatsheet.min.js', dest: '00-publish/js/cheatsheet.min.js' },
+        { src: 'public/js/libs/jquery-2.1.1.min.js', dest: '00-publish/js/libs/jquery-2.1.1.min.js' },
+        { src: 'public/favicon.png', dest: '00-publish/favicon.png' }
+      ]
+    }
+  },
+
   less: {
     options: {
       compress: true
@@ -126,9 +150,43 @@ grunt.initConfig({
 
 });
 
+function hashCheatsheetFiles() {
+  var cssFile = grunt.file.read('00-publish/css/main.min.css'),
+    cssHash = md5(cssFile).substr(0, 8),
+    jsFile = grunt.file.read('00-publish/js/cheatsheet.min.js'),
+    jsHash = md5(jsFile).substr(0, 8),
+    htmlFile = grunt.file.read('00-publish/cheatsheet/index.html');
+
+  // write the new files
+  grunt.file.write('00-publish/css/main.min.' + cssHash + '.css', cssFile);
+  grunt.file.write('00-publish/js/cheatsheet.min.' + jsHash + '.js', jsFile);
+
+  // delete the old files
+  grunt.file.delete('00-publish/css/main.min.css');
+  grunt.file.delete('00-publish/js/cheatsheet.min.js');
+
+  // update the HTML file
+  grunt.file.write('00-publish/cheatsheet/index.html',
+    htmlFile.replace('main.min.css', 'main.min.' + cssHash + '.css')
+    .replace('cheatsheet.min.js', 'cheatsheet.min.' + jsHash + '.js'));
+}
+
 // load tasks from npm
+grunt.loadNpmTasks('grunt-contrib-clean');
+grunt.loadNpmTasks('grunt-contrib-copy');
 grunt.loadNpmTasks('grunt-contrib-less');
 grunt.loadNpmTasks('grunt-contrib-watch');
+
+grunt.registerTask('hash-cheatsheet', hashCheatsheetFiles);
+
+grunt.registerTask('build-cheatsheet', [
+  'clean:pre',
+  'less',
+  'copy:cheatsheet',
+  'hash-cheatsheet'
+]);
+
+grunt.registerTask('publish-cheatsheet', []);
 
 grunt.registerTask('snowflake', snowflakeCount);
 grunt.registerTask('default', ['less']);
