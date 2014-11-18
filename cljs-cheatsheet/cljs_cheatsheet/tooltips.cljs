@@ -55,7 +55,7 @@
 ;;------------------------------------------------------------------------------
 
 ;; used to create a box around the icon
-(def icon-mouseout-padding 20)
+(def icon-mouseout-padding 16)
 
 ;; add some wiggle room around the edge of the tooltip border
 (def tooltip-mouseout-padding 4)
@@ -115,7 +115,7 @@
 ;; Hovered Tooltip Position
 ;;------------------------------------------------------------------------------
 
-(def hovered-tooltip-position (atom nil))
+(def hovered-tooltip (atom nil))
 
 ;;------------------------------------------------------------------------------
 ;; Mouse Position
@@ -124,10 +124,10 @@
 (def mouse (atom nil))
 
 (defn- on-change-mouse [_ _ _ m-pos]
-  (when (and @hovered-tooltip-position
-             (not (mouse-inside-tooltip? m-pos @hovered-tooltip-position)))
+  (when (and @hovered-tooltip
+             (not (mouse-inside-tooltip? m-pos @hovered-tooltip)))
     (hide-all-tooltips!)
-    (reset! hovered-tooltip-position nil)))
+    (reset! hovered-tooltip nil)))
 
 (add-watch mouse :change on-change-mouse)
 
@@ -147,12 +147,15 @@
     :y (aget js-evt "pageY")}))
 
 (defn- on-mouseenter-icon [js-evt]
-  (when-let [tooltip-id (js-evt->tooltip-id js-evt)]
-    (let [icon-el (aget js-evt "currentTarget")
-          tooltip-position (position-tooltip! icon-el tooltip-id)]
-      (hide-all-tooltips-instant!)
-      (reset! hovered-tooltip-position tooltip-position)
-      (show-tooltip! tooltip-id))))
+  (let [icon-el (aget js-evt "currentTarget")
+        tooltip-id (js-evt->tooltip-id js-evt)]
+    (when (and tooltip-id
+               (not= tooltip-id (:tooltip-id @hovered-tooltip)))
+      (let [tooltip-position (position-tooltip! icon-el tooltip-id)]
+        (hide-all-tooltips-instant!)
+        (reset! hovered-tooltip (merge tooltip-position
+                                       {:tooltip-id tooltip-id}))
+        (show-tooltip! tooltip-id)))))
 
 (defn- on-touchend-body [js-evt]
   (hide-all-tooltips!))
