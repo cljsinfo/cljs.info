@@ -12,6 +12,7 @@
 (def left-arrow-class "left-arr-42ea1")
 (def right-arrow-class "right-arr-d3345")
 (def arrow-classes (str left-arrow-class " " right-arrow-class))
+(def animation-speed "fast")
 
 ;;------------------------------------------------------------------------------
 ;; Helper
@@ -102,10 +103,10 @@
     (.css $tooltip-el (js-obj
       "left" left
       "top" top))
-    (.fadeIn $tooltip-el "fast")))
+    (.fadeIn $tooltip-el animation-speed)))
 
 (defn- hide-all-tooltips! []
-  (.fadeOut ($ tooltip-sel) "fast"))
+  (.fadeOut ($ tooltip-sel) animation-speed))
 
 ;;------------------------------------------------------------------------------
 ;; Hovered Tooltip Coordinates
