@@ -186,8 +186,6 @@ grunt.registerTask('build-cheatsheet', [
   'hash-cheatsheet'
 ]);
 
-grunt.registerTask('publish-cheatsheet', []);
-
 grunt.registerTask('snowflake', snowflakeCount);
 grunt.registerTask('default', ['less']);
 
