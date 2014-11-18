@@ -16,6 +16,8 @@ config.json
 /public/css/main.min.css
 /public/js/client.js
 /public/js/client.min.js
+/public/js/cheatsheet.js
+/public/js/cheatsheet.min.js
 /public/out/
 
 .DS_Store

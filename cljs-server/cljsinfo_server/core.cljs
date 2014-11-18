@@ -38,7 +38,8 @@
 
       ;; pages
       (.get "/" homepage)
-      (.get "/cheatsheet" cheatsheet)
+
+      ;;(.get "/cheatsheet" cheatsheet)
 
       ;; serve static files out of /public
       (.use (.static js-express (str js/__dirname "/public"))))

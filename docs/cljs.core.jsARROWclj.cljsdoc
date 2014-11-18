@@ -1,0 +1,14 @@
+===== Function
+cljs.core/js->clj
+
+===== Description
+Recursively transforms JavaScript arrays into ClojureScript
+vectors, and JavaScript objects into ClojureScript maps.  With
+option ':keywordize-keys true' will convert object fields from
+strings to keywords.
+
+===== Related
+cljs.core/clj->js
+
+===== Example
+

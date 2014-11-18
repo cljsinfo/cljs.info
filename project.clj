@@ -18,11 +18,24 @@
 
   :cljsbuild {
     :builds {
+      :cheatsheet {
+        :source-paths ["cljs-cheatsheet"]
+        :compiler {
+          :output-to "public/js/cheatsheet.js"
+          :optimizations :whitespace }}
+
+      :cheatsheet-adv {
+        :source-paths ["cljs-cheatsheet"]
+        :compiler {
+          :externs ["externs/jquery-1.9.js"]
+          :output-to "public/js/cheatsheet.min.js"
+          :optimizations :advanced
+          :pretty-print false }}
+
       :client {
         :source-paths ["cljs-client"]
         :compiler {
           :output-to "public/js/client.js"
-          :output-dir "public/out"
           :optimizations :whitespace }}
 
       :client-adv {
@@ -40,4 +53,5 @@
         :language-out :ecmascript5
         :target :nodejs
         :output-to "app.js"
-        :optimizations :simple }}}})
+        :optimizations :simple }}
+}})

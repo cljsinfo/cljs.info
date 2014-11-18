@@ -1,0 +1,12 @@
+===== Function
+cljs.core/clj->js
+
+===== Description
+Recursively transforms ClojureScript maps into Javascript objects,
+other ClojureScript colls into JavaScript arrays, and ClojureScript
+keywords into JavaScript strings.
+
+===== Related
+cljs.core/js->clj
+
+===== Example
