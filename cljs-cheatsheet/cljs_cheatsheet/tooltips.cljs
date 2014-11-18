@@ -12,7 +12,6 @@
 (def left-arrow-class "left-arr-42ea1")
 (def right-arrow-class "right-arr-d3345")
 (def arrow-classes (str left-arrow-class " " right-arrow-class))
-(def animation-speed "fast")
 
 ;;------------------------------------------------------------------------------
 ;; Helper
@@ -51,38 +50,17 @@
   (or (within-bounds? m-pos (:icon-bounds tooltip-coords))
       (within-bounds? m-pos (:tooltip-bounds tooltip-coords))))
 
-;; create a box around the icon
+;;------------------------------------------------------------------------------
+;; Position, Show, Hide Tooltips
+;;------------------------------------------------------------------------------
+
+;; used to create a box around the icon
 (def icon-mouseout-padding 20)
 
-(defn- icon-bounds [icon-el]
-  (let [$icon-el ($ icon-el)
-        icon-height (.height $icon-el)
-        icon-width (.width $icon-el)
-        icon-coords (.offset $icon-el)
-        icon-x (+ (aget icon-coords "left") (/ icon-width 2))
-        icon-y (+ (aget icon-coords "top") (/ icon-height 2))]
-    {:x1 (- icon-x icon-mouseout-padding)
-     :x2 (+ icon-x icon-mouseout-padding)
-     :y1 (- icon-y icon-mouseout-padding)
-     :y2 (+ icon-y icon-mouseout-padding 10) ;; be a little more generous around
-                                             ;; the bottom of the tooltip arrow
-     }))
+;; add some wiggle room around the edge of the tooltip border
+(def tooltip-mouseout-padding 4)
 
-(defn- tooltip-bounds [tooltip-id]
-  (let [$tooltip-el ($ (str "#" tooltip-id))
-        coords (.offset $tooltip-el)
-        height (-> (.css $tooltip-el "height") (replace "px" "") int)
-        width (-> (.css $tooltip-el "width") (replace "px" "") int)]
-    {:x1 (aget coords "left")
-     :x2 (+ (aget coords "left") width)
-     :y1 (aget coords "top")
-     :y2 (+ (aget coords "top") height)}))
-
-;;------------------------------------------------------------------------------
-;; Show / Hide Tooltips
-;;------------------------------------------------------------------------------
-
-(defn- show-tooltip! [icon-el tooltip-id]
+(defn- position-tooltip! [icon-el tooltip-id]
   (let [$icon-el ($ icon-el)
         icon-height (.height $icon-el)
         icon-width (.width $icon-el)
@@ -91,28 +69,53 @@
         icon-y (+ (aget icon-coords "top") (/ icon-height 2))
         browser-width (.width ($ js/window))
         $tooltip-el ($ (str "#" tooltip-id))
-        tooltip-width (.width $tooltip-el)
+        tooltip-height (-> (.css $tooltip-el "height") (replace "px" "") int)
+        tooltip-width (-> (.css $tooltip-el "width") (replace "px" "") int)
         flip? (> (+ icon-x tooltip-width 50) browser-width)
-        left (if flip? (- icon-x tooltip-width 30)
-                       (+ icon-x 18))
-        top (- icon-y 22)]
+        tooltip-left (if flip? (- icon-x tooltip-width 11)
+                               (+ icon-x 18))
+        tooltip-top (- icon-y 22)]
+    ;; toggle arrow classes
     (.removeClass $tooltip-el arrow-classes)
     (if flip?
       (.addClass $tooltip-el right-arrow-class)
       (.addClass $tooltip-el left-arrow-class))
+
+    ;; position the element
     (.css $tooltip-el (js-obj
-      "left" left
-      "top" top))
-    (.fadeIn $tooltip-el animation-speed)))
+      "left" tooltip-left
+      "top" tooltip-top))
+
+    ;; return the bounds of the tooltip
+    {:icon-bounds {:x1 (- icon-x icon-mouseout-padding)
+                   :x2 (+ icon-x icon-mouseout-padding)
+                   :y1 (- icon-y icon-mouseout-padding)
+                   ;; NOTE: be a little more generous around the bottom of the
+                   ;; tooltip icon
+                   :y2 (+ icon-y icon-mouseout-padding 10)}
+     :tooltip-bounds {:x1 (- tooltip-left tooltip-mouseout-padding)
+                      :x2 (+ tooltip-left tooltip-width tooltip-mouseout-padding)
+                      :y1 (- tooltip-top tooltip-mouseout-padding)
+                      :y2 (+ tooltip-top tooltip-height tooltip-mouseout-padding)}}))
+
+(def fade-in-speed 150)
+(def fade-out-speed 100)
+
+(defn- show-tooltip! [tooltip-id]
+  (let [$tooltip-el ($ (str "#" tooltip-id))]
+    (.fadeIn $tooltip-el fade-in-speed)))
+
+(defn- hide-all-tooltips-instant! []
+  (.hide ($ tooltip-sel)))
 
 (defn- hide-all-tooltips! []
-  (.fadeOut ($ tooltip-sel) animation-speed))
+  (.fadeOut ($ tooltip-sel) fade-out-speed))
 
 ;;------------------------------------------------------------------------------
-;; Hovered Tooltip Coordinates
+;; Hovered Tooltip Position
 ;;------------------------------------------------------------------------------
 
-(def hovered-tooltip-coords (atom nil))
+(def hovered-tooltip-position (atom nil))
 
 ;;------------------------------------------------------------------------------
 ;; Mouse Position
@@ -121,10 +124,10 @@
 (def mouse (atom nil))
 
 (defn- on-change-mouse [_ _ _ m-pos]
-  (when (and @hovered-tooltip-coords
-             (not (mouse-inside-tooltip? m-pos @hovered-tooltip-coords)))
+  (when (and @hovered-tooltip-position
+             (not (mouse-inside-tooltip? m-pos @hovered-tooltip-position)))
     (hide-all-tooltips!)
-    (reset! hovered-tooltip-coords nil)))
+    (reset! hovered-tooltip-position nil)))
 
 (add-watch mouse :change on-change-mouse)
 
@@ -145,19 +148,22 @@
 
 (defn- on-mouseenter-icon [js-evt]
   (when-let [tooltip-id (js-evt->tooltip-id js-evt)]
-    (let [icon-el (aget js-evt "currentTarget")]
-      (show-tooltip! icon-el tooltip-id)
-      (reset! hovered-tooltip-coords {
-        :tooltip-bounds (tooltip-bounds tooltip-id)
-        :icon-bounds (icon-bounds icon-el)}))))
+    (let [icon-el (aget js-evt "currentTarget")
+          tooltip-position (position-tooltip! icon-el tooltip-id)]
+      (hide-all-tooltips-instant!)
+      (reset! hovered-tooltip-position tooltip-position)
+      (show-tooltip! tooltip-id))))
 
 (defn- on-touchend-body [js-evt]
   (hide-all-tooltips!))
 
 (defn- on-touchend-icon [js-evt]
   (.stopPropagation js-evt)
-  (if-let [tooltip-id (js-evt->tooltip-id js-evt)]
-    (show-tooltip! (aget js-evt "currentTarget") tooltip-id)))
+  (when-let [tooltip-id (js-evt->tooltip-id js-evt)]
+    (let [icon-el (aget js-evt "currentTarget")]
+      (hide-all-tooltips-instant!)
+      (position-tooltip! icon-el tooltip-id)
+      (show-tooltip! tooltip-id))))
 
 ;;------------------------------------------------------------------------------
 ;; Init and Events
