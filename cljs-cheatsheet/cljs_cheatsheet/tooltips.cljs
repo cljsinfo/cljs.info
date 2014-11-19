@@ -69,9 +69,12 @@
         icon-y (+ (aget icon-coords "top") (/ icon-height 2))
         browser-width (.width ($ js/window))
         $tooltip-el ($ (str "#" tooltip-id))
+        ;; this little hack prevents bugs with the tooltip width calculation
+        ;; when it is near the edge of the page
+        _ (.css $tooltip-el (js-obj "display" "none" "left" 0 "top" 0))
         tooltip-height (-> (.css $tooltip-el "height") (replace "px" "") int)
         tooltip-width (-> (.css $tooltip-el "width") (replace "px" "") int)
-        flip? (> (+ icon-x tooltip-width 50) browser-width)
+        flip? (> (+ icon-x tooltip-width 30) browser-width)
         tooltip-left (if flip? (- icon-x tooltip-width 11)
                                (+ icon-x 18))
         tooltip-top (- icon-y 22)]
@@ -90,9 +93,8 @@
     {:icon-bounds {:x1 (- icon-x icon-mouseout-padding)
                    :x2 (+ icon-x icon-mouseout-padding)
                    :y1 (- icon-y icon-mouseout-padding)
-                   ;; NOTE: be a little more generous around the bottom of the
-                   ;; tooltip icon
-                   :y2 (+ icon-y icon-mouseout-padding 10)}
+                   ;; be a little more generous around the bottom of the tooltip icon
+                   :y2 (+ icon-y icon-mouseout-padding 12)}
      :tooltip-bounds {:x1 (- tooltip-left tooltip-mouseout-padding)
                       :x2 (+ tooltip-left tooltip-width tooltip-mouseout-padding)
                       :y1 (- tooltip-top tooltip-mouseout-padding)
