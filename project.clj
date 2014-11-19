@@ -1,4 +1,4 @@
-(defproject clojurescript.info "0.1.0"
+(defproject cljs.info "0.1.0"
 
   :description "A cool ClojureScript website."
   :url "https://github.com/oakmac/cljs.info"
