@@ -1,10 +1,10 @@
 {
-  "name": "clojurescript.info",
-  "homepage": "http://clojurescript.info",
+  "name": "cljs.info",
+  "homepage": "https://github.com/oakmac/cljs.info",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/oakmac/clojurescript.info"
+    "url": "https://github.com/oakmac/cljs.git"
   },
   "dependencies": {
     "express": "4.9.5",

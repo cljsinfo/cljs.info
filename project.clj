@@ -1,10 +1,10 @@
 (defproject clojurescript.info "0.1.0"
 
   :description "A cool ClojureScript website."
-  :url "http://clojurescript.info"
+  :url "https://github.com/oakmac/cljs.info"
   :license {
     :name "MIT License"
-    :url "https://github.com/oakmac/clojurescript.info/blob/master/LICENSE"
+    :url "https://github.com/oakmac/cljs.info/blob/master/LICENSE.md"
     :distribution :repo }
 
   :dependencies [
