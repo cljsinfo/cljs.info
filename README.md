@@ -37,4 +37,4 @@ All code licensed under the terms of the [MIT License].
 [cheatsheet]:http://cljs.info/cheatsheet
 [Leiningen]:http://leiningen.org
 [Node.js]:http://nodejs.org
-[MIT License]:https://github.com/oakmac/clojurescript.info/blob/master/LICENSE
+[MIT License]:https://github.com/oakmac/cljs.info/blob/master/LICENSE.md
