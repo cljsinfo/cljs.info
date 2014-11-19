@@ -1,7 +1,7 @@
 (ns cljs-cheatsheet.dom
   (:require
     goog.dom
-    [cljs-cheatsheet.util :as util]))
+    [cljs-cheatsheet.util :refer [js-log log]]))
 
 ;;------------------------------------------------------------------------------
 ;; Some Native DOM Helper Functions

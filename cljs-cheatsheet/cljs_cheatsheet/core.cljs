@@ -155,7 +155,7 @@
 
 (defn- init! []
   ;; load HTML on the page
-  (.prepend ($ "body") (html/page))
+  (.prepend ($ "body") (html/body))
 
   ;; initialize tooltip events
   (tooltips/init!)

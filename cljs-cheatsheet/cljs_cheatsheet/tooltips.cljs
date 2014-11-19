@@ -1,9 +1,8 @@
 (ns cljs-cheatsheet.tooltips
   (:require
-    [clojure.set :refer [difference]]
     [clojure.string :refer [replace]]
-    [cljs-cheatsheet.dom :refer [by-id set-html! show-el! hide-el!]]
-    [cljs-cheatsheet.util :refer [js-log log uuid]]))
+    [cljs-cheatsheet.dom :refer [by-id]]
+    [cljs-cheatsheet.util :refer [js-log log]]))
 
 (def $ js/jQuery)
 (def has-touch-events? (aget js/window "hasTouchEvents"))

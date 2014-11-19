@@ -2,11 +2,11 @@
   (:require-macros [hiccups.core :as hiccups])
   (:require
     hiccups.runtime
-    clojure.string
+    [clojure.string :refer [replace]]
     [cljs-cheatsheet.util :refer [js-log log]]))
 
-(def encode-html js/goog.string.htmlEscape)
-(def encode-uri js/encodeURIComponent)
+(def html-encode js/goog.string.htmlEscape)
+(def uri-encode js/encodeURIComponent)
 
 (def clj-string "clojure.string")
 (def clj-set "clojure.set")
@@ -28,12 +28,12 @@
 
 (defn- nme->cljdocs-url [nme]
   (-> nme
-    (clojure.string/replace "?" "_q")
-    encode-uri))
+    (replace "?" "_q")
+    uri-encode))
 
 (defn- docs-href [nme nme-space]
   (str "http://clojuredocs.org/"
-       (encode-uri nme-space) "/"
+       (uri-encode nme-space) "/"
        (nme->cljdocs-url nme)))
 
 (hiccups/defhtml fn-link
@@ -41,14 +41,14 @@
   ([nme nme-space]
     [:a.fn-a8476
       {:href (docs-href nme nme-space)}
-      (encode-html nme)]))
+      (html-encode nme)]))
 
 (hiccups/defhtml inside-fn-link
   ([nme] (inside-fn-link nme "clojure.core"))
   ([nme nme-space]
     [:a.inside-fn-c7607
       {:href (docs-href nme nme-space)}
-      (encode-html nme)]))
+      (html-encode nme)]))
 
 ;;------------------------------------------------------------------------------
 ;; Sections
@@ -729,7 +729,7 @@
 ;; and a sentence about how it works
 
 ;;------------------------------------------------------------------------------
-;; Tooltips
+;; Info Tooltips
 ;;------------------------------------------------------------------------------
 
 (hiccups/defhtml basics-tooltips []
@@ -957,7 +957,7 @@
       [:code "doall"] " function. This is useful when you want to see the "
       "results of a side-effecting function over an entire sequence."]])
 
-(hiccups/defhtml tooltips []
+(hiccups/defhtml info-tooltips []
   (basics-tooltips)
   (collections-tooltips)
   (sequences-tooltips))
@@ -1095,13 +1095,13 @@
     [:div.clr-43e49]])
 
 ;;------------------------------------------------------------------------------
-;; Page
+;; Body
 ;;------------------------------------------------------------------------------
 
-(hiccups/defhtml page []
+(hiccups/defhtml body []
   (header)
   (three-col-layout)
   (two-col-layout)
   (one-col-layout)
   (footer)
-  (tooltips))
+  (info-tooltips))
