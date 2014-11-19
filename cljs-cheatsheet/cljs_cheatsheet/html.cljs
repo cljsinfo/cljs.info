@@ -60,7 +60,7 @@
     [:table.tbl-902f0
       [:tbody
         [:tr.odd-372e6
-          [:td.label-9e0b7 "Define" (tt-icon "define" "margin: 0;")]
+          [:td.label-9e0b7 "Define" (tt-icon "define" "margin: 0; vertical-align: baseline;")]
           [:td.body-885f4
             (fn-link "def")
             (fn-link "defn")
@@ -69,7 +69,7 @@
             (fn-link "declare")
             (fn-link "ns")]]
         [:tr.even-ff837
-          [:td.label-9e0b7 "Branch" (tt-icon "branch" "margin: 0; padding-right: 0;")]
+          [:td.label-9e0b7 "Branch" (tt-icon "branch" "margin: 0; padding-right: 0; vertical-align: baseline;")]
           [:td.body-885f4
             (fn-link "if")
             (fn-link "if-not")
@@ -975,10 +975,28 @@
     ;   [:i.fa.fa-check-square-o] "Show tooltips?"]
     [:div.clr-43e49]])
 
-;; TODO: text for footer:
-;; "Please copy, improve, and share this work."
+;; include this? "Please copy, improve, and share this work."
 (hiccups/defhtml footer []
-  [:div.footer-2137e {:style "display:none"} "TODO: write me"])
+  [:div.footer-2137e
+    [:div.inner-cb85a
+      [:div.links-446e0
+        [:label.quiet-5d4e8 "reference: "]
+        [:a.ftr-link-e980e {:href "http://clojure.org/cheatsheet"}
+          "Clojure cheatsheet"]
+        ", "
+        [:a.ftr-link-e980e {:href "http://jafingerhut.github.io/cheatsheet/clojuredocs/cheatsheet-tiptip-cdocs-summary.html"}
+          "Cheatsheet with tooltips"]
+        ", "
+        [:a.ftr-link-e980e {:href "https://github.com/clojure/clojurescript"}
+          "ClojureScript source"]]
+      [:div.links-446e0
+        [:label.quiet-5d4e8 "source: "]
+        [:a.ftr-link-e980e {:href "https://github.com/oakmac/cljs.info/"}
+          "github.com/oakmac/cljs.info"]]
+      [:div.links-446e0
+        [:label.quiet-5d4e8 "license: "]
+        [:a.ftr-link-e980e {:href "https://github.com/oakmac/cljs.info/blob/master/LICENSE.md"}
+          "MIT"]]]])
 
 ;;------------------------------------------------------------------------------
 ;; Section Layouts
