@@ -10,6 +10,7 @@
 
 (def clj-string "clojure.string")
 (def clj-set "clojure.set")
+(def inline-tooltip-style "margin-left: 2px; vertical-align: baseline;")
 
 ;;------------------------------------------------------------------------------
 ;; Helpers
@@ -118,7 +119,7 @@
           [:td.label-9e0b7 "Create"]
           [:td.body-885f4
             [:div.row-5dec8 "#(...) &rarr; (fn [args] (...))"
-              (tt-icon "function-shorthand")]
+              (tt-icon "function-shorthand" inline-tooltip-style)]
             (fn-link "fn")
             (fn-link "defn")
             (fn-link "defn-")
@@ -432,7 +433,7 @@
           [:td.body-885f4
             [:div.row-5dec8
               "(my-vec idx) &rarr; (" (inside-fn-link "nth") " my-vec idx)"
-              (tt-icon "vector-as-fn")]
+              (tt-icon "vector-as-fn" inline-tooltip-style)]
             (fn-link "get")
             (fn-link "peek")]]
         [:tr.odd-372e6
@@ -469,7 +470,7 @@
           [:td.body-885f4
             [:div.row-5dec8
               "(my-set itm) &rarr; (" (inside-fn-link "get") " my-set itm)"
-              (tt-icon "set-as-fn")]
+              (tt-icon "set-as-fn" inline-tooltip-style)]
             (fn-link "contains?")]]
         [:tr.odd-372e6
           [:td.label-9e0b7 "'Change'"]
@@ -512,7 +513,7 @@
           [:td.body-885f4
             [:div.row-5dec8
               "(:key my-map) &rarr; (" (inside-fn-link "get") " my-map :key)"
-              (tt-icon "keywords-as-fn")]
+              (tt-icon "keywords-as-fn" inline-tooltip-style)]
             (fn-link "get-in")
             (fn-link "contains?")
             (fn-link "find")
@@ -823,7 +824,8 @@
       "small function definition and is often used to pass closures from one "
       "scope to another."]
     [:p.info-2e4f9
-      [:code "#()"] " forms cannot be nested and it is idiomatic to keep them short."]
+      [:code "#()"] " forms cannot be nested and it is idiomatic to keep them "
+      "short."]
     [:table.exmpl-tbl-42d9f
       [:thead
         [:tr
@@ -901,7 +903,8 @@
   [:div#tooltip-vectors.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
     [:p.info-2e4f9
-      "Vectors are collections of values that are indexed by sequential integers."]
+      "Vectors are collections of values that are indexed by sequential "
+      "integers."]
     [:p.info-2e4f9
       "Though similar, a JavaScript Array is not the same thing as a "
       "ClojureScript vector. "
