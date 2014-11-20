@@ -125,29 +125,24 @@
 ;; Events
 ;;------------------------------------------------------------------------------
 
-(defn- click-toggle-tooltips []
-  ;; TODO: write me
-  )
-
-(defn- on-resize []
+(defn- on-window-resize []
   (let [browser-width (.width ($ js/window))
         new-size (width->size browser-width)]
     (when-not (= @current-size new-size)
       (reset! current-size new-size))))
 
-(defn- keydown-search-input2 []
+(defn- change-search-input2 []
   (let [txt (-> ($ search-input-sel) .val .toLowerCase)]
     (when (not= txt @current-search-txt)
       (reset! current-search-txt txt))))
 
 ;; reset the stack so we can grab the value out of the text field
-(defn- keydown-search-input []
-  (js/setTimeout keydown-search-input2 1))
+(defn- change-search-input []
+  (js/setTimeout change-search-input2 1))
 
 (defn- add-events! []
-  ;; (.on ($ "#toggleTooltips") "click" click-toggle-tooltips)
-  (.on ($ search-input-sel) "keydown" keydown-search-input)
-  (aset js/window "onresize" on-resize))
+  (.on ($ search-input-sel) "blur change keydown" change-search-input)
+  (aset js/window "onresize" on-window-resize))
 
 ;;------------------------------------------------------------------------------
 ;; Global Cheatsheet Init
@@ -164,8 +159,8 @@
   (add-events!)
 
   ;; trigger resize and search
-  (on-resize)
-  (keydown-search-input2)
+  (on-window-resize)
+  (change-search-input2)
 
   ;; put the focus on the search field
   (when-let [search-input-el (by-id search-input-id)]
