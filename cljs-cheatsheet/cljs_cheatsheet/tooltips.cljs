@@ -1,8 +1,9 @@
 (ns cljs-cheatsheet.tooltips
   (:require
-    [clojure.string :refer [blank? replace]]
-    [cljs-cheatsheet.dom :refer [by-id]]
-    [cljs-cheatsheet.util :refer [js-log log]]))
+    [clojure.string :refer [blank? replace split]]
+    [cljs-cheatsheet.dom :refer [by-id set-html!]]
+    [cljs-cheatsheet.html :refer [fn-tooltip-inner]]
+    [cljs-cheatsheet.util :refer [js-log log uuid]]))
 
 (def $ js/jQuery)
 (def has-touch-events? (aget js/window "hasTouchEvents"))
@@ -91,19 +92,27 @@
                       :y1 (- tooltip-top tooltip-mouseout-padding)
                       :y2 (+ tooltip-top tooltip-height tooltip-mouseout-padding)}}))
 
+(defn- half [n]
+  (/ n 2))
+
+(def link-margin-right-padding 10)
+
+;; TODO: need to deal with tooltips on the edge of the page
+;; and tooltips at the bottom of the page (flip up)
 (defn- position-fn-tooltip! [$link-el]
   (let [offset (.offset $link-el)
         link-x (aget offset "left")
         link-y (aget offset "top")
-        height (.height $link-el)
-        width (.width $link-el)
-        $tooltip-el ($ "#dummyTooltip")]
-
+        link-height (.height $link-el)
+        link-width (.width $link-el)
+        $tooltip-el ($ "#fnTooltip")
+        tooltip-height (.height $tooltip-el)
+        tooltip-width (.width $tooltip-el)]
     (.css $tooltip-el (js-obj
-      "left" (+ link-x (/ width 2))
-      "top" (+ link-y (/ height 2) 20)))
-
-    ))
+      "left" (- (+ link-x (half link-width))
+                (half tooltip-width)
+                link-margin-right-padding)
+      "top" (+ link-y (half link-height) 20)))))
 
 (defn- show-tooltip! [tooltip-id]
   (let [$tooltip-el ($ (str "#" tooltip-id))]
@@ -157,16 +166,66 @@
         (reset! info-tooltip (merge tooltip-position {:tooltip-id tooltip-id}))
         (show-tooltip! tooltip-id)))))
 
+(def docs {
+  "cljs.core/str" {
+    :description "With no args, returns the empty string. With one arg x, returns
+      x.toString().  (str nil) returns the empty string. With more than
+      one arg, returns the concatenation of the str values of the args."
+    :signature ["" "x" "x & ys"]
+    :related []
+  }
+
+  "cljs.core/js->clj" {
+    :description (str
+      "Recursively transforms JavaScript arrays into ClojureScript vectors, "
+      "and JavaScript objects into ClojureScript maps.  With option "
+      "':keywordize-keys true' will convert object fields from"
+      "strings to keywords.")
+    :signature ["x" "x & opts"]
+    :related ["cljs.core/clj->js"]
+  }
+
+  "clojure.string/split" {
+    :description "Splits string on a regular expression.  Optional argument limit is the maximum number of splits. Not lazy. Returns vector of the splits."
+    :signature ["s re" "s re limit"]
+    :related ["cljs.core/subs" "cljs.core/re-seq" "clojure.string/replace" "clojure.string/split-lines"]
+  }
+
+  "cljs.core/aclone" {
+    :description "Returns a javascript array, cloned from the passed in array"
+    :signature ["arr"]
+    :related []
+  }
+
+  })
+
+(def default-doc-example (get docs "cljs.core/js->clj"))
+
 (defn- mouseenter-fn-link [js-evt]
   (let [link-el (aget js-evt "currentTarget")
         $link-el ($ link-el)
-        fn-name (.attr $link-el "data-fn-name")]
+        full-fn-name (.attr $link-el "data-fn-name")
+        first-slash-pos (.indexOf full-fn-name "/")
+        nmespace (subs full-fn-name 0 first-slash-pos)
+        fn-name (subs full-fn-name (inc first-slash-pos))
+        m (get docs full-fn-name default-doc-example)]
     ;; safeguard
-    (when (and fn-name
-               (not (blank? fn-name)))
+    (when (and full-fn-name
+               (not (blank? full-fn-name)))
       (position-fn-tooltip! $link-el)
-      (.show ($ "#dummyTooltip"))
+      (set-html! "fnTooltip" (fn-tooltip-inner (merge m {
+        :namespace nmespace
+        :name fn-name
+        })))
+      (.show ($ "#fnTooltip"))
       )))
+
+(defn- mouseleave-fn-link [js-evt]
+  (.hide ($ "#fnTooltip")))
+
+
+
+
 
 (defn- touchend-body [js-evt]
   (hide-all-tooltips!))
@@ -195,7 +254,8 @@
   (-> ($ "body")
     (.on "mousemove" mousemove-body)
     (.on "mouseenter" tooltip-icon-sel mouseenter-info-icon)
-    ;;(.on "mouseenter" fn-link-sel mouseenter-fn-link)
+    ; (.on "mouseenter" fn-link-sel mouseenter-fn-link)
+    ; (.on "mouseleave" fn-link-sel mouseleave-fn-link)
     )
   (when has-touch-events?
     (add-touch-events!)))

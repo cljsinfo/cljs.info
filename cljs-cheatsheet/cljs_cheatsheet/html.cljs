@@ -2,7 +2,7 @@
   (:require-macros [hiccups.core :as hiccups])
   (:require
     hiccups.runtime
-    [clojure.string :refer [replace]]
+    [clojure.string :refer [blank? join replace]]
     [cljs-cheatsheet.util :refer [js-log log]]))
 
 (def html-encode js/goog.string.htmlEscape)
@@ -758,31 +758,31 @@
           [:th.tbl-hdr-e0564 "Code"]
           [:th.tbl-hdr-e0564 "Boolean Value"]]]
       [:tbody
-        [:tr.dark-odd-7aff7
+        [:tr.dark-even-7aff7
           [:td.cell-e6fd2.right-border-c1b54 "Empty string"]
           [:td.cell-e6fd2.right-border-c1b54 [:code "\"\""]]
           [:td.cell-e6fd2 [:code "true"]]]
-        [:tr.dark-even-6cd97
+        [:tr.dark-odd-6cd97
           [:td.cell-e6fd2.right-border-c1b54 "Zero"]
           [:td.cell-e6fd2.right-border-c1b54 [:code "0"]]
           [:td.cell-e6fd2 [:code "true"]]]
-        [:tr.dark-odd-7aff7
+        [:tr.dark-even-7aff7
           [:td.cell-e6fd2.right-border-c1b54 "Not a number"]
           [:td.cell-e6fd2.right-border-c1b54 [:code "js/NaN"]]
           [:td.cell-e6fd2 [:code "true"]]]
-        [:tr.dark-even-6cd97
+        [:tr.dark-odd-6cd97
           [:td.cell-e6fd2.right-border-c1b54 "Empty vector"]
           [:td.cell-e6fd2.right-border-c1b54 [:code "[]"]]
           [:td.cell-e6fd2 [:code "true"]]]
-        [:tr.dark-odd-7aff7
+        [:tr.dark-even-7aff7
           [:td.cell-e6fd2.right-border-c1b54 "Empty array"]
           [:td.cell-e6fd2.right-border-c1b54 [:code "(array)"]]
           [:td.cell-e6fd2 [:code "true"]]]
-        [:tr.dark-even-6cd97
+        [:tr.dark-odd-6cd97
           [:td.cell-e6fd2.right-border-c1b54 "False"]
           [:td.cell-e6fd2.right-border-c1b54 [:code "false"]]
           [:td.cell-e6fd2 [:code "false"]]]
-        [:tr.dark-odd-7aff7
+        [:tr.dark-even-7aff7
           [:td.cell-e6fd2.right-border-c1b54 "Nil"]
           [:td.cell-e6fd2.right-border-c1b54 [:code "nil"]]
           [:td.cell-e6fd2 [:code "false"]]]]]]
@@ -832,13 +832,13 @@
           [:th.tbl-hdr-e0564 "Shorthand"]
           [:th.tbl-hdr-e0564 "Expands To"]]]
       [:tbody
-        [:tr.dark-odd-7aff7
+        [:tr.dark-even-7aff7
           [:td.code-72fa0.right-border-c1b54 "#(str \"Hello \" %)"]
           [:td.code-72fa0 [:pre "(fn [n]\n  (str \"Hello \" n))"]]]
-        [:tr.dark-even-6cd97
+        [:tr.dark-odd-6cd97
           [:td.code-72fa0.right-border-c1b54 "#(my-fn %1 %2 %3)"]
           [:td.code-72fa0 [:pre "(fn [a b c]\n  (my-fn a b c))"]]]
-        [:tr.dark-odd-7aff7
+        [:tr.dark-even-7aff7
           [:td.code-72fa0.right-border-c1b54 "#(* % (apply + %&amp;))"]
           [:td.code-72fa0 [:pre {:style "font-size:10px"}
             "(fn [x &amp; the-rest]\n"
@@ -876,16 +876,16 @@
           [:th.tbl-hdr-e0564 "Collection"]
           [:th.tbl-hdr-e0564 "Literal Form"]]]
       [:tbody
-        [:tr.dark-odd-7aff7
+        [:tr.dark-even-7aff7
           [:td.cell-e6fd2.right-border-c1b54 "List"]
           [:td.cell-e6fd2 [:code "()"]]]
-        [:tr.dark-even-6cd97
+        [:tr.dark-odd-6cd97
           [:td.cell-e6fd2.right-border-c1b54 "Vector"]
           [:td.cell-e6fd2 [:code "[]"]]]
-        [:tr.dark-odd-7aff7
+        [:tr.dark-even-7aff7
           [:td.cell-e6fd2.right-border-c1b54 "Set"]
           [:td.cell-e6fd2 [:code "#{}"]]]
-        [:tr.dark-even-6cd97
+        [:tr.dark-odd-6cd97
           [:td.cell-e6fd2.right-border-c1b54 "Map"]
           [:td.cell-e6fd2 [:code "{}"]]]]]]
 
@@ -967,18 +967,26 @@
   (collections-tooltips)
   (sequences-tooltips))
 
-(hiccups/defhtml dummy-fn-tooltip []
-  [:div#dummyTooltip.tooltip-53dde {:style "display:none"}
-    ; [:h4.tooltip-hdr-db7c5
-    ;   [:span.namespace-2e700 "clojure.string/"] "replace"]
-    [:h4.tooltip-hdr-db7c5
-      [:span.namespace-2e700 "cljs.core/"] "js->clj"]
-    [:p.info-2e4f9
-      "Recursively transforms JavaScript arrays into ClojureScript vectors, "
-      "and JavaScript objects into ClojureScript maps.  With option "
-      "':keywordize-keys true' will convert object fields from"
-      "strings to keywords."]
-    ])
+(defn- code-signature-class [idx]
+  (str "code-b64c8 "
+    (if (even? idx) "dark-even-7aff7" "dark-odd-6cd97")))
+
+(hiccups/defhtml code-signature [idx sig nme]
+  [:code {:class (code-signature-class idx)}
+    "(" (html-encode nme)
+    (when-not (blank? sig) (str " " (html-encode sig)))
+    ")"])
+
+(hiccups/defhtml fn-tooltip-inner [m]
+  [:h4.tooltip-hdr-db7c5
+    [:span.namespace-2e700 (:namespace m) "/"]
+    (-> m :name html-encode)]
+  (map-indexed #(code-signature %1 %2 (:name m)) (:signature m))
+  [:p.info-2e4f9 (:description m)]
+  )
+
+(hiccups/defhtml fn-tooltip-shell []
+  [:div#fnTooltip.fn-tooltip-8ca2a {:style "display:none"}])
 
 ;;------------------------------------------------------------------------------
 ;; Header and Footer
@@ -1141,5 +1149,4 @@
   (one-col-layout)
   (footer)
   (info-tooltips)
-  ;;(dummy-fn-tooltip)
-  )
+  (fn-tooltip-shell))
