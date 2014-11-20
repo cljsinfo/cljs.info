@@ -4,7 +4,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/oakmac/cljs.git"
+    "url": "https://github.com/oakmac/cljs.info.git"
   },
   "dependencies": {
     "express": "4.9.5",
