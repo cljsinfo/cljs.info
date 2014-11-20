@@ -1,6 +1,6 @@
 (ns cljs-cheatsheet.tooltips
   (:require
-    [clojure.string :refer [replace]]
+    [clojure.string :refer [blank? replace]]
     [cljs-cheatsheet.dom :refer [by-id]]
     [cljs-cheatsheet.util :refer [js-log log]]))
 
@@ -8,6 +8,7 @@
 (def has-touch-events? (aget js/window "hasTouchEvents"))
 (def tooltip-icon-sel ".tooltip-link-0e91b")
 (def tooltip-sel ".tooltip-53dde")
+(def fn-name-sel ".fn-a8476")
 (def left-arrow-class "left-arr-42ea1")
 (def right-arrow-class "right-arr-d3345")
 (def arrow-classes (str left-arrow-class " " right-arrow-class))
@@ -147,7 +148,7 @@
     :x (aget js-evt "pageX")
     :y (aget js-evt "pageY")}))
 
-(defn- on-mouseenter-icon [js-evt]
+(defn- mouseenter-icon [js-evt]
   (let [icon-el (aget js-evt "currentTarget")
         tooltip-id (js-evt->tooltip-id js-evt)]
     (when (and tooltip-id
@@ -158,10 +159,19 @@
                                        {:tooltip-id tooltip-id}))
         (show-tooltip! tooltip-id)))))
 
-(defn- on-touchend-body [js-evt]
+(defn- mouseenter-fn [js-evt]
+  (let [target-el (aget js-evt "currentTarget")
+        $target-el ($ target-el)
+        fn-name (.attr $target-el "data-fn-name")]
+    ;; safeguard
+    (when (and fn-name
+               (not (blank? fn-name)))
+      (js-log fn-name))))
+
+(defn- touchend-body [js-evt]
   (hide-all-tooltips!))
 
-(defn- on-touchend-icon [js-evt]
+(defn- touchend-icon [js-evt]
   (.stopPropagation js-evt)
   (when-let [tooltip-id (js-evt->tooltip-id js-evt)]
     (let [icon-el (aget js-evt "currentTarget")]
@@ -176,14 +186,16 @@
 ;; TODO: touch events are not really polished yet
 (defn- add-touch-events! []
   (-> ($ "body")
-    (.on "touchend" on-touchend-body)
-    (.on "touchend" tooltip-icon-sel on-touchend-icon)))
+    (.on "touchend" touchend-body)
+    (.on "touchend" tooltip-icon-sel touchend-icon)))
 
 (defn init!
   "Initialize tooltip events."
   []
   (-> ($ "body")
     (.on "mousemove" mousemove-body)
-    (.on "mouseenter" tooltip-icon-sel on-mouseenter-icon))
+    (.on "mouseenter" tooltip-icon-sel mouseenter-icon)
+    ;;(.on "mouseenter" fn-name-sel mouseenter-fn)
+    )
   (when has-touch-events?
     (add-touch-events!)))

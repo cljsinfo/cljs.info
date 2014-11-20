@@ -40,14 +40,16 @@
   ([nme] (fn-link nme "clojure.core"))
   ([nme nme-space]
     [:a.fn-a8476
-      {:href (docs-href nme nme-space)}
+      {:data-fn-name (str nme-space "/" nme)
+       :href (docs-href nme nme-space)}
       (html-encode nme)]))
 
 (hiccups/defhtml inside-fn-link
   ([nme] (inside-fn-link nme "clojure.core"))
   ([nme nme-space]
     [:a.inside-fn-c7607
-      {:href (docs-href nme nme-space)}
+      {:data-fn-name (str nme-space "/" nme)
+       :href (docs-href nme nme-space)}
       (html-encode nme)]))
 
 ;;------------------------------------------------------------------------------
