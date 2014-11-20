@@ -967,6 +967,19 @@
   (collections-tooltips)
   (sequences-tooltips))
 
+(hiccups/defhtml dummy-fn-tooltip []
+  [:div#dummyTooltip.tooltip-53dde {:style "display:none"}
+    ; [:h4.tooltip-hdr-db7c5
+    ;   [:span.namespace-2e700 "clojure.string/"] "replace"]
+    [:h4.tooltip-hdr-db7c5
+      [:span.namespace-2e700 "cljs.core/"] "js->clj"]
+    [:p.info-2e4f9
+      "Recursively transforms JavaScript arrays into ClojureScript vectors, "
+      "and JavaScript objects into ClojureScript maps.  With option "
+      "':keywordize-keys true' will convert object fields from"
+      "strings to keywords."]
+    ])
+
 ;;------------------------------------------------------------------------------
 ;; Header and Footer
 ;;------------------------------------------------------------------------------
@@ -1127,4 +1140,6 @@
   (two-col-layout)
   (one-col-layout)
   (footer)
-  (info-tooltips))
+  (info-tooltips)
+  ;;(dummy-fn-tooltip)
+  )
