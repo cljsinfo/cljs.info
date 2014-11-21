@@ -6,7 +6,7 @@ cljs.core/true?
 
 ===== Description
 
-Returns true if x is the value true, false otherwise.
+Returns true if `x` is the value true, false otherwise.
 
 ===== Related
 cljs.core/false?

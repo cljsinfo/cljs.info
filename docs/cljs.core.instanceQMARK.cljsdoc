@@ -6,7 +6,7 @@ cljs.core/instance?
 
 ===== Description
 
-Evaluates o and tests if it is an instance of type t. Returns true or false.
+Evaluates `o` and tests if it is an instance of type `t`. Returns true or false.
 
 ===== Related
 cljs.core/type

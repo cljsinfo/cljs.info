@@ -6,7 +6,7 @@ cljs.core/nil?
 
 ===== Description
 
-Returns true if x is nil, false otherwise.
+Returns true if `x` is nil, false otherwise.
 
 ===== Related
 cljs.core/true?

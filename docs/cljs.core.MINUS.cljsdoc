@@ -8,8 +8,8 @@ cljs.core/-
 
 ===== Description
 
-If no ys are supplied, returns the negation of x, else subtracts the ys from x
-and returns the result.
+If no `y`s are supplied, returns the negation of `x`, else subtracts the `y`s
+from `x` and returns the result.
 
 ===== Related
 cljs.core/+
