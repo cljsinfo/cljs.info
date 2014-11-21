@@ -1,6 +1,7 @@
 (ns cljs-cheatsheet.tooltips
   (:require
     [clojure.string :refer [blank? replace split]]
+    [clojure.walk :refer [keywordize-keys]]
     [cljs-cheatsheet.dom :refer [by-id set-html!]]
     [cljs-cheatsheet.html :refer [fn-tooltip-inner]]
     [cljs-cheatsheet.util :refer [js-log log uuid]]))
@@ -112,7 +113,7 @@
       "left" (- (+ link-x (half link-width))
                 (half tooltip-width)
                 link-margin-right-padding)
-      "top" (+ link-y (half link-height) 20)))))
+      "top" (+ link-y (half link-height) 18)))))
 
 (defn- show-tooltip! [tooltip-id]
   (let [$tooltip-el ($ (str "#" tooltip-id))]
@@ -148,6 +149,22 @@
 (add-watch mouse :change on-change-mouse)
 
 ;;------------------------------------------------------------------------------
+;; Symbol Tooltips
+;;------------------------------------------------------------------------------
+
+(def docs (atom {}))
+
+(defn- fetch-docs-success [js-response]
+  (reset! docs (js->clj js-response)))
+
+(defn- fetch-docs! []
+  (.ajax $ (js-obj
+    "url" "/docs.json"
+    "success" fetch-docs-success)))
+
+(fetch-docs!)
+
+;;------------------------------------------------------------------------------
 ;; Events
 ;;------------------------------------------------------------------------------
 
@@ -166,40 +183,12 @@
         (reset! info-tooltip (merge tooltip-position {:tooltip-id tooltip-id}))
         (show-tooltip! tooltip-id)))))
 
-(def docs {
-  "cljs.core/str" {
-    :description "With no args, returns the empty string. With one arg x, returns
-      x.toString().  (str nil) returns the empty string. With more than
-      one arg, returns the concatenation of the str values of the args."
-    :signature ["" "x" "x & ys"]
-    :related []
-  }
 
-  "cljs.core/js->clj" {
-    :description (str
-      "Recursively transforms JavaScript arrays into ClojureScript vectors, "
-      "and JavaScript objects into ClojureScript maps.  With option "
-      "':keywordize-keys true' will convert object fields from"
-      "strings to keywords.")
-    :signature ["x" "x & opts"]
-    :related ["cljs.core/clj->js"]
-  }
 
-  "clojure.string/split" {
-    :description "Splits string on a regular expression.  Optional argument limit is the maximum number of splits. Not lazy. Returns vector of the splits."
-    :signature ["s re" "s re limit"]
-    :related ["cljs.core/subs" "cljs.core/re-seq" "clojure.string/replace" "clojure.string/split-lines"]
-  }
 
-  "cljs.core/aclone" {
-    :description "Returns a javascript array, cloned from the passed in array"
-    :signature ["arr"]
-    :related []
-  }
 
-  })
 
-(def default-doc-example (get docs "cljs.core/js->clj"))
+
 
 (defn- mouseenter-fn-link [js-evt]
   (let [link-el (aget js-evt "currentTarget")
@@ -208,10 +197,8 @@
         first-slash-pos (.indexOf full-fn-name "/")
         nmespace (subs full-fn-name 0 first-slash-pos)
         fn-name (subs full-fn-name (inc first-slash-pos))
-        m (get docs full-fn-name default-doc-example)]
-    ;; safeguard
-    (when (and full-fn-name
-               (not (blank? full-fn-name)))
+        m (keywordize-keys (get @docs full-fn-name))]
+    (when m
       (position-fn-tooltip! $link-el)
       (set-html! "fnTooltip" (fn-tooltip-inner (merge m {
         :namespace nmespace
@@ -222,6 +209,10 @@
 
 (defn- mouseleave-fn-link [js-evt]
   (.hide ($ "#fnTooltip")))
+
+
+
+
 
 
 

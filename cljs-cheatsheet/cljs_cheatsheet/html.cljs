@@ -8,8 +8,10 @@
 (def html-encode js/goog.string.htmlEscape)
 (def uri-encode js/encodeURIComponent)
 
-(def clj-string "clojure.string")
-(def clj-set "clojure.set")
+(def cljs-core-ns "clojure.core")
+(def clj-string-ns "clojure.string")
+(def clj-set-ns "clojure.set")
+
 (def inline-tooltip-style "margin-left: 2px; vertical-align: baseline;")
 
 ;;------------------------------------------------------------------------------
@@ -38,7 +40,7 @@
        (nme->cljdocs-url nme)))
 
 (hiccups/defhtml fn-link
-  ([nme] (fn-link nme "clojure.core"))
+  ([nme] (fn-link nme cljs-core-ns))
   ([nme nme-space]
     [:a.fn-a8476
       {:data-fn-name (str nme-space "/" nme)
@@ -46,7 +48,7 @@
       (html-encode nme)]))
 
 (hiccups/defhtml inside-fn-link
-  ([nme] (inside-fn-link nme "clojure.core"))
+  ([nme] (inside-fn-link nme cljs-core-ns))
   ([nme nme-space]
     [:a.inside-fn-c7607
       {:data-fn-name (str nme-space "/" nme)
@@ -191,8 +193,7 @@
         [:tr.even-ff837
           [:td.label-9e0b7 "Cast"]
           [:td.body-885f4
-            (fn-link "int")
-            (fn-link "float")]]
+            (fn-link "int")]]
         [:tr.odd-372e6
           [:td.label-9e0b7 "Test"]
           [:td.body-885f4
@@ -227,13 +228,13 @@
             (fn-link "get")
             (fn-link "subs")
             (literal "(clojure.string/)")
-            (fn-link "join" clj-string)
-            (fn-link "escape" clj-string)
-            (fn-link "split" clj-string)
-            (fn-link "split-lines" clj-string)
-            (fn-link "replace" clj-string)
-            (fn-link "replace-first" clj-string)
-            (fn-link "reverse" clj-string)]]
+            (fn-link "join" clj-string-ns)
+            (fn-link "escape" clj-string-ns)
+            (fn-link "split" clj-string-ns)
+            (fn-link "split-lines" clj-string-ns)
+            (fn-link "replace" clj-string-ns)
+            (fn-link "replace-first" clj-string-ns)
+            (fn-link "reverse" clj-string-ns)]]
         [:tr.odd-372e6
           [:td.label-9e0b7 "Regex"]
           [:td.body-885f4
@@ -243,30 +244,30 @@
             (fn-link "re-matches")
             (fn-link "re-pattern")
             (literal "(clojure.string/)")
-            (fn-link "replace" clj-string)
-            (fn-link "replace-first" clj-string)]]
+            (fn-link "replace" clj-string-ns)
+            (fn-link "replace-first" clj-string-ns)]]
         [:tr.even-ff837
           [:td.label-9e0b7 "Letters"]
           [:td.body-885f4
             (literal "(clojure.string/)")
-            (fn-link "capitalize" clj-string)
-            (fn-link "lower-case" clj-string)
-            (fn-link "upper-case" clj-string)]]
+            (fn-link "capitalize" clj-string-ns)
+            (fn-link "lower-case" clj-string-ns)
+            (fn-link "upper-case" clj-string-ns)]]
         [:tr.odd-372e6
           [:td.label-9e0b7 "Trim"]
           [:td.body-885f4
             (literal "(clojure.string/)")
-            (fn-link "trim" clj-string)
-            (fn-link "trim-newline" clj-string)
-            (fn-link "triml" clj-string)
-            (fn-link "trimr" clj-string)]]
+            (fn-link "trim" clj-string-ns)
+            (fn-link "trim-newline" clj-string-ns)
+            (fn-link "triml" clj-string-ns)
+            (fn-link "trimr" clj-string-ns)]]
         [:tr.even-ff837
           [:td.label-9e0b7 "Test"]
           [:td.body-885f4
             (fn-link "char")
             (fn-link "string?")
             (literal "(clojure.string/)")
-            (fn-link "blank?" clj-string)]]]]])
+            (fn-link "blank?" clj-string-ns)]]]]])
 
 (hiccups/defhtml atoms-section []
   [:div.section-31efe
@@ -481,16 +482,16 @@
           [:td.label-9e0b7 "Set Ops"]
           [:td.body-885f4
             (literal "(clojure.set/)")
-            (fn-link "union" clj-set)
-            (fn-link "difference" clj-set)
-            (fn-link "intersection" clj-set)
-            (fn-link "select" clj-set)]]
+            (fn-link "union" clj-set-ns)
+            (fn-link "difference" clj-set-ns)
+            (fn-link "intersection" clj-set-ns)
+            (fn-link "select" clj-set-ns)]]
         [:tr.odd-372e6
           [:td.label-9e0b7 "Test"]
           [:td.body-885f4
             (literal "(clojure.set/)")
-            (fn-link "subset?" clj-set)
-            (fn-link "superset?" clj-set)]]]]])
+            (fn-link "subset?" clj-set-ns)
+            (fn-link "superset?" clj-set-ns)]]]]])
 
 (hiccups/defhtml maps-section []
   [:div.section-31efe
@@ -972,10 +973,12 @@
     (if (even? idx) "dark-even-7aff7" "dark-odd-6cd97")))
 
 (hiccups/defhtml code-signature [idx sig nme]
-  [:code {:class (code-signature-class idx)}
-    "(" (html-encode nme)
-    (when-not (blank? sig) (str " " (html-encode sig)))
-    ")"])
+  (let [len (count sig)
+        sig2 (subs sig 1 (dec len))]
+    [:code {:class (code-signature-class idx)}
+      "(" (html-encode nme)
+      (when-not (blank? sig2) (str " " (html-encode sig2)))
+      ")"]))
 
 (hiccups/defhtml fn-tooltip-inner [m]
   [:h4.tooltip-hdr-db7c5
