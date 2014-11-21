@@ -1,0 +1,13 @@
+===== Function
+cljs.core/get
+
+===== Signature
+[o k]
+[o k not-found]
+
+===== Description
+
+Returns the value mapped to key, not-found or nil if key not present.
+
+===== Related
+cljs.core/get-in
