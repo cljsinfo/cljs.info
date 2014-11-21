@@ -1,0 +1,11 @@
+===== Function
+cljs.core/re-seq
+
+===== Signature
+[re s]
+
+===== Description
+
+Returns a lazy sequence of successive matches of `re` in `s`.
+
+===== Related

@@ -1,0 +1,11 @@
+===== Function
+clojure.string/lower-case
+
+===== Signature
+[s]
+
+===== Description
+
+Converts string to all lower-case.
+
+===== Related
