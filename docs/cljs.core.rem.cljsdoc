@@ -1,0 +1,13 @@
+===== Function
+cljs.core/rem
+
+===== Signature
+[n d]
+
+===== Description
+
+remainder of dividing numerator by denominator.
+
+===== Related
+cljs.core/quot
+cljs.core/mod

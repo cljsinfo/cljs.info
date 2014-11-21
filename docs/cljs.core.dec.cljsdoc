@@ -1,0 +1,12 @@
+===== Function
+cljs.core/dec
+
+===== Signature
+[x]
+
+===== Description
+
+Returns a number one less than num.
+
+===== Related
+cljs.core/inc

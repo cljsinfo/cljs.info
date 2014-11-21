@@ -1,0 +1,13 @@
+===== Function
+cljs.core/quot
+
+===== Signature
+[n d]
+
+===== Description
+
+quot(ient) of dividing numerator by denominator.
+
+===== Related
+cljs.core/rem
+cljs.core/mod

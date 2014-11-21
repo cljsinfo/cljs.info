@@ -1,0 +1,15 @@
+===== Function
+cljs.core/min
+
+===== Signature
+[x]
+[x y]
+[x y & more]
+
+===== Description
+
+Returns the least of the nums.
+
+===== Related
+cljs.core/max
+cljs.core/min-key

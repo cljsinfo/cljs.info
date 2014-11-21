@@ -1,0 +1,16 @@
+===== Function
+cljs.core/+
+
+===== Signature
+[]
+[x]
+[x y]
+[x y & more]
+
+===== Description
+
+Returns the sum of nums. <code>(+)</code> returns 0.
+
+===== Related
+cljs.core/*
+cljs.core/-
