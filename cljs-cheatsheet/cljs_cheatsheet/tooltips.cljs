@@ -188,8 +188,6 @@
 
 
 
-
-
 (defn- mouseenter-fn-link [js-evt]
   (let [link-el (aget js-evt "currentTarget")
         $link-el ($ link-el)

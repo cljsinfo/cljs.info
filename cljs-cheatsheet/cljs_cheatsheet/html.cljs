@@ -980,12 +980,26 @@
       (when-not (blank? sig2) (str " " (html-encode sig2)))
       ")"]))
 
+(defn- extract-name [full-name]
+  (let [first-slash-pos (.indexOf full-name "/")
+        fn-name (subs full-name (inc first-slash-pos))]
+    fn-name))
+
+(hiccups/defhtml related-fn-link [n]
+  [:a.related-link-674b6 (-> n extract-name html-encode)])
+
 (hiccups/defhtml fn-tooltip-inner [m]
   [:h4.tooltip-hdr-db7c5
     [:span.namespace-2e700 (:namespace m) "/"]
     (-> m :name html-encode)]
-  (map-indexed #(code-signature %1 %2 (:name m)) (:signature m))
+  [:div.signature-4086a
+    (map-indexed #(code-signature %1 %2 (:name m)) (:signature m))]
   [:p.info-2e4f9 (:description m)]
+  [:h5.related-hdr-915e5 "See Also"]
+  ;; TODO: need to extract any non-core namespaces here like we do
+  ;; in the cheatsheet cells
+  [:div.related-links-f8e49
+    (map related-fn-link (:related m))]
   )
 
 (hiccups/defhtml fn-tooltip-shell []
