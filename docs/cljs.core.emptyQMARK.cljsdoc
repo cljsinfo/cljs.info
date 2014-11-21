@@ -1,0 +1,14 @@
+===== Function
+cljs.core/empty?
+
+===== Signature
+[coll]
+
+===== Description
+
+Returns true if coll has no items - same as <code>(not (seq coll))</code>.
+Please use the idiom <code>(seq x)</code> rather than <code>(not (empty?
+x))</code>.
+
+===== Related
+cljs.core/seq

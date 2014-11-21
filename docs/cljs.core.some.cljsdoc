@@ -1,0 +1,22 @@
+===== Function
+cljs.core/some
+
+===== Signature
+[pred coll]
+
+===== Description
+
+Returns the first logical true value of <code>(pred x)</code> for any x in coll,
+else nil.
+
+<!-- TODO: figure out how we want to do line breaks -->
+One common idiom is to use a set as pred, for example this
+will return <code>:fred</code> if <code>:fred</code> is in the sequence,
+otherwise nil: <code>(some #{:fred} coll)</code>
+
+===== Related
+cljs.core/every?
+cljs.core/not-any?
+cljs.core/keep
+cljs.core/keep-indexed
+cljs.core/some-fn
