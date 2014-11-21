@@ -5,9 +5,10 @@ cljs.core/clj->js
 [x]
 
 ===== Description
-Recursively transforms ClojureScript values to JavaScript.
-sets/vectors/lists become Arrays, Keywords and Symbol become Strings,
-Maps become Objects. Arbitrary keys are encoded to by key->js.
+
+Recursively transforms ClojureScript values to JavaScript. sets/vectors/lists
+become Arrays, Keywords and Symbol become Strings, Maps become Objects.
+Arbitrary keys are encoded to by key->js.
 
 ===== Related
 cljs.core/js->clj

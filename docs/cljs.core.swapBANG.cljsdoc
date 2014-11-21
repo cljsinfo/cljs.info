@@ -1,0 +1,18 @@
+===== Function
+cljs.core/swap!
+
+===== Signature
+[a f]
+[a f x]
+[a f x y]
+[a f x y & more]
+
+===== Description
+
+Atomically swaps the value of atom to be: <code>(apply f current-value-of-atom
+args)</code>. Note that <code>f</code> may be called multiple times, and thus
+should be free of side effects.  Returns the value that was swapped in.
+
+===== Related
+cljs.core/atom
+cljs.core/reset!

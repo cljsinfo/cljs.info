@@ -131,7 +131,10 @@ function transformFn(fn) {
 
   // convert some sections into arrays
   fn.signature = fn.signature.split("\n");
-  fn.related = fn.related.split("\n");
+
+  if (fn.hasOwnProperty("related") === true) {
+    fn.related = fn.related.split("\n");
+  }
 
   return fn;
 }

@@ -5,6 +5,7 @@ cljs.core/int
 [x]
 
 ===== Description
+
 Coerce to int by stripping decimal places.
 
 ===== Related
