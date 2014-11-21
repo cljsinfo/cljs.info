@@ -1,4 +1,7 @@
-var md5 = require('MD5');
+var commonmark = require('commonmark'),
+  cmReader = new commonmark.DocParser(),
+  cmWriter = new commonmark.HtmlRenderer(),
+  md5 = require('MD5');
 
 module.exports = function(grunt) {
 'use strict';
@@ -119,6 +122,29 @@ function isSectionLine(line) {
   return (line.search(/^=====/) !== -1);
 }
 
+// description section is written in CommonMark
+function convertDescription(d) {
+  var parsed = cmReader.parse(d);
+  return cmWriter.render(parsed);
+}
+
+function convertArraySection(s) {
+  if (s === "") {
+    return [];
+  }
+
+  var arr1 = s.split("\n"),
+    arr2 = [];
+
+  for (var i = 0; i < arr1.length; i++) {
+    if (arr1[i] === "") continue;
+
+    arr2.push(arr1[i]);
+  }
+
+  return arr2;
+}
+
 function transformFn(fn) {
   // extract namespace and function name from the full name
   fn["full-name"] = fn["function"];
@@ -126,14 +152,15 @@ function transformFn(fn) {
   fn["name"] = extractName(fn["function"]);
   delete fn["function"];
 
-  // replace newlines with spaces
-  fn["description"] = fn["description"].replace(/\n/g, " ");
+  // parse description as CommonMark
+  fn["description-html"] = convertDescription(fn["description"]);
+  delete fn["description"];
 
   // convert some sections into arrays
-  fn.signature = fn.signature.split("\n");
+  fn.signature = convertArraySection(fn.signature);
 
   if (fn.hasOwnProperty("related") === true) {
-    fn.related = fn.related.split("\n");
+    fn.related = convertArraySection(fn.related);
   }
 
   return fn;

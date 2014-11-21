@@ -8,7 +8,7 @@
 (def html-encode js/goog.string.htmlEscape)
 (def uri-encode js/encodeURIComponent)
 
-(def cljs-core-ns "clojure.core")
+(def cljs-core-ns "cljs.core")
 (def clj-string-ns "clojure.string")
 (def clj-set-ns "clojure.set")
 
@@ -35,9 +35,13 @@
     uri-encode))
 
 (defn- docs-href [nme nme-space]
-  (str "http://clojuredocs.org/"
-       (uri-encode nme-space) "/"
-       (nme->cljdocs-url nme)))
+
+  ;; TEMPORARY UNTIL SYMBOL TOOLTIPS ARE LIVE
+  (let [n2 (replace nme-space cljs-core-ns "clojure.core")]
+
+    (str "http://clojuredocs.org/"
+         (uri-encode n2) "/"
+         (nme->cljdocs-url nme))))
 
 (hiccups/defhtml fn-link
   ([nme] (fn-link nme cljs-core-ns))
@@ -990,17 +994,23 @@
 
 (hiccups/defhtml fn-tooltip-inner [m]
   [:h4.tooltip-hdr-db7c5
-    [:span.namespace-2e700 (:namespace m) "/"]
+    (when-not (= cljs-core-ns (:namespace m))
+      [:span.namespace-2e700 (:namespace m) "/"])
     (-> m :name html-encode)]
   [:div.signature-4086a
     (map-indexed #(code-signature %1 %2 (:name m)) (:signature m))]
-  [:p.info-2e4f9 (:description m)]
-  [:h5.related-hdr-915e5 "See Also"]
-  ;; TODO: need to extract any non-core namespaces here like we do
-  ;; in the cheatsheet cells
-  [:div.related-links-f8e49
-    (map related-fn-link (:related m))]
-  )
+  [:div.description-26a4d (:description-html m)]
+
+  (let [related (:related m)]
+    (when (and related
+               (first related)
+               (not (blank? (first related))))
+      (list
+        [:h5.related-hdr-915e5 "See Also"]
+        ;; TODO: need to extract any non-core namespaces here like we do
+        ;; in the cheatsheet cells
+        [:div.related-links-f8e49
+          (map related-fn-link related)]))))
 
 (hiccups/defhtml fn-tooltip-shell []
   [:div#fnTooltip.fn-tooltip-8ca2a {:style "display:none"}])

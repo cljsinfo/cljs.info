@@ -243,8 +243,8 @@
   (-> ($ "body")
     (.on "mousemove" mousemove-body)
     (.on "mouseenter" tooltip-icon-sel mouseenter-info-icon)
-    ; (.on "mouseenter" fn-link-sel mouseenter-fn-link)
-    ; (.on "mouseleave" fn-link-sel mouseleave-fn-link)
+    (.on "mouseenter" fn-link-sel mouseenter-fn-link)
+    (.on "mouseleave" fn-link-sel mouseleave-fn-link)
     )
   (when has-touch-events?
     (add-touch-events!)))
