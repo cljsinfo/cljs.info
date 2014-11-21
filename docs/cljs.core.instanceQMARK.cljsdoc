@@ -1,0 +1,14 @@
+===== Function
+cljs.core/instance?
+
+===== Signature
+[t o]
+
+===== Description
+
+Evaluates o and tests if it is an instance of type t. Returns true or false.
+
+===== Related
+cljs.core/type
+cljs.core/keyword?
+cljs.core/string?
