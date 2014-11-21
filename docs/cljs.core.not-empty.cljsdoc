@@ -1,0 +1,12 @@
+===== Function
+cljs.core/not-empty
+
+===== Signature
+[coll]
+
+===== Description
+
+If coll is empty, returns nil, else coll.
+
+===== Related
+cljs.core/empty

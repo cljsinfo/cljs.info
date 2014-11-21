@@ -1,0 +1,15 @@
+===== Function
+cljs.core/rand
+
+===== Signature
+[]
+[n]
+
+===== Description
+
+Returns a random floating point number between 0 (inclusive) and n (default 1)
+(exclusive).
+
+===== Related
+cljs.core/rand-int
+cljs.core/rand-nth
