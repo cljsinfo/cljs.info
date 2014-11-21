@@ -1,0 +1,12 @@
+===== Function
+cljs.core/int
+
+===== Signature
+[x]
+
+===== Description
+Coerce to int by stripping decimal places.
+
+===== Related
+cljs.core/char
+cljs.core/integer?

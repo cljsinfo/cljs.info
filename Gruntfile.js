@@ -100,6 +100,101 @@ function snowflakeCount() {
 }
 
 //------------------------------------------------------------------------------
+// Doc Files
+//------------------------------------------------------------------------------
+
+function extractNamespace(fullName) {
+  fullName = fullName + "";
+  var slash = fullName.indexOf("/");
+  return fullName.substr(0, slash);
+}
+
+function extractName(fullName) {
+  fullName = fullName + "";
+  var slash = (fullName + "").indexOf("/");
+  return fullName.substr(slash + 1);
+}
+
+function isSectionLine(line) {
+  return (line.search(/^=====/) !== -1);
+}
+
+function transformFn(fn) {
+  // extract namespace and function name from the full name
+  fn["full-name"] = fn["function"];
+  fn["namespace"] = extractNamespace(fn["function"]);
+  fn["name"] = extractName(fn["function"]);
+  delete fn["function"];
+
+  // replace newlines with spaces
+  fn["description"] = fn["description"].replace(/\n/g, " ");
+
+  // convert some sections into arrays
+  fn.signature = fn.signature.split("\n");
+  fn.related = fn.related.split("\n");
+
+  return fn;
+}
+
+function parseDocFile(fileContent) {
+  var contentArr = fileContent.split("\n"),
+    currentSection = false,
+    fn = {};
+
+  for (var i = 0; i < contentArr.length; i++) {
+    var line = contentArr[i];
+
+    if (isSectionLine(line) === true) {
+      currentSection = line.replace(/^=====/, "").trim().toLowerCase();
+      fn[currentSection] = "";
+      continue;
+    }
+
+    if (currentSection === false) continue;
+
+    fn[currentSection] += line + "\n";
+  }
+
+  // trim everything
+  for (var i in fn) {
+    if (fn.hasOwnProperty(i) !== true) continue;
+
+    fn[i] = fn[i].trim();
+  }
+
+  return fn;
+}
+
+// quick check that the format is correct
+function validFn(fn) {
+  return fn.hasOwnProperty("function") &&
+         fn.hasOwnProperty("signature") &&
+         fn.hasOwnProperty("description");
+}
+
+function buildDocs() {
+  var docs = {};
+
+  grunt.file.recurse("docs", function(abspath) {
+    // skip non .cljsdoc files
+    if (abspath.search(/\.cljsdoc$/) === -1) return;
+
+    var fileContent = grunt.file.read(abspath),
+      fn = parseDocFile(fileContent);
+
+    // quick sanity check that fn is a good format
+    if (validFn(fn) !== true) return;
+
+    // clean and transform the data
+    fn = transformFn(fn);
+
+    docs[fn["full-name"]] = fn;
+  });
+
+  grunt.file.write("public/docs.json", JSON.stringify(docs, null, 2));
+}
+
+//------------------------------------------------------------------------------
 // Grunt Config
 //------------------------------------------------------------------------------
 
@@ -144,8 +239,16 @@ grunt.initConfig({
     options: {
       atBegin: true
     },
-    files: "less/*.less",
-    tasks: ["less:watch"]
+
+    less: {
+      files: "less/*.less",
+      tasks: "less:watch"
+    },
+
+    docs: {
+      files: "docs/*.cljsdoc",
+      tasks: "build-docs"
+    }
   }
 
 });
@@ -177,6 +280,7 @@ grunt.loadNpmTasks('grunt-contrib-copy');
 grunt.loadNpmTasks('grunt-contrib-less');
 grunt.loadNpmTasks('grunt-contrib-watch');
 
+grunt.registerTask('build-docs', buildDocs);
 grunt.registerTask('hash-cheatsheet', hashCheatsheetFiles);
 
 grunt.registerTask('build-cheatsheet', [
@@ -187,7 +291,7 @@ grunt.registerTask('build-cheatsheet', [
 ]);
 
 grunt.registerTask('snowflake', snowflakeCount);
-grunt.registerTask('default', ['less']);
+grunt.registerTask('default', 'less');
 
 // end module.exports
 };

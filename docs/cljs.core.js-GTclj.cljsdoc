@@ -1,6 +1,10 @@
 ===== Function
 cljs.core/js->clj
 
+===== Signature
+[x]
+[x & opts]
+
 ===== Description
 Recursively transforms JavaScript arrays into ClojureScript
 vectors, and JavaScript objects into ClojureScript maps.  With
@@ -9,6 +13,3 @@ strings to keywords.
 
 ===== Related
 cljs.core/clj->js
-
-===== Example
-
