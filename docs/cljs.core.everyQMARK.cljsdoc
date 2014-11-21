@@ -6,8 +6,7 @@ cljs.core/every?
 
 ===== Description
 
-Returns true if <code>(pred x)</code> is logical true for every x in coll, else
-false.
+Returns true if `(pred x)` is logical true for every x in `coll`, else false.
 
 ===== Related
 cljs.core/some

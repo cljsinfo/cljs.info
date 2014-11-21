@@ -9,7 +9,9 @@ cljs.core/+
 
 ===== Description
 
-Returns the sum of nums. <code>(+)</code> returns 0.
+Returns the sum of nums.
+
+`(+)` returns 0.
 
 ===== Related
 cljs.core/*
