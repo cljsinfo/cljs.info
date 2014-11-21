@@ -9,9 +9,11 @@ cljs.core/conj
 
 ===== Description
 
-conj(oin). Returns a new collection with the xs "added". <code>(conj nil
-item)</code> returns <code>(item)</code>. The "addition" may happen at different
-"places" depending on the concrete type.
+conj(oin). Returns a new collection with the xs "added".
+
+`(conj nil item)` returns `(item)`.
+
+The "addition" may happen at different "places" depending on the concrete type.
 
 ===== Related
 cljs.core/cons

@@ -9,7 +9,7 @@ cljs.core/*
 
 ===== Description
 
-Returns the product of nums. <code>(*)</code> returns 1.
+Returns the product of nums. `(*)` returns 1.
 
 ===== Related
 cljs.core/+

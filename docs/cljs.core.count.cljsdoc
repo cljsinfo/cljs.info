@@ -6,7 +6,10 @@ cljs.core/count
 
 ===== Description
 
-Returns the number of items in the collection. <code>(count nil)</code> returns
-0.  Also works on strings, arrays, and Maps.
+Returns the number of items in the collection.
+
+`(count nil)` returns `0`.
+
+Also works on strings, arrays, and Maps.
 
 ===== Related

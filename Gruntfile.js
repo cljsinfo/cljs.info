@@ -1,6 +1,4 @@
-var commonmark = require('commonmark'),
-  cmReader = new commonmark.DocParser(),
-  cmWriter = new commonmark.HtmlRenderer(),
+var marked = require('marked'),
   md5 = require('MD5');
 
 module.exports = function(grunt) {
@@ -122,12 +120,6 @@ function isSectionLine(line) {
   return (line.search(/^=====/) !== -1);
 }
 
-// description section is written in CommonMark
-function convertDescription(d) {
-  var parsed = cmReader.parse(d);
-  return cmWriter.render(parsed);
-}
-
 function convertArraySection(s) {
   if (s === "") {
     return [];
@@ -152,8 +144,8 @@ function transformFn(fn) {
   fn["name"] = extractName(fn["function"]);
   delete fn["function"];
 
-  // parse description as CommonMark
-  fn["description-html"] = convertDescription(fn["description"]);
+  // parse description as Markdown
+  fn["description-html"] = marked(fn["description"]);
   delete fn["description"];
 
   // convert some sections into arrays
