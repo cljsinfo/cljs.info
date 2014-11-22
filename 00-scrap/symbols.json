@@ -57,7 +57,6 @@
   "cljs.core/+":{},
   "cljs.core/-":{},
   "cljs.core/*":{},
-  "cljs.core//":{},
   "cljs.core/quot":{},
   "cljs.core/rem":{},
   "cljs.core/mod":{},
