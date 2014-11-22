@@ -1,28 +1,28 @@
 {
   "cljs.core/def": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "defn",
       "arglists_comp": "[name doc-string? attr-map? [params*] body]|[name doc-string? attr-map? ([params*] body) + attr-map?]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "fn",
       "arglists_comp": "[& sigs]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "defmacro",
       "arglists_comp": "[name doc-string? attr-map? [params*] body]|[name doc-string? attr-map? ([params*] body) + attr-map?]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "defmulti",
       "arglists_comp": "[name docstring? attr-map? dispatch-fn & options]",
@@ -31,28 +31,28 @@
   ],
   "cljs.core/defn": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 4,
       "name": "def",
       "arglists_comp": "",
       "file": null
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "defn-",
       "arglists_comp": "[name & decls]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "defmacro",
       "arglists_comp": "[name doc-string? attr-map? [params*] body]|[name doc-string? attr-map? ([params*] body) + attr-map?]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "fn",
       "arglists_comp": "[& sigs]",
@@ -61,7 +61,7 @@
   ],
   "cljs.core/defn-": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "defn",
       "arglists_comp": "[name doc-string? attr-map? [params*] body]|[name doc-string? attr-map? ([params*] body) + attr-map?]",
@@ -70,14 +70,14 @@
   ],
   "cljs.core/let": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "letfn",
       "arglists_comp": "[fnspecs & body]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "if-let",
       "arglists_comp": "[bindings then]|[bindings then else & oldform]",
@@ -86,7 +86,7 @@
   ],
   "cljs.core/declare": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 4,
       "name": "def",
       "arglists_comp": "",
@@ -95,63 +95,63 @@
   ],
   "cljs.core/ns": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "use",
       "arglists_comp": "[& args]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 4,
       "name": "require",
       "arglists_comp": "[& args]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "refer",
       "arglists_comp": "[ns-sym & filters]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "import",
       "arglists_comp": "[& import-symbols-or-lists]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "ns-publics",
       "arglists_comp": "[ns]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "in-ns",
       "arglists_comp": "[name]",
       "file": null
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "remove-ns",
       "arglists_comp": "[sym]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "ns-map",
       "arglists_comp": "[ns]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "*ns*",
       "arglists_comp": "",
@@ -160,28 +160,28 @@
   ],
   "cljs.core/if": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "cond",
       "arglists_comp": "[& clauses]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "when",
       "arglists_comp": "[test & body]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "if-let",
       "arglists_comp": "[bindings then]|[bindings then else & oldform]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "if-not",
       "arglists_comp": "[test then]|[test then else]",
@@ -190,14 +190,14 @@
   ],
   "cljs.core/if-not": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "if",
       "arglists_comp": "",
       "file": null
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "when-not",
       "arglists_comp": "[test & body]",
@@ -206,21 +206,21 @@
   ],
   "cljs.core/when": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "when-not",
       "arglists_comp": "[test & body]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "when-let",
       "arglists_comp": "[bindings & body]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "if",
       "arglists_comp": "",
@@ -229,21 +229,21 @@
   ],
   "cljs.core/when-not": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "when",
       "arglists_comp": "[test & body]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "when-let",
       "arglists_comp": "[bindings & body]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "if",
       "arglists_comp": "",
@@ -252,35 +252,35 @@
   ],
   "cljs.core/when-let": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "if-let",
       "arglists_comp": "[bindings then]|[bindings then else & oldform]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "when",
       "arglists_comp": "[test & body]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "when-not",
       "arglists_comp": "[test & body]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "if",
       "arglists_comp": "",
       "file": null
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "when-first",
       "arglists_comp": "[bindings & body]",
@@ -289,7 +289,7 @@
   ],
   "cljs.core/when-first": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "when-let",
       "arglists_comp": "[bindings & body]",
@@ -298,14 +298,14 @@
   ],
   "cljs.core/if-let": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "when-let",
       "arglists_comp": "[bindings & body]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "if",
       "arglists_comp": "",
@@ -314,28 +314,21 @@
   ],
   "cljs.core/cond": [
     {
-      "namespace_id": 8,
-      "weight": 1,
-      "name": "cond-let",
-      "arglists_comp": "[bindings & clauses]",
-      "file": "clojure/contrib/cond.clj"
-    },
-    {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 4,
       "name": "condp",
       "arglists_comp": "[pred expr & clauses]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "case",
       "arglists_comp": "[e & clauses]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "if",
       "arglists_comp": "",
@@ -344,14 +337,14 @@
   ],
   "cljs.core/condp": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "cond",
       "arglists_comp": "[& clauses]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "if",
       "arglists_comp": "",
@@ -360,14 +353,14 @@
   ],
   "cljs.core/case": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "cond",
       "arglists_comp": "[& clauses]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 4,
       "name": "condp",
       "arglists_comp": "[pred expr & clauses]",
@@ -378,14 +371,14 @@
   "cljs.core/if-some": null,
   "cljs.core/and": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "or",
       "arglists_comp": "[]|[x]|[x & next]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "if",
       "arglists_comp": "",
@@ -394,14 +387,14 @@
   ],
   "cljs.core/or": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "and",
       "arglists_comp": "[]|[x]|[x & next]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "if",
       "arglists_comp": "",
@@ -410,42 +403,42 @@
   ],
   "cljs.core/map": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "map-indexed",
       "arglists_comp": "[f coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "pmap",
       "arglists_comp": "[f coll]|[f coll & colls]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "amap",
       "arglists_comp": "[a idx ret expr]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "mapcat",
       "arglists_comp": "[f & colls]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "keep",
       "arglists_comp": "[f coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 4,
       "name": "juxt",
       "arglists_comp": "[f]|[f g]|[f g h]|[f g h & fs]",
@@ -454,14 +447,14 @@
   ],
   "cljs.core/map-indexed": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "map",
       "arglists_comp": "[f coll]|[f c1 c2]|[f c1 c2 c3]|[f c1 c2 c3 & colls]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "keep-indexed",
       "arglists_comp": "[f coll]",
@@ -470,21 +463,21 @@
   ],
   "cljs.core/reduce": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "reductions",
       "arglists_comp": "[f coll]|[f init coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 6,
       "name": "apply",
       "arglists_comp": "[f args* argseq]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "frequencies",
       "arglists_comp": "[coll]",
@@ -493,21 +486,21 @@
   ],
   "cljs.core/for": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 5,
       "name": "doseq",
       "arglists_comp": "[seq-exprs & body]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "doall",
       "arglists_comp": "[coll]|[n coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "recur",
       "arglists_comp": "",
@@ -516,28 +509,28 @@
   ],
   "cljs.core/doseq": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "doall",
       "arglists_comp": "[coll]|[n coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "dorun",
       "arglists_comp": "[coll]|[n coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 6,
       "name": "for",
       "arglists_comp": "[seq-exprs body-expr]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "dotimes",
       "arglists_comp": "[bindings & body]",
@@ -546,21 +539,21 @@
   ],
   "cljs.core/dotimes": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "repeat",
       "arglists_comp": "[x]|[n x]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 6,
       "name": "for",
       "arglists_comp": "[seq-exprs body-expr]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 5,
       "name": "doseq",
       "arglists_comp": "[seq-exprs & body]",
@@ -569,7 +562,7 @@
   ],
   "cljs.core/while": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "loop",
       "arglists_comp": "[bindings & body]",
@@ -578,7 +571,7 @@
   ],
   "cljs.core/true?": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "false?",
       "arglists_comp": "[x]",
@@ -587,7 +580,7 @@
   ],
   "cljs.core/false?": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "not",
       "arglists_comp": "[x]",
@@ -596,28 +589,28 @@
   ],
   "cljs.core/instance?": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "type",
       "arglists_comp": "[x]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "supers",
       "arglists_comp": "[class]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "doto",
       "arglists_comp": "[x & forms]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "class",
       "arglists_comp": "[x]",
@@ -626,7 +619,7 @@
   ],
   "cljs.core/nil?": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 6,
       "name": "identity",
       "arglists_comp": "[x]",
@@ -636,7 +629,7 @@
   "cljs.core/some?": null,
   "cljs.core/fn": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "defn",
       "arglists_comp": "[name doc-string? attr-map? [params*] body]|[name doc-string? attr-map? ([params*] body) + attr-map?]",
@@ -646,7 +639,7 @@
   "cljs.core/definline": null,
   "cljs.core/identity": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "nil?",
       "arglists_comp": "[x]",
@@ -655,7 +648,7 @@
   ],
   "cljs.core/constantly": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "repeatedly",
       "arglists_comp": "[f]|[n f]",
@@ -665,14 +658,14 @@
   "cljs.core/memfn": null,
   "cljs.core/comp": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "partial",
       "arglists_comp": "[f arg1]|[f arg1 arg2]|[f arg1 arg2 arg3]|[f arg1 arg2 arg3 & more]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 4,
       "name": "juxt",
       "arglists_comp": "[f]|[f g]|[f g h]|[f g h & fs]",
@@ -681,7 +674,7 @@
   ],
   "cljs.core/complement": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "not",
       "arglists_comp": "[x]",
@@ -690,21 +683,14 @@
   ],
   "cljs.core/partial": [
     {
-      "namespace_id": 86,
-      "weight": 1,
-      "name": "partial",
-      "arglists_comp": "[f & args]",
-      "file": "clojure/contrib/str_utils2.clj"
-    },
-    {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 6,
       "name": "comp",
       "arglists_comp": "[f]|[f g]|[f g h]|[f1 f2 f3 & fs]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 4,
       "name": "juxt",
       "arglists_comp": "[f]|[f g]|[f g h]|[f g h & fs]",
@@ -713,14 +699,14 @@
   ],
   "cljs.core/juxt": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "partial",
       "arglists_comp": "[f arg1]|[f arg1 arg2]|[f arg1 arg2 arg3]|[f arg1 arg2 arg3 & more]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 6,
       "name": "comp",
       "arglists_comp": "[f]|[f g]|[f g h]|[f1 f2 f3 & fs]",
@@ -729,25 +715,17 @@
   ],
   "cljs.core/memoize": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "delay",
       "arglists_comp": "[& body]",
       "file": "clojure/core.clj"
     }
   ],
-  "cljs.core/fnil": [
-    {
-      "namespace_id": 11,
-      "weight": 0,
-      "name": ".?.",
-      "arglists_comp": "[x form]|[x form & forms]",
-      "file": "clojure/contrib/core.clj"
-    }
-  ],
+  "cljs.core/fnil": null,
   "cljs.core/every-pred": [
     {
-      "namespace_id": 330,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "some-fn",
       "arglists_comp": "[p]|[p1 p2]|[p1 p2 p3]|[p1 p2 p3 & ps]",
@@ -756,14 +734,14 @@
   ],
   "cljs.core/some-fn": [
     {
-      "namespace_id": 330,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "every-pred",
       "arglists_comp": "[p]|[p1 p2]|[p1 p2 p3]|[p1 p2 p3 & ps]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 7,
       "name": "some",
       "arglists_comp": "[pred coll]",
@@ -772,78 +750,29 @@
   ],
   "cljs.core/apply": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "map",
       "arglists_comp": "[f coll]|[f c1 c2]|[f c1 c2 c3]|[f c1 c2 c3 & colls]",
       "file": "clojure/core.clj"
-    },
-    {
-      "namespace_id": 99,
-      "weight": 2,
-      "name": "eval",
-      "arglists_comp": "[form]",
-      "file": "clojure/core.clj"
-    },
-    {
-      "namespace_id": 3,
-      "weight": 0,
-      "name": "apply-macro",
-      "arglists_comp": "[macro & args]",
-      "file": "clojure/contrib/apply_macro.clj"
-    },
-    {
-      "namespace_id": 114,
-      "weight": 1,
-      "name": "apply-template",
-      "arglists_comp": "[argv expr values]",
-      "file": "clojure/template.clj"
     }
   ],
   "cljs.core/->": [
     {
-      "namespace_id": 11,
-      "weight": 1,
-      "name": "-?>",
-      "arglists_comp": "[x form]|[x form & forms]",
-      "file": "clojure/contrib/core.clj"
-    },
-    {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "->>",
       "arglists_comp": "[x form]|[x form & more]",
       "file": "clojure/core.clj"
-    },
-    {
-      "namespace_id": 11,
-      "weight": 0,
-      "name": "-?>>",
-      "arglists_comp": "[x form]|[x form & forms]",
-      "file": "clojure/contrib/core.clj"
     }
   ],
   "cljs.core/->>": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "->",
       "arglists_comp": "[x]|[x form]|[x form & more]",
       "file": "clojure/core.clj"
-    },
-    {
-      "namespace_id": 11,
-      "weight": 1,
-      "name": "-?>",
-      "arglists_comp": "[x form]|[x form & forms]",
-      "file": "clojure/contrib/core.clj"
-    },
-    {
-      "namespace_id": 11,
-      "weight": 0,
-      "name": "-?>>",
-      "arglists_comp": "[x form]|[x form & forms]",
-      "file": "clojure/contrib/core.clj"
     }
   ],
   "cljs.core/as->": null,
@@ -853,7 +782,7 @@
   "cljs.core/some->>": null,
   "cljs.core/fn?": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "ifn?",
       "arglists_comp": "[x]",
@@ -862,7 +791,7 @@
   ],
   "cljs.core/ifn?": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "fn?",
       "arglists_comp": "[x]",
@@ -870,34 +799,18 @@
     }
   ],
   "cljs.core/+": null,
-  "cljs.core/-": [
-    {
-      "namespace_id": 330,
-      "weight": 0,
-      "name": "-'",
-      "arglists_comp": "[x]|[x y]|[x y & more]",
-      "file": "clojure/core.clj"
-    }
-  ],
-  "cljs.core/*": [
-    {
-      "namespace_id": 330,
-      "weight": 0,
-      "name": "*'",
-      "arglists_comp": "[]|[x]|[x y]|[x y & more]",
-      "file": "clojure/core.clj"
-    }
-  ],
+  "cljs.core/-": null,
+  "cljs.core/*": null,
   "cljs.core/quot": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "rem",
       "arglists_comp": "[num div]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "mod",
       "arglists_comp": "[num div]",
@@ -906,14 +819,14 @@
   ],
   "cljs.core/rem": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "quot",
       "arglists_comp": "[num div]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "mod",
       "arglists_comp": "[num div]",
@@ -922,7 +835,7 @@
   ],
   "cljs.core/mod": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "rem",
       "arglists_comp": "[num div]",
@@ -931,32 +844,24 @@
   ],
   "cljs.core/inc": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "dec",
       "arglists_comp": "[x]",
       "file": "clojure/core.clj"
     }
   ],
-  "cljs.core/dec": [
-    {
-      "namespace_id": 330,
-      "weight": 1,
-      "name": "dec'",
-      "arglists_comp": "[x]",
-      "file": "clojure/core.clj"
-    }
-  ],
+  "cljs.core/dec": null,
   "cljs.core/max": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "max-key",
       "arglists_comp": "[k x]|[k x y]|[k x y & more]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "min",
       "arglists_comp": "[x]|[x y]|[x y & more]",
@@ -965,14 +870,14 @@
   ],
   "cljs.core/min": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "max",
       "arglists_comp": "[x]|[x y]|[x y & more]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "min-key",
       "arglists_comp": "[k x]|[k x y]|[k x y & more]",
@@ -981,21 +886,21 @@
   ],
   "cljs.core/=": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "==",
       "arglists_comp": "[x]|[x y]|[x y & more]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "not=",
       "arglists_comp": "[x]|[x y]|[x y & more]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "identical?",
       "arglists_comp": "[x y]",
@@ -1004,14 +909,14 @@
   ],
   "cljs.core/==": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "=",
       "arglists_comp": "[x]|[x y]|[x y & more]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "identical?",
       "arglists_comp": "[x y]",
@@ -1021,35 +926,35 @@
   "cljs.core/not=": null,
   "cljs.core/<": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "=",
       "arglists_comp": "[x]|[x y]|[x y & more]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "not=",
       "arglists_comp": "[x]|[x y]|[x y & more]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": ">",
       "arglists_comp": "[x]|[x y]|[x y & more]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "<=",
       "arglists_comp": "[x]|[x y]|[x y & more]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": ">=",
       "arglists_comp": "[x]|[x y]|[x y & more]",
@@ -1058,21 +963,21 @@
   ],
   "cljs.core/>": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "=",
       "arglists_comp": "[x]|[x y]|[x y & more]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "not=",
       "arglists_comp": "[x]|[x y]|[x y & more]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "<",
       "arglists_comp": "[x]|[x y]|[x y & more]",
@@ -1083,42 +988,42 @@
   "cljs.core/>=": null,
   "cljs.core/int": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "char",
       "arglists_comp": "[x]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "long",
       "arglists_comp": "[x]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "integer?",
       "arglists_comp": "[n]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 0,
       "name": "ints",
       "arglists_comp": "[xs]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "int-array",
       "arglists_comp": "[size-or-seq]|[size init-val-or-seq]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "short",
       "arglists_comp": "[x]",
@@ -1127,14 +1032,14 @@
   ],
   "cljs.core/zero?": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "pos?",
       "arglists_comp": "[x]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "neg?",
       "arglists_comp": "[x]",
@@ -1143,14 +1048,14 @@
   ],
   "cljs.core/pos?": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "neg?",
       "arglists_comp": "[x]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "zero?",
       "arglists_comp": "[x]",
@@ -1159,14 +1064,14 @@
   ],
   "cljs.core/neg?": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "pos?",
       "arglists_comp": "[x]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "zero?",
       "arglists_comp": "[x]",
@@ -1175,7 +1080,7 @@
   ],
   "cljs.core/even?": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "odd?",
       "arglists_comp": "[n]",
@@ -1184,7 +1089,7 @@
   ],
   "cljs.core/odd?": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "even?",
       "arglists_comp": "[n]",
@@ -1193,7 +1098,7 @@
   ],
   "cljs.core/number?": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "num",
       "arglists_comp": "[x]",
@@ -1203,14 +1108,14 @@
   "cljs.core/integer?": null,
   "cljs.core/rand": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "rand-int",
       "arglists_comp": "[n]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "rand-nth",
       "arglists_comp": "[coll]",
@@ -1219,14 +1124,14 @@
   ],
   "cljs.core/rand-int": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "rand",
       "arglists_comp": "[]|[n]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "int",
       "arglists_comp": "[x]",
@@ -1235,14 +1140,14 @@
   ],
   "cljs.core/str": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "pr",
       "arglists_comp": "[]|[x]|[x & more]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 0,
       "name": "prn",
       "arglists_comp": "[& more]",
@@ -1252,21 +1157,21 @@
   "cljs.core/count": null,
   "cljs.core/get": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "map-indexed",
       "arglists_comp": "[f coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "get-in",
       "arglists_comp": "[m ks]|[m ks not-found]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "find",
       "arglists_comp": "[map key]",
@@ -1275,42 +1180,42 @@
   ],
   "cljs.core/subs": [
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 2,
       "name": "replace",
       "arglists_comp": "[s match replacement]",
       "file": "clojure/string.clj"
     },
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 2,
       "name": "split",
       "arglists_comp": "[s re]|[s re limit]",
       "file": "clojure/string.clj"
     },
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 0,
       "name": "replace-first",
       "arglists_comp": "[s match replacement]",
       "file": "clojure/string.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "re-find",
       "arglists_comp": "[m]|[re s]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "re-seq",
       "arglists_comp": "[re s]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "re-matches",
       "arglists_comp": "[re s]",
@@ -1319,21 +1224,21 @@
   ],
   "clojure.string/join": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "split-at",
       "arglists_comp": "[n coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "split-with",
       "arglists_comp": "[pred coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "interpose",
       "arglists_comp": "[sep coll]",
@@ -1343,28 +1248,28 @@
   "clojure.string/escape": null,
   "clojure.string/split": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "subs",
       "arglists_comp": "[s start]|[s start end]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 2,
       "name": "replace",
       "arglists_comp": "[s match replacement]",
       "file": "clojure/string.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "re-seq",
       "arglists_comp": "[re s]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 1,
       "name": "split-lines",
       "arglists_comp": "[s]",
@@ -1373,7 +1278,7 @@
   ],
   "clojure.string/split-lines": [
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 2,
       "name": "split",
       "arglists_comp": "[s re]|[s re limit]",
@@ -1382,21 +1287,21 @@
   ],
   "clojure.string/replace": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "subs",
       "arglists_comp": "[s start]|[s start end]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 2,
       "name": "split",
       "arglists_comp": "[s re]|[s re limit]",
       "file": "clojure/string.clj"
     },
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 0,
       "name": "replace-first",
       "arglists_comp": "[s match replacement]",
@@ -1405,21 +1310,21 @@
   ],
   "clojure.string/replace-first": [
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 2,
       "name": "replace",
       "arglists_comp": "[s match replacement]",
       "file": "clojure/string.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "re-pattern",
       "arglists_comp": "[s]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "subs",
       "arglists_comp": "[s start]|[s start end]",
@@ -1429,42 +1334,42 @@
   "clojure.string/reverse": null,
   "cljs.core/re-find": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "re-groups",
       "arglists_comp": "[m]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "re-matcher",
       "arglists_comp": "[re s]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "re-pattern",
       "arglists_comp": "[s]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "re-seq",
       "arglists_comp": "[re s]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "re-matches",
       "arglists_comp": "[re s]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "subs",
       "arglists_comp": "[s start]|[s start end]",
@@ -1473,49 +1378,49 @@
   ],
   "cljs.core/re-seq": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "re-find",
       "arglists_comp": "[m]|[re s]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "re-groups",
       "arglists_comp": "[m]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "re-pattern",
       "arglists_comp": "[s]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "re-matcher",
       "arglists_comp": "[re s]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "re-matches",
       "arglists_comp": "[re s]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 2,
       "name": "split",
       "arglists_comp": "[s re]|[s re limit]",
       "file": "clojure/string.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "subs",
       "arglists_comp": "[s start]|[s start end]",
@@ -1524,14 +1429,14 @@
   ],
   "cljs.core/re-matches": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "re-find",
       "arglists_comp": "[m]|[re s]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "subs",
       "arglists_comp": "[s start]|[s start end]",
@@ -1540,21 +1445,21 @@
   ],
   "cljs.core/re-pattern": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "re-find",
       "arglists_comp": "[m]|[re s]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 2,
       "name": "replace",
       "arglists_comp": "[s match replacement]",
       "file": "clojure/string.clj"
     },
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 0,
       "name": "replace-first",
       "arglists_comp": "[s match replacement]",
@@ -1563,14 +1468,14 @@
   ],
   "clojure.string/capitalize": [
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 1,
       "name": "upper-case",
       "arglists_comp": "[s]",
       "file": "clojure/string.clj"
     },
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 1,
       "name": "lower-case",
       "arglists_comp": "[s]",
@@ -1579,14 +1484,14 @@
   ],
   "clojure.string/lower-case": [
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 1,
       "name": "upper-case",
       "arglists_comp": "[s]",
       "file": "clojure/string.clj"
     },
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 1,
       "name": "capitalize",
       "arglists_comp": "[s]",
@@ -1595,14 +1500,14 @@
   ],
   "clojure.string/upper-case": [
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 1,
       "name": "lower-case",
       "arglists_comp": "[s]",
       "file": "clojure/string.clj"
     },
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 1,
       "name": "capitalize",
       "arglists_comp": "[s]",
@@ -1611,21 +1516,21 @@
   ],
   "clojure.string/trim": [
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 1,
       "name": "triml",
       "arglists_comp": "[s]",
       "file": "clojure/string.clj"
     },
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 1,
       "name": "trimr",
       "arglists_comp": "[s]",
       "file": "clojure/string.clj"
     },
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 1,
       "name": "trim-newline",
       "arglists_comp": "[s]",
@@ -1634,21 +1539,21 @@
   ],
   "clojure.string/trim-newline": [
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 1,
       "name": "trim",
       "arglists_comp": "[s]",
       "file": "clojure/string.clj"
     },
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 1,
       "name": "triml",
       "arglists_comp": "[s]",
       "file": "clojure/string.clj"
     },
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 1,
       "name": "trimr",
       "arglists_comp": "[s]",
@@ -1657,21 +1562,21 @@
   ],
   "clojure.string/triml": [
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 1,
       "name": "trim",
       "arglists_comp": "[s]",
       "file": "clojure/string.clj"
     },
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 1,
       "name": "trim-newline",
       "arglists_comp": "[s]",
       "file": "clojure/string.clj"
     },
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 1,
       "name": "trimr",
       "arglists_comp": "[s]",
@@ -1680,14 +1585,14 @@
   ],
   "clojure.string/trimr": [
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 1,
       "name": "trim",
       "arglists_comp": "[s]",
       "file": "clojure/string.clj"
     },
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 1,
       "name": "triml",
       "arglists_comp": "[s]",
@@ -1696,28 +1601,28 @@
   ],
   "cljs.core/char": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "char?",
       "arglists_comp": "[x]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "int",
       "arglists_comp": "[x]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 0,
       "name": "chars",
       "arglists_comp": "[xs]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "char-array",
       "arglists_comp": "[size-or-seq]|[size init-val-or-seq]",
@@ -1728,42 +1633,42 @@
   "clojure.string/blank?": null,
   "cljs.core/atom": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "reset!",
       "arglists_comp": "[atom newval]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "swap!",
       "arglists_comp": "[atom f]|[atom f x]|[atom f x y]|[atom f x y & args]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "compare-and-set!",
       "arglists_comp": "[atom oldval newval]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "add-watch",
       "arglists_comp": "[reference key fn]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 0,
       "name": "remove-watch",
       "arglists_comp": "[reference key]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 0,
       "name": "set-validator!",
       "arglists_comp": "[iref validator-fn]",
@@ -1772,21 +1677,21 @@
   ],
   "cljs.core/deref": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "atom",
       "arglists_comp": "[x]|[x & options]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "agent",
       "arglists_comp": "[state & options]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "ref",
       "arglists_comp": "[x]|[x & options]",
@@ -1795,14 +1700,14 @@
   ],
   "cljs.core/swap!": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "atom",
       "arglists_comp": "[x]|[x & options]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "reset!",
       "arglists_comp": "[atom newval]",
@@ -1811,21 +1716,21 @@
   ],
   "cljs.core/reset!": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "swap!",
       "arglists_comp": "[atom f]|[atom f x]|[atom f x y]|[atom f x y & args]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "compare-and-set!",
       "arglists_comp": "[atom oldval newval]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "atom",
       "arglists_comp": "[x]|[x & options]",
@@ -1834,21 +1739,21 @@
   ],
   "cljs.core/compare-and-set!": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "atom",
       "arglists_comp": "[x]|[x & options]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "reset!",
       "arglists_comp": "[atom newval]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "swap!",
       "arglists_comp": "[atom f]|[atom f x]|[atom f x y]|[atom f x y & args]",
@@ -1857,7 +1762,7 @@
   ],
   "cljs.core/add-watch": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 0,
       "name": "remove-watch",
       "arglists_comp": "[reference key]",
@@ -1866,7 +1771,7 @@
   ],
   "cljs.core/remove-watch": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "add-watch",
       "arglists_comp": "[reference key fn]",
@@ -1875,21 +1780,21 @@
   ],
   "cljs.core/set-validator!": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "atom",
       "arglists_comp": "[x]|[x & options]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "agent",
       "arglists_comp": "[state & options]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "ref",
       "arglists_comp": "[x]|[x & options]",
@@ -1901,119 +1806,119 @@
   "cljs.core/array": null,
   "cljs.core/make-array": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "int-array",
       "arglists_comp": "[size-or-seq]|[size init-val-or-seq]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "double-array",
       "arglists_comp": "[size-or-seq]|[size init-val-or-seq]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "float-array",
       "arglists_comp": "[size-or-seq]|[size init-val-or-seq]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "short-array",
       "arglists_comp": "[size-or-seq]|[size init-val-or-seq]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "long-array",
       "arglists_comp": "[size-or-seq]|[size init-val-or-seq]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "char-array",
       "arglists_comp": "[size-or-seq]|[size init-val-or-seq]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "byte-array",
       "arglists_comp": "[size-or-seq]|[size init-val-or-seq]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "boolean-array",
       "arglists_comp": "[size-or-seq]|[size init-val-or-seq]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "object-array",
       "arglists_comp": "[size-or-seq]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "to-array",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "to-array-2d",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "into-array",
       "arglists_comp": "[aseq]|[type aseq]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "aget",
       "arglists_comp": "[array idx]|[array idx & idxs]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "aset",
       "arglists_comp": "[array idx val]|[array idx idx2 & idxv]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "alength",
       "arglists_comp": "[array]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "amap",
       "arglists_comp": "[a idx ret expr]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "areduce",
       "arglists_comp": "[a idx ret init expr]",
@@ -2022,7 +1927,7 @@
   ],
   "cljs.core/aclone": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "aget",
       "arglists_comp": "[array idx]|[array idx & idxs]",
@@ -2031,21 +1936,21 @@
   ],
   "cljs.core/aget": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "aclone",
       "arglists_comp": "[array]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "get",
       "arglists_comp": "[map key]|[map key not-found]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "nth",
       "arglists_comp": "[coll index]|[coll index not-found]",
@@ -2054,21 +1959,21 @@
   ],
   "cljs.core/set!": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "reset!",
       "arglists_comp": "[atom newval]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "binding",
       "arglists_comp": "[bindings & body]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "alter-var-root",
       "arglists_comp": "[v f & args]",
@@ -2082,21 +1987,21 @@
   "cljs.core/object?": null,
   "cljs.core/try": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "catch",
       "arglists_comp": "",
       "file": null
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "finally",
       "arglists_comp": "",
       "file": null
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "throw",
       "arglists_comp": "",
@@ -2105,14 +2010,14 @@
   ],
   "cljs.core/catch": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "try",
       "arglists_comp": "",
       "file": null
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "finally",
       "arglists_comp": "",
@@ -2121,14 +2026,14 @@
   ],
   "cljs.core/finally": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "try",
       "arglists_comp": "",
       "file": null
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "catch",
       "arglists_comp": "",
@@ -2137,21 +2042,21 @@
   ],
   "cljs.core/throw": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "try",
       "arglists_comp": "",
       "file": null
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "catch",
       "arglists_comp": "",
       "file": null
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "finally",
       "arglists_comp": "",
@@ -2160,7 +2065,7 @@
   ],
   "cljs.core/empty": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "not-empty",
       "arglists_comp": "[coll]",
@@ -2169,7 +2074,7 @@
   ],
   "cljs.core/not-empty": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "empty",
       "arglists_comp": "[coll]",
@@ -2178,7 +2083,7 @@
   ],
   "cljs.core/into": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "conj",
       "arglists_comp": "[coll x]|[coll x & xs]",
@@ -2187,28 +2092,28 @@
   ],
   "cljs.core/conj": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "cons",
       "arglists_comp": "[x seq]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "into",
       "arglists_comp": "[to from]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "peek",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "pop",
       "arglists_comp": "[coll]",
@@ -2217,7 +2122,7 @@
   ],
   "cljs.core/distinct?": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "distinct",
       "arglists_comp": "[coll]",
@@ -2226,7 +2131,7 @@
   ],
   "cljs.core/empty?": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "seq",
       "arglists_comp": "[coll]",
@@ -2235,14 +2140,14 @@
   ],
   "cljs.core/every?": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 7,
       "name": "some",
       "arglists_comp": "[pred coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "not-any?",
       "arglists_comp": "[pred coll]",
@@ -2251,21 +2156,21 @@
   ],
   "cljs.core/not-every?": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "every?",
       "arglists_comp": "[pred coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "not-any?",
       "arglists_comp": "[pred coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 7,
       "name": "some",
       "arglists_comp": "[pred coll]",
@@ -2274,35 +2179,35 @@
   ],
   "cljs.core/some": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "every?",
       "arglists_comp": "[pred coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "not-any?",
       "arglists_comp": "[pred coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "keep",
       "arglists_comp": "[f coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "keep-indexed",
       "arglists_comp": "[f coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 330,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "some-fn",
       "arglists_comp": "[p]|[p1 p2]|[p1 p2 p3]|[p1 p2 p3 & ps]",
@@ -2311,14 +2216,14 @@
   ],
   "cljs.core/not-any?": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 7,
       "name": "some",
       "arglists_comp": "[pred coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "every?",
       "arglists_comp": "[pred coll]",
@@ -2327,14 +2232,14 @@
   ],
   "cljs.core/sequential?": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "seq?",
       "arglists_comp": "[x]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "coll?",
       "arglists_comp": "[x]",
@@ -2344,14 +2249,14 @@
   "cljs.core/associative?": null,
   "cljs.core/sorted?": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "sorted-map",
       "arglists_comp": "[& keyvals]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "sorted-set",
       "arglists_comp": "[& keys]",
@@ -2362,21 +2267,21 @@
   "cljs.core/reversible?": null,
   "cljs.core/coll?": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "seq?",
       "arglists_comp": "[x]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "list?",
       "arglists_comp": "[x]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "sequential?",
       "arglists_comp": "[coll]",
@@ -2385,21 +2290,21 @@
   ],
   "cljs.core/list?": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "seq?",
       "arglists_comp": "[x]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "sequential?",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "coll?",
       "arglists_comp": "[x]",
@@ -2409,7 +2314,7 @@
   "cljs.core/vector?": null,
   "cljs.core/set?": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "set",
       "arglists_comp": "[coll]",
@@ -2419,49 +2324,49 @@
   "cljs.core/map?": null,
   "cljs.core/seq?": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "seq",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "sequential?",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "vector?",
       "arglists_comp": "[x]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "coll?",
       "arglists_comp": "[x]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "list?",
       "arglists_comp": "[x]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "map?",
       "arglists_comp": "[x]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "set?",
       "arglists_comp": "[x]",
@@ -2472,42 +2377,42 @@
   "cljs.core/list*": null,
   "cljs.core/first": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 4,
       "name": "rest",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "next",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "nth",
       "arglists_comp": "[coll index]|[coll index not-found]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "second",
       "arglists_comp": "[x]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "take",
       "arglists_comp": "[n coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "ffirst",
       "arglists_comp": "[x]",
@@ -2516,28 +2421,28 @@
   ],
   "cljs.core/nth": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "first",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "second",
       "arglists_comp": "[x]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "nthnext",
       "arglists_comp": "[coll n]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "get",
       "arglists_comp": "[map key]|[map key not-found]",
@@ -2546,21 +2451,21 @@
   ],
   "cljs.core/peek": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "first",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "pop",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "conj",
       "arglists_comp": "[coll x]|[coll x & xs]",
@@ -2569,7 +2474,7 @@
   ],
   "cljs.core/cons": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "conj",
       "arglists_comp": "[coll x]|[coll x & xs]",
@@ -2578,28 +2483,28 @@
   ],
   "cljs.core/rest": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "next",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "first",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "drop",
       "arglists_comp": "[n coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "pop",
       "arglists_comp": "[coll]",
@@ -2608,21 +2513,21 @@
   ],
   "cljs.core/pop": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "peek",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 4,
       "name": "rest",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "conj",
       "arglists_comp": "[coll x]|[coll x & xs]",
@@ -2631,35 +2536,35 @@
   ],
   "cljs.core/vector": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "vec",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "vector?",
       "arglists_comp": "[x]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "vector-of",
       "arglists_comp": "[t]",
       "file": "clojure/gvec.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "pop",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "into",
       "arglists_comp": "[to from]",
@@ -2668,21 +2573,21 @@
   ],
   "cljs.core/vec": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "vector",
       "arglists_comp": "[]|[a]|[a b]|[a b c]|[a b c d]|[a b c d & args]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "vector?",
       "arglists_comp": "[x]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "vector-of",
       "arglists_comp": "[t]",
@@ -2691,21 +2596,21 @@
   ],
   "cljs.core/assoc": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "assoc-in",
       "arglists_comp": "[m [k & ks] v]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "dissoc",
       "arglists_comp": "[map]|[map key]|[map key & ks]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "merge",
       "arglists_comp": "[& maps]",
@@ -2714,14 +2619,14 @@
   ],
   "cljs.core/subvec": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "vector",
       "arglists_comp": "[]|[a]|[a b]|[a b c]|[a b c d]|[a b c d & args]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "vector?",
       "arglists_comp": "[x]",
@@ -2730,21 +2635,21 @@
   ],
   "cljs.core/replace": [
     {
-      "namespace_id": 118,
+      "namespace": "clojure.walk",
       "weight": 1,
       "name": "prewalk-replace",
       "arglists_comp": "[smap form]",
       "file": "clojure/walk.clj"
     },
     {
-      "namespace_id": 118,
+      "namespace": "clojure.walk",
       "weight": 0,
       "name": "postwalk-replace",
       "arglists_comp": "[smap form]",
       "file": "clojure/walk.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "map",
       "arglists_comp": "[f coll]|[f c1 c2]|[f c1 c2 c3]|[f c1 c2 c3 & colls]",
@@ -2753,7 +2658,7 @@
   ],
   "cljs.core/rseq": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "reverse",
       "arglists_comp": "[coll]",
@@ -2765,105 +2670,105 @@
   "cljs.core/reduce-kv": null,
   "cljs.core/set": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "hash-set",
       "arglists_comp": "[]|[& keys]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "sorted-set",
       "arglists_comp": "[& keys]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "conj",
       "arglists_comp": "[coll x]|[coll x & xs]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 111,
+      "namespace": "clojure.set",
       "weight": 1,
       "name": "join",
       "arglists_comp": "[xrel yrel]|[xrel yrel km]",
       "file": "clojure/set.clj"
     },
     {
-      "namespace_id": 111,
+      "namespace": "clojure.set",
       "weight": 1,
       "name": "select",
       "arglists_comp": "[pred xset]",
       "file": "clojure/set.clj"
     },
     {
-      "namespace_id": 111,
+      "namespace": "clojure.set",
       "weight": 2,
       "name": "difference",
       "arglists_comp": "[s1]|[s1 s2]|[s1 s2 & sets]",
       "file": "clojure/set.clj"
     },
     {
-      "namespace_id": 111,
+      "namespace": "clojure.set",
       "weight": 1,
       "name": "intersection",
       "arglists_comp": "[s1]|[s1 s2]|[s1 s2 & sets]",
       "file": "clojure/set.clj"
     },
     {
-      "namespace_id": 111,
+      "namespace": "clojure.set",
       "weight": 1,
       "name": "union",
       "arglists_comp": "[]|[s1]|[s1 s2]|[s1 s2 & sets]",
       "file": "clojure/set.clj"
     },
     {
-      "namespace_id": 111,
+      "namespace": "clojure.set",
       "weight": 1,
       "name": "index",
       "arglists_comp": "[xrel ks]",
       "file": "clojure/set.clj"
     },
     {
-      "namespace_id": 111,
+      "namespace": "clojure.set",
       "weight": 1,
       "name": "project",
       "arglists_comp": "[xrel ks]",
       "file": "clojure/set.clj"
     },
     {
-      "namespace_id": 111,
+      "namespace": "clojure.set",
       "weight": 1,
       "name": "rename",
       "arglists_comp": "[xrel kmap]",
       "file": "clojure/set.clj"
     },
     {
-      "namespace_id": 111,
+      "namespace": "clojure.set",
       "weight": 2,
       "name": "rename-keys",
       "arglists_comp": "[map kmap]",
       "file": "clojure/set.clj"
     },
     {
-      "namespace_id": 111,
+      "namespace": "clojure.set",
       "weight": 1,
       "name": "map-invert",
       "arglists_comp": "[m]",
       "file": "clojure/set.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "disj",
       "arglists_comp": "[set]|[set key]|[set key & ks]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "distinct",
       "arglists_comp": "[coll]",
@@ -2873,28 +2778,28 @@
   "cljs.core/hash-set": null,
   "cljs.core/sorted-set": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "sorted-set-by",
       "arglists_comp": "[comparator & keys]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "subseq",
       "arglists_comp": "[sc test key]|[sc start-test start-key end-test end-key]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "rsubseq",
       "arglists_comp": "[sc test key]|[sc start-test start-key end-test end-key]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "sorted-map",
       "arglists_comp": "[& keyvals]",
@@ -2903,21 +2808,21 @@
   ],
   "cljs.core/sorted-set-by": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "sorted-set",
       "arglists_comp": "[& keys]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "sorted-map-by",
       "arglists_comp": "[comparator & keyvals]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "compare",
       "arglists_comp": "[x y]",
@@ -2926,14 +2831,14 @@
   ],
   "cljs.core/contains?": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 7,
       "name": "some",
       "arglists_comp": "[pred coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "get",
       "arglists_comp": "[map key]|[map key not-found]",
@@ -2942,21 +2847,21 @@
   ],
   "cljs.core/disj": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "dissoc",
       "arglists_comp": "[map]|[map key]|[map key & ks]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "disj!",
       "arglists_comp": "[set]|[set key]|[set key & ks]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 111,
+      "namespace": "clojure.set",
       "weight": 2,
       "name": "difference",
       "arglists_comp": "[s1]|[s1 s2]|[s1 s2 & sets]",
@@ -2965,21 +2870,21 @@
   ],
   "clojure.set/union": [
     {
-      "namespace_id": 111,
+      "namespace": "clojure.set",
       "weight": 1,
       "name": "intersection",
       "arglists_comp": "[s1]|[s1 s2]|[s1 s2 & sets]",
       "file": "clojure/set.clj"
     },
     {
-      "namespace_id": 111,
+      "namespace": "clojure.set",
       "weight": 2,
       "name": "difference",
       "arglists_comp": "[s1]|[s1 s2]|[s1 s2 & sets]",
       "file": "clojure/set.clj"
     },
     {
-      "namespace_id": 111,
+      "namespace": "clojure.set",
       "weight": 0,
       "name": "superset?",
       "arglists_comp": "[set1 set2]",
@@ -2988,28 +2893,28 @@
   ],
   "clojure.set/difference": [
     {
-      "namespace_id": 111,
+      "namespace": "clojure.set",
       "weight": 1,
       "name": "union",
       "arglists_comp": "[]|[s1]|[s1 s2]|[s1 s2 & sets]",
       "file": "clojure/set.clj"
     },
     {
-      "namespace_id": 111,
+      "namespace": "clojure.set",
       "weight": 1,
       "name": "intersection",
       "arglists_comp": "[s1]|[s1 s2]|[s1 s2 & sets]",
       "file": "clojure/set.clj"
     },
     {
-      "namespace_id": 111,
+      "namespace": "clojure.set",
       "weight": 0,
       "name": "superset?",
       "arglists_comp": "[set1 set2]",
       "file": "clojure/set.clj"
     },
     {
-      "namespace_id": 111,
+      "namespace": "clojure.set",
       "weight": 1,
       "name": "project",
       "arglists_comp": "[xrel ks]",
@@ -3018,28 +2923,28 @@
   ],
   "clojure.set/intersection": [
     {
-      "namespace_id": 111,
+      "namespace": "clojure.set",
       "weight": 1,
       "name": "union",
       "arglists_comp": "[]|[s1]|[s1 s2]|[s1 s2 & sets]",
       "file": "clojure/set.clj"
     },
     {
-      "namespace_id": 111,
+      "namespace": "clojure.set",
       "weight": 2,
       "name": "difference",
       "arglists_comp": "[s1]|[s1 s2]|[s1 s2 & sets]",
       "file": "clojure/set.clj"
     },
     {
-      "namespace_id": 111,
+      "namespace": "clojure.set",
       "weight": 0,
       "name": "superset?",
       "arglists_comp": "[set1 set2]",
       "file": "clojure/set.clj"
     },
     {
-      "namespace_id": 111,
+      "namespace": "clojure.set",
       "weight": 1,
       "name": "project",
       "arglists_comp": "[xrel ks]",
@@ -3048,7 +2953,7 @@
   ],
   "clojure.set/select": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "filter",
       "arglists_comp": "[pred coll]",
@@ -3057,21 +2962,21 @@
   ],
   "clojure.set/subset?": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "set?",
       "arglists_comp": "[x]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "set",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 111,
+      "namespace": "clojure.set",
       "weight": 0,
       "name": "superset?",
       "arglists_comp": "[set1 set2]",
@@ -3080,14 +2985,14 @@
   ],
   "clojure.set/superset?": [
     {
-      "namespace_id": 111,
+      "namespace": "clojure.set",
       "weight": 1,
       "name": "subset?",
       "arglists_comp": "[set1 set2]",
       "file": "clojure/set.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "set",
       "arglists_comp": "[coll]",
@@ -3096,35 +3001,35 @@
   ],
   "cljs.core/hash-map": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "merge",
       "arglists_comp": "[& maps]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "assoc",
       "arglists_comp": "[map key val]|[map key val & kvs]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "dissoc",
       "arglists_comp": "[map]|[map key]|[map key & ks]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "array-map",
       "arglists_comp": "[]|[& keyvals]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "sorted-map",
       "arglists_comp": "[& keyvals]",
@@ -3133,21 +3038,21 @@
   ],
   "cljs.core/array-map": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "assoc",
       "arglists_comp": "[map key val]|[map key val & kvs]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "hash-map",
       "arglists_comp": "[]|[& keyvals]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "sorted-map",
       "arglists_comp": "[& keyvals]",
@@ -3156,7 +3061,7 @@
   ],
   "cljs.core/zipmap": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "interleave",
       "arglists_comp": "[c1 c2]|[c1 c2 & colls]",
@@ -3165,42 +3070,42 @@
   ],
   "cljs.core/sorted-map": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "sorted-map-by",
       "arglists_comp": "[comparator & keyvals]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "subseq",
       "arglists_comp": "[sc test key]|[sc start-test start-key end-test end-key]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "rsubseq",
       "arglists_comp": "[sc test key]|[sc start-test start-key end-test end-key]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "sorted-set",
       "arglists_comp": "[& keys]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "array-map",
       "arglists_comp": "[]|[& keyvals]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "hash-map",
       "arglists_comp": "[]|[& keyvals]",
@@ -3209,28 +3114,28 @@
   ],
   "cljs.core/sorted-map-by": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "sorted-map",
       "arglists_comp": "[& keyvals]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "subseq",
       "arglists_comp": "[sc test key]|[sc start-test start-key end-test end-key]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "rsubseq",
       "arglists_comp": "[sc test key]|[sc start-test start-key end-test end-key]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "sorted-set-by",
       "arglists_comp": "[comparator & keys]",
@@ -3239,14 +3144,14 @@
   ],
   "cljs.core/frequencies": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "group-by",
       "arglists_comp": "[f coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "distinct",
       "arglists_comp": "[coll]",
@@ -3255,14 +3160,14 @@
   ],
   "cljs.core/group-by": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "partition-by",
       "arglists_comp": "[f coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "frequencies",
       "arglists_comp": "[coll]",
@@ -3271,28 +3176,28 @@
   ],
   "cljs.core/get-in": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "assoc-in",
       "arglists_comp": "[m [k & ks] v]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "update-in",
       "arglists_comp": "[m [k & ks] f & args]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "find",
       "arglists_comp": "[map key]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "get",
       "arglists_comp": "[map key]|[map key not-found]",
@@ -3301,14 +3206,14 @@
   ],
   "cljs.core/find": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "get",
       "arglists_comp": "[map key]|[map key not-found]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "get-in",
       "arglists_comp": "[m ks]|[m ks not-found]",
@@ -3317,28 +3222,28 @@
   ],
   "cljs.core/keys": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "vals",
       "arglists_comp": "[map]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "hash-map",
       "arglists_comp": "[]|[& keyvals]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "key",
       "arglists_comp": "[e]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "defn",
       "arglists_comp": "[name doc-string? attr-map? [params*] body]|[name doc-string? attr-map? ([params*] body) + attr-map?]",
@@ -3347,14 +3252,14 @@
   ],
   "cljs.core/vals": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "val",
       "arglists_comp": "[e]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "keys",
       "arglists_comp": "[map]",
@@ -3363,28 +3268,28 @@
   ],
   "cljs.core/assoc-in": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "assoc",
       "arglists_comp": "[map key val]|[map key val & kvs]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "update-in",
       "arglists_comp": "[m [k & ks] f & args]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 11,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "dissoc-in",
       "arglists_comp": "[m [k & ks :as keys]]",
       "file": "clojure/contrib/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "get-in",
       "arglists_comp": "[m ks]|[m ks not-found]",
@@ -3393,28 +3298,28 @@
   ],
   "cljs.core/dissoc": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "assoc",
       "arglists_comp": "[map key val]|[map key val & kvs]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 11,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "dissoc-in",
       "arglists_comp": "[m [k & ks :as keys]]",
       "file": "clojure/contrib/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "disj",
       "arglists_comp": "[set]|[set key]|[set key & ks]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "select-keys",
       "arglists_comp": "[map keyseq]",
@@ -3423,14 +3328,14 @@
   ],
   "cljs.core/merge": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "merge-with",
       "arglists_comp": "[f & maps]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "hash-map",
       "arglists_comp": "[]|[& keyvals]",
@@ -3439,7 +3344,7 @@
   ],
   "cljs.core/merge-with": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "merge",
       "arglists_comp": "[& maps]",
@@ -3449,21 +3354,21 @@
   "cljs.core/select-keys": null,
   "cljs.core/update-in": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "assoc-in",
       "arglists_comp": "[m [k & ks] v]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "get-in",
       "arglists_comp": "[m ks]|[m ks not-found]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "fnil",
       "arglists_comp": "[f x]|[f x y]|[f x y z]",
@@ -3472,7 +3377,7 @@
   ],
   "cljs.core/key": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "keys",
       "arglists_comp": "[map]",
@@ -3481,7 +3386,7 @@
   ],
   "cljs.core/val": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "vals",
       "arglists_comp": "[map]",
@@ -3490,35 +3395,35 @@
   ],
   "cljs.core/subseq": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "rsubseq",
       "arglists_comp": "[sc test key]|[sc start-test start-key end-test end-key]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "sorted-map",
       "arglists_comp": "[& keyvals]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "sorted-set",
       "arglists_comp": "[& keys]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "sorted-map-by",
       "arglists_comp": "[comparator & keyvals]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "sorted-set-by",
       "arglists_comp": "[comparator & keys]",
@@ -3527,7 +3432,7 @@
   ],
   "cljs.core/rsubseq": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "subseq",
       "arglists_comp": "[sc test key]|[sc start-test start-key end-test end-key]",
@@ -3536,7 +3441,7 @@
   ],
   "cljs.core/distinct": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "distinct?",
       "arglists_comp": "[x]|[x y]|[x y & more]",
@@ -3545,21 +3450,14 @@
   ],
   "cljs.core/filter": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "remove",
       "arglists_comp": "[pred coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 76,
-      "weight": 1,
-      "name": "separate",
-      "arglists_comp": "[f s]",
-      "file": "clojure/contrib/seq.clj"
-    },
-    {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "keep",
       "arglists_comp": "[f coll]",
@@ -3568,7 +3466,7 @@
   ],
   "cljs.core/remove": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "filter",
       "arglists_comp": "[pred coll]",
@@ -3578,14 +3476,14 @@
   "cljs.core/take-nth": null,
   "cljs.core/concat": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "conj",
       "arglists_comp": "[coll x]|[coll x & xs]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "into",
       "arglists_comp": "[to from]",
@@ -3594,14 +3492,14 @@
   ],
   "cljs.core/lazy-cat": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "lazy-seq",
       "arglists_comp": "[& body]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "concat",
       "arglists_comp": "[]|[x]|[x y]|[x y & zs]",
@@ -3610,14 +3508,14 @@
   ],
   "cljs.core/mapcat": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "map",
       "arglists_comp": "[f coll]|[f c1 c2]|[f c1 c2 c3]|[f c1 c2 c3 & colls]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "concat",
       "arglists_comp": "[]|[x]|[x y]|[x y & zs]",
@@ -3626,7 +3524,7 @@
   ],
   "cljs.core/cycle": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "lazy-seq",
       "arglists_comp": "[& body]",
@@ -3635,14 +3533,14 @@
   ],
   "cljs.core/interleave": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "interpose",
       "arglists_comp": "[sep coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "zipmap",
       "arglists_comp": "[keys vals]",
@@ -3651,14 +3549,14 @@
   ],
   "cljs.core/interpose": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "interleave",
       "arglists_comp": "[c1 c2]|[c1 c2 & colls]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 2,
       "name": "join",
       "arglists_comp": "[coll]|[separator [x & more]]",
@@ -3667,21 +3565,21 @@
   ],
   "cljs.core/nthrest": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "drop",
       "arglists_comp": "[n coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "nthnext",
       "arglists_comp": "[coll n]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "nth",
       "arglists_comp": "[coll index]|[coll index not-found]",
@@ -3690,21 +3588,21 @@
   ],
   "cljs.core/next": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 4,
       "name": "rest",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "first",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "fnext",
       "arglists_comp": "[x]",
@@ -3713,14 +3611,14 @@
   ],
   "cljs.core/fnext": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "ffirst",
       "arglists_comp": "[x]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "second",
       "arglists_comp": "[x]",
@@ -3730,35 +3628,35 @@
   "cljs.core/nnext": null,
   "cljs.core/drop": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "take",
       "arglists_comp": "[n coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "drop-last",
       "arglists_comp": "[s]|[n s]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "drop-while",
       "arglists_comp": "[pred coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "nthnext",
       "arglists_comp": "[coll n]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 330,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "nthrest",
       "arglists_comp": "[coll n]",
@@ -3767,14 +3665,14 @@
   ],
   "cljs.core/drop-while": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "take-while",
       "arglists_comp": "[pred coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "split-with",
       "arglists_comp": "[pred coll]",
@@ -3783,21 +3681,21 @@
   ],
   "cljs.core/take-last": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "last",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "butlast",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "drop-last",
       "arglists_comp": "[s]|[n s]",
@@ -3806,28 +3704,28 @@
   ],
   "cljs.core/take": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "drop",
       "arglists_comp": "[n coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "take-while",
       "arglists_comp": "[pred coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "take-last",
       "arglists_comp": "[n coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "take-nth",
       "arglists_comp": "[n coll]",
@@ -3836,14 +3734,14 @@
   ],
   "cljs.core/take-while": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "drop-while",
       "arglists_comp": "[pred coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "split-with",
       "arglists_comp": "[pred coll]",
@@ -3852,42 +3750,42 @@
   ],
   "cljs.core/butlast": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "first",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 4,
       "name": "rest",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "last",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "next",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "drop-last",
       "arglists_comp": "[s]|[n s]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "take-last",
       "arglists_comp": "[n coll]",
@@ -3896,14 +3794,14 @@
   ],
   "cljs.core/drop-last": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "drop",
       "arglists_comp": "[n coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "drop-while",
       "arglists_comp": "[pred coll]",
@@ -3913,21 +3811,21 @@
   "cljs.core/flatten": null,
   "cljs.core/partition": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "partition-all",
       "arglists_comp": "[n coll]|[n step coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "split-at",
       "arglists_comp": "[n coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "partition-by",
       "arglists_comp": "[f coll]",
@@ -3936,14 +3834,14 @@
   ],
   "cljs.core/partition-all": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "partition",
       "arglists_comp": "[n coll]|[n step coll]|[n step pad coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "partition-by",
       "arglists_comp": "[f coll]",
@@ -3952,21 +3850,21 @@
   ],
   "cljs.core/partition-by": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "partition",
       "arglists_comp": "[n coll]|[n step coll]|[n step pad coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "partition-all",
       "arglists_comp": "[n coll]|[n step coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "group-by",
       "arglists_comp": "[f coll]",
@@ -3975,14 +3873,14 @@
   ],
   "cljs.core/split-at": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "split-with",
       "arglists_comp": "[pred coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 2,
       "name": "split",
       "arglists_comp": "[s re]|[s re limit]",
@@ -3991,28 +3889,28 @@
   ],
   "cljs.core/split-with": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "split-at",
       "arglists_comp": "[n coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 113,
+      "namespace": "clojure.string",
       "weight": 2,
       "name": "split",
       "arglists_comp": "[s re]|[s re limit]",
       "file": "clojure/string.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "take-while",
       "arglists_comp": "[pred coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "drop-while",
       "arglists_comp": "[pred coll]",
@@ -4022,7 +3920,7 @@
   "cljs.core/shuffle": null,
   "cljs.core/reverse": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "rseq",
       "arglists_comp": "[rev]",
@@ -4031,7 +3929,7 @@
   ],
   "cljs.core/sort": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 4,
       "name": "sort-by",
       "arglists_comp": "[keyfn coll]|[keyfn comp coll]",
@@ -4040,14 +3938,14 @@
   ],
   "cljs.core/sort-by": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "sort",
       "arglists_comp": "[coll]|[comp coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "compare",
       "arglists_comp": "[x y]",
@@ -4056,21 +3954,21 @@
   ],
   "cljs.core/compare": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 4,
       "name": "sort-by",
       "arglists_comp": "[keyfn coll]|[keyfn comp coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "sorted-set-by",
       "arglists_comp": "[comparator & keys]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "sorted-map-by",
       "arglists_comp": "[comparator & keyvals]",
@@ -4079,14 +3977,14 @@
   ],
   "cljs.core/pmap": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "map",
       "arglists_comp": "[f coll]|[f c1 c2]|[f c1 c2 c3]|[f c1 c2 c3 & colls]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "future",
       "arglists_comp": "[& body]",
@@ -4096,28 +3994,28 @@
   "cljs.core/seque": null,
   "cljs.core/second": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "first",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "nth",
       "arglists_comp": "[coll index]|[coll index not-found]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "fnext",
       "arglists_comp": "[x]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "next",
       "arglists_comp": "[coll]",
@@ -4126,35 +4024,35 @@
   ],
   "cljs.core/last": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "first",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "next",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 4,
       "name": "rest",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "butlast",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "take-last",
       "arglists_comp": "[n coll]",
@@ -4163,21 +4061,21 @@
   ],
   "cljs.core/ffirst": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "first",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "fnext",
       "arglists_comp": "[x]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "nfirst",
       "arglists_comp": "[x]",
@@ -4186,7 +4084,7 @@
   ],
   "cljs.core/nfirst": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "next",
       "arglists_comp": "[coll]",
@@ -4195,21 +4093,21 @@
   ],
   "cljs.core/nthnext": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "nth",
       "arglists_comp": "[coll index]|[coll index not-found]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "drop",
       "arglists_comp": "[n coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 330,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "nthrest",
       "arglists_comp": "[coll n]",
@@ -4218,7 +4116,7 @@
   ],
   "cljs.core/rand-nth": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "rand",
       "arglists_comp": "[]|[n]",
@@ -4227,14 +4125,14 @@
   ],
   "cljs.core/max-key": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "max",
       "arglists_comp": "[x]|[x y]|[x y & more]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "min-key",
       "arglists_comp": "[k x]|[k x y]|[k x y & more]",
@@ -4243,14 +4141,14 @@
   ],
   "cljs.core/min-key": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "min",
       "arglists_comp": "[x]|[x y]|[x y & more]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "max-key",
       "arglists_comp": "[k x]|[k x y]|[k x y & more]",
@@ -4259,7 +4157,7 @@
   ],
   "cljs.core/reductions": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 5,
       "name": "reduce",
       "arglists_comp": "[f coll]|[f val coll]",
@@ -4268,14 +4166,14 @@
   ],
   "cljs.core/into-array": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "to-array",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "make-array",
       "arglists_comp": "[type len]|[type dim & more-dims]",
@@ -4284,7 +4182,7 @@
   ],
   "cljs.core/to-array-2d": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "to-array",
       "arglists_comp": "[coll]",
@@ -4293,7 +4191,7 @@
   ],
   "cljs.core/dorun": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "doall",
       "arglists_comp": "[coll]|[n coll]",
@@ -4302,14 +4200,14 @@
   ],
   "cljs.core/doall": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "dorun",
       "arglists_comp": "[coll]|[n coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 5,
       "name": "doseq",
       "arglists_comp": "[seq-exprs & body]",
@@ -4318,21 +4216,21 @@
   ],
   "cljs.core/realized?": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "promise",
       "arglists_comp": "[]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "delay",
       "arglists_comp": "[& body]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "future",
       "arglists_comp": "[& body]",
@@ -4341,21 +4239,21 @@
   ],
   "cljs.core/seq": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "seq?",
       "arglists_comp": "[x]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "empty?",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "iterator-seq",
       "arglists_comp": "[iter]",
@@ -4364,28 +4262,28 @@
   ],
   "cljs.core/lazy-seq": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "lazy-cat",
       "arglists_comp": "[& colls]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 330,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "realized?",
       "arglists_comp": "[x]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "doall",
       "arglists_comp": "[coll]|[n coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "iterate",
       "arglists_comp": "[f x]",
@@ -4394,49 +4292,49 @@
   ],
   "cljs.core/repeatedly": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "repeat",
       "arglists_comp": "[x]|[n x]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "iterate",
       "arglists_comp": "[f x]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "lazy-seq",
       "arglists_comp": "[& body]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "dotimes",
       "arglists_comp": "[bindings & body]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "doall",
       "arglists_comp": "[coll]|[n coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "rand-int",
       "arglists_comp": "[n]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "constantly",
       "arglists_comp": "[x]",
@@ -4445,21 +4343,21 @@
   ],
   "cljs.core/iterate": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "cycle",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "repeatedly",
       "arglists_comp": "[f]|[n f]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "repeat",
       "arglists_comp": "[x]|[n x]",
@@ -4468,28 +4366,28 @@
   ],
   "cljs.core/repeat": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "repeatedly",
       "arglists_comp": "[f]|[n f]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "cycle",
       "arglists_comp": "[coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 2,
       "name": "constantly",
       "arglists_comp": "[x]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "dotimes",
       "arglists_comp": "[bindings & body]",
@@ -4500,21 +4398,21 @@
   "cljs.core/tree-seq": null,
   "cljs.core/keep": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "keep-indexed",
       "arglists_comp": "[f coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "map",
       "arglists_comp": "[f coll]|[f c1 c2]|[f c1 c2 c3]|[f c1 c2 c3 & colls]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "filter",
       "arglists_comp": "[pred coll]",
@@ -4523,14 +4421,14 @@
   ],
   "cljs.core/keep-indexed": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "map-indexed",
       "arglists_comp": "[f coll]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 3,
       "name": "keep",
       "arglists_comp": "[f coll]",
@@ -4545,63 +4443,63 @@
   "cljs.core/bit-set": null,
   "cljs.core/bit-shift-right": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "bit-shift-left",
       "arglists_comp": "[x n]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "bit-xor",
       "arglists_comp": "[x y]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "bit-or",
       "arglists_comp": "[x y]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "bit-and",
       "arglists_comp": "[x y]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "bit-set",
       "arglists_comp": "[x n]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "bit-test",
       "arglists_comp": "[x n]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "bit-flip",
       "arglists_comp": "[x n]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "bit-and-not",
       "arglists_comp": "[x y]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "bit-clear",
       "arglists_comp": "[x n]",
@@ -4610,7 +4508,7 @@
   ],
   "cljs.core/bit-shift-left": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "bit-shift-left",
       "arglists_comp": "[x n]",
@@ -4621,21 +4519,21 @@
   "cljs.core/bit-clear": null,
   "cljs.core/bit-test": [
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "bit-set",
       "arglists_comp": "[x n]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "bit-shift-left",
       "arglists_comp": "[x n]",
       "file": "clojure/core.clj"
     },
     {
-      "namespace_id": 99,
+      "namespace": "cljs.core",
       "weight": 1,
       "name": "bit-xor",
       "arglists_comp": "[x y]",
