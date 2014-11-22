@@ -1,0 +1,14 @@
+===== Function
+clojure.set/subset?
+
+===== Signature
+[set1 set2]
+
+===== Description
+
+Is `set1` a subset of `set2`?
+
+===== Related
+cljs.core/set?
+cljs.core/set
+clojure.set/superset?
