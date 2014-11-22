@@ -7,7 +7,7 @@ cljs.core/hash-set
 
 ===== Description
 
-Returns a new hash set with supplied keys.
+Returns a new hash set with supplied `keys`.
 
 Any equal keys are handled as if by repeated uses of `conj`.
 

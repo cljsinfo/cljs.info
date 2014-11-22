@@ -1,0 +1,16 @@
+===== Function
+cljs.core/vector
+
+===== Signature
+[& args]
+
+===== Description
+
+Creates a new vector containing `args`.
+
+===== Related
+cljs.core/vec
+cljs.core/vector?
+cljs.core/vector-of
+cljs.core/pop
+cljs.core/into

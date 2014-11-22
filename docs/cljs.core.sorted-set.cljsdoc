@@ -6,7 +6,7 @@ cljs.core/sorted-set
 
 ===== Description
 
-Returns a new sorted set with supplied keys.
+Returns a new sorted set with supplied `keys`.
 
 ===== Related
 cljs.core/sorted-set-by

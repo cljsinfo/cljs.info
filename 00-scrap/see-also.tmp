@@ -1,0 +1,914 @@
+cljs.core/def
+    cljs.core/defn
+    cljs.core/fn
+    cljs.core/defmacro
+    cljs.core/defmulti
+
+cljs.core/defn
+    cljs.core/def
+    cljs.core/defn-
+    cljs.core/defmacro
+    cljs.core/fn
+
+cljs.core/defn-
+    cljs.core/defn
+
+cljs.core/let
+    cljs.core/letfn
+    cljs.core/if-let
+
+cljs.core/declare
+    cljs.core/def
+
+cljs.core/ns
+    cljs.core/use
+    cljs.core/require
+    cljs.core/refer
+    cljs.core/import
+    cljs.core/ns-publics
+    cljs.core/in-ns
+    cljs.core/remove-ns
+    cljs.core/ns-map
+    cljs.core/*ns*
+
+cljs.core/if
+    cljs.core/cond
+    cljs.core/when
+    cljs.core/if-let
+    cljs.core/if-not
+
+cljs.core/if-not
+    cljs.core/if
+    cljs.core/when-not
+
+cljs.core/when
+    cljs.core/when-not
+    cljs.core/when-let
+    cljs.core/if
+
+cljs.core/when-not
+    cljs.core/when
+    cljs.core/when-let
+    cljs.core/if
+
+cljs.core/when-let
+    cljs.core/if-let
+    cljs.core/when
+    cljs.core/when-not
+    cljs.core/if
+    cljs.core/when-first
+
+cljs.core/when-first
+    cljs.core/when-let
+
+cljs.core/if-let
+    cljs.core/when-let
+    cljs.core/if
+
+cljs.core/cond
+    cljs.core/condp
+    cljs.core/case
+    cljs.core/if
+
+cljs.core/condp
+    cljs.core/cond
+    cljs.core/if
+
+cljs.core/case
+    cljs.core/cond
+    cljs.core/condp
+
+cljs.core/and
+    cljs.core/or
+    cljs.core/if
+
+cljs.core/or
+    cljs.core/and
+    cljs.core/if
+
+cljs.core/map
+    cljs.core/map-indexed
+    cljs.core/pmap
+    cljs.core/amap
+    cljs.core/mapcat
+    cljs.core/keep
+    cljs.core/juxt
+
+cljs.core/map-indexed
+    cljs.core/map
+    cljs.core/keep-indexed
+
+cljs.core/reduce
+    cljs.core/reductions
+    cljs.core/apply
+    cljs.core/frequencies
+
+cljs.core/for
+    cljs.core/doseq
+    cljs.core/doall
+    cljs.core/recur
+
+cljs.core/doseq
+    cljs.core/doall
+    cljs.core/dorun
+    cljs.core/for
+    cljs.core/dotimes
+
+cljs.core/dotimes
+    cljs.core/repeat
+    cljs.core/for
+    cljs.core/doseq
+
+cljs.core/while
+    cljs.core/loop
+
+cljs.core/true?
+    cljs.core/false?
+
+cljs.core/false?
+    cljs.core/not
+
+cljs.core/instance?
+    cljs.core/type
+    cljs.core/supers
+    cljs.core/doto
+    cljs.core/class
+
+cljs.core/nil?
+    cljs.core/identity
+
+cljs.core/fn
+    cljs.core/defn
+
+cljs.core/identity
+    cljs.core/nil?
+
+cljs.core/constantly
+    cljs.core/repeatedly
+
+cljs.core/comp
+    cljs.core/partial
+    cljs.core/juxt
+
+cljs.core/complement
+    cljs.core/not
+
+cljs.core/partial
+    cljs.core/comp
+    cljs.core/juxt
+
+cljs.core/juxt
+    cljs.core/partial
+    cljs.core/comp
+
+cljs.core/memoize
+    cljs.core/delay
+
+cljs.core/every-pred
+    cljs.core/some-fn
+
+cljs.core/some-fn
+    cljs.core/every-pred
+    cljs.core/some
+
+cljs.core/apply
+    cljs.core/map
+
+cljs.core/->
+    cljs.core/->>
+
+cljs.core/->>
+    cljs.core/->
+
+cljs.core/fn?
+    cljs.core/ifn?
+
+cljs.core/ifn?
+    cljs.core/fn?
+
+cljs.core/quot
+    cljs.core/rem
+    cljs.core/mod
+
+cljs.core/rem
+    cljs.core/quot
+    cljs.core/mod
+
+cljs.core/mod
+    cljs.core/rem
+
+cljs.core/inc
+    cljs.core/dec
+
+cljs.core/max
+    cljs.core/max-key
+    cljs.core/min
+
+cljs.core/min
+    cljs.core/max
+    cljs.core/min-key
+
+cljs.core/=
+    cljs.core/==
+    cljs.core/not=
+    cljs.core/identical?
+
+cljs.core/==
+    cljs.core/=
+    cljs.core/identical?
+
+cljs.core/<
+    cljs.core/=
+    cljs.core/not=
+    cljs.core/>
+    cljs.core/<=
+    cljs.core/>=
+
+cljs.core/>
+    cljs.core/=
+    cljs.core/not=
+    cljs.core/<
+
+cljs.core/int
+    cljs.core/char
+    cljs.core/long
+    cljs.core/integer?
+    cljs.core/ints
+    cljs.core/int-array
+    cljs.core/short
+
+cljs.core/zero?
+    cljs.core/pos?
+    cljs.core/neg?
+
+cljs.core/pos?
+    cljs.core/neg?
+    cljs.core/zero?
+
+cljs.core/neg?
+    cljs.core/pos?
+    cljs.core/zero?
+
+cljs.core/even?
+    cljs.core/odd?
+
+cljs.core/odd?
+    cljs.core/even?
+
+cljs.core/number?
+    cljs.core/num
+
+cljs.core/rand
+    cljs.core/rand-int
+    cljs.core/rand-nth
+
+cljs.core/rand-int
+    cljs.core/rand
+    cljs.core/int
+
+cljs.core/str
+    cljs.core/pr
+    cljs.core/prn
+
+cljs.core/get
+    cljs.core/map-indexed
+    cljs.core/get-in
+    cljs.core/find
+
+cljs.core/subs
+    clojure.string/replace
+    clojure.string/split
+    clojure.string/replace-first
+    cljs.core/re-find
+    cljs.core/re-seq
+    cljs.core/re-matches
+
+clojure.string/join
+    cljs.core/split-at
+    cljs.core/split-with
+    cljs.core/interpose
+
+clojure.string/split
+    cljs.core/subs
+    clojure.string/replace
+    cljs.core/re-seq
+    clojure.string/split-lines
+
+clojure.string/split-lines
+    clojure.string/split
+
+clojure.string/replace
+    cljs.core/subs
+    clojure.string/split
+    clojure.string/replace-first
+
+clojure.string/replace-first
+    clojure.string/replace
+    cljs.core/re-pattern
+    cljs.core/subs
+
+cljs.core/re-find
+    cljs.core/re-groups
+    cljs.core/re-matcher
+    cljs.core/re-pattern
+    cljs.core/re-seq
+    cljs.core/re-matches
+    cljs.core/subs
+
+cljs.core/re-seq
+    cljs.core/re-find
+    cljs.core/re-groups
+    cljs.core/re-pattern
+    cljs.core/re-matcher
+    cljs.core/re-matches
+    clojure.string/split
+    cljs.core/subs
+
+cljs.core/re-matches
+    cljs.core/re-find
+    cljs.core/subs
+
+cljs.core/re-pattern
+    cljs.core/re-find
+    clojure.string/replace
+    clojure.string/replace-first
+
+clojure.string/capitalize
+    clojure.string/upper-case
+    clojure.string/lower-case
+
+clojure.string/lower-case
+    clojure.string/upper-case
+    clojure.string/capitalize
+
+clojure.string/upper-case
+    clojure.string/lower-case
+    clojure.string/capitalize
+
+clojure.string/trim
+    clojure.string/triml
+    clojure.string/trimr
+    clojure.string/trim-newline
+
+clojure.string/trim-newline
+    clojure.string/trim
+    clojure.string/triml
+    clojure.string/trimr
+
+clojure.string/triml
+    clojure.string/trim
+    clojure.string/trim-newline
+    clojure.string/trimr
+
+clojure.string/trimr
+    clojure.string/trim
+    clojure.string/triml
+
+cljs.core/char
+    cljs.core/char?
+    cljs.core/int
+    cljs.core/chars
+    cljs.core/char-array
+
+cljs.core/atom
+    cljs.core/reset!
+    cljs.core/swap!
+    cljs.core/compare-and-set!
+    cljs.core/add-watch
+    cljs.core/remove-watch
+    cljs.core/set-validator!
+
+cljs.core/deref
+    cljs.core/atom
+    cljs.core/agent
+    cljs.core/ref
+
+cljs.core/swap!
+    cljs.core/atom
+    cljs.core/reset!
+
+cljs.core/reset!
+    cljs.core/swap!
+    cljs.core/compare-and-set!
+    cljs.core/atom
+
+cljs.core/compare-and-set!
+    cljs.core/atom
+    cljs.core/reset!
+    cljs.core/swap!
+
+cljs.core/add-watch
+    cljs.core/remove-watch
+
+cljs.core/remove-watch
+    cljs.core/add-watch
+
+cljs.core/set-validator!
+    cljs.core/atom
+    cljs.core/agent
+    cljs.core/ref
+
+cljs.core/make-array
+    cljs.core/int-array
+    cljs.core/double-array
+    cljs.core/float-array
+    cljs.core/short-array
+    cljs.core/long-array
+    cljs.core/char-array
+    cljs.core/byte-array
+    cljs.core/boolean-array
+    cljs.core/object-array
+    cljs.core/to-array
+    cljs.core/to-array-2d
+    cljs.core/into-array
+    cljs.core/aget
+    cljs.core/aset
+    cljs.core/alength
+    cljs.core/amap
+    cljs.core/areduce
+
+cljs.core/aclone
+    cljs.core/aget
+
+cljs.core/aget
+    cljs.core/aclone
+    cljs.core/get
+    cljs.core/nth
+
+cljs.core/set!
+    cljs.core/reset!
+    cljs.core/binding
+    cljs.core/alter-var-root
+
+cljs.core/try
+    cljs.core/catch
+    cljs.core/finally
+    cljs.core/throw
+
+cljs.core/catch
+    cljs.core/try
+    cljs.core/finally
+
+cljs.core/finally
+    cljs.core/try
+    cljs.core/catch
+
+cljs.core/throw
+    cljs.core/try
+    cljs.core/catch
+    cljs.core/finally
+
+cljs.core/empty
+    cljs.core/not-empty
+
+cljs.core/not-empty
+    cljs.core/empty
+
+cljs.core/into
+    cljs.core/conj
+
+cljs.core/conj
+    cljs.core/cons
+    cljs.core/into
+    cljs.core/peek
+    cljs.core/pop
+
+cljs.core/distinct?
+    cljs.core/distinct
+
+cljs.core/empty?
+    cljs.core/seq
+
+cljs.core/every?
+    cljs.core/some
+    cljs.core/not-any?
+
+cljs.core/not-every?
+    cljs.core/every?
+    cljs.core/not-any?
+    cljs.core/some
+
+cljs.core/some
+    cljs.core/every?
+    cljs.core/not-any?
+    cljs.core/keep
+    cljs.core/keep-indexed
+    cljs.core/some-fn
+
+cljs.core/not-any?
+    cljs.core/some
+    cljs.core/every?
+
+cljs.core/sequential?
+    cljs.core/seq?
+    cljs.core/coll?
+
+cljs.core/sorted?
+    cljs.core/sorted-map
+    cljs.core/sorted-set
+
+cljs.core/coll?
+    cljs.core/seq?
+    cljs.core/list?
+    cljs.core/sequential?
+
+cljs.core/list?
+    cljs.core/seq?
+    cljs.core/sequential?
+    cljs.core/coll?
+
+cljs.core/set?
+    cljs.core/set
+
+cljs.core/seq?
+    cljs.core/seq
+    cljs.core/sequential?
+    cljs.core/vector?
+    cljs.core/coll?
+    cljs.core/list?
+    cljs.core/map?
+    cljs.core/set?
+
+cljs.core/first
+    cljs.core/rest
+    cljs.core/next
+    cljs.core/nth
+    cljs.core/second
+    cljs.core/take
+    cljs.core/ffirst
+
+cljs.core/cons
+    cljs.core/conj
+
+cljs.core/rest
+    cljs.core/next
+    cljs.core/first
+    cljs.core/drop
+    cljs.core/pop
+
+
+cljs.core/subvec
+    cljs.core/vector
+    cljs.core/vector?
+
+cljs.core/replace
+    clojure.walk/prewalk-replace
+    clojure.walk/postwalk-replace
+    cljs.core/map
+
+cljs.core/rseq
+    cljs.core/reverse
+
+cljs.core/sorted-set-by
+    cljs.core/sorted-set
+    cljs.core/sorted-map-by
+    cljs.core/compare
+
+cljs.core/disj
+    cljs.core/dissoc
+    cljs.core/disj!
+    clojure.set/difference
+
+cljs.core/hash-map
+    cljs.core/merge
+    cljs.core/assoc
+    cljs.core/dissoc
+    cljs.core/array-map
+    cljs.core/sorted-map
+
+cljs.core/array-map
+    cljs.core/assoc
+    cljs.core/hash-map
+    cljs.core/sorted-map
+
+cljs.core/zipmap
+    cljs.core/interleave
+
+cljs.core/sorted-map
+    cljs.core/sorted-map-by
+    cljs.core/subseq
+    cljs.core/rsubseq
+    cljs.core/sorted-set
+    cljs.core/array-map
+    cljs.core/hash-map
+
+cljs.core/sorted-map-by
+    cljs.core/sorted-map
+    cljs.core/subseq
+    cljs.core/rsubseq
+    cljs.core/sorted-set-by
+
+cljs.core/frequencies
+    cljs.core/group-by
+    cljs.core/distinct
+
+cljs.core/group-by
+    cljs.core/partition-by
+    cljs.core/frequencies
+
+cljs.core/get-in
+    cljs.core/assoc-in
+    cljs.core/update-in
+    cljs.core/find
+    cljs.core/get
+
+cljs.core/find
+    cljs.core/get
+    cljs.core/get-in
+
+cljs.core/keys
+    cljs.core/vals
+    cljs.core/hash-map
+    cljs.core/key
+    cljs.core/defn
+
+cljs.core/vals
+    cljs.core/val
+    cljs.core/keys
+
+cljs.core/assoc-in
+    cljs.core/assoc
+    cljs.core/update-in
+    cljs.core/dissoc-in
+    cljs.core/get-in
+
+cljs.core/dissoc
+    cljs.core/assoc
+    cljs.core/dissoc-in
+    cljs.core/disj
+    cljs.core/select-keys
+
+cljs.core/merge
+    cljs.core/merge-with
+    cljs.core/hash-map
+
+cljs.core/merge-with
+    cljs.core/merge
+
+cljs.core/update-in
+    cljs.core/assoc-in
+    cljs.core/get-in
+    cljs.core/fnil
+
+cljs.core/key
+    cljs.core/keys
+
+cljs.core/val
+    cljs.core/vals
+
+cljs.core/subseq
+    cljs.core/rsubseq
+    cljs.core/sorted-map
+    cljs.core/sorted-set
+    cljs.core/sorted-map-by
+    cljs.core/sorted-set-by
+
+cljs.core/rsubseq
+    cljs.core/subseq
+
+cljs.core/distinct
+    cljs.core/distinct?
+
+cljs.core/filter
+    cljs.core/remove
+    cljs.core/keep
+
+cljs.core/remove
+    cljs.core/filter
+
+cljs.core/concat
+    cljs.core/conj
+    cljs.core/into
+
+cljs.core/lazy-cat
+    cljs.core/lazy-seq
+    cljs.core/concat
+
+cljs.core/mapcat
+    cljs.core/map
+    cljs.core/concat
+
+cljs.core/cycle
+    cljs.core/lazy-seq
+
+cljs.core/interleave
+    cljs.core/interpose
+    cljs.core/zipmap
+
+cljs.core/interpose
+    cljs.core/interleave
+    clojure.string/join
+
+cljs.core/nthrest
+    cljs.core/drop
+    cljs.core/nthnext
+    cljs.core/nth
+
+cljs.core/next
+    cljs.core/rest
+    cljs.core/first
+    cljs.core/fnext
+
+cljs.core/fnext
+    cljs.core/ffirst
+    cljs.core/second
+
+cljs.core/drop
+    cljs.core/take
+    cljs.core/drop-last
+    cljs.core/drop-while
+    cljs.core/nthnext
+    cljs.core/nthrest
+
+cljs.core/drop-while
+    cljs.core/take-while
+    cljs.core/split-with
+
+cljs.core/take-last
+    cljs.core/last
+    cljs.core/butlast
+    cljs.core/drop-last
+
+cljs.core/take
+    cljs.core/drop
+    cljs.core/take-while
+    cljs.core/take-last
+    cljs.core/take-nth
+
+cljs.core/take-while
+    cljs.core/drop-while
+    cljs.core/split-with
+
+cljs.core/butlast
+    cljs.core/first
+    cljs.core/rest
+    cljs.core/last
+    cljs.core/next
+    cljs.core/drop-last
+    cljs.core/take-last
+
+cljs.core/drop-last
+    cljs.core/drop
+    cljs.core/drop-while
+
+cljs.core/partition
+    cljs.core/partition-all
+    cljs.core/split-at
+    cljs.core/partition-by
+
+cljs.core/partition-all
+    cljs.core/partition
+    cljs.core/partition-by
+
+cljs.core/partition-by
+    cljs.core/partition
+    cljs.core/partition-all
+    cljs.core/group-by
+
+cljs.core/split-at
+    cljs.core/split-with
+    clojure.string/split
+
+cljs.core/split-with
+    cljs.core/split-at
+    clojure.string/split
+    cljs.core/take-while
+    cljs.core/drop-while
+
+
+cljs.core/reverse
+    cljs.core/rseq
+
+cljs.core/sort
+    cljs.core/sort-by
+
+cljs.core/sort-by
+    cljs.core/sort
+    cljs.core/compare
+
+cljs.core/compare
+    cljs.core/sort-by
+    cljs.core/sorted-set-by
+    cljs.core/sorted-map-by
+
+cljs.core/pmap
+    cljs.core/map
+    cljs.core/future
+
+cljs.core/second
+    cljs.core/first
+    cljs.core/nth
+    cljs.core/fnext
+    cljs.core/next
+
+cljs.core/last
+    cljs.core/first
+    cljs.core/next
+    cljs.core/rest
+    cljs.core/butlast
+    cljs.core/take-last
+
+cljs.core/ffirst
+    cljs.core/first
+    cljs.core/fnext
+    cljs.core/nfirst
+
+cljs.core/nfirst
+    cljs.core/next
+
+cljs.core/nthnext
+    cljs.core/nth
+    cljs.core/drop
+    cljs.core/nthrest
+
+cljs.core/rand-nth
+    cljs.core/rand
+
+cljs.core/max-key
+    cljs.core/max
+    cljs.core/min-key
+
+cljs.core/min-key
+    cljs.core/min
+    cljs.core/max-key
+
+cljs.core/reductions
+    cljs.core/reduce
+
+cljs.core/into-array
+    cljs.core/to-array
+    cljs.core/make-array
+
+cljs.core/to-array-2d
+    cljs.core/to-array
+
+cljs.core/dorun
+    cljs.core/doall
+
+cljs.core/doall
+    cljs.core/dorun
+    cljs.core/doseq
+
+cljs.core/realized?
+    cljs.core/promise
+    cljs.core/delay
+    cljs.core/future
+
+cljs.core/seq
+    cljs.core/seq?
+    cljs.core/empty?
+    cljs.core/iterator-seq
+
+cljs.core/lazy-seq
+    cljs.core/lazy-cat
+    cljs.core/realized?
+    cljs.core/doall
+    cljs.core/iterate
+
+cljs.core/repeatedly
+    cljs.core/repeat
+    cljs.core/iterate
+    cljs.core/lazy-seq
+    cljs.core/dotimes
+    cljs.core/doall
+    cljs.core/rand-int
+    cljs.core/constantly
+
+cljs.core/iterate
+    cljs.core/cycle
+    cljs.core/repeatedly
+    cljs.core/repeat
+
+cljs.core/repeat
+    cljs.core/repeatedly
+    cljs.core/cycle
+    cljs.core/constantly
+    cljs.core/dotimes
+
+cljs.core/keep
+    cljs.core/keep-indexed
+    cljs.core/map
+    cljs.core/filter
+
+cljs.core/keep-indexed
+    cljs.core/map-indexed
+    cljs.core/keep
+
+cljs.core/bit-shift-right
+    cljs.core/bit-shift-left
+    cljs.core/bit-xor
+    cljs.core/bit-or
+    cljs.core/bit-and
+    cljs.core/bit-set
+    cljs.core/bit-test
+    cljs.core/bit-flip
+    cljs.core/bit-and-not
+    cljs.core/bit-clear
+
+cljs.core/bit-shift-left
+    cljs.core/bit-shift-left
+
+cljs.core/bit-test
+    cljs.core/bit-set
+    cljs.core/bit-shift-left
+    cljs.core/bit-xor

@@ -1,0 +1,20 @@
+===== Function
+cljs.core/assoc
+
+===== Signature
+[coll k v]
+[coll k v & kvs]
+
+===== Description
+
+assoc(iate)
+
+When applied to a map, returns a new map of the same (hashed/sorted) type, that
+contains the mapping of key(s) to val(s).
+
+When applied to a vector, returns a new vector that contains val at index.
+
+===== Related
+cljs.core/assoc-in
+cljs.core/dissoc
+cljs.core/merge
