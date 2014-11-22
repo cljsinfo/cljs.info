@@ -117,27 +117,29 @@ function extractName(fullName) {
 }
 
 function isSectionLine(line) {
-  return (line.search(/^=====/) !== -1);
+  return line.search(/^=====/) !== -1;
 }
 
-function convertArraySection(s) {
-  if (s === "") {
-    return [];
-  }
+// converts each non-empty line of a section into an array
+function convertSectionIntoArray(s) {
+  // NOTE: this condtion should never happen
+  if (s === "") return [];
 
   var arr1 = s.split("\n"),
     arr2 = [];
 
+  // trim each line and remove empty lines
   for (var i = 0; i < arr1.length; i++) {
-    if (arr1[i] === "") continue;
+    var line = arr1[i].trim();
+    if (line === "") continue;
 
-    arr2.push(arr1[i]);
+    arr2.push(line);
   }
 
   return arr2;
 }
 
-function transformFn(fn) {
+function transformObjToDocs(fn) {
   // extract namespace and function name from the full name
   fn["full-name"] = fn["function"];
   fn["namespace"] = extractNamespace(fn["function"]);
@@ -149,49 +151,53 @@ function transformFn(fn) {
   delete fn["description"];
 
   // convert some sections into arrays
-  fn.signature = convertArraySection(fn.signature);
+  fn.signature = convertSectionIntoArray(fn.signature);
 
   if (fn.hasOwnProperty("related") === true) {
-    fn.related = convertArraySection(fn.related);
+    fn.related = convertSectionIntoArray(fn.related);
   }
 
   return fn;
 }
 
-function parseDocFile(fileContent) {
+function parseDocFileIntoObject(fileContent) {
   var contentArr = fileContent.split("\n"),
     currentSection = false,
-    fn = {};
+    obj = {};
 
   for (var i = 0; i < contentArr.length; i++) {
     var line = contentArr[i];
 
     if (isSectionLine(line) === true) {
       currentSection = line.replace(/^=====/, "").trim().toLowerCase();
-      fn[currentSection] = "";
+      obj[currentSection] = "";
       continue;
     }
 
     if (currentSection === false) continue;
 
-    fn[currentSection] += line + "\n";
+    obj[currentSection] += line + "\n";
   }
 
-  // trim everything
-  for (var i in fn) {
-    if (fn.hasOwnProperty(i) !== true) continue;
+  // trim everything and delete empty sections
+  var obj2 = {};
+  for (var i in obj) {
+    if (obj.hasOwnProperty(i) !== true) continue;
 
-    fn[i] = fn[i].trim();
+    obj[i] = obj[i].trim();
+    if (obj[i] !== "") {
+      obj2[i] = obj[i];
+    }
   }
 
-  return fn;
+  return obj2;
 }
 
-// quick check that the format is correct
-function validFn(fn) {
-  return fn.hasOwnProperty("function") &&
-         fn.hasOwnProperty("signature") &&
-         fn.hasOwnProperty("description");
+// quick check that the file has everything we are expecting
+function validDocObj(obj) {
+  return obj.hasOwnProperty("function") &&
+         obj.hasOwnProperty("signature") &&
+         obj.hasOwnProperty("description");
 }
 
 function buildDocs() {
@@ -202,15 +208,15 @@ function buildDocs() {
     if (abspath.search(/\.cljsdoc$/) === -1) return;
 
     var fileContent = grunt.file.read(abspath),
-      fn = parseDocFile(fileContent);
+      obj = parseDocFileIntoObject(fileContent);
 
-    // quick sanity check that fn is a good format
-    if (validFn(fn) !== true) return;
+    // quick sanity check that the file is in a good format
+    if (validDocObj(obj) !== true) return;
 
     // clean and transform the data
-    fn = transformFn(fn);
+    obj = transformObjToDocs(obj);
 
-    docs[fn["full-name"]] = fn;
+    docs[obj["full-name"]] = obj;
   });
 
   grunt.file.write("public/docs.json", JSON.stringify(docs, null, 2));
