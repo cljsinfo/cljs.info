@@ -29,3 +29,30 @@ the literal forms may be confused at first, but should eventually have an "aha!"
 moment when they make the connection. This is my favorite feature of the
 cheatsheet due to the unique relationship that LISP code has to its visual
 structure.
+
+Tooltips have a small launch target, but once opened the range expands to allow
+for the mouse to enter the tooltip body and "explore" the content. This also
+allows the user to copy/paste content from a tooltip.
+
+Search highlights matching symbols in yellow and leaves the containing section
+visible for context. Sections with no match are hidden and the content "folds"
+smartly around the matched sections. Red is used in the search bar to indicate
+no match.
+
+Inline tooltips provide rich information about each function, macro, or special
+form. Like the info tooltips, these allow for the mouse to enter the tooltip
+body to "explore" the content and copy/paste.
+
+Sections are defined and ordered by common usage first and internal
+implementation organization second. Function names are repeated in multiple
+sections where appropriate.
+
+The footer contains no color and provides relevant links to related material.
+
+Documentation is contained in simple text files that allow for management and
+collaboration using existing tools (git, text editors, etc).
+
+Docstrings were extracted from the code and converted to Markdown format to
+allow for more structure than simple text can provide (ie: code highlighting,
+links, tables, etc). The descriptions were edited to have consistent voice and
+structure.
