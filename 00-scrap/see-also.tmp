@@ -122,18 +122,6 @@ cljs.core/dotimes
 cljs.core/while
     cljs.core/loop
 
-cljs.core/true?
-    cljs.core/false?
-
-cljs.core/false?
-    cljs.core/not
-
-cljs.core/instance?
-    cljs.core/type
-    cljs.core/supers
-    cljs.core/doto
-    cljs.core/class
-
 cljs.core/nil?
     cljs.core/identity
 
