@@ -185,27 +185,6 @@ cljs.core/min
     cljs.core/max
     cljs.core/min-key
 
-cljs.core/=
-    cljs.core/==
-    cljs.core/not=
-    cljs.core/identical?
-
-cljs.core/==
-    cljs.core/=
-    cljs.core/identical?
-
-cljs.core/<
-    cljs.core/=
-    cljs.core/not=
-    cljs.core/>
-    cljs.core/<=
-    cljs.core/>=
-
-cljs.core/>
-    cljs.core/=
-    cljs.core/not=
-    cljs.core/<
-
 cljs.core/int
     cljs.core/char
     cljs.core/long
@@ -213,27 +192,6 @@ cljs.core/int
     cljs.core/ints
     cljs.core/int-array
     cljs.core/short
-
-cljs.core/zero?
-    cljs.core/pos?
-    cljs.core/neg?
-
-cljs.core/pos?
-    cljs.core/neg?
-    cljs.core/zero?
-
-cljs.core/neg?
-    cljs.core/pos?
-    cljs.core/zero?
-
-cljs.core/even?
-    cljs.core/odd?
-
-cljs.core/odd?
-    cljs.core/even?
-
-cljs.core/number?
-    cljs.core/num
 
 cljs.core/rand
     cljs.core/rand-int

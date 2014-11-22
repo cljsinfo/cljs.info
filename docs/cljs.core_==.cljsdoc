@@ -1,0 +1,17 @@
+===== Function
+cljs.core/==
+
+===== Signature
+[x]
+[x y]
+[x y & more]
+
+===== Description
+
+Returns true if all arguments have the same value, false otherwise.
+
+Behavior on non-number arguments is undefined.
+
+===== Related
+cljs.core/=
+cljs.core/identical?

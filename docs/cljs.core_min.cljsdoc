@@ -8,7 +8,7 @@ cljs.core/min
 
 ===== Description
 
-Returns the least of the nums.
+Returns the least number argument.
 
 ===== Related
 cljs.core/max
