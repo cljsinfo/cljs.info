@@ -177,14 +177,6 @@ cljs.core/ifn?
 cljs.core/inc
     cljs.core/dec
 
-cljs.core/max
-    cljs.core/max-key
-    cljs.core/min
-
-cljs.core/min
-    cljs.core/max
-    cljs.core/min-key
-
 cljs.core/int
     cljs.core/char
     cljs.core/long
