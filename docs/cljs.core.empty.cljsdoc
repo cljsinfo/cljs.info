@@ -6,7 +6,9 @@ cljs.core/empty
 
 ===== Description
 
-Returns an empty collection of the same category as coll, or nil.
+Returns an empty collection of the same category as `coll`.
+
+Returns nil if `coll` is nil.
 
 ===== Related
 cljs.core/not-empty

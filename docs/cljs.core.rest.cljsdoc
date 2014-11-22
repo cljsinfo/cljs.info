@@ -1,0 +1,17 @@
+===== Function
+cljs.core/rest
+
+===== Signature
+[coll]
+
+===== Description
+
+Returns a possibly empty sequence of the items after the first item.
+
+Calls `seq` on its argument.
+
+===== Related
+cljs.core/next
+cljs.core/first
+cljs.core/drop
+cljs.core/pop

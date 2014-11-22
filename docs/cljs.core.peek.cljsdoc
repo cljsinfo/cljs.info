@@ -6,9 +6,9 @@ cljs.core/peek
 
 ===== Description
 
-Returns the first element of a List; same as `first`.
+Returns the first element of a list; same as `first`.
 
-Returns the last element of a Vector, but much more efficient than using `last`.
+Returns the last element of a vector, and much more efficient than using `last`.
 
 Returns nil if `coll` is empty.
 

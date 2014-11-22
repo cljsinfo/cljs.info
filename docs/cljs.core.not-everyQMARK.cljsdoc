@@ -6,7 +6,7 @@ cljs.core/not-every?
 
 ===== Description
 
-Returns false if `(pred x)` is logical true for every x in `coll`, else true.
+Returns false if `(pred x)` is logical true for every `x` in `coll`, else true.
 
 ===== Related
 cljs.core/every?

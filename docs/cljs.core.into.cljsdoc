@@ -7,8 +7,10 @@ cljs.core/into
 
 ===== Description
 
-Returns a new coll consisting of to-coll with all of the items of from-coll
-conjoined. A transducer may be supplied.
+Returns a new collection consisting of `to` with all of the items of `from`
+"added" using `conj`.
+
+A transducer may be supplied as `xform`.
 
 ===== Related
 cljs.core/conj

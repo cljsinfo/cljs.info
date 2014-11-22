@@ -6,7 +6,7 @@ cljs.core/not-empty
 
 ===== Description
 
-If coll is empty, returns nil, else coll.
+Returns nil if `coll` is empty, else returns `coll`.
 
 ===== Related
 cljs.core/empty
