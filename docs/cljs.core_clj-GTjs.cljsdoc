@@ -17,7 +17,5 @@ Recursively transforms ClojureScript values to JavaScript.
 | Symbol        | `bar`  | String     | `"bar"` |
 | Map           | `{}`   | Object     | `{}`    |
 
-Arbitrary keys are encoded to by `key->js`.
-
 ===== Related
 cljs.core/js->clj

@@ -1,0 +1,17 @@
+===== Function
+cljs.core/aset
+
+===== Signature
+[array i val]
+[array idx idx2 & idxv]
+
+===== Description
+
+Sets `val` at index `i` in JavaScript arrays and objects.
+
+Can be used to set nested properties in JavaScript objects, ie: `(aset
+js/document "location" "href" "http://cljs.info")`
+
+===== Related
+cljs.core/aget
+cljs.core/assoc-in

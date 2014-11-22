@@ -1,0 +1,13 @@
+===== Function
+cljs.core/aclone
+
+===== Signature
+[arr]
+
+===== Description
+
+Creates a JavaScript array which is a clone of `arr`.
+
+===== Related
+cljs.core/array
+cljs.core/make-array

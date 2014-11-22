@@ -56,3 +56,6 @@ Docstrings were extracted from the code and converted to Markdown format to
 allow for more structure than simple text can provide (ie: code highlighting,
 links, tables, etc). The descriptions were edited to have consistent voice and
 structure.
+
+The content folds into three layouts depending on browser width. The sections
+are organized in each layout to fill the space as best they can.

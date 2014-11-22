@@ -9,3 +9,4 @@ cljs.core/number?
 Returns true if `n` is a number, false otherwise.
 
 ===== Related
+cljs.core/integer?

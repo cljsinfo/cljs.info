@@ -1,0 +1,12 @@
+===== Function
+cljs.core/array?
+
+===== Signature
+[x]
+
+===== Description
+
+Returns true if `x` is a JavaScript array, false otherwise.
+
+===== Related
+cljs.core/object?

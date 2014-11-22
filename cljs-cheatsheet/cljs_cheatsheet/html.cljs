@@ -331,11 +331,15 @@
             [:div.row-5dec8 "(" (inside-fn-link "set!") " (.-innerHTML el) \"Hi!\")"]
             [:div.row-5dec8 "(" (inside-fn-link "aset") " el \"innerHTML\" \"Hi!\")"]]]
         [:tr.odd-372e6
+          [:td.label-9e0b7 "Delete Property"]
+          [:td.body-885f4
+            (fn-link "js-delete")]]
+        [:tr.even-ff837
           [:td.label-9e0b7 "Convert Between"]
           [:td.body-885f4
             (fn-link "clj->js")
             (fn-link "js->clj")]]
-        [:tr.even-ff837
+        [:tr.odd-372e6
           [:td.label-9e0b7 "Type Tests"]
           [:td.body-885f4
             (fn-link "array?")
@@ -343,14 +347,14 @@
             (fn-link "number?")
             (fn-link "object?")
             (fn-link "string?")]]
-        [:tr.odd-372e6
+        [:tr.even-ff837
           [:td.label-9e0b7 "Exceptions"]
           [:td.body-885f4
             (fn-link "try")
             (fn-link "catch")
             (fn-link "finally")
             (fn-link "throw")]]
-        [:tr.even-ff837
+        [:tr.odd-372e6
           [:td.label-9e0b7 "External Library"]
           [:td.body-885f4
             [:div.row-5dec8 "(js/alert \"Hello world!\")"]

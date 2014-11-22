@@ -335,38 +335,6 @@ cljs.core/set-validator!
     cljs.core/agent
     cljs.core/ref
 
-cljs.core/make-array
-    cljs.core/int-array
-    cljs.core/double-array
-    cljs.core/float-array
-    cljs.core/short-array
-    cljs.core/long-array
-    cljs.core/char-array
-    cljs.core/byte-array
-    cljs.core/boolean-array
-    cljs.core/object-array
-    cljs.core/to-array
-    cljs.core/to-array-2d
-    cljs.core/into-array
-    cljs.core/aget
-    cljs.core/aset
-    cljs.core/alength
-    cljs.core/amap
-    cljs.core/areduce
-
-cljs.core/aclone
-    cljs.core/aget
-
-cljs.core/aget
-    cljs.core/aclone
-    cljs.core/get
-    cljs.core/nth
-
-cljs.core/set!
-    cljs.core/reset!
-    cljs.core/binding
-    cljs.core/alter-var-root
-
 cljs.core/try
     cljs.core/catch
     cljs.core/finally

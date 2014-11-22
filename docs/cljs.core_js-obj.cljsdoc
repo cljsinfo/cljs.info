@@ -2,13 +2,13 @@
 cljs.core/js-obj
 
 ===== Signature
-[]
 [& keyvals]
 
 ===== Description
 
-Creates a JavaScript Object. `keyvals` must be an even number of forms.
+Creates a JavaScript object using the supplied `keyvals`.
 
-TODO: improve this
+`keyvals` must be an even number of forms.
 
 ===== Related
+cljs.core/array

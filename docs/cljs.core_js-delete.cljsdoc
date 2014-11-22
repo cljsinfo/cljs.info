@@ -1,0 +1,14 @@
+===== Function
+cljs.core/js-delete
+
+===== Signature
+[obj key]
+
+===== Description
+
+Deletes property `key` in JavaScript object `obj`.
+
+Uses the JavaScript `delete` operator.
+
+===== Related
+cljs.core/dissoc

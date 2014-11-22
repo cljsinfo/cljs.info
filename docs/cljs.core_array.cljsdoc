@@ -1,0 +1,13 @@
+===== Function
+cljs.core/array
+
+===== Signature
+[& args]
+
+===== Description
+
+Creates a JavaScript array containing `args`.
+
+===== Related
+cljs.core/aclone
+cljs.core/make-array
