@@ -546,19 +546,6 @@ cljs.core/rest
     cljs.core/drop
     cljs.core/pop
 
-
-cljs.core/subvec
-    cljs.core/vector
-    cljs.core/vector?
-
-cljs.core/replace
-    clojure.walk/prewalk-replace
-    clojure.walk/postwalk-replace
-    cljs.core/map
-
-cljs.core/rseq
-    cljs.core/reverse
-
 cljs.core/sorted-set-by
     cljs.core/sorted-set
     cljs.core/sorted-map-by
