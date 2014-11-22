@@ -621,11 +621,6 @@ cljs.core/nthrest
     cljs.core/nthnext
     cljs.core/nth
 
-cljs.core/next
-    cljs.core/rest
-    cljs.core/first
-    cljs.core/fnext
-
 cljs.core/fnext
     cljs.core/ffirst
     cljs.core/second
@@ -711,19 +706,6 @@ cljs.core/compare
 cljs.core/pmap
     cljs.core/map
     cljs.core/future
-
-cljs.core/second
-    cljs.core/first
-    cljs.core/nth
-    cljs.core/fnext
-    cljs.core/next
-
-cljs.core/last
-    cljs.core/first
-    cljs.core/next
-    cljs.core/rest
-    cljs.core/butlast
-    cljs.core/take-last
 
 cljs.core/ffirst
     cljs.core/first
