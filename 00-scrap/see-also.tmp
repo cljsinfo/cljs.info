@@ -499,28 +499,6 @@ cljs.core/not-any?
     cljs.core/some
     cljs.core/every?
 
-cljs.core/coll?
-    cljs.core/seq?
-    cljs.core/list?
-    cljs.core/sequential?
-
-cljs.core/list?
-    cljs.core/seq?
-    cljs.core/sequential?
-    cljs.core/coll?
-
-cljs.core/set?
-    cljs.core/set
-
-cljs.core/seq?
-    cljs.core/seq
-    cljs.core/sequential?
-    cljs.core/vector?
-    cljs.core/coll?
-    cljs.core/list?
-    cljs.core/map?
-    cljs.core/set?
-
 cljs.core/sorted-set-by
     cljs.core/sorted-set
     cljs.core/sorted-map-by
