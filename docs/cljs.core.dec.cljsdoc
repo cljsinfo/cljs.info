@@ -6,7 +6,7 @@ cljs.core/dec
 
 ===== Description
 
-Returns a number one less than num.
+Returns a number one less than `x`.
 
 ===== Related
 cljs.core/inc

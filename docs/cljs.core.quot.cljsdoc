@@ -6,7 +6,9 @@ cljs.core/quot
 
 ===== Description
 
-quot(ient) of dividing numerator by denominator.
+Returns the quotient of dividing numerator `n` by denominator `d`.
+
+Returns `NaN` when `d` is 0 (divide by 0 error).
 
 ===== Related
 cljs.core/rem

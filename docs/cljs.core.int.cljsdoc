@@ -6,7 +6,7 @@ cljs.core/int
 
 ===== Description
 
-Coerce to int by stripping decimal places.
+Coerces `x` to an integer by stripping decimal places.
 
 ===== Related
 cljs.core/char

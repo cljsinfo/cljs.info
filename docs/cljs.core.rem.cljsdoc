@@ -6,7 +6,9 @@ cljs.core/rem
 
 ===== Description
 
-remainder of dividing numerator by denominator.
+Returns the remainder of dividing numerator `n` by denominator `d`.
+
+Returns `NaN` when `d` is 0 (divide by 0 error).
 
 ===== Related
 cljs.core/quot

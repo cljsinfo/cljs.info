@@ -6,8 +6,11 @@ cljs.core/mod
 
 ===== Description
 
-Modulus of num and div. Truncates toward negative infinity.
+Returns the modulus of dividing numerator `n` by denominator `d`.
+
+Returns `NaN` when `d` is 0 (divide by 0 error).
+
+Truncates toward negative infinity.
 
 ===== Related
 cljs.core/rem
-cljs.core/quot

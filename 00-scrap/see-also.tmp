@@ -174,17 +174,6 @@ cljs.core/fn?
 cljs.core/ifn?
     cljs.core/fn?
 
-cljs.core/quot
-    cljs.core/rem
-    cljs.core/mod
-
-cljs.core/rem
-    cljs.core/quot
-    cljs.core/mod
-
-cljs.core/mod
-    cljs.core/rem
-
 cljs.core/inc
     cljs.core/dec
 
