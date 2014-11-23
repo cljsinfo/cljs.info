@@ -139,6 +139,14 @@ function convertSectionIntoArray(s) {
   return arr2;
 }
 
+// parse description as Markdown and some minor trimming
+function parseDescription(d) {
+  return marked(d)
+    .trim()
+    .replace(/\n/g, ' ')
+    .replace(/<\/p> <p>/g, '</p><p>');
+}
+
 function transformObjToDocs(fn) {
   // extract namespace and function name from the full name
   fn["full-name"] = fn["function"];
@@ -146,8 +154,8 @@ function transformObjToDocs(fn) {
   fn["name"] = extractName(fn["function"]);
   delete fn["function"];
 
-  // parse description as Markdown
-  fn["description-html"] = marked(fn["description"]);
+  // parse description
+  fn["description-html"] = parseDescription(fn["description"]);
   delete fn["description"];
 
   // convert some sections into arrays
