@@ -59,3 +59,6 @@ structure.
 
 The content folds into three layouts depending on browser width. The sections
 are organized in each layout to fill the space as best they can.
+
+Mousing over a related symbol in a tooltip highlights it on the page, visually
+connecting related sections.

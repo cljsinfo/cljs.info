@@ -26,12 +26,13 @@
         x))
     "00000000-0000-4000-0000-000000000000")))
 
+(defn half [n]
+  (/ n 2))
+
 (defn extract-namespace [full-name]
-  (let [first-slash-pos (.indexOf full-name "/")
-        nme-space (subs full-name 0 first-slash-pos)]
-    nme-space))
+  (let [first-slash-pos (.indexOf full-name "/")]
+    (subs full-name 0 first-slash-pos)))
 
 (defn extract-symbol [full-name]
-  (let [first-slash-pos (.indexOf full-name "/")
-        symbl (subs full-name (inc first-slash-pos))]
-    symbl))
+  (let [first-slash-pos (.indexOf full-name "/")]
+    (subs full-name (inc first-slash-pos))))

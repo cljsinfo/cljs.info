@@ -994,7 +994,7 @@
      :href (docs-href (extract-symbol full-name) (extract-namespace full-name))}
     (-> full-name extract-symbol html-encode)])
 
-(hiccups/defhtml fn-tooltip-inner
+(hiccups/defhtml symbol-tooltip-inner
   [{:keys [:description-html :name :namespace :related :signature]}]
   [:h4.tooltip-hdr-db7c5
     (when-not (= cljs-core-ns namespace)
@@ -1011,8 +1011,8 @@
       [:div.related-links-f8e49
         (map related-fn-link related)])))
 
-(hiccups/defhtml fn-tooltip-shell []
-  [:div#fnTooltip.fn-tooltip-8ca2a {:style "display:none"}])
+(hiccups/defhtml symbol-tooltip-shell []
+  [:div#symbolTooltip.symbol-tooltip-8ca2a {:style "display:none"}])
 
 ;;------------------------------------------------------------------------------
 ;; Header and Footer
@@ -1175,4 +1175,4 @@
   (one-col-layout)
   (footer)
   (info-tooltips)
-  (fn-tooltip-shell))
+  (symbol-tooltip-shell))

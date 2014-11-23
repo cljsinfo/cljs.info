@@ -3,27 +3,25 @@
     [clojure.string :refer [blank? replace split]]
     [clojure.walk :refer [keywordize-keys]]
     [cljs-cheatsheet.dom :refer [by-id hide-el! set-html! show-el!]]
-    [cljs-cheatsheet.html :refer [fn-tooltip-inner]]
-    [cljs-cheatsheet.util :refer [js-log log uuid]]))
+    [cljs-cheatsheet.html :refer [symbol-tooltip-inner]]
+    [cljs-cheatsheet.util :refer [half js-log log uuid]]))
 
 (def $ js/jQuery)
 (def has-touch-events? (aget js/window "hasTouchEvents"))
-(def tooltip-icon-sel ".tooltip-link-0e91b")
-(def tooltip-sel ".tooltip-53dde")
-(def fn-link-sel ".fn-a8476, .inside-fn-c7607")
+
+(def info-icon-sel ".tooltip-link-0e91b")
+(def info-tooltip-sel ".tooltip-53dde")
 (def left-arrow-class "left-arr-42ea1")
 (def right-arrow-class "right-arr-d3345")
-(def symbol-tooltip-id "fnTooltip")
-(def symbol-tooltip-sel (str "#" symbol-tooltip-id))
 (def arrow-classes (str left-arrow-class " " right-arrow-class))
+
+(def symbol-link-sel ".fn-a8476, .inside-fn-c7607")
+(def symbol-tooltip-id "symbolTooltip")
+(def symbol-tooltip-sel (str "#" symbol-tooltip-id))
 
 ;;------------------------------------------------------------------------------
 ;; Helper
 ;;------------------------------------------------------------------------------
-
-;; TODO: move this to util
-(defn- half [n]
-  (/ n 2))
 
 (defn- js-evt->tooltip-id
   "Returns a tooltip-id from a JS event or nil if the tooltip was not found."
@@ -58,7 +56,7 @@
 (def icon-mouseout-padding 16)
 
 ;; add some wiggle room around the edge of the tooltip border
-(def tooltip-mouseout-padding 4)
+(def tooltip-mouseout-buffer 4)
 
 (defn- position-info-tooltip! [icon-el tooltip-id]
   (let [$icon-el ($ icon-el)
@@ -99,16 +97,14 @@
                 :y1 (- icon-y icon-mouseout-padding)
                 ;; be a little more generous around the bottom of the tooltip icon
                 :y2 (+ icon-y icon-mouseout-padding 12)}
-     :tooltip-box {:x1 (- tooltip-left tooltip-mouseout-padding)
-                   :x2 (+ tooltip-left tooltip-width tooltip-mouseout-padding)
-                   :y1 (- tooltip-top tooltip-mouseout-padding)
-                   :y2 (+ tooltip-top tooltip-height tooltip-mouseout-padding)}}))
-
-(def link-margin-right-padding 10)
+     :tooltip-box {:x1 (- tooltip-left tooltip-mouseout-buffer)
+                   :x2 (+ tooltip-left tooltip-width tooltip-mouseout-buffer)
+                   :y1 (- tooltip-top tooltip-mouseout-buffer)
+                   :y2 (+ tooltip-top tooltip-height tooltip-mouseout-buffer)}}))
 
 ;; TODO: need to deal with tooltips on the edge of the page
 ;; and tooltips at the bottom of the page (flip up)
-(defn- position-fn-tooltip! [$link-el]
+(defn- position-symbol-tooltip! [$link-el]
   (let [offset (.offset $link-el)
         link-x (aget offset "left")
         link-y (aget offset "top")
@@ -125,31 +121,29 @@
       "top" tooltip-top))
 
     ;; return bounds
-    {:link-box {:x1 link-x
-                :x2 (+ link-x link-width)
+    ;; NOTE: these numbers allow for a smidge of padding on the outside of the
+    ;; link element
+    {:link-box {:x1 (- link-x 1)
+                :x2 (+ link-x link-width 2)
                 :y1 link-y
-                :y2 (+ link-y link-height 20)}
+                :y2 (+ link-y link-height 20)} ;; let them mouse down into the tooltip
      :tooltip-box {:x1 tooltip-left
                    :x2 (+ tooltip-left tooltip-width)
                    :y1 tooltip-top
                    :y2 (+ tooltip-top tooltip-height)}}))
 
-(defn- show-tooltip! [tooltip-id]
-  (let [$tooltip-el ($ (str "#" tooltip-id))]
-    (.show $tooltip-el)))
+(defn- show-info-tooltip! [tooltip-id]
+  (show-el! tooltip-id))
 
-(defn- hide-all-tooltips-instant! []
-  (.hide ($ tooltip-sel)))
-
-(defn- hide-all-tooltips! []
-  (.hide ($ tooltip-sel)))
+(defn- hide-all-info-tooltips! []
+  (.hide ($ info-tooltip-sel)))
 
 ;;------------------------------------------------------------------------------
 ;; Tooltip Atoms
 ;;------------------------------------------------------------------------------
 
 (def info-tooltip (atom nil))
-(def fn-tooltip (atom nil))
+(def symbol-tooltip (atom nil))
 
 ;;------------------------------------------------------------------------------
 ;; Mouse Position
@@ -163,14 +157,14 @@
   ;; close info tooltips
   (when (and @info-tooltip
              (not (mouse-inside-tooltip? m-pos (vals @info-tooltip))))
-    (hide-all-tooltips!)
+    (hide-all-info-tooltips!)
     (reset! info-tooltip nil))
 
   ;; close symbol tooltips
-  (when (and @fn-tooltip
-             (not (mouse-inside-tooltip? m-pos (vals @fn-tooltip))))
+  (when (and @symbol-tooltip
+             (not (mouse-inside-tooltip? m-pos (vals @symbol-tooltip))))
     (hide-el! symbol-tooltip-id)
-    (reset! fn-tooltip nil)))
+    (reset! symbol-tooltip nil)))
 
 (add-watch mouse :change on-change-mouse)
 
@@ -207,32 +201,33 @@
     (when (and tooltip-id
                (not= tooltip-id (:tooltip-id @info-tooltip)))
       (let [tooltip-position (position-info-tooltip! icon-el tooltip-id)]
-        (hide-all-tooltips-instant!)
+        (hide-all-info-tooltips!)
         (reset! info-tooltip (merge tooltip-position {:tooltip-id tooltip-id}))
-        (show-tooltip! tooltip-id)))))
+        (show-info-tooltip! tooltip-id)))))
 
-(defn- mouseenter-fn-link [js-evt]
+(defn- mouseenter-symbol-link [js-evt]
   (let [link-el (aget js-evt "currentTarget")
         $link-el ($ link-el)
         full-name (.attr $link-el "data-full-name")
         tooltip-data (keywordize-keys (get @docs full-name))
-        tooltip-currently-active? @fn-tooltip]
+        tooltip-currently-active? @symbol-tooltip]
     (when (and tooltip-data
                (not tooltip-currently-active?))
-      (set-html! symbol-tooltip-id (fn-tooltip-inner tooltip-data))
-      (reset! fn-tooltip (position-fn-tooltip! $link-el))
+      (set-html! symbol-tooltip-id (symbol-tooltip-inner tooltip-data))
+      (reset! symbol-tooltip (merge (position-symbol-tooltip! $link-el)
+                                {:full-name full-name}))
       (show-el! symbol-tooltip-id))))
 
 (defn- touchend-body [js-evt]
-  (hide-all-tooltips!))
+  (hide-all-info-tooltips!))
 
 (defn- touchend-icon [js-evt]
   (.stopPropagation js-evt)
   (when-let [tooltip-id (js-evt->tooltip-id js-evt)]
     (let [icon-el (aget js-evt "currentTarget")]
-      (hide-all-tooltips-instant!)
+      (hide-all-info-tooltips!)
       (position-info-tooltip! icon-el tooltip-id)
-      (show-tooltip! tooltip-id))))
+      (show-info-tooltip! tooltip-id))))
 
 ;;------------------------------------------------------------------------------
 ;; Init and Events
@@ -242,14 +237,14 @@
 (defn- add-touch-events! []
   (-> ($ "body")
     (.on "touchend" touchend-body)
-    (.on "touchend" tooltip-icon-sel touchend-icon)))
+    (.on "touchend" info-icon-sel touchend-icon)))
 
 (defn init!
   "Initialize tooltip events."
   []
   (-> ($ "body")
     (.on "mousemove" mousemove-body)
-    (.on "mouseenter" tooltip-icon-sel mouseenter-info-icon)
-    (.on "mouseenter" fn-link-sel mouseenter-fn-link))
+    (.on "mouseenter" info-icon-sel mouseenter-info-icon)
+    (.on "mouseenter" symbol-link-sel mouseenter-symbol-link))
   (when has-touch-events?
     (add-touch-events!)))
