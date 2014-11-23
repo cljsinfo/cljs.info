@@ -103,6 +103,10 @@
 @darkEvenColor: #555;
 @darkOddColor: #444;
 
+@noSearchResultsRed: #f00;
+@searchHighlightColor: #ff0; // yellow
+@relatedHighlightColor: #ffa500; // orange
+
 //------------------------------------------------------------------------------
 // Tag Selectors
 //------------------------------------------------------------------------------
@@ -635,11 +639,15 @@ em {
 }
 
 .matched-e5c67 {
-  background-color: #ff0;
+  background-color: @searchHighlightColor;
+}
+
+.related-35f44 {
+  background-color: @relatedHighlightColor;
 }
 
 .no-results-5d3ea {
-  background-color: #f00;
+  background-color: @noSearchResultsRed;
   color: #fff;
 }
 

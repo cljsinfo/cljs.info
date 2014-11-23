@@ -9,6 +9,7 @@
 (def $ js/jQuery)
 
 (def matched-search-class "matched-e5c67")
+(def related-highlight-class "related-35f44")
 (def related-link-sel ".related-link-674b6")
 (def matched-search-sel (str "." matched-search-class))
 (def no-results-class "no-results-5d3ea")
@@ -29,13 +30,13 @@
         sel1 (str ".fn-a8476[data-full-name='" full-name "']")
         sel2 (str ".inside-fn-c7607[data-full-name='" full-name "']")
         sel3 (str sel1 ", " sel2)]
-    (.addClass ($ sel3) matched-search-class)))
+    (.addClass ($ sel3) related-highlight-class)))
 
 (defn- mouseleave-related-link [js-evt]
   (let [link-el (aget js-evt "currentTarget")
         $link-el ($ link-el)
         full-name (.attr $link-el "data-full-name")]
-    (.removeClass ($ fn-link-sel) matched-search-class)))
+    (.removeClass ($ fn-link-sel) related-highlight-class)))
 
 ;;------------------------------------------------------------------------------
 ;; Window Size
