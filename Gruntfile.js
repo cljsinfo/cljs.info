@@ -227,7 +227,7 @@ function buildDocs() {
     docs[obj["full-name"]] = obj;
   });
 
-  grunt.file.write("public/docs.json", JSON.stringify(docs, null, 2));
+  grunt.file.write("public/docs.json", JSON.stringify(docs));
 }
 
 //------------------------------------------------------------------------------
