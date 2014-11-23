@@ -996,25 +996,22 @@
 (hiccups/defhtml related-fn-link [n]
   [:a.related-link-674b6 (-> n extract-name html-encode)])
 
-(hiccups/defhtml fn-tooltip-inner [m]
+(hiccups/defhtml fn-tooltip-inner
+  [{:keys [:description-html :name :namespace :related :signature]}]
   [:h4.tooltip-hdr-db7c5
-    (when-not (= cljs-core-ns (:namespace m))
-      [:span.namespace-2e700 (:namespace m) "/"])
-    (-> m :name html-encode)]
+    (when-not (= cljs-core-ns namespace)
+      [:span.namespace-2e700 namespace "/"])
+    (html-encode name)]
   [:div.signature-4086a
-    (map-indexed #(code-signature %1 %2 (:name m)) (:signature m))]
-  [:div.description-26a4d (:description-html m)]
-
-  (let [related (:related m)]
-    (when (and related
-               (first related)
-               (not (blank? (first related))))
-      (list
-        [:h5.related-hdr-915e5 "See Also"]
-        ;; TODO: need to extract any non-core namespaces here like we do
-        ;; in the cheatsheet cells
-        [:div.related-links-f8e49
-          (map related-fn-link related)]))))
+    (map-indexed #(code-signature %1 %2 name) signature)]
+  [:div.description-26a4d description-html]
+  (when (and related (first related) (not (blank? (first related))))
+    (list
+      [:h5.related-hdr-915e5 "Related"]
+      ;; TODO: need to extract any non-core namespaces here like we do
+      ;; in the cheatsheet cells
+      [:div.related-links-f8e49
+        (map related-fn-link related)])))
 
 (hiccups/defhtml fn-tooltip-shell []
   [:div#fnTooltip.fn-tooltip-8ca2a {:style "display:none"}])
