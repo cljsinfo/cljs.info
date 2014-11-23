@@ -163,7 +163,7 @@
   ;; close symbol tooltips
   (when (and @symbol-tooltip
              (not (mouse-inside-tooltip? m-pos (vals @symbol-tooltip))))
-    (hide-el! symbol-tooltip-id)
+    (.fadeOut ($ symbol-tooltip-sel) 100)
     (reset! symbol-tooltip nil)))
 
 (add-watch mouse :change on-change-mouse)
@@ -214,9 +214,8 @@
     (when (and tooltip-data
                (not tooltip-currently-active?))
       (set-html! symbol-tooltip-id (symbol-tooltip-inner tooltip-data))
-      (reset! symbol-tooltip (merge (position-symbol-tooltip! $link-el)
-                                {:full-name full-name}))
-      (show-el! symbol-tooltip-id))))
+      (reset! symbol-tooltip (position-symbol-tooltip! $link-el))
+      (.fadeIn ($ symbol-tooltip-sel) 150))))
 
 (defn- touchend-body [js-evt]
   (hide-all-info-tooltips!))

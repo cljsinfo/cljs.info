@@ -10,6 +10,7 @@
 
 (def matched-search-class "matched-e5c67")
 (def related-highlight-class "related-35f44")
+(def related-highlight-sel (str "." related-highlight-class))
 (def related-link-sel ".related-link-674b6")
 (def matched-search-sel (str "." matched-search-class))
 (def no-results-class "no-results-5d3ea")
@@ -18,10 +19,50 @@
 (def section-sel ".section-31efe")
 (def search-input-id "searchInput")
 (def search-input-sel (str "#" search-input-id))
+(def symbol-tooltip-id "symbolTooltip")
+(def symbol-tooltip-sel (str "#" symbol-tooltip-id))
 
 ;;------------------------------------------------------------------------------
 ;; Highlight Related Links
 ;;------------------------------------------------------------------------------
+
+;; NOTE: this function is unnecessary; we already have this information
+;; stored in an atom in the tooltips namespace; probably need to make a new
+;; namespace called "state" and store it there
+(defn- get-tooltip-box []
+  (let [$tooltip-el ($ symbol-tooltip-sel)
+        o (.offset $tooltip-el)
+        x (aget o "left")
+        y (aget o "top")
+        height (.outerHeight $tooltip-el)
+        width (.outerWidth $tooltip-el)]
+    {:x1 x
+     :x2 (+ x width)
+     :y1 y
+     :y2 (+ y height)}))
+
+;; TODO: move this to util
+(defn- point-inside-box? [point box]
+  (let [px (:x point)
+        py (:y point)]
+    (and (>= px (:x1 box))
+         (<= px (:x2 box))
+         (>= py (:y1 box))
+         (<= py (:y2 box)))))
+
+(defn- related-links-underneath-tooltip? []
+  (let [tooltip-box (get-tooltip-box)
+        any-underneath-tooltip? (atom false)
+        $related-links ($ related-highlight-sel)]
+    (.each $related-links (fn [idx el]
+      (let [$el ($ el)
+            link-offset (.offset $el)
+            link-point {:x (aget link-offset "left")
+                        :y (aget link-offset "top")}
+            link-underneath? (point-inside-box? link-point tooltip-box)]
+        (when link-underneath?
+          (reset! any-underneath-tooltip? true)))))
+    (deref any-underneath-tooltip?)))
 
 (defn- mouseenter-related-link [js-evt]
   (let [link-el (aget js-evt "currentTarget")
@@ -29,13 +70,21 @@
         full-name (.attr $link-el "data-full-name")
         sel1 (str ".fn-a8476[data-full-name='" full-name "']")
         sel2 (str ".inside-fn-c7607[data-full-name='" full-name "']")
-        sel3 (str sel1 ", " sel2)]
-    (.addClass ($ sel3) related-highlight-class)))
+        sel3 (str sel1 ", " sel2)
+        $related-links ($ sel3)
+        $tooltip-el ($ symbol-tooltip-sel)]
+    ;; highlight the related links
+    (.addClass $related-links related-highlight-class)
+
+    ;; add some opacity to the tooltip when related links are underneath it
+    (when (related-links-underneath-tooltip?)
+      (.fadeTo $tooltip-el 150 0.75))))
 
 (defn- mouseleave-related-link [js-evt]
   (let [link-el (aget js-evt "currentTarget")
         $link-el ($ link-el)
         full-name (.attr $link-el "data-full-name")]
+    (.fadeTo ($ symbol-tooltip-sel) 100 1)
     (.removeClass ($ fn-link-sel) related-highlight-class)))
 
 ;;------------------------------------------------------------------------------
