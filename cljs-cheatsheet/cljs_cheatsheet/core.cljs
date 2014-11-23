@@ -8,6 +8,35 @@
 
 (def $ js/jQuery)
 
+(def matched-search-class "matched-e5c67")
+(def related-link-sel ".related-link-674b6")
+(def matched-search-sel (str "." matched-search-class))
+(def no-results-class "no-results-5d3ea")
+(def fn-link-sel ".fn-a8476, .inside-fn-c7607")
+(def group-sel ".group-2be36")
+(def section-sel ".section-31efe")
+(def search-input-id "searchInput")
+(def search-input-sel (str "#" search-input-id))
+
+;;------------------------------------------------------------------------------
+;; Highlight Related Links
+;;------------------------------------------------------------------------------
+
+(defn- mouseenter-related-link [js-evt]
+  (let [link-el (aget js-evt "currentTarget")
+        $link-el ($ link-el)
+        full-name (.attr $link-el "data-full-name")
+        sel1 (str ".fn-a8476[data-full-name='" full-name "']")
+        sel2 (str ".inside-fn-c7607[data-full-name='" full-name "']")
+        sel3 (str sel1 ", " sel2)]
+    (.addClass ($ sel3) matched-search-class)))
+
+(defn- mouseleave-related-link [js-evt]
+  (let [link-el (aget js-evt "currentTarget")
+        $link-el ($ link-el)
+        full-name (.attr $link-el "data-full-name")]
+    (.removeClass ($ fn-link-sel) matched-search-class)))
+
 ;;------------------------------------------------------------------------------
 ;; Window Size
 ;;------------------------------------------------------------------------------
@@ -48,15 +77,6 @@
 ;;------------------------------------------------------------------------------
 
 (def current-search-txt (atom ""))
-
-(def matched-search-class "matched-e5c67")
-(def matched-search-sel (str "." matched-search-class))
-(def no-results-class "no-results-5d3ea")
-(def fn-link-sel ".fn-a8476, .inside-fn-c7607")
-(def group-sel ".group-2be36")
-(def section-sel ".section-31efe")
-(def search-input-id "searchInput")
-(def search-input-sel (str "#" search-input-id))
 
 (defn- show-all-groups-and-sections! []
   (.show ($ group-sel))
@@ -141,6 +161,8 @@
   (js/setTimeout change-search-input2 1))
 
 (defn- add-events! []
+  (.on ($ "body") "mouseenter" related-link-sel mouseenter-related-link)
+  (.on ($ "body") "mouseleave" related-link-sel mouseleave-related-link)
   (.on ($ search-input-sel) "blur change keydown" change-search-input)
   (aset js/window "onresize" on-window-resize))
 

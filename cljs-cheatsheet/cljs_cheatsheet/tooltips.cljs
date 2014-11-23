@@ -214,8 +214,8 @@
 (defn- mouseenter-fn-link [js-evt]
   (let [link-el (aget js-evt "currentTarget")
         $link-el ($ link-el)
-        full-fn-name (.attr $link-el "data-fn-name")
-        tooltip-data (keywordize-keys (get @docs full-fn-name))
+        full-name (.attr $link-el "data-full-name")
+        tooltip-data (keywordize-keys (get @docs full-name))
         tooltip-currently-active? @fn-tooltip]
     (when (and tooltip-data
                (not tooltip-currently-active?))

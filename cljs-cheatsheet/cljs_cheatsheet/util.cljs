@@ -25,3 +25,13 @@
         (.toString (bit-or (* 16 (.random js/Math)) 0) 16)
         x))
     "00000000-0000-4000-0000-000000000000")))
+
+(defn extract-namespace [full-name]
+  (let [first-slash-pos (.indexOf full-name "/")
+        nme-space (subs full-name 0 first-slash-pos)]
+    nme-space))
+
+(defn extract-symbol [full-name]
+  (let [first-slash-pos (.indexOf full-name "/")
+        symbl (subs full-name (inc first-slash-pos))]
+    symbl))

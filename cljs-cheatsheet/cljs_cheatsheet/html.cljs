@@ -3,7 +3,7 @@
   (:require
     hiccups.runtime
     [clojure.string :refer [blank? join replace]]
-    [cljs-cheatsheet.util :refer [js-log log]]))
+    [cljs-cheatsheet.util :refer [extract-namespace extract-symbol js-log log]]))
 
 (def html-encode js/goog.string.htmlEscape)
 (def uri-encode js/encodeURIComponent)
@@ -47,7 +47,7 @@
   ([nme] (fn-link nme cljs-core-ns))
   ([nme nme-space]
     [:a.fn-a8476
-      {:data-fn-name (str nme-space "/" nme)
+      {:data-full-name (str nme-space "/" nme)
        :href (docs-href nme nme-space)}
       (html-encode nme)]))
 
@@ -55,7 +55,7 @@
   ([nme] (inside-fn-link nme cljs-core-ns))
   ([nme nme-space]
     [:a.inside-fn-c7607
-      {:data-fn-name (str nme-space "/" nme)
+      {:data-full-name (str nme-space "/" nme)
        :href (docs-href nme nme-space)}
       (html-encode nme)]))
 
@@ -988,13 +988,11 @@
       (when-not (blank? sig2) (str " " (html-encode sig2)))
       ")"]))
 
-(defn- extract-name [full-name]
-  (let [first-slash-pos (.indexOf full-name "/")
-        fn-name (subs full-name (inc first-slash-pos))]
-    fn-name))
-
-(hiccups/defhtml related-fn-link [n]
-  [:a.related-link-674b6 (-> n extract-name html-encode)])
+(hiccups/defhtml related-fn-link [full-name]
+  [:a.related-link-674b6
+    {:data-full-name full-name
+     :href (docs-href (extract-symbol full-name) (extract-namespace full-name))}
+    (-> full-name extract-symbol html-encode)])
 
 (hiccups/defhtml fn-tooltip-inner
   [{:keys [:description-html :name :namespace :related :signature]}]
