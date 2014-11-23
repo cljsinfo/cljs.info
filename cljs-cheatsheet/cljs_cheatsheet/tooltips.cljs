@@ -215,9 +215,11 @@
   (let [link-el (aget js-evt "currentTarget")
         $link-el ($ link-el)
         full-fn-name (.attr $link-el "data-fn-name")
-        m (keywordize-keys (get @docs full-fn-name))]
-    (when m
-      (set-html! symbol-tooltip-id (fn-tooltip-inner m))
+        tooltip-data (keywordize-keys (get @docs full-fn-name))
+        tooltip-currently-active? @fn-tooltip]
+    (when (and tooltip-data
+               (not tooltip-currently-active?))
+      (set-html! symbol-tooltip-id (fn-tooltip-inner tooltip-data))
       (reset! fn-tooltip (position-fn-tooltip! $link-el))
       (show-el! symbol-tooltip-id))))
 
