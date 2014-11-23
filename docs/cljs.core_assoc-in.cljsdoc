@@ -1,0 +1,18 @@
+===== Function
+cljs.core/assoc-in
+
+===== Signature
+[m [k & ks] v]
+
+===== Description
+
+Associates a value in a nested associative structure, where `ks` is a sequence
+of keys and `v` is the new value. Returns a new nested structure.
+
+If any levels do not exist, hash-maps will be created.
+
+===== Related
+cljs.core/assoc
+cljs.core/update-in
+cljs.core/dissoc-in
+cljs.core/get-in

@@ -1,0 +1,12 @@
+===== Function
+cljs.core/keys
+
+===== Signature
+[hash-map]
+
+===== Description
+
+Returns a sequence of the keys in `hash-map`.
+
+===== Related
+cljs.core/vals

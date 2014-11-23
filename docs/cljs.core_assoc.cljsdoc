@@ -9,10 +9,13 @@ cljs.core/assoc
 
 assoc(iate)
 
-When applied to a map, returns a new map of the same (hashed/sorted) type, that
-contains the mapping of key(s) to val(s).
+When applied to a map, returns a new map that contains the mapping of key(s) to
+val(s).
 
-When applied to a vector, returns a new vector that contains val at index.
+Has no effect on the map type (hashed/sorted).
+
+When applied to a vector, returns a new vector that contains value `v` at index
+`k`.
 
 ===== Related
 cljs.core/assoc-in

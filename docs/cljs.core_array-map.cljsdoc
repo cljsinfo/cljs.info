@@ -1,0 +1,16 @@
+===== Function
+cljs.core/array-map
+
+===== Signature
+[& keyvals]
+
+===== Description
+
+Returns a new array map with supplied mappings.
+
+`keyvals` must be an even number of forms.
+
+===== Related
+cljs.core/assoc
+cljs.core/hash-map
+cljs.core/sorted-map

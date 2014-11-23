@@ -404,18 +404,6 @@ cljs.core/disj
     cljs.core/disj!
     clojure.set/difference
 
-cljs.core/hash-map
-    cljs.core/merge
-    cljs.core/assoc
-    cljs.core/dissoc
-    cljs.core/array-map
-    cljs.core/sorted-map
-
-cljs.core/array-map
-    cljs.core/assoc
-    cljs.core/hash-map
-    cljs.core/sorted-map
-
 cljs.core/zipmap
     cljs.core/interleave
 
@@ -440,56 +428,6 @@ cljs.core/frequencies
 cljs.core/group-by
     cljs.core/partition-by
     cljs.core/frequencies
-
-cljs.core/get-in
-    cljs.core/assoc-in
-    cljs.core/update-in
-    cljs.core/find
-    cljs.core/get
-
-cljs.core/find
-    cljs.core/get
-    cljs.core/get-in
-
-cljs.core/keys
-    cljs.core/vals
-    cljs.core/hash-map
-    cljs.core/key
-    cljs.core/defn
-
-cljs.core/vals
-    cljs.core/val
-    cljs.core/keys
-
-cljs.core/assoc-in
-    cljs.core/assoc
-    cljs.core/update-in
-    cljs.core/dissoc-in
-    cljs.core/get-in
-
-cljs.core/dissoc
-    cljs.core/assoc
-    cljs.core/dissoc-in
-    cljs.core/disj
-    cljs.core/select-keys
-
-cljs.core/merge
-    cljs.core/merge-with
-    cljs.core/hash-map
-
-cljs.core/merge-with
-    cljs.core/merge
-
-cljs.core/update-in
-    cljs.core/assoc-in
-    cljs.core/get-in
-    cljs.core/fnil
-
-cljs.core/key
-    cljs.core/keys
-
-cljs.core/val
-    cljs.core/vals
 
 cljs.core/subseq
     cljs.core/rsubseq
