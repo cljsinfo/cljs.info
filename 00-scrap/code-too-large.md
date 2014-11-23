@@ -13,4 +13,4 @@ saving the file, then checked my console and saw this:
 
 Guess there's limit on how long a function can be in Clojure :)
 
-Fixed it with commit 83ba39132e93a98d37f4729d7f1d91e25a2d5c94
+Fixed it with commit SHA: 83ba39132e93a98d37f4729d7f1d91e25a2d5c94
