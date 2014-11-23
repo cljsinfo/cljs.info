@@ -36,3 +36,10 @@
 (defn extract-symbol [full-name]
   (let [first-slash-pos (.indexOf full-name "/")]
     (subs full-name (inc first-slash-pos))))
+
+(defn split-full-name [r]
+  (let [ns1 (extract-namespace r)
+        symbol-name (extract-symbol r)]
+    {:full-name r
+     :namespace ns1
+     :symbol symbol-name}))

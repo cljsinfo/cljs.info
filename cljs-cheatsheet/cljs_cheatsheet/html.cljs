@@ -3,7 +3,7 @@
   (:require
     hiccups.runtime
     [clojure.string :refer [blank? join replace]]
-    [cljs-cheatsheet.util :refer [extract-namespace extract-symbol js-log log]]))
+    [cljs-cheatsheet.util :refer [extract-namespace extract-symbol js-log log split-full-name]]))
 
 (def html-encode js/goog.string.htmlEscape)
 (def uri-encode js/encodeURIComponent)
@@ -988,28 +988,43 @@
       (when-not (blank? sig2) (str " " (html-encode sig2)))
       ")"]))
 
-(hiccups/defhtml related-fn-link [full-name]
+(hiccups/defhtml related-fn-link [s]
   [:a.related-link-674b6
-    {:data-full-name full-name
-     :href (docs-href (extract-symbol full-name) (extract-namespace full-name))}
-    (-> full-name extract-symbol html-encode)])
+    {:data-full-name (:full-name s)
+     :href (docs-href (:symbol s) (:namespace s))}
+    (html-encode (:symbol s))])
 
-(hiccups/defhtml symbol-tooltip-inner
-  [{:keys [:description-html :name :namespace :related :signature]}]
-  [:h4.tooltip-hdr-db7c5
-    (when-not (= cljs-core-ns namespace)
-      [:span.namespace-2e700 namespace "/"])
-    (html-encode name)]
-  [:div.signature-4086a
-    (map-indexed #(code-signature %1 %2 name) signature)]
-  [:div.description-26a4d description-html]
-  (when (and related (first related) (not (blank? (first related))))
+(hiccups/defhtml related-links-for-ns [ns1 all-related]
+  (let [filtered-related (filter #(= (:namespace %) ns1) all-related)]
+    (list
+      (when-not (= ns1 cljs-core-ns)
+        [:span.tt-literal-3cdfc "(" ns1 "/)"])
+      (map related-fn-link filtered-related))))
+
+(hiccups/defhtml related-links [r]
+  (let [r2 (map split-full-name r)
+        namespaces (distinct (map :namespace r2))]
     (list
       [:h5.related-hdr-915e5 "Related"]
-      ;; TODO: need to extract any non-core namespaces here like we do
-      ;; in the cheatsheet cells
       [:div.related-links-f8e49
-        (map related-fn-link related)])))
+        (map #(related-links-for-ns % r2) namespaces)])))
+
+(hiccups/defhtml symbol-tooltip-inner [d]
+  (let [desc-html (:description-html d)
+        symbol-name (:name d)
+        ns1 (:namespace d)
+        related (:related d)
+        signature (:signature d)]
+    (list
+      [:h4.tooltip-hdr-db7c5
+        (when-not (= cljs-core-ns ns1)
+          [:span.namespace-2e700 ns1 "/"])
+        (html-encode symbol-name)]
+      [:div.signature-4086a
+        (map-indexed #(code-signature %1 %2 symbol-name) signature)]
+      [:div.description-26a4d desc-html]
+      (when (and related (first related) (not (blank? (first related))))
+        (related-links related)))))
 
 (hiccups/defhtml symbol-tooltip-shell []
   [:div#symbolTooltip.symbol-tooltip-8ca2a {:style "display:none"}])
