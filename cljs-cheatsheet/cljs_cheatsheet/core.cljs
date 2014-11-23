@@ -26,16 +26,15 @@
 ;; Highlight Related Links
 ;;------------------------------------------------------------------------------
 
-;; NOTE: this function is unnecessary; we already have this information
-;; stored in an atom in the tooltips namespace; probably need to make a new
-;; namespace called "state" and store it there
-(defn- get-tooltip-box []
-  (let [$tooltip-el ($ symbol-tooltip-sel)
-        o (.offset $tooltip-el)
+;; NOTE: surely there must be a jquery or google closure function that does
+;; this already?
+(defn- get-element-box [el]
+  (let [$el ($ el)
+        o (.offset $el)
         x (aget o "left")
         y (aget o "top")
-        height (.outerHeight $tooltip-el)
-        width (.outerWidth $tooltip-el)]
+        height (.outerHeight $el)
+        width (.outerWidth $el)]
     {:x1 x
      :x2 (+ x width)
      :y1 y
@@ -51,16 +50,20 @@
          (<= py (:y2 box)))))
 
 (defn- related-links-underneath-tooltip? []
-  (let [tooltip-box (get-tooltip-box)
+  (let [tooltip-box (get-element-box ($ symbol-tooltip-sel))
         any-underneath-tooltip? (atom false)
         $related-links ($ related-highlight-sel)]
     (.each $related-links (fn [idx el]
-      (let [$el ($ el)
-            link-offset (.offset $el)
-            link-point {:x (aget link-offset "left")
-                        :y (aget link-offset "top")}
-            link-underneath? (point-inside-box? link-point tooltip-box)]
-        (when link-underneath?
+      (let [el-box (get-element-box el)
+            x1 (:x1 el-box)
+            x2 (:x2 el-box)
+            y1 (:y1 el-box)
+            y2 (:y2 el-box)
+            tl? (point-inside-box? {:x x1 :y y1} tooltip-box)
+            tr? (point-inside-box? {:x x2 :y y1} tooltip-box)
+            bl? (point-inside-box? {:x x1 :y y2} tooltip-box)
+            br? (point-inside-box? {:x x2 :y y2} tooltip-box)]
+        (when (or tl? tr? bl? br?)
           (reset! any-underneath-tooltip? true)))))
     (deref any-underneath-tooltip?)))
 
@@ -78,7 +81,7 @@
 
     ;; add some opacity to the tooltip when related links are underneath it
     (when (related-links-underneath-tooltip?)
-      (.fadeTo $tooltip-el 150 0.75))))
+      (.fadeTo $tooltip-el 150 0.5))))
 
 (defn- mouseleave-related-link [js-evt]
   (let [link-el (aget js-evt "currentTarget")
