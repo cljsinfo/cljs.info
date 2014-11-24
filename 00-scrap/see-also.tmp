@@ -242,15 +242,6 @@ cljs.core/re-find
     cljs.core/re-matches
     cljs.core/subs
 
-cljs.core/re-seq
-    cljs.core/re-find
-    cljs.core/re-groups
-    cljs.core/re-pattern
-    cljs.core/re-matcher
-    cljs.core/re-matches
-    clojure.string/split
-    cljs.core/subs
-
 cljs.core/re-matches
     cljs.core/re-find
     cljs.core/subs
@@ -429,16 +420,6 @@ cljs.core/group-by
     cljs.core/partition-by
     cljs.core/frequencies
 
-cljs.core/subseq
-    cljs.core/rsubseq
-    cljs.core/sorted-map
-    cljs.core/sorted-set
-    cljs.core/sorted-map-by
-    cljs.core/sorted-set-by
-
-cljs.core/rsubseq
-    cljs.core/subseq
-
 cljs.core/distinct
     cljs.core/distinct?
 
@@ -608,46 +589,6 @@ cljs.core/realized?
     cljs.core/promise
     cljs.core/delay
     cljs.core/future
-
-cljs.core/seq
-    cljs.core/seq?
-    cljs.core/empty?
-    cljs.core/iterator-seq
-
-cljs.core/lazy-seq
-    cljs.core/lazy-cat
-    cljs.core/realized?
-    cljs.core/doall
-    cljs.core/iterate
-
-cljs.core/repeatedly
-    cljs.core/repeat
-    cljs.core/iterate
-    cljs.core/lazy-seq
-    cljs.core/dotimes
-    cljs.core/doall
-    cljs.core/rand-int
-    cljs.core/constantly
-
-cljs.core/iterate
-    cljs.core/cycle
-    cljs.core/repeatedly
-    cljs.core/repeat
-
-cljs.core/repeat
-    cljs.core/repeatedly
-    cljs.core/cycle
-    cljs.core/constantly
-    cljs.core/dotimes
-
-cljs.core/keep
-    cljs.core/keep-indexed
-    cljs.core/map
-    cljs.core/filter
-
-cljs.core/keep-indexed
-    cljs.core/map-indexed
-    cljs.core/keep
 
 cljs.core/bit-shift-right
     cljs.core/bit-shift-left

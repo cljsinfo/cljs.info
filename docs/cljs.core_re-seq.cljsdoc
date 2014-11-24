@@ -6,6 +6,13 @@ cljs.core/re-seq
 
 ===== Description
 
-Returns a lazy sequence of successive matches of `re` in `s`.
+Returns a lazy sequence of successive matches of regex `re` in string `s`.
 
 ===== Related
+cljs.core/re-find
+cljs.core/re-groups
+cljs.core/re-pattern
+cljs.core/re-matcher
+cljs.core/re-matches
+cljs.core/subs
+clojure.string/split
