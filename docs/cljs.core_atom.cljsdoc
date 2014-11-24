@@ -24,4 +24,5 @@ change.
 
 ===== Related
 cljs.core/atom
+cljs.core/swap!
 cljs.core/reset!
