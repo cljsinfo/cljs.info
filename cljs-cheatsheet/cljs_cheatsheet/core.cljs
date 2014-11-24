@@ -22,6 +22,8 @@
 (def symbol-tooltip-id "symbolTooltip")
 (def symbol-tooltip-sel (str "#" symbol-tooltip-id))
 
+;; TODO: rename "symbol tooltips" to "inline tooltips" throughout the code
+
 ;;------------------------------------------------------------------------------
 ;; Highlight Related Links
 ;;------------------------------------------------------------------------------
