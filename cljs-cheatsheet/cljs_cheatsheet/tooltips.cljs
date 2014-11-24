@@ -2,7 +2,7 @@
   (:require
     [clojure.string :refer [blank? replace split]]
     [clojure.walk :refer [keywordize-keys]]
-    [cljs-cheatsheet.dom :refer [by-id hide-el! set-html! show-el!]]
+    [cljs-cheatsheet.dom :refer [by-id set-html!]]
     [cljs-cheatsheet.html :refer [symbol-tooltip-inner]]
     [cljs-cheatsheet.util :refer [half js-log log uuid]]))
 
@@ -18,6 +18,9 @@
 (def symbol-link-sel ".fn-a8476, .inside-fn-c7607")
 (def symbol-tooltip-id "symbolTooltip")
 (def symbol-tooltip-sel (str "#" symbol-tooltip-id))
+
+(def fade-in-speed 150)
+(def fade-out-speed 100)
 
 ;;------------------------------------------------------------------------------
 ;; Helper
@@ -133,10 +136,11 @@
                    :y2 (+ tooltip-top tooltip-height)}}))
 
 (defn- show-info-tooltip! [tooltip-id]
-  (show-el! tooltip-id))
+  (let [$tooltip-el ($ (str "#" tooltip-id))]
+    (.fadeIn $tooltip-el fade-in-speed)))
 
 (defn- hide-all-info-tooltips! []
-  (.hide ($ info-tooltip-sel)))
+  (.fadeOut ($ info-tooltip-sel) fade-out-speed))
 
 ;;------------------------------------------------------------------------------
 ;; Tooltip Atoms
@@ -154,16 +158,16 @@
 (def mouse (atom nil))
 
 (defn- on-change-mouse [_ _ _ m-pos]
-  ;; close info tooltips
+  ;; close info tooltip
   (when (and @info-tooltip
              (not (mouse-inside-tooltip? m-pos (vals @info-tooltip))))
-    (hide-all-info-tooltips!)
+    (.fadeOut ($ (str "#" (:tooltip-id @info-tooltip))) fade-out-speed)
     (reset! info-tooltip nil))
 
   ;; close symbol tooltips
   (when (and @symbol-tooltip
              (not (mouse-inside-tooltip? m-pos (vals @symbol-tooltip))))
-    (.fadeOut ($ symbol-tooltip-sel) 100)
+    (.fadeOut ($ symbol-tooltip-sel) fade-out-speed)
     (reset! symbol-tooltip nil)))
 
 (add-watch mouse :change on-change-mouse)
@@ -215,7 +219,7 @@
                (not tooltip-currently-active?))
       (set-html! symbol-tooltip-id (symbol-tooltip-inner tooltip-data))
       (reset! symbol-tooltip (position-symbol-tooltip! $link-el))
-      (.fadeIn ($ symbol-tooltip-sel) 150))))
+      (.fadeIn ($ symbol-tooltip-sel) fade-in-speed))))
 
 (defn- touchend-body [js-evt]
   (hide-all-info-tooltips!))
