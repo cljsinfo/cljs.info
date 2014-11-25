@@ -415,21 +415,6 @@ cljs.core/group-by
     cljs.core/partition-by
     cljs.core/frequencies
 
-cljs.core/mapcat
-    cljs.core/map
-    cljs.core/concat
-
-cljs.core/cycle
-    cljs.core/lazy-seq
-
-cljs.core/interleave
-    cljs.core/interpose
-    cljs.core/zipmap
-
-cljs.core/interpose
-    cljs.core/interleave
-    clojure.string/join
-
 cljs.core/nthrest
     cljs.core/drop
     cljs.core/nthnext
