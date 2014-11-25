@@ -2,56 +2,52 @@
   (:require
     [clojure.string :refer [blank? replace split]]
     [clojure.walk :refer [keywordize-keys]]
-    [cljs-cheatsheet.dom :refer [by-id set-html!]]
+    [cljs-cheatsheet.dom :refer [by-id get-element-box set-html!]]
     [cljs-cheatsheet.html :refer [inline-tooltip]]
     [cljs-cheatsheet.state :refer [active-tooltip mouse-position mousetrap-boxes]]
-    [cljs-cheatsheet.util :refer [half js-log log uuid]]))
+    [cljs-cheatsheet.util :refer [half js-log log point-inside-box? uuid]]))
 
 (def $ js/jQuery)
 (def has-touch-events? (aget js/window "hasTouchEvents"))
 
 (def info-icon-sel ".tooltip-link-0e91b")
-(def info-tooltip-sel ".tooltip-53dde")
+(def links-sel ".fn-a8476, .inside-fn-c7607")
+
 (def left-arrow-class "left-arr-42ea1")
 (def right-arrow-class "right-arr-d3345")
 (def arrow-classes (str left-arrow-class " " right-arrow-class))
 
-(def symbol-link-sel ".fn-a8476, .inside-fn-c7607")
-(def symbol-tooltip-id "symbolTooltip")
-(def symbol-tooltip-sel (str "#" symbol-tooltip-id))
-
-(def fade-in-speed 125)
-(def fade-out-speed 100)
+(def fade-speed 100)
 
 ;;------------------------------------------------------------------------------
-;; Helper
+;; Add to DOM
 ;;------------------------------------------------------------------------------
 
-(defn- js-evt->tooltip-id
-  "Returns a tooltip-id from a JS event or nil if the tooltip was not found."
-  [js-evt]
-  (let [current-target (aget js-evt "currentTarget")
-        tooltip-num (.attr ($ current-target) "data-tooltip-id")
-        tooltip-id (str "tooltip-" tooltip-num)
-        tooltip-el (by-id tooltip-id)]
-    (if tooltip-el
-      tooltip-id)))
-
-(defn- within-bounds? [m-pos el-coords]
-  (let [x (:x m-pos)
-        y (:y m-pos)]
-    (and (>= x (:x1 el-coords))
-         (<= x (:x2 el-coords))
-         (>= y (:y1 el-coords))
-         (<= y (:y2 el-coords)))))
-
-;; TODO: this function could be more general
-(defn- mouse-inside-tooltip? [m-pos [box1 box2]]
-  (or (within-bounds? m-pos box1)
-      (within-bounds? m-pos box2)))
+(defn- create-inline-tooltip! [tt]
+  (.append ($ "body") (inline-tooltip tt)))
 
 ;;------------------------------------------------------------------------------
-;; Position, Show, Hide Tooltips
+;; Hide and Show
+;;------------------------------------------------------------------------------
+
+(defn- fade-out-tooltip!
+  ([tt] (fade-out-tooltip! tt false))
+  ([tt destroy?]
+    (let [id (:id tt)
+          sel (str "#" id)
+          $el ($ sel)]
+      (if destroy?
+        (.fadeOut $el fade-speed #(.remove $el))
+        (.fadeOut $el fade-speed)))))
+
+(defn- fade-in-tooltip! [tt]
+  (let [id (:id tt)
+        sel (str "#" id)
+        $el ($ sel)]
+    (.fadeIn $el fade-speed)))
+
+;;------------------------------------------------------------------------------
+;; Position
 ;;------------------------------------------------------------------------------
 
 ;; NOTE: I'm sure the two "position!" functions could be combined somehow
@@ -61,49 +57,6 @@
 
 ;; add some wiggle room around the edge of the tooltip border
 (def tooltip-mouseout-buffer 4)
-
-(defn- show-info-tooltip! [tooltip-id]
-  (let [$tooltip-el ($ (str "#" tooltip-id))]
-    (.fadeIn $tooltip-el fade-in-speed)))
-
-(defn- hide-all-info-tooltips! []
-  (.fadeOut ($ info-tooltip-sel) fade-out-speed))
-
-;;------------------------------------------------------------------------------
-;; Add to DOM
-;;------------------------------------------------------------------------------
-
-(defn- create-info-tooltip! [tt]
-  (.append ($ "body") (str
-    "<div id='" (:id tt) "'>"
-    (:html tt)
-    "</div>")))
-
-(defn- create-inline-tooltip! [tt]
-  (.append ($ "body") (inline-tooltip tt)))
-
-;;------------------------------------------------------------------------------
-;; Hide and Show
-;;------------------------------------------------------------------------------
-
-(defn- fade-and-destroy-tooltip! [tt]
-  (let [id (:id tt)
-        sel (str "#" id)
-        $el ($ sel)]
-    ;; TODO: change how this works
-    (if (= :inline (:type tt))
-      (.fadeOut $el fade-out-speed #(.remove $el))
-      (.fadeOut $el fade-out-speed))))
-
-(defn- fade-in-tooltip! [tt]
-  (let [id (:id tt)
-        sel (str "#" id)
-        $el ($ sel)]
-    (.fadeIn $el fade-in-speed)))
-
-;;------------------------------------------------------------------------------
-;; Position
-;;------------------------------------------------------------------------------
 
 (defn- position-info-tooltip! [tt]
   (let [$icon-el (:$icon-el tt)
@@ -140,14 +93,14 @@
 
     ;; save the bounds of the tooltip
     (reset! mousetrap-boxes {
-      :icon-box
+      :icon
         {:x1 (- icon-x icon-mouseout-padding)
          :x2 (+ icon-x icon-mouseout-padding)
          :y1 (- icon-y icon-mouseout-padding)
          ;; be a little more generous around the bottom of the tooltip icon
          :y2 (+ icon-y icon-mouseout-padding 12)}
 
-      :tooltip-box
+      :tooltip
         {:x1 (- tooltip-left tooltip-mouseout-buffer)
          :x2 (+ tooltip-left tooltip-width tooltip-mouseout-buffer)
          :y1 (- tooltip-top tooltip-mouseout-buffer)
@@ -192,17 +145,13 @@
 ;; Tooltip Atoms
 ;;------------------------------------------------------------------------------
 
-(def info-tooltip (atom nil))
-
 (defn- on-change-tooltip [_ _ old-tt new-tt]
   ;; close tooltip
   (when (and old-tt (not= old-tt new-tt))
-    (fade-and-destroy-tooltip! old-tt))
+    (fade-out-tooltip! old-tt (= :inline (:type old-tt))))
 
   ;; open info tooltip
   (when (and new-tt (= (:type new-tt) :info))
-    ;; TODO: change this to add / remove the info tooltips from the DOM as needed
-    ;; (create-info-tooltip! new-tt)
     (position-info-tooltip! new-tt)
     (fade-in-tooltip! new-tt))
 
@@ -217,6 +166,10 @@
 ;;------------------------------------------------------------------------------
 ;; Watch Mouse Position
 ;;------------------------------------------------------------------------------
+
+(defn- mouse-inside-tooltip? [m-pos [box1 box2]]
+  (or (point-inside-box? m-pos box1)
+      (point-inside-box? m-pos box2)))
 
 (defn- on-change-mouse-position [_ _ _ pos]
   ;; hide tooltip when the mouse goes outside the box(es)
@@ -284,25 +237,25 @@
         :$link-el $link-el
         :type :inline })))))
 
-(defn- touchend-body [js-evt]
-  (hide-all-info-tooltips!))
+; (defn- touchend-body [js-evt]
+;   (hide-all-info-tooltips!))
 
-(defn- touchend-icon [js-evt]
-  (.stopPropagation js-evt)
-  (when-let [tooltip-id (js-evt->tooltip-id js-evt)]
-    (let [icon-el (aget js-evt "currentTarget")]
-      (hide-all-info-tooltips!)
-      (show-info-tooltip! tooltip-id))))
+; (defn- touchend-icon [js-evt]
+;   (.stopPropagation js-evt)
+;   (when-let [tooltip-id (js-evt->tooltip-id js-evt)]
+;     (let [icon-el (aget js-evt "currentTarget")]
+;       (hide-all-info-tooltips!)
+;       (show-info-tooltip! tooltip-id))))
 
 ;;------------------------------------------------------------------------------
 ;; Init and Events
 ;;------------------------------------------------------------------------------
 
 ;; TODO: touch events are not really polished yet
-(defn- add-touch-events! []
-  (-> ($ "body")
-    (.on "touchend" touchend-body)
-    (.on "touchend" info-icon-sel touchend-icon)))
+; (defn- add-touch-events! []
+;   (-> ($ "body")
+;     (.on "touchend" touchend-body)
+;     (.on "touchend" info-icon-sel touchend-icon)))
 
 (defn init!
   "Initialize tooltip events."
@@ -310,7 +263,7 @@
   (-> ($ "body")
     (.on "mousemove" mousemove-body)
     (.on "mouseenter" info-icon-sel mouseenter-info-icon)
-    (.on "mouseenter" symbol-link-sel mouseenter-link))
+    (.on "mouseenter" links-sel mouseenter-link))
   ;; TODO: add these back
   ; (when has-touch-events?
   ;   (add-touch-events!))

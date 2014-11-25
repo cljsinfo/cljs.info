@@ -1,10 +1,11 @@
 (ns cljs-cheatsheet.core
   (:require
     [clojure.string :refer [blank?]]
-    [cljs-cheatsheet.dom :refer [by-id]]
+    [cljs-cheatsheet.dom :refer [by-id get-element-box]]
     [cljs-cheatsheet.html :as html]
+    [cljs-cheatsheet.state :refer [active-tooltip mousetrap-boxes]]
     [cljs-cheatsheet.tooltips :as tooltips]
-    [cljs-cheatsheet.util :refer [js-log log]]))
+    [cljs-cheatsheet.util :refer [js-log log point-inside-box?]]))
 
 (def $ js/jQuery)
 
@@ -19,40 +20,16 @@
 (def section-sel ".section-31efe")
 (def search-input-id "searchInput")
 (def search-input-sel (str "#" search-input-id))
-(def symbol-tooltip-id "symbolTooltip")
-(def symbol-tooltip-sel (str "#" symbol-tooltip-id))
-
-;; TODO: rename "symbol tooltips" to "inline tooltips" throughout the code
 
 ;;------------------------------------------------------------------------------
 ;; Highlight Related Links
 ;;------------------------------------------------------------------------------
 
-;; NOTE: surely there must be a jquery or google closure function that does
-;; this already?
-(defn- get-element-box [el]
-  (let [$el ($ el)
-        o (.offset $el)
-        x (aget o "left")
-        y (aget o "top")
-        height (.outerHeight $el)
-        width (.outerWidth $el)]
-    {:x1 x
-     :x2 (+ x width)
-     :y1 y
-     :y2 (+ y height)}))
-
-;; TODO: move this to util
-(defn- point-inside-box? [point box]
-  (let [px (:x point)
-        py (:y point)]
-    (and (>= px (:x1 box))
-         (<= px (:x2 box))
-         (>= py (:y1 box))
-         (<= py (:y2 box)))))
+(def opacity-fade-speed 100)
+(def tooltip-opacity 0.5)
 
 (defn- related-links-underneath-tooltip? []
-  (let [tooltip-box (get-element-box ($ symbol-tooltip-sel))
+  (let [tooltip-box (:tooltip @mousetrap-boxes)
         any-underneath-tooltip? (atom false)
         $related-links ($ related-highlight-sel)]
     (.each $related-links (fn [idx el]
@@ -77,19 +54,22 @@
         sel2 (str ".inside-fn-c7607[data-full-name='" full-name "']")
         sel3 (str sel1 ", " sel2)
         $related-links ($ sel3)
-        $tooltip-el ($ symbol-tooltip-sel)]
+        tt-id (:id @active-tooltip)
+        $tooltip-el ($ (str "#" tt-id))]
     ;; highlight the related links
     (.addClass $related-links related-highlight-class)
 
     ;; add some opacity to the tooltip when related links are underneath it
     (when (related-links-underneath-tooltip?)
-      (.fadeTo $tooltip-el 150 0.5))))
+      (.fadeTo $tooltip-el opacity-fade-speed tooltip-opacity))))
 
 (defn- mouseleave-related-link [js-evt]
   (let [link-el (aget js-evt "currentTarget")
         $link-el ($ link-el)
-        full-name (.attr $link-el "data-full-name")]
-    (.fadeTo ($ symbol-tooltip-sel) 100 1)
+        full-name (.attr $link-el "data-full-name")
+        tt-id (:id @active-tooltip)
+        $tooltip-el ($ (str "#" tt-id))]
+    (.fadeTo $tooltip-el opacity-fade-speed 1)
     (.removeClass ($ fn-link-sel) related-highlight-class)))
 
 ;;------------------------------------------------------------------------------

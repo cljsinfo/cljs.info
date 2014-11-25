@@ -3,6 +3,8 @@
     goog.dom
     [cljs-cheatsheet.util :refer [js-log log]]))
 
+(def $ js/jQuery)
+
 ;;------------------------------------------------------------------------------
 ;; Some Native DOM Helper Functions
 ;;------------------------------------------------------------------------------
@@ -34,3 +36,17 @@
     (if (= display "none")
       (show-el! id)
       (hide-el! id))))
+
+;; NOTE: surely there must be a jQuery or Google Closure function that does
+;; this already?
+(defn get-element-box [el]
+  (let [$el ($ el)
+        o (.offset $el)
+        x (aget o "left")
+        y (aget o "top")
+        height (.outerHeight $el)
+        width (.outerWidth $el)]
+    {:x1 x
+     :x2 (+ x width)
+     :y1 y
+     :y2 (+ y height)}))

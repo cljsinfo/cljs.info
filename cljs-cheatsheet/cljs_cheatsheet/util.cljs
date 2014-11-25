@@ -1,5 +1,7 @@
 (ns cljs-cheatsheet.util)
 
+(def $ js/jQuery)
+
 ;;------------------------------------------------------------------------------
 ;; Util Functions
 ;;------------------------------------------------------------------------------
@@ -43,3 +45,11 @@
     {:full-name r
      :namespace ns1
      :symbol symbol-name}))
+
+(defn point-inside-box? [point box]
+  (let [px (:x point)
+        py (:y point)]
+    (and (>= px (:x1 box))
+         (<= px (:x2 box))
+         (>= py (:y1 box))
+         (<= py (:y2 box)))))
