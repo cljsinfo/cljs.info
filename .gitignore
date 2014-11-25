@@ -14,8 +14,8 @@ pom.xml
 app.js
 config.json
 /node_modules/
+/public/cheatsheet/docs.json
 /public/css/main.min.css
-/public/docs.json
 /public/js/client.js
 /public/js/client.min.js
 /public/js/cheatsheet.js

@@ -227,7 +227,7 @@ function buildDocs() {
     docs[obj["full-name"]] = obj;
   });
 
-  grunt.file.write("public/docs.json", JSON.stringify(docs));
+  grunt.file.write("public/cheatsheet/docs.json", JSON.stringify(docs));
 }
 
 //------------------------------------------------------------------------------
@@ -249,12 +249,12 @@ grunt.initConfig({
     cheatsheet: {
       files: [
         { src: 'public/cheatsheet/index.html', dest: '00-publish/cheatsheet/index.html' },
+        { src: 'public/cheatsheet/docs.json', dest: '00-publish/cheatsheet/docs.json' },
         { src: 'public/css/main.min.css', dest: '00-publish/css/main.min.css' },
         { src: 'public/fonts/*', dest: '00-publish/fonts/', expand: true, flatten: true },
         { src: 'public/img/*', dest: '00-publish/img/', expand: true, flatten: true },
         { src: 'public/js/cheatsheet.min.js', dest: '00-publish/js/cheatsheet.min.js' },
-        { src: 'public/js/libs/jquery-2.1.1.min.js', dest: '00-publish/js/libs/jquery-2.1.1.min.js' },
-        { src: 'public/favicon.png', dest: '00-publish/favicon.png' }
+        { src: 'public/js/libs/jquery-2.1.1.min.js', dest: '00-publish/js/libs/jquery-2.1.1.min.js' }
       ]
     }
   },
@@ -322,6 +322,7 @@ grunt.registerTask('hash-cheatsheet', hashCheatsheetFiles);
 grunt.registerTask('build-cheatsheet', [
   'clean:pre',
   'less',
+  'build-docs',
   'copy:cheatsheet',
   'hash-cheatsheet'
 ]);

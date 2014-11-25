@@ -12,7 +12,7 @@
 (def clj-string-ns "clojure.string")
 (def clj-set-ns "clojure.set")
 
-(def literal-info-tooltip-style "margin-left: 2px; vertical-align: baseline;")
+(def alt-icon-style "margin-left: 2px; vertical-align: baseline;")
 
 ;;------------------------------------------------------------------------------
 ;; Helpers
@@ -125,7 +125,7 @@
           [:td.label-9e0b7 "Create"]
           [:td.body-885f4
             [:div.row-5dec8 "#(...) &rarr; (fn [args] (...))"
-              (tt-icon "function-shorthand" literal-info-tooltip-style)]
+              (tt-icon "function-shorthand" alt-icon-style)]
             (fn-link "fn")
             (fn-link "defn")
             (fn-link "defn-")
@@ -442,7 +442,7 @@
           [:td.body-885f4
             [:div.row-5dec8
               "(my-vec idx) &rarr; (" (inside-fn-link "nth") " my-vec idx)"
-              (tt-icon "vector-as-fn" literal-info-tooltip-style)]
+              (tt-icon "vector-as-fn" alt-icon-style)]
             (fn-link "get")
             (fn-link "peek")]]
         [:tr.odd-372e6
@@ -479,7 +479,7 @@
           [:td.body-885f4
             [:div.row-5dec8
               "(my-set itm) &rarr; (" (inside-fn-link "get") " my-set itm)"
-              (tt-icon "set-as-fn" literal-info-tooltip-style)]
+              (tt-icon "set-as-fn" alt-icon-style)]
             (fn-link "contains?")]]
         [:tr.odd-372e6
           [:td.label-9e0b7 "'Change'"]
@@ -522,7 +522,7 @@
           [:td.body-885f4
             [:div.row-5dec8
               "(:key my-map) &rarr; (" (inside-fn-link "get") " my-map :key)"
-              (tt-icon "keywords-as-fn" literal-info-tooltip-style)]
+              (tt-icon "keywords-as-fn" alt-icon-style)]
             (fn-link "get-in")
             (fn-link "contains?")
             (fn-link "find")

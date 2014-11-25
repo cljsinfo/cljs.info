@@ -196,7 +196,7 @@
 (defn- fetch-docs! []
   (.ajax $ (js-obj
     "success" fetch-docs-success
-    "url" "/docs.json")))
+    "url" "docs.json")))
 
 (fetch-docs!)
 
