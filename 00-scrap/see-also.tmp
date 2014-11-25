@@ -103,11 +103,6 @@ cljs.core/reduce
     cljs.core/apply
     cljs.core/frequencies
 
-cljs.core/for
-    cljs.core/doseq
-    cljs.core/doall
-    cljs.core/recur
-
 cljs.core/doseq
     cljs.core/doall
     cljs.core/dorun
@@ -419,24 +414,6 @@ cljs.core/frequencies
 cljs.core/group-by
     cljs.core/partition-by
     cljs.core/frequencies
-
-cljs.core/distinct
-    cljs.core/distinct?
-
-cljs.core/filter
-    cljs.core/remove
-    cljs.core/keep
-
-cljs.core/remove
-    cljs.core/filter
-
-cljs.core/concat
-    cljs.core/conj
-    cljs.core/into
-
-cljs.core/lazy-cat
-    cljs.core/lazy-seq
-    cljs.core/concat
 
 cljs.core/mapcat
     cljs.core/map

@@ -206,7 +206,6 @@ function convertSectionIntoArray(s) {
 function parseDescription(d) {
   return marked(d)
     .trim()
-    .replace(/\n/g, ' ')
     .replace(/<\/p> <p>/g, '</p><p>');
 }
 
@@ -444,7 +443,6 @@ grunt.registerTask('build-cheatsheet', [
   'less',
   'build-docs',
   'copy:cheatsheet',
-  'squeeze-classes',
   'hash-cheatsheet'
 ]);
 
