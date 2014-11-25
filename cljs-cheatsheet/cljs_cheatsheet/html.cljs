@@ -12,7 +12,7 @@
 (def clj-string-ns "clojure.string")
 (def clj-set-ns "clojure.set")
 
-(def inline-tooltip-style "margin-left: 2px; vertical-align: baseline;")
+(def literal-info-tooltip-style "margin-left: 2px; vertical-align: baseline;")
 
 ;;------------------------------------------------------------------------------
 ;; Helpers
@@ -22,7 +22,7 @@
   ([tt-id] (tt-icon tt-id nil))
   ([tt-id style]
     [:span.tooltip-link-0e91b
-      {:data-tooltip-id tt-id
+      {:data-info-id tt-id
        :style (if style style)}
       "&#xf05a;"])) ;; NOTE: this is FontAwesome's "fa-info-circle"
 
@@ -125,7 +125,7 @@
           [:td.label-9e0b7 "Create"]
           [:td.body-885f4
             [:div.row-5dec8 "#(...) &rarr; (fn [args] (...))"
-              (tt-icon "function-shorthand" inline-tooltip-style)]
+              (tt-icon "function-shorthand" literal-info-tooltip-style)]
             (fn-link "fn")
             (fn-link "defn")
             (fn-link "defn-")
@@ -442,7 +442,7 @@
           [:td.body-885f4
             [:div.row-5dec8
               "(my-vec idx) &rarr; (" (inside-fn-link "nth") " my-vec idx)"
-              (tt-icon "vector-as-fn" inline-tooltip-style)]
+              (tt-icon "vector-as-fn" literal-info-tooltip-style)]
             (fn-link "get")
             (fn-link "peek")]]
         [:tr.odd-372e6
@@ -479,7 +479,7 @@
           [:td.body-885f4
             [:div.row-5dec8
               "(my-set itm) &rarr; (" (inside-fn-link "get") " my-set itm)"
-              (tt-icon "set-as-fn" inline-tooltip-style)]
+              (tt-icon "set-as-fn" literal-info-tooltip-style)]
             (fn-link "contains?")]]
         [:tr.odd-372e6
           [:td.label-9e0b7 "'Change'"]
@@ -522,7 +522,7 @@
           [:td.body-885f4
             [:div.row-5dec8
               "(:key my-map) &rarr; (" (inside-fn-link "get") " my-map :key)"
-              (tt-icon "keywords-as-fn" inline-tooltip-style)]
+              (tt-icon "keywords-as-fn" literal-info-tooltip-style)]
             (fn-link "get-in")
             (fn-link "contains?")
             (fn-link "find")
@@ -1009,13 +1009,16 @@
       [:div.related-links-f8e49
         (map #(related-links-for-ns % r2) namespaces)])))
 
-(hiccups/defhtml symbol-tooltip-inner [d]
-  (let [desc-html (:description-html d)
-        symbol-name (:name d)
-        ns1 (:namespace d)
-        related (:related d)
-        signature (:signature d)]
-    (list
+(hiccups/defhtml inline-tooltip [tt]
+  (let [desc-html (:description-html tt)
+        id (:id tt)
+        symbol-name (:name tt)
+        ns1 (:namespace tt)
+        related (:related tt)
+        signature (:signature tt)]
+    [:div.inline-tooltip-8ca2a
+      {:id id
+       :style "display:none"}
       [:h4.tooltip-hdr-db7c5
         (when-not (= cljs-core-ns ns1)
           [:span.namespace-2e700 ns1 "/"])
@@ -1024,10 +1027,7 @@
         (map-indexed #(code-signature %1 %2 symbol-name) signature)]
       [:div.description-26a4d desc-html]
       (when (and related (first related) (not (blank? (first related))))
-        (related-links related)))))
-
-(hiccups/defhtml symbol-tooltip-shell []
-  [:div#symbolTooltip.symbol-tooltip-8ca2a {:style "display:none"}])
+        (related-links related))]))
 
 ;;------------------------------------------------------------------------------
 ;; Header and Footer
@@ -1189,5 +1189,4 @@
   (two-col-layout)
   (one-col-layout)
   (footer)
-  (info-tooltips)
-  (symbol-tooltip-shell))
+  (info-tooltips))
