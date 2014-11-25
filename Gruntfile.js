@@ -1,4 +1,5 @@
-var marked = require('marked'),
+var fs = require('fs'),
+  marked = require('marked'),
   md5 = require('MD5');
 
 module.exports = function(grunt) {
@@ -98,6 +99,68 @@ function snowflakeCount() {
 
   console.log("Classes found in one file but not the other:");
   console.log( difference(jsClasses, cssClasses) );
+}
+
+// http://tinyurl.com/looyyvc
+function hexavigesimal(a) {
+  a += 1;
+  var c = 0;
+  var x = 1;
+  while (a >= x) {
+    c++;
+    a -= x;
+    x *= 26;
+  }
+
+  var s = "";
+  for (var i = 0; i < c; i++) {
+    s = "abcdefghijklmnopqrstuvwxyz".charAt(a % 26) + s;
+    a = Math.floor(a/26);
+  }
+
+  return s;
+}
+
+// given a unique array of class names, returns an object of them 
+// mapped to short versions
+// input:  ["foo-91c46", "bar-aedf3", "baz-2a44d", etc]
+// output: {"foo-91c46":"a", "bar-aedf3":"b", "baz-2a44d":"c", etc}
+function shrinkClassNames(classes, prefix) {
+  if (! prefix) {
+    prefix = "";
+  }
+
+  var o = {};
+  for (var i = 0; i < classes.length; i++) {
+    o[ classes[i] ] = prefix + hexavigesimal(i);
+  }
+  return o;
+}
+
+function squeezeClasses() {
+  var cssFile = '00-publish/css/main.min.css',
+    cssClasses = extractSnowflakeClasses(cssFile),
+    cssContents = grunt.file.read(cssFile),
+    jsFile = '00-publish/js/cheatsheet.min.js',
+    jsClasses = extractSnowflakeClasses(jsFile),
+    jsContents = grunt.file.read(jsFile),
+    allClasses = keys(arrToObj(cssClasses.concat(jsClasses))).sort(),
+    squeezedClasses = shrinkClassNames(allClasses);
+
+  for (var i in squeezedClasses) {
+    if (squeezedClasses.hasOwnProperty(i) !== true) continue;
+    var regex = new RegExp(i, "g");
+
+    if (jsContents.search(regex) === -1) {
+      console.log("class \"" + i + "\" not found in cheatsheet.min.js");
+    }
+
+    cssContents = cssContents.replace(regex, squeezedClasses[i]);
+    jsContents = jsContents.replace(regex, squeezedClasses[i]);
+  }
+
+  grunt.file.write(cssFile, cssContents);
+  grunt.file.write(jsFile, jsContents);
 }
 
 //------------------------------------------------------------------------------
@@ -208,8 +271,39 @@ function validDocObj(obj) {
          obj.hasOwnProperty("description");
 }
 
+function parsedStatus(parsed, skipped) {
+  var msg = 'Parsed ' + parsed + ' files';
+
+  if (skipped !== 0) {
+    msg += ', skipped ' + skipped;
+  }
+
+  msg += '.';
+
+  return msg;
+}
+
+// http://tinyurl.com/nxszt3y
+function bytes (b) {
+  var tb = ((1 << 30) * 1024), gb = 1 << 30, mb = 1 << 20, kb = 1 << 10, abs = Math.abs(b);
+  if (abs >= tb) return (Math.round(b / tb * 100) / 100) + 'tb';
+  if (abs >= gb) return (Math.round(b / gb * 100) / 100) + 'gb';
+  if (abs >= mb) return (Math.round(b / mb * 100) / 100) + 'mb';
+  if (abs >= kb) return (Math.round(b / kb * 100) / 100) + 'kb';
+  return b + 'b';
+}
+
+function filesize(filename) {
+ var stats = fs.statSync(filename),
+   size = stats["size"];
+
+ return bytes(size);
+}
+
 function buildDocs() {
-  var docs = {};
+  var docs = {},
+    parsed = 0,
+    skipped = 0;
 
   grunt.file.recurse("docs", function(abspath) {
     // skip non .cljsdoc files
@@ -219,7 +313,13 @@ function buildDocs() {
       obj = parseDocFileIntoObject(fileContent);
 
     // quick sanity check that the file is in a good format
-    if (validDocObj(obj) !== true) return;
+    if (validDocObj(obj) !== true) {
+      skipped++;
+      grunt.log.error("Skipped file '" + abspath + "'. Invalid format.");
+      return;
+    }
+
+    parsed++;
 
     // clean and transform the data
     obj = transformObjToDocs(obj);
@@ -227,7 +327,12 @@ function buildDocs() {
     docs[obj["full-name"]] = obj;
   });
 
-  grunt.file.write("public/cheatsheet/docs.json", JSON.stringify(docs));
+  var docsFile = 'public/cheatsheet/docs.json';
+  grunt.file.write(docsFile, JSON.stringify(docs));
+
+  // log status
+  grunt.log.writeln(parsedStatus(parsed, skipped));
+  grunt.log.writeln('Created ' + docsFile + ' (' + filesize(docsFile) + ')');
 }
 
 //------------------------------------------------------------------------------
@@ -289,6 +394,12 @@ grunt.initConfig({
 
 });
 
+function cheatsheetSanityCheck() {
+  if (! grunt.file.exists('public/js/cheatsheet.min.js')) {
+    grunt.fail.warn('Could not find public/js/cheatsheet.min.js! Aborting...');
+  }
+}
+
 function hashCheatsheetFiles() {
   var cssFile = grunt.file.read('00-publish/css/main.min.css'),
     cssHash = md5(cssFile).substr(0, 8),
@@ -308,6 +419,12 @@ function hashCheatsheetFiles() {
   grunt.file.write('00-publish/cheatsheet/index.html',
     htmlFile.replace('main.min.css', 'main.min.' + cssHash + '.css')
     .replace('cheatsheet.min.js', 'cheatsheet.min.' + jsHash + '.js'));
+
+  // show some output
+  grunt.log.writeln('00-publish/css/main.min.css → ' +
+                    '00-publish/css/main.min.' + cssHash + '.css');
+  grunt.log.writeln('00-publish/js/cheatsheet.min.js → ' +
+                    '00-publish/js/cheatsheet.min.' + jsHash + '.js');
 }
 
 // load tasks from npm
@@ -317,13 +434,17 @@ grunt.loadNpmTasks('grunt-contrib-less');
 grunt.loadNpmTasks('grunt-contrib-watch');
 
 grunt.registerTask('build-docs', buildDocs);
+grunt.registerTask('cheatsheet-sanity-check', cheatsheetSanityCheck);
 grunt.registerTask('hash-cheatsheet', hashCheatsheetFiles);
+grunt.registerTask('squeeze-classes', squeezeClasses);
 
 grunt.registerTask('build-cheatsheet', [
+  'cheatsheet-sanity-check',
   'clean:pre',
   'less',
   'build-docs',
   'copy:cheatsheet',
+  'squeeze-classes',
   'hash-cheatsheet'
 ]);
 
