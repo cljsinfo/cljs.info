@@ -86,18 +86,6 @@ cljs.core/or
     cljs.core/and
     cljs.core/if
 
-cljs.core/map
-    cljs.core/map-indexed
-    cljs.core/pmap
-    cljs.core/amap
-    cljs.core/mapcat
-    cljs.core/keep
-    cljs.core/juxt
-
-cljs.core/map-indexed
-    cljs.core/map
-    cljs.core/keep-indexed
-
 cljs.core/reduce
     cljs.core/reductions
     cljs.core/apply
@@ -410,101 +398,6 @@ cljs.core/sorted-map-by
 cljs.core/frequencies
     cljs.core/group-by
     cljs.core/distinct
-
-cljs.core/group-by
-    cljs.core/partition-by
-    cljs.core/frequencies
-
-cljs.core/nthrest
-    cljs.core/drop
-    cljs.core/nthnext
-    cljs.core/nth
-
-cljs.core/fnext
-    cljs.core/ffirst
-    cljs.core/second
-
-cljs.core/drop
-    cljs.core/take
-    cljs.core/drop-last
-    cljs.core/drop-while
-    cljs.core/nthnext
-    cljs.core/nthrest
-
-cljs.core/drop-while
-    cljs.core/take-while
-    cljs.core/split-with
-
-cljs.core/take-last
-    cljs.core/last
-    cljs.core/butlast
-    cljs.core/drop-last
-
-cljs.core/take
-    cljs.core/drop
-    cljs.core/take-while
-    cljs.core/take-last
-    cljs.core/take-nth
-
-cljs.core/take-while
-    cljs.core/drop-while
-    cljs.core/split-with
-
-cljs.core/butlast
-    cljs.core/first
-    cljs.core/rest
-    cljs.core/last
-    cljs.core/next
-    cljs.core/drop-last
-    cljs.core/take-last
-
-cljs.core/drop-last
-    cljs.core/drop
-    cljs.core/drop-while
-
-cljs.core/partition
-    cljs.core/partition-all
-    cljs.core/split-at
-    cljs.core/partition-by
-
-cljs.core/partition-all
-    cljs.core/partition
-    cljs.core/partition-by
-
-cljs.core/partition-by
-    cljs.core/partition
-    cljs.core/partition-all
-    cljs.core/group-by
-
-cljs.core/split-at
-    cljs.core/split-with
-    clojure.string/split
-
-cljs.core/split-with
-    cljs.core/split-at
-    clojure.string/split
-    cljs.core/take-while
-    cljs.core/drop-while
-
-
-cljs.core/reverse
-    cljs.core/rseq
-
-cljs.core/sort
-    cljs.core/sort-by
-
-cljs.core/sort-by
-    cljs.core/sort
-    cljs.core/compare
-
-cljs.core/compare
-    cljs.core/sort-by
-    cljs.core/sorted-set-by
-    cljs.core/sorted-map-by
-
-cljs.core/pmap
-    cljs.core/map
-    cljs.core/future
 
 cljs.core/ffirst
     cljs.core/first

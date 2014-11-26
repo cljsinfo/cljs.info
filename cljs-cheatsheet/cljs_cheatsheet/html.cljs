@@ -658,12 +658,10 @@
           [:td.label-9e0b7 "Process Items"]
           [:td.body-885f4
             (fn-link "map")
-            (fn-link "pmap")
             (fn-link "map-indexed")
             (fn-link "mapcat")
             (fn-link "for")
-            (fn-link "replace")
-            (fn-link "seque")]]]]])
+            (fn-link "replace")]]]]])
 
 (hiccups/defhtml use-seq-section []
   [:div.section-31efe
