@@ -1,0 +1,14 @@
+===== Function
+cljs.core/ffirst
+
+===== Signature
+[coll]
+
+===== Description
+
+Same as `(first (first coll))`.
+
+===== Related
+cljs.core/first
+cljs.core/fnext
+cljs.core/nfirst

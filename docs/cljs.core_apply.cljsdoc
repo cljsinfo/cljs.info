@@ -1,0 +1,21 @@
+===== Function
+cljs.core/apply
+
+===== Signature
+[f args]
+[f x args]
+[f x y args]
+[f x y z args]
+[f a b c d & args]
+
+===== Description
+
+Applies function `f` to the argument list formed by prepending intervening
+arguments to `args`.
+
+===== Related
+cljs.core/map
+
+===== TODO
+
+This needs an example.

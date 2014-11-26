@@ -58,9 +58,6 @@ cljs.core/when-let
     cljs.core/if
     cljs.core/when-first
 
-cljs.core/when-first
-    cljs.core/when-let
-
 cljs.core/if-let
     cljs.core/when-let
     cljs.core/if
@@ -85,17 +82,6 @@ cljs.core/and
 cljs.core/or
     cljs.core/and
     cljs.core/if
-
-cljs.core/reduce
-    cljs.core/reductions
-    cljs.core/apply
-    cljs.core/frequencies
-
-cljs.core/doseq
-    cljs.core/doall
-    cljs.core/dorun
-    cljs.core/for
-    cljs.core/dotimes
 
 cljs.core/dotimes
     cljs.core/repeat
@@ -141,9 +127,6 @@ cljs.core/every-pred
 cljs.core/some-fn
     cljs.core/every-pred
     cljs.core/some
-
-cljs.core/apply
-    cljs.core/map
 
 cljs.core/->
     cljs.core/->>
@@ -378,9 +361,6 @@ cljs.core/disj
     cljs.core/disj!
     clojure.set/difference
 
-cljs.core/zipmap
-    cljs.core/interleave
-
 cljs.core/sorted-map
     cljs.core/sorted-map-by
     cljs.core/subseq
@@ -398,40 +378,6 @@ cljs.core/sorted-map-by
 cljs.core/frequencies
     cljs.core/group-by
     cljs.core/distinct
-
-cljs.core/ffirst
-    cljs.core/first
-    cljs.core/fnext
-    cljs.core/nfirst
-
-cljs.core/nfirst
-    cljs.core/next
-
-cljs.core/nthnext
-    cljs.core/nth
-    cljs.core/drop
-    cljs.core/nthrest
-
-cljs.core/rand-nth
-    cljs.core/rand
-
-cljs.core/max-key
-    cljs.core/max
-    cljs.core/min-key
-
-cljs.core/min-key
-    cljs.core/min
-    cljs.core/max-key
-
-cljs.core/reductions
-    cljs.core/reduce
-
-cljs.core/into-array
-    cljs.core/to-array
-    cljs.core/make-array
-
-cljs.core/to-array-2d
-    cljs.core/to-array
 
 cljs.core/dorun
     cljs.core/doall
