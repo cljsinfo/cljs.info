@@ -98,6 +98,8 @@
 @linkBlue: #20c;
 @tooltipBackgroundColor: #333;
 
+@insideTooltipLinkColor: #ccf;
+
 @oddColor: #e2e2e2;
 @evenColor: #f1f1f1;
 @darkEvenColor: #555;
@@ -420,6 +422,15 @@ em {
   width: 400px;
   z-index: 10;
 
+  a {
+    color: @insideTooltipLinkColor;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
   pre {
     background-color: @darkEvenColor;
     margin: 0;
@@ -567,7 +578,7 @@ em {
 }
 
 .related-link-674b6 {
-  color: #ccf;
+  color: @insideTooltipLinkColor;
   display: inline-block;
   font-family: "Droid Sans Mono";
   font-size: 13px;
