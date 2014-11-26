@@ -379,13 +379,6 @@ cljs.core/frequencies
     cljs.core/group-by
     cljs.core/distinct
 
-cljs.core/dorun
-    cljs.core/doall
-
-cljs.core/doall
-    cljs.core/dorun
-    cljs.core/doseq
-
 cljs.core/realized?
     cljs.core/promise
     cljs.core/delay
