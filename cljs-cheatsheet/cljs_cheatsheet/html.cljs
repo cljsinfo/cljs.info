@@ -1015,7 +1015,7 @@
         ns1 (extract-namespace full-name)
         related (:related tt)
         signature (:signature tt)
-        type (if (:type tt) (:type tt) "function")]
+        type (if (:type tt) (:type tt))]
     [:div.inline-tooltip-8ca2a
       {:id id
        :style "display:none"}
@@ -1023,9 +1023,7 @@
         (when-not (= cljs-core-ns ns1)
           [:span.namespace-2e700 ns1 "/"])
         (html-encode symbol-name)
-        ;; TODO: need to figure out how to show the type here
-        ;;[:span.type-7920d type]
-        ]
+        (when type [:span.type-7920d type])]
       [:div.signature-4086a
         (map-indexed #(code-signature %1 %2 symbol-name) signature)]
       [:div.description-26a4d desc-html]
