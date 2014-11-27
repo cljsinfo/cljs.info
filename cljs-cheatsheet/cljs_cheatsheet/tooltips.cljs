@@ -148,15 +148,15 @@
 (defn- on-change-tooltip [_ _ old-tt new-tt]
   ;; close tooltip
   (when (and old-tt (not= old-tt new-tt))
-    (fade-out-tooltip! old-tt (= :inline (:type old-tt))))
+    (fade-out-tooltip! old-tt (= :inline (:tt-type old-tt))))
 
   ;; open info tooltip
-  (when (and new-tt (= (:type new-tt) :info))
+  (when (and new-tt (= (:tt-type new-tt) :info))
     (position-info-tooltip! new-tt)
     (fade-in-tooltip! new-tt))
 
   ;; open inline tooltip
-  (when (and new-tt (= (:type new-tt) :inline))
+  (when (and new-tt (= (:tt-type new-tt) :inline))
     (create-inline-tooltip! new-tt)
     (position-inline-tooltip! new-tt)
     (fade-in-tooltip! new-tt)))
@@ -221,7 +221,7 @@
         :$icon-el $icon-el
         :id (str "tooltip-" info-id)
         :info-id info-id
-        :type :info }))))
+        :tt-type :info }))))
 
 (defn- mouseenter-link [js-evt]
   (let [link-el (aget js-evt "currentTarget")
@@ -235,7 +235,7 @@
       (reset! active-tooltip (merge tooltip-data {
         :id (uuid)
         :$link-el $link-el
-        :type :inline })))))
+        :tt-type :inline })))))
 
 ; (defn- touchend-body [js-evt]
 ;   (hide-all-info-tooltips!))

@@ -209,25 +209,29 @@ function parseDescription(d) {
     .replace(/<\/p> <p>/g, '</p><p>');
 }
 
-function transformObjToDocs(fn) {
-  // extract namespace and function name from the full name
-  fn["full-name"] = fn["function"];
-  fn["namespace"] = extractNamespace(fn["function"]);
-  fn["name"] = extractName(fn["function"]);
-  delete fn["function"];
+function transformObjToDocs(obj) {
+  // TODO: rename "function" to "name" in the cljsdoc files
+  obj["full-name"] = obj["function"];
+  delete obj["function"];
 
   // parse description
-  fn["description-html"] = parseDescription(fn["description"]);
-  delete fn["description"];
+  obj["description-html"] = parseDescription(obj["description"]);
+  delete obj["description"];
 
-  // convert some sections into arrays
-  fn.signature = convertSectionIntoArray(fn.signature);
-
-  if (fn.hasOwnProperty("related") === true) {
-    fn.related = convertSectionIntoArray(fn.related);
+  // type is either "special form", "macro", or "function"
+  // "function" is the default if not specified
+  if (obj["type"] !== "special form" && obj["type"] !== "macro") {
+    delete obj["type"];
   }
 
-  return fn;
+  // convert some sections into arrays
+  obj.signature = convertSectionIntoArray(obj.signature);
+
+  if (obj.hasOwnProperty("related") === true) {
+    obj.related = convertSectionIntoArray(obj.related);
+  }
+
+  return obj;
 }
 
 function parseDocFileIntoObject(fileContent) {
