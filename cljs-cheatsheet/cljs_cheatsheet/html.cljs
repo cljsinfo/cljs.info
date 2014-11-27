@@ -1010,17 +1010,22 @@
 (hiccups/defhtml inline-tooltip [tt]
   (let [desc-html (:description-html tt)
         id (:id tt)
-        symbol-name (:name tt)
-        ns1 (:namespace tt)
+        full-name (:full-name tt)
+        symbol-name (extract-symbol full-name)
+        ns1 (extract-namespace full-name)
         related (:related tt)
-        signature (:signature tt)]
+        signature (:signature tt)
+        type (if (:type tt) (:type tt) "function")]
     [:div.inline-tooltip-8ca2a
       {:id id
        :style "display:none"}
       [:h4.tooltip-hdr-db7c5
         (when-not (= cljs-core-ns ns1)
           [:span.namespace-2e700 ns1 "/"])
-        (html-encode symbol-name)]
+        (html-encode symbol-name)
+        ;; TODO: need to figure out how to show the type here
+        ;;[:span.type-7920d type]
+        ]
       [:div.signature-4086a
         (map-indexed #(code-signature %1 %2 symbol-name) signature)]
       [:div.description-26a4d desc-html]
