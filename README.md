@@ -17,6 +17,9 @@ tutorials, ClojureScript-specific docs, etc.
     # install node.js dependencies
     npm install
 
+    # generate api docs
+    ./gen-docs.sh
+
     # compile LESS file
     grunt
 

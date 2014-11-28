@@ -27,3 +27,5 @@ publish.sh
 
 # ignore diffs
 *.diff
+
+/docs-generated
