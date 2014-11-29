@@ -27,6 +27,22 @@ TODO: The role of a language in a program. The importance of defaults in
 programming languages and environments. Defaults inform convention and set the 
 tone for everything else.
 
+Why should I use ClojureScript instead of &lt;other language that compiles to JS&gt;?
+
+The thing that distinguishes ClojureScript from other compile-to-js languages
+are the powerful ideas behind Clojure. Specifically, it's excellent defaults:
+pure functions, explicit state management, immutable data, persistent data
+structures, and powerful data types.
+
+When evaluating programming languages, it is popular to focus on syntax
+differences instead of conceptual differences. The abstractions you use to build
+your program matter far more than the syntax of the language.
+
+Many other compile-to-js languages are mostly syntax sugar over JS or add a
+handful of ideas to JavaScript. Few languages change the defaults of JS,
+resulting in programs that have similar structure (and similar bugs and
+problems) despite being written in a "different language".
+
 ## When is JavaScript a better choice than ClojureScript?
 
 Sometimes the inverse of a question can provide insight to the original (TODO:
@@ -56,6 +72,26 @@ using, it's your development environment
 * I won't be able to hire anyone who knows ClojureScript. Answer: don't hire for
  specific technology skill; hire good developers and teach them.
 
+## What is the best way to learn ClojureScript? I'm sold on the ideas, but intimidated by the syntax.
+
+TODO: address intimidation concerns, mention simplicity of syntax
+maybe the "best way to learn" and "intimidated" are two different sections
+
+Learning ClojureScript is a combination of understanding the syntax (15 minutes)
+and familiarizing yourself with the functions available in the core library. The
+ClojureScript core library is extensive and contains a wealth of functions that
+will make up the backbone of any program. Many popular JavaScript libraries can
+be replaced with functions from ClojureScript core (underscore.js is a good
+example). It is worth exploring and familiarizing yourself with what's
+available. (link to cheatsheet)
+
+Like any language, the best way to learn ClojureScript is to write something in
+it. A mix of theory and practice will get you a long way.
+
+If you get stuck, there are many excellent community resources (TODO: links).
+The ClojureScript community is full of smart people and has a reputation for
+being friendly.
+
 ## But JavaScript has so many libraries!
 
 You can use *any* JavaScript library from ClojureScript. No exceptions.
@@ -68,9 +104,20 @@ Yes. See examples 4000, 4001 and this tutorial.
 
 Yes.
 
+The longer answer to this question is that it is possible to write slow code in
+any programming language and ClojureScript is no exception. The good news is
+that modern JavaScript engines are amazingly fast and ClojureScript data types
+and core library functions are designed to take full advantage of these engine's
+performance.
+
 TODO: longer answer explaining that you can write slow code in any language and
 that often architecture decisions effect speed much more than implementation,
 etc
+
+Program architecture decisions often effect program speed more than
+implementation details, and persistent data structure can be much faster than
+their mutable equivalents for certain kinds of operations. (link to David
+Nolen's talk about this)
 
 Persistent data structures can be much faster than their mutable equivalents
 for certain kinds of operations. (link to David Nolen's talk about this)
