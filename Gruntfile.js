@@ -209,10 +209,20 @@ function parseDescription(d) {
     .replace(/<\/p> <p>/g, '</p><p>');
 }
 
-function transformObjToDocs(obj) {
-  // TODO: rename "function" to "name" in the cljsdoc files
-  obj["full-name"] = obj["function"];
-  delete obj["function"];
+function transformObjToDocs(obj, autoDocObj) {
+  if (autoDocObj) {
+    obj["name"]      = autoDocObj["name"];
+    obj["type"]      = autoDocObj["type"];
+    obj["ns"]        = autoDocObj["ns"];
+    obj["docstring"] = autoDocObj["docstring"];
+    obj["source"]    = autoDocObj["source"];
+    obj["github"]    = autoDocObj["github"];
+    obj["signature"] = autoDocObj["signature"];
+  }
+
+  // rename "name" to "full-name"
+  obj["full-name"] = obj["name"];
+  delete obj["name"];
 
   // parse description
   obj["description-html"] = parseDescription(obj["description"]);
@@ -269,7 +279,7 @@ function parseDocFileIntoObject(fileContent) {
 
 // quick check that the file has everything we are expecting
 function validDocObj(obj) {
-  return obj.hasOwnProperty("function") &&
+  return obj.hasOwnProperty("name") &&
          obj.hasOwnProperty("signature") &&
          obj.hasOwnProperty("description");
 }
@@ -308,24 +318,36 @@ function buildDocs() {
     parsed = 0,
     skipped = 0;
 
-  grunt.file.recurse("docs", function(abspath) {
+  grunt.file.recurse("docs", function(docPath) {
     // skip non .cljsdoc files
-    if (abspath.search(/\.cljsdoc$/) === -1) return;
+    if (docPath.search(/\.cljsdoc$/) === -1) return;
 
-    var fileContent = grunt.file.read(abspath),
-      obj = parseDocFileIntoObject(fileContent);
+    var content = grunt.file.read(docPath),
+      docObj = parseDocFileIntoObject(content);
 
     // quick sanity check that the file is in a good format
-    if (validDocObj(obj) !== true) {
+    if (validDocObj(docObj) !== true) {
       skipped++;
-      grunt.log.error("Skipped file '" + abspath + "'. Invalid format.");
+      grunt.log.error("Skipped file '" + docPath + "'. Invalid format.");
       return;
     }
 
     parsed++;
 
+    // load auto-generated supplement doc
+    var autoDocPath = docPath.replace(/^docs/, "docs-generated"),
+      autoDocObj = null;
+
+    if (grunt.file.exists(autoDocPath)) {
+      content = grunt.file.read(autoDocPath);
+      autoDocObj = parseDocFileIntoObject(content);
+    }
+    else {
+      grunt.log.error("No auto-doc found: " + autoDocPath);
+    }
+
     // clean and transform the data
-    obj = transformObjToDocs(obj);
+    var obj = transformObjToDocs(docObj, autoDocObj);
 
     docs[obj["full-name"]] = obj;
   });
