@@ -5,8 +5,9 @@ An upcoming website for ClojureScript at <http://cljs.info>.
 ## Goal
 
 Make an awesome website for ClojureScript. Right now the project mostly consists
-of a [cheatsheet] (see below), and the long-term plan is to have a catchy homepage,
-tutorials, ClojureScript-specific docs, etc.
+of a [cheatsheet](http://cljs.info/cheatsheet) (screenshot below), and the
+long-term plan is to have a catchy homepage, tutorials, ClojureScript-specific
+docs, etc.
 
 ![cheatsheet-screenshot](screenshots/cheatsheet00.png)
 
