@@ -2,7 +2,6 @@
   (:require-macros [hiccups.core :as hiccups])
   (:require
     hiccups.runtime
-    [cljsinfo-server.pages.cheatsheet :as csheet]
     [cljsinfo-server.config :refer [config]]
     [cljsinfo-server.util :as util]))
 
@@ -65,10 +64,14 @@
   (site-footer "homepage"))
 
 ;;------------------------------------------------------------------------------
-;; Cheatsheet
+;; Doc Pages
 ;;------------------------------------------------------------------------------
 
-(hiccups/defhtml cheatsheet []
-  (site-head "ClojureScript Cheatsheet")
-  (csheet/page)
-  (site-footer "cheatsheet"))
+(hiccups/defhtml doc-body [d]
+  [:div "docs body"]
+  )
+
+(hiccups/defhtml doc-page [d]
+  (site-head "cljs.core/foo")
+  (doc-body d)
+  (site-footer))

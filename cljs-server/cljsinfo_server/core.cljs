@@ -21,8 +21,8 @@
 (defn- homepage [_js-req js-res]
   (.send js-res (html/homepage)))
 
-(defn- cheatsheet [_js-req js-res]
-  (.send js-res (html/cheatsheet)))
+(defn- doc-page [_js-req js-res]
+  (.send js-res (html/doc-page)))
 
 ;;------------------------------------------------------------------------------
 ;; Main
@@ -38,8 +38,7 @@
 
       ;; pages
       (.get "/" homepage)
-
-      ;;(.get "/cheatsheet" cheatsheet)
+      (.get "/docs/foo" doc-page)
 
       ;; serve static files out of /public
       (.use (.static js-express (str js/__dirname "/public"))))
@@ -49,6 +48,6 @@
       (.listen server (:port config) (:host config))
       (.listen server (:port config)))
 
-    (util/tlog "clojurescript.info server listening on port " (:port config))))
+    (util/tlog "cljs.info server listening on port " (:port config))))
 
 (set! *main-cli-fn* -main)
