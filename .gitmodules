@@ -1,6 +1,6 @@
 [submodule "scripts/get-symbol-metadata/code-to-parse/clojure"]
-	path = scripts/get-symbol-metadata/repos/clojure
+	path = scripts/cljs-api-parser/repos/clojure
 	url = https://github.com/clojure/clojure
 [submodule "scripts/get-symbol-metadata/code-to-parse/clojurescript"]
-	path = scripts/get-symbol-metadata/repos/clojurescript
+	path = scripts/cljs-api-parser/repos/clojurescript
 	url = https://github.com/clojure/clojurescript.git

@@ -3,5 +3,5 @@
 git submodule init
 git submodule update
 
-cd scripts/get-symbol-metadata
+cd scripts/cljs-api-parser
 lein run
