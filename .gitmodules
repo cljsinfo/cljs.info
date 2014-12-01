@@ -4,3 +4,6 @@
 [submodule "scripts/get-symbol-metadata/code-to-parse/clojurescript"]
 	path = scripts/cljs-api-parser/repos/clojurescript
 	url = https://github.com/clojure/clojurescript.git
+[submodule "scripts/cljs-api-parser/repos/core.async"]
+	path = scripts/cljs-api-parser/repos/core.async
+	url = https://github.com/clojure/core.async.git
