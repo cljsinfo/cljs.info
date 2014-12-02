@@ -13,6 +13,8 @@ pom.xml
 00-publish
 app.js
 config.json
+docs.json
+generated-docs.json
 /node_modules/
 /public/cheatsheet/docs.json
 /public/css/main.min.css

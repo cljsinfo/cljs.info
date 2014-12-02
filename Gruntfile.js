@@ -121,7 +121,7 @@ function hexavigesimal(a) {
   return s;
 }
 
-// given a unique array of class names, returns an object of them 
+// given a unique array of class names, returns an object of them
 // mapped to short versions
 // input:  ["foo-91c46", "bar-aedf3", "baz-2a44d", etc]
 // output: {"foo-91c46":"a", "bar-aedf3":"b", "baz-2a44d":"c", etc}
@@ -209,17 +209,7 @@ function parseDescription(d) {
     .replace(/<\/p> <p>/g, '</p><p>');
 }
 
-function transformObjToDocs(obj, autoDocObj) {
-  if (autoDocObj) {
-    obj["name"]      = autoDocObj["name"];
-    obj["type"]      = autoDocObj["type"];
-    obj["ns"]        = autoDocObj["ns"];
-    obj["docstring"] = autoDocObj["docstring"];
-    obj["source"]    = autoDocObj["source"];
-    obj["github"]    = autoDocObj["github"];
-    obj["signature"] = autoDocObj["signature"];
-  }
-
+function transformDocObj(obj) {
   // rename "name" to "full-name"
   obj["full-name"] = obj["name"];
   delete obj["name"];
@@ -318,42 +308,64 @@ function buildDocs() {
     parsed = 0,
     skipped = 0;
 
-  grunt.file.recurse("docs", function(docPath) {
+  grunt.file.recurse('docs', function(filePath) {
     // skip non .cljsdoc files
-    if (docPath.search(/\.cljsdoc$/) === -1) return;
+    if (filePath.search(/\.cljsdoc$/) === -1) return;
 
-    var content = grunt.file.read(docPath),
-      docObj = parseDocFileIntoObject(content);
+    var content = grunt.file.read(filePath),
+      obj = parseDocFileIntoObject(content);
 
     // quick sanity check that the file is in a good format
-    if (validDocObj(docObj) !== true) {
+    if (validDocObj(obj) !== true) {
       skipped++;
-      grunt.log.error("Skipped file '" + docPath + "'. Invalid format.");
+      grunt.log.error("Skipped file '" + filePath + "'. Invalid format.");
       return;
     }
 
     parsed++;
 
-    // load auto-generated supplement doc
-    var autoDocPath = docPath.replace(/^docs/, "docs-generated"),
-      autoDocObj = null;
-
-    if (grunt.file.exists(autoDocPath)) {
-      content = grunt.file.read(autoDocPath);
-      autoDocObj = parseDocFileIntoObject(content);
-    }
-    else {
-      grunt.log.error("No auto-doc found: " + autoDocPath);
-    }
-
     // clean and transform the data
-    var obj = transformObjToDocs(docObj, autoDocObj);
+    obj = transformDocObj(obj);
 
-    docs[obj["full-name"]] = obj;
+    docs[ obj["full-name"] ] = obj;
   });
 
-  var docsFile = 'public/cheatsheet/docs.json';
-  grunt.file.write(docsFile, JSON.stringify(docs));
+  var docsFile = 'docs.json',
+    cheatsheetDocsFile = 'public/cheatsheet/docs.json';
+  grunt.file.write(docsFile, JSON.stringify(docs, null, 2));
+  grunt.file.write(cheatsheetDocsFile, JSON.stringify(docs));
+
+  // log status
+  grunt.log.writeln(parsedStatus(parsed, skipped));
+  grunt.log.writeln('Created ' + docsFile + ' (' + filesize(docsFile) + ')');
+  grunt.log.writeln('Created ' + cheatsheetDocsFile + ' (' + filesize(cheatsheetDocsFile) + ')');
+}
+
+function buildGenDocs() {
+  // make sure the generated docs folder exists
+  if (grunt.file.isDir('docs-generated') !== true) {
+    grunt.fail.warn('Could not find /docs-generated folder. Please run ./gen-docs.sh. Aborting...');
+    return;
+  }
+
+  var docs = {},
+    parsed = 0,
+    skipped = 0;
+
+  grunt.file.recurse('docs-generated', function(filePath) {
+    // skip non .cljsdoc files
+    if (filePath.search(/\.cljsdoc$/) === -1) return;
+
+    var content = grunt.file.read(filePath),
+      obj = parseDocFileIntoObject(content);
+
+    parsed++;
+
+    docs[ obj["name"] ] = obj;
+  });
+
+  var docsFile = 'generated-docs.json';
+  grunt.file.write(docsFile, JSON.stringify(docs, null, 2));
 
   // log status
   grunt.log.writeln(parsedStatus(parsed, skipped));
@@ -419,7 +431,7 @@ grunt.initConfig({
 
 });
 
-function cheatsheetSanityCheck() {
+function buildCheatsheetSanityCheck() {
   if (! grunt.file.exists('public/js/cheatsheet.min.js')) {
     grunt.fail.warn('Could not find public/js/cheatsheet.min.js! Aborting...');
   }
@@ -459,12 +471,13 @@ grunt.loadNpmTasks('grunt-contrib-less');
 grunt.loadNpmTasks('grunt-contrib-watch');
 
 grunt.registerTask('build-docs', buildDocs);
-grunt.registerTask('cheatsheet-sanity-check', cheatsheetSanityCheck);
+grunt.registerTask('build-gen-docs', buildGenDocs);
+grunt.registerTask('build-cheatsheet-sanity-check', buildCheatsheetSanityCheck);
 grunt.registerTask('hash-cheatsheet', hashCheatsheetFiles);
 grunt.registerTask('squeeze-classes', squeezeClasses);
 
 grunt.registerTask('build-cheatsheet', [
-  'cheatsheet-sanity-check',
+  'build-cheatsheet-sanity-check',
   'clean:pre',
   'less',
   'build-docs',
