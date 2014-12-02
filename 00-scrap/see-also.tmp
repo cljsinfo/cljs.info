@@ -1,12 +1,3 @@
-cljs.core/defn
-    cljs.core/def
-    cljs.core/defn-
-    cljs.core/defmacro
-    cljs.core/fn
-
-cljs.core/defn-
-    cljs.core/defn
-
 cljs.core/let
     cljs.core/letfn
     cljs.core/if-let
