@@ -27,7 +27,7 @@ and allows for succinct code.
 
 `let` is one of ClojureScript's [special forms](http://clojure.org/special_forms)
 and is a fundamental building block of the language. Many macros rely on `let`s
-binding and scope rules.
+binding syntax and scope rules.
 
 ===== Related
 cljs.core/letfn
