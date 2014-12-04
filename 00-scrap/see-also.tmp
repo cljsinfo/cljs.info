@@ -1,7 +1,3 @@
-cljs.core/let
-    cljs.core/letfn
-    cljs.core/if-let
-
 cljs.core/declare
     cljs.core/def
 
