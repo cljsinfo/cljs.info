@@ -9,7 +9,8 @@ special form
 
 ===== Description
 
-Binds expressions to symbols and makes those symbols available within a scope.
+Binds expressions to symbols and makes those symbols available only within
+`body`.
 
 `bindings` should be a vector with an even number of forms, ie: `[a1 b1, a2 b2,
 a3 b3]`. The first item in a pair (the `a`s) should be a symbol that is assigned
