@@ -1,6 +1,3 @@
-cljs.core/declare
-    cljs.core/def
-
 cljs.core/ns
     cljs.core/use
     cljs.core/require
