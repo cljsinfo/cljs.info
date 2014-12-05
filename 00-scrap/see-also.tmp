@@ -9,26 +9,6 @@ cljs.core/ns
     cljs.core/ns-map
     cljs.core/*ns*
 
-cljs.core/condp
-    cljs.core/cond
-    cljs.core/if
-
-cljs.core/case
-    cljs.core/cond
-    cljs.core/condp
-
-cljs.core/and
-    cljs.core/or
-    cljs.core/if
-
-cljs.core/dotimes
-    cljs.core/repeat
-    cljs.core/for
-    cljs.core/doseq
-
-cljs.core/while
-    cljs.core/loop
-
 cljs.core/nil?
     cljs.core/identity
 
