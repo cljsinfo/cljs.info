@@ -110,6 +110,7 @@
 ;; and tooltips at the bottom of the page (flip up)
 (defn- position-inline-tooltip! [tt]
   (let [$link-el (:$link-el tt)
+        $innerWidth (.-innerWidth js/window)
         offset (.offset $link-el)
         link-x (aget offset "left")
         link-y (aget offset "top")
@@ -118,12 +119,25 @@
         $tooltip-el ($ (str "#" (:id tt)))
         tooltip-height (.outerHeight $tooltip-el)
         tooltip-width (.outerWidth $tooltip-el)
+        tt-width-half (half tooltip-width)
         tooltip-left (- (+ link-x (half link-width)) (half tooltip-width))
-        tooltip-top (+ link-y link-height 4)]
-    ;; position the el
-    (.css $tooltip-el (js-obj
-      "left" tooltip-left
-      "top" tooltip-top))
+        tooltip-top (+ link-y link-height 4)
+        right-column-align (- $innerWidth (+ tooltip-left tt-width-half))]
+
+    ;; position el to align with edge of browser (plus padding) for
+    ;; responsive sizes
+    (if (<= tooltip-left 200)
+      (.css $tooltip-el (js-obj
+        "left" 10
+        "top" tooltip-top))
+      (.css $tooltip-el (js-obj
+        "left" tooltip-left
+        "top" tooltip-top)))
+
+        ;;on right column, if innerWidth - (tooltip-left + tooltip-width/2) >= (tooltip-width/2) : window.innerWidth - tooltip-left - toolip-width/2 = amt to adjust to the left
+
+    (log link-x)
+    (log tooltip-left)
 
     ;; save the bounds of the tooltip and link elements
     ;; NOTE: these numbers allow for a smidge of padding on the outside of the
