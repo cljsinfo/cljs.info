@@ -2,7 +2,7 @@
 cljs.core/contains?
 
 ===== Signature
-[coll v]
+[coll k]
 
 ===== Description
 
