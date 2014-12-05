@@ -9,7 +9,8 @@ macro
 
 ===== Description
 
-When `test` is logical true, binds `test` to `x` and evaluates `body`.
+When `test` is logical true, evaluates `body` with the value of `test` bound to
+`x`.
 
 ===== Related
 cljs.core/if-let
