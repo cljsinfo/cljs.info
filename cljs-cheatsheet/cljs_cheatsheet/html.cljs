@@ -924,7 +924,8 @@
 
   [:div#tooltip-sets.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
-    [:p.info-2e4f9 "Sets are collections of unique values."]]
+    [:p.info-2e4f9 "Sets are collections of unique values, just like in "
+      "mathematics."]]
 
   [:div#tooltip-set-as-fn.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
