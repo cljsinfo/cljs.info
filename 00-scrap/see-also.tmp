@@ -9,14 +9,6 @@ cljs.core/ns
     cljs.core/ns-map
     cljs.core/*ns*
 
-cljs.core/dotimes
-    cljs.core/repeat
-    cljs.core/for
-    cljs.core/doseq
-
-cljs.core/while
-    cljs.core/loop
-
 cljs.core/nil?
     cljs.core/identity
 
