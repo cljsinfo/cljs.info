@@ -9,13 +9,6 @@ cljs.core/ns
     cljs.core/ns-map
     cljs.core/*ns*
 
-cljs.core/when-let
-    cljs.core/if-let
-    cljs.core/when
-    cljs.core/when-not
-    cljs.core/if
-    cljs.core/when-first
-
 cljs.core/if-let
     cljs.core/when-let
     cljs.core/if
@@ -35,10 +28,6 @@ cljs.core/case
 
 cljs.core/and
     cljs.core/or
-    cljs.core/if
-
-cljs.core/or
-    cljs.core/and
     cljs.core/if
 
 cljs.core/dotimes
