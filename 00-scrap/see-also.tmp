@@ -9,11 +9,6 @@ cljs.core/ns
     cljs.core/ns-map
     cljs.core/*ns*
 
-cljs.core/cond
-    cljs.core/condp
-    cljs.core/case
-    cljs.core/if
-
 cljs.core/condp
     cljs.core/cond
     cljs.core/if
