@@ -130,7 +130,7 @@
     ;; link element
     (reset! mousetrap-boxes {
       :link
-        {:x1 (dec link-x)
+        {:x1 (- link-x 2)
          :x2 (+ link-x link-width 2)
          :y1 (dec link-y)
          :y2 (+ link-y link-height 20)} ;; let them mouse down into the tooltip
