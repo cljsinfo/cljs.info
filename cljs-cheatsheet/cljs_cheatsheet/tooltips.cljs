@@ -17,8 +17,7 @@
 (def right-arrow-class "right-arr-d3345")
 (def arrow-classes (str left-arrow-class " " right-arrow-class))
 
-(def min-brwsr-wdth--tt-algn 1460)
-
+(def min-brwsr-wdth-tt-algn 1460)
 (def fade-speed 100)
 
 ;;------------------------------------------------------------------------------
@@ -121,7 +120,6 @@
         $tooltip-el ($ (str "#" (:id tt)))
         tooltip-height (.outerHeight $tooltip-el)
         tooltip-width (.outerWidth $tooltip-el)
-        tt-width-half (half tooltip-width)
         tooltip-left (- (+ link-x (half link-width)) (half tooltip-width))
         tooltip-right (+ (+ link-x (half link-width)) (half tooltip-width))
         tooltip-top (+ link-y link-height 4)
@@ -131,13 +129,13 @@
 
     ;; position the el
     (.css $tooltip-el (js-obj
-        "left" tooltip-left
-        "top" tooltip-top))
+      "left" tooltip-left
+      "top" tooltip-top))
 
     ;; position el to align with left edge of browser (plus padding) or
     ;; center on link if not on edge
     (when (and (<= tooltip-left 200)
-               (< $innerWidth min-brwsr-wdth--tt-algn))
+               (< $innerWidth min-brwsr-wdth-tt-algn))
       (.css $tooltip-el (js-obj
         "left" 10
         "top" tooltip-top)))
@@ -145,7 +143,7 @@
     ;; position el to align with right edge of browser (plus padding) or
     ;; center on link if not on edge
     (when (and (>= tooltip-right (- $innerWidth 25))
-               (< $innerWidth min-brwsr-wdth--tt-algn))
+               (< $innerWidth min-brwsr-wdth-tt-algn))
       (.css $tooltip-el (js-obj
         "left" right-align-position
         "top" tooltip-top)))
