@@ -12,34 +12,6 @@ cljs.core/ns
 cljs.core/nil?
     cljs.core/identity
 
-cljs.core/constantly
-    cljs.core/repeatedly
-
-cljs.core/comp
-    cljs.core/partial
-    cljs.core/juxt
-
-cljs.core/complement
-    cljs.core/not
-
-cljs.core/partial
-    cljs.core/comp
-    cljs.core/juxt
-
-cljs.core/juxt
-    cljs.core/partial
-    cljs.core/comp
-
-cljs.core/memoize
-    cljs.core/delay
-
-cljs.core/every-pred
-    cljs.core/some-fn
-
-cljs.core/some-fn
-    cljs.core/every-pred
-    cljs.core/some
-
 cljs.core/->
     cljs.core/->>
 

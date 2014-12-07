@@ -1,0 +1,28 @@
+===== Name
+cljs.core/comp
+
+===== Signature
+[]
+[f]
+[f g]
+[f g h]
+[f1 f2 f3 & fs]
+
+===== Description
+
+Takes a set of functions (`fn`s) and returns a function that is the composition
+of those functions.
+
+The returned function takes a variable number of arguments, applies the
+rightmost of `fn`s to the arguments, the next `fn` (right-to-left) to the
+result, etc.
+
+`((comp a b c) x y)` => `(a (b (c x y)))`
+
+===== Related
+cljs.core/partial
+cljs.core/juxt
+
+===== TODO
+
+this needs work
