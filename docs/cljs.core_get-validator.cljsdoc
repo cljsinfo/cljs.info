@@ -1,0 +1,13 @@
+===== Name
+cljs.core/get-validator
+
+===== Signature
+[a]
+
+===== Description
+
+Returns the validator function (set by `set-validator!`) from atom `a`.
+
+===== Related
+cljs.core/atom
+cljs.core/set-validator!

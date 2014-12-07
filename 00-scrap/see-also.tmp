@@ -177,35 +177,12 @@ cljs.core/atom
     cljs.core/remove-watch
     cljs.core/set-validator!
 
-cljs.core/deref
-    cljs.core/atom
-    cljs.core/agent
-    cljs.core/ref
-
 cljs.core/swap!
     cljs.core/atom
     cljs.core/reset!
 
-cljs.core/reset!
-    cljs.core/swap!
-    cljs.core/compare-and-set!
-    cljs.core/atom
-
-cljs.core/compare-and-set!
-    cljs.core/atom
-    cljs.core/reset!
-    cljs.core/swap!
-
-cljs.core/add-watch
-    cljs.core/remove-watch
-
 cljs.core/remove-watch
     cljs.core/add-watch
-
-cljs.core/set-validator!
-    cljs.core/atom
-    cljs.core/agent
-    cljs.core/ref
 
 cljs.core/try
     cljs.core/catch
