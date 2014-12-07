@@ -12,9 +12,6 @@ cljs.core/ns
 cljs.core/nil?
     cljs.core/identity
 
-cljs.core/fn
-    cljs.core/defn
-
 cljs.core/constantly
     cljs.core/repeatedly
 
