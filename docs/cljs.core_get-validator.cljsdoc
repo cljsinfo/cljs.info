@@ -6,7 +6,7 @@ cljs.core/get-validator
 
 ===== Description
 
-Returns the validator function (set by `set-validator!`) from atom `a`.
+Returns the validator function for atom `a`.
 
 ===== Related
 cljs.core/atom
