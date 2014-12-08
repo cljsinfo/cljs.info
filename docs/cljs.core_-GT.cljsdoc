@@ -1,0 +1,38 @@
+===== Name
+cljs.core/->
+
+===== Type
+macro
+
+===== Signature
+[x & forms]
+
+===== Description
+
+The thread-first macro "threads" an expression through several forms as the
+second item in a list.
+
+Inserts `x` as the second item in the first form, making a list of it if it is
+not a list already. If there are more forms, inserts the first form as the
+second item in second form, etc.
+
+<table class="code-tbl-9bef6">
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Expands To</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><pre>
+(-> x
+  (a b c)
+  d
+  (x y z))</pre></td>
+      <td><pre>
+(x (d (a x b c)) y z)</pre></td></tr></tbody></table>
+
+===== Related
+cljs.core/->>
+
+===== TODO
+add threading macro animations link here

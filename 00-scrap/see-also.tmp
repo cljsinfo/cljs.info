@@ -12,12 +12,6 @@ cljs.core/ns
 cljs.core/nil?
     cljs.core/identity
 
-cljs.core/->
-    cljs.core/->>
-
-cljs.core/->>
-    cljs.core/->
-
 cljs.core/fn?
     cljs.core/ifn?
 
