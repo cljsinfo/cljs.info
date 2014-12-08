@@ -222,24 +222,6 @@ cljs.core/disj
     cljs.core/disj!
     clojure.set/difference
 
-cljs.core/sorted-map
-    cljs.core/sorted-map-by
-    cljs.core/subseq
-    cljs.core/rsubseq
-    cljs.core/sorted-set
-    cljs.core/array-map
-    cljs.core/hash-map
-
-cljs.core/sorted-map-by
-    cljs.core/sorted-map
-    cljs.core/subseq
-    cljs.core/rsubseq
-    cljs.core/sorted-set-by
-
-cljs.core/frequencies
-    cljs.core/group-by
-    cljs.core/distinct
-
 cljs.core/realized?
     cljs.core/promise
     cljs.core/delay
