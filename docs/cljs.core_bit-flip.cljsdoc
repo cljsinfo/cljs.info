@@ -1,0 +1,11 @@
+===== Name
+cljs.core/bit-flip
+
+===== Signature
+[x n]
+
+===== Description
+
+Flip bit at index `n`
+
+===== Related
