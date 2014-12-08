@@ -1,0 +1,19 @@
+===== Name
+cljs.core/throw
+
+===== Type
+special form
+
+===== Signature
+[expr]
+
+===== Description
+
+`expr` is evaluated and thrown, hopefully to be caught by a `try` expression.
+
+`(throw (js/Error. "Oops!"))`
+
+===== Related
+cljs.core/try
+cljs.core/catch
+cljs.core/finally
