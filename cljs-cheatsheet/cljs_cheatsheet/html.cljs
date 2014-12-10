@@ -1019,6 +1019,7 @@
     [:div.inline-tooltip-8ca2a
       {:id id
        :style "display:none"}
+      [:i.fa.fa-caret-up]
       [:h4.tooltip-hdr-db7c5
         (when-not (= cljs-core-ns ns1)
           [:span.namespace-2e700 ns1 "/"])
