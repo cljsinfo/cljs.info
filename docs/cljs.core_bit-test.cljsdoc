@@ -1,0 +1,11 @@
+===== Name
+cljs.core/bit-test
+
+===== Signature
+[x n]
+
+===== Description
+
+Test bit at index `n`
+
+===== Related

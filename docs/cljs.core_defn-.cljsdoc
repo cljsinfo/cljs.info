@@ -11,7 +11,8 @@ macro
 
 Same as `defn`, but adds `{:private true}` metadata to the definition.
 
-Note: `:private` metadata is not yet enforced by the ClojureScript compiler.
+Note: `:private` metadata is not currently enforced by the ClojureScript
+compiler.
 
 ===== Related
 cljs.core/defn

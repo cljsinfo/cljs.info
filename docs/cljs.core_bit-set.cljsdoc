@@ -1,0 +1,12 @@
+===== Name
+cljs.core/bit-set
+
+===== Signature
+[x n]
+
+===== Description
+
+Set bit at index `n`
+
+===== Related
+cljs.core/bit-clear

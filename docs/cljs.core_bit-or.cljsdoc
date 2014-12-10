@@ -1,0 +1,13 @@
+===== Name
+cljs.core/bit-or
+
+===== Signature
+[x y]
+
+===== Description
+
+Bitwise or
+
+===== Related
+cljs.core/bit-and
+cljs.core/bit-xor

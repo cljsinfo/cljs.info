@@ -1,0 +1,13 @@
+===== Name
+cljs.core/bit-shift-right
+
+===== Signature
+[x n]
+
+===== Description
+
+Bitwise shift right
+
+===== Related
+cljs.core/bit-shift-left
+cljs.core/unsigned-bit-shift-right

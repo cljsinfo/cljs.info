@@ -1,0 +1,17 @@
+===== Name
+cljs.core/declare
+
+===== Type
+macro
+
+===== Signature
+[& names]
+
+===== Description
+
+Uses `def` to establish symbols of `names` with no bindings.
+
+Useful for making forward declarations.
+
+===== Related
+cljs.core/def

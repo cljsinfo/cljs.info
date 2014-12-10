@@ -14,8 +14,8 @@ Defines a function.
 
 `doc-string?` is an optional documentation string.
 
-`attr-map?` is an optional map of metadata to attach to the global variable
-name.
+`attr-map?` is an optional map of [metadata](http://clojure.org/metadata) to
+attach to the global variable name.
 
 `prepost-map?` is an optional map with optional keys `:pre` and `:post` that
 contain collections of [pre or post conditions](http://blog.fogus.me/2009/12/21/clojures-pre-and-post/)

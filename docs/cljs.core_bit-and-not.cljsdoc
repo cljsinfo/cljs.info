@@ -1,0 +1,11 @@
+===== Name
+cljs.core/bit-and-not
+
+===== Signature
+[x y]
+
+===== Description
+
+Bitwise and
+
+===== Related
