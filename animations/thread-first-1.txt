@@ -1,0 +1,33 @@
+===== Frame 1
+(-> a
+    (b c d)
+    (x y z))
+
+===== Frame 2
+(-> a
+    (b   c d)
+    (x y z))
+
+===== Frame 3
+(->
+    (b a c d)
+    (x y z))
+
+===== Frame 4
+(-> (b a c d)
+    (x y z))
+
+===== Frame 5
+(-> (b a c d)
+    (x           y z))
+
+===== Frame 6
+(->
+    (x (b a c d) y z))
+
+===== Frame 7
+
+    (x (b a c d) y z)
+
+===== Frame 8
+(x (b a c d) y z)
