@@ -5,22 +5,45 @@
     [cljsinfo-client.dom :refer [by-id set-html! show-el! hide-el!]]
     [cljsinfo-client.util :refer [js-log log uuid]]))
 
-(declare grid)
-
 (def $ js/jQuery)
 
-(def x-unit 50)
-(def y-unit 100)
+(def reg-x-unit 50)
+(def reg-y-unit 100)
 
-;; labels:
-;; "thread-first"
-;; "thread-last"
+(def small-x-unit 10)
+(def small-y-unit 20)
 
 ;;------------------------------------------------------------------------------
-;; Example 1
+;; Helpers
 ;;------------------------------------------------------------------------------
 
-(hiccups/defhtml ex1-html []
+;; TODO: need to finish this...
+(defn- max-width-of-frames [frames]
+  (->> frames
+       (map vals)
+       ;(map flatten)
+       ;(map first)
+       ))
+
+(defn- coords->style [x y small?]
+  (let [x-unit (if small? small-x-unit reg-x-unit)
+        y-unit (if small? small-y-unit reg-y-unit)]
+    (str "left: " (* x-unit (dec x)) "px; "
+         "top: " (* y-unit (dec y)) "px; "
+         "height: " y-unit "px; "
+         "width: " x-unit "px; ")))
+
+(defn- grid
+  ([x y]
+    (grid x y false))
+  ([x y small?]
+    {:style (coords->style x y small?)}))
+
+;;------------------------------------------------------------------------------
+;; Thread First 1
+;;------------------------------------------------------------------------------
+
+(hiccups/defhtml thread-first-1-html []
   [:div#line1.line-num (grid -1 1) "1"]
   [:div#line2.line-num (grid -1 2) "2"]
   [:div#line3.line-num (grid -1 3) "3"]
@@ -43,167 +66,192 @@
   [:div#symbolZ "z"]
   [:div#closeParen3 ")"]
 
-  [:div#closeParen1 ")"]
-  )
+  [:div#closeParen1 ")"])
 
-(def ex1-pos1 {
-  :openParen1 [1 1]
-  :arrow1 [2 1]
-  :arrow2 [3 1]
-  :symbolA [5 1]
+(def thread-first-1 {
+  :chars {
+    :op1  "("
+    :arr1 "-"
+    :arr2 ">"
+    :a    "a"
 
-  :openParen2 [5 2]
-  :symbolB [6 2]
-  :symbolC [8 2]
-  :symbolD [10 2]
-  :closeParen2 [11 2]
+    :op2 "("
+    :b "b"
+    :c "c"
+    :d "d"
+    :cp2 ")"
 
-  :openParen3 [5 3]
-  :symbolX [6 3]
-  :symbolY [8 3]
-  :symbolZ [10 3]
-  :closeParen3 [11 3]
+    :op3 "("
+    :x   "x"
+    :y   "y"
+    :z   "z"
+    :cp3 ")"
 
-  :closeParen1 [12 3]})
+    :cp1 ")"
+  }
+  :frames [
+    {
+    :op1  [1 1]
+    :arr1 [2 1]
+    :arr2 [3 1]
+    :a    [5 1]
 
-(def ex1-pos2 {
-  :openParen1 [1 1]
-  :arrow1 [2 1]
-  :arrow2 [3 1]
-  :symbolA [5 1]
+    :op2 [5 2]
+    :b   [6 2]
+    :c   [8 2]
+    :d   [10 2]
+    :cp2 [11 2]
 
-  :openParen2 [5 2]
-  :symbolB [6 2]
-  :symbolC [10 2]
-  :symbolD [12 2]
-  :closeParen2 [13 2]
+    :op3 [5 3]
+    :x   [6 3]
+    :y   [8 3]
+    :z   [10 3]
+    :cp3 [11 3]
 
-  :openParen3 [5 3]
-  :symbolX [6 3]
-  :symbolY [8 3]
-  :symbolZ [10 3]
-  :closeParen3 [11 3]
+    :cp1 [12 3]
+    }
+    {
+    :op1  [1 1]
+    :arr1 [2 1]
+    :arr2 [3 1]
+    :a    [5 1]
 
-  :closeParen1 [12 3]})
+    :op2 [5 2]
+    :b   [6 2]
+    :c   [10 2]
+    :d   [12 2]
+    :cp2 [13 2]
 
-(def ex1-pos3 {
-  :openParen1 [1 1]
-  :arrow1 [2 1]
-  :arrow2 [3 1]
+    :op3 [5 3]
+    :x   [6 3]
+    :y   [8 3]
+    :z   [10 3]
+    :cp3 [11 3]
 
-  :openParen2 [5 2]
-  :symbolB [6 2]
-  :symbolA [8 2]
-  :symbolC [10 2]
-  :symbolD [12 2]
-  :closeParen2 [13 2]
+    :cp1 [12 3]
+    }
+    {
+    :op1  [1 1]
+    :arr1 [2 1]
+    :arr2 [3 1]
 
-  :openParen3 [5 3]
-  :symbolX [6 3]
-  :symbolY [8 3]
-  :symbolZ [10 3]
-  :closeParen3 [11 3]
+    :op2 [5 2]
+    :b   [6 2]
+    :a   [8 2]
+    :c   [10 2]
+    :d   [12 2]
+    :cp2 [13 2]
 
-  :closeParen1 [12 3]})
+    :op3 [5 3]
+    :x   [6 3]
+    :y   [8 3]
+    :z   [10 3]
+    :cp3 [11 3]
 
-(def ex1-pos4 {
-  :openParen1 [1 1]
-  :arrow1 [2 1]
-  :arrow2 [3 1]
+    :cp1 [12 3]
+    }
+    {
+    :op1 [1 1]
+    :arr1 [2 1]
+    :arr2 [3 1]
 
-  :openParen2 [5 1]
-  :symbolB [6 1]
-  :symbolA [8 1]
-  :symbolC [10 1]
-  :symbolD [12 1]
-  :closeParen2 [13 1]
+    :op2 [5 1]
+    :b [6 1]
+    :a [8 1]
+    :c [10 1]
+    :d [12 1]
+    :cp2 [13 1]
 
-  :openParen3 [5 2]
-  :symbolX [6 2]
-  :symbolY [8 2]
-  :symbolZ [10 2]
-  :closeParen3 [11 2]
+    :op3 [5 2]
+    :x [6 2]
+    :y [8 2]
+    :z [10 2]
+    :cp3 [11 2]
 
-  :closeParen1 [12 2]})
+    :cp1 [12 2]
+    }
+    {
+    :op1 [1 1]
+    :arr1 [2 1]
+    :arr2 [3 1]
 
-(def ex1-pos5 {
-  :openParen1 [1 1]
-  :arrow1 [2 1]
-  :arrow2 [3 1]
+    :op2 [5 1]
+    :b [6 1]
+    :a [8 1]
+    :c [10 1]
+    :d [12 1]
+    :cp2 [13 1]
 
-  :openParen2 [5 1]
-  :symbolB [6 1]
-  :symbolA [8 1]
-  :symbolC [10 1]
-  :symbolD [12 1]
-  :closeParen2 [13 1]
+    :op3 [5 2]
+    :x [6 2]
+    :y [18 2]
+    :z [20 2]
+    :cp3 [21 2]
 
-  :openParen3 [5 2]
-  :symbolX [6 2]
-  :symbolY [18 2]
-  :symbolZ [20 2]
-  :closeParen3 [21 2]
+    :cp1 [22 2]
+    }
+    {
+    :op1 [1 1]
+    :arr1 [2 1]
+    :arr2 [3 1]
 
-  :closeParen1 [22 2]})
+    :op2 [8 2]
+    :b [9 2]
+    :a [11 2]
+    :c [13 2]
+    :d [15 2]
+    :cp2 [16 2]
 
-(def ex1-pos6 {
-  :openParen1 [1 1]
-  :arrow1 [2 1]
-  :arrow2 [3 1]
+    :op3 [5 2]
+    :x [6 2]
+    :y [18 2]
+    :z [20 2]
+    :cp3 [21 2]
 
-  :openParen2 [8 2]
-  :symbolB [9 2]
-  :symbolA [11 2]
-  :symbolC [13 2]
-  :symbolD [15 2]
-  :closeParen2 [16 2]
+    :cp1 [22 2]
+    }
+    {
+    :op1 nil
+    :arr1 nil
+    :arr2 nil
 
-  :openParen3 [5 2]
-  :symbolX [6 2]
-  :symbolY [18 2]
-  :symbolZ [20 2]
-  :closeParen3 [21 2]
+    :op2 [8 2]
+    :b [9 2]
+    :a [11 2]
+    :c [13 2]
+    :d [15 2]
+    :cp2 [16 2]
 
-  :closeParen1 [22 2]})
+    :op3 [5 2]
+    :x [6 2]
+    :y [18 2]
+    :z [20 2]
+    :cp3 [21 2]
 
-(def ex1-pos7 {
-  :openParen1 nil
-  :arrow1 nil
-  :arrow2 nil
+    :cp1 nil
+    }
+    {
+    :op1 nil
+    :arr1 nil
+    :arr2 nil
 
-  :openParen2 [8 2]
-  :symbolB [9 2]
-  :symbolA [11 2]
-  :symbolC [13 2]
-  :symbolD [15 2]
-  :closeParen2 [16 2]
+    :op3 [1 1]
+    :x [2 1]
+    :op2 [4 1]
+    :b [5 1]
+    :a [7 1]
+    :c [9 1]
+    :d [11 1]
+    :cp2 [12 1]
+    :y [14 1]
+    :z [16 1]
+    :cp3 [17 1]
 
-  :openParen3 [5 2]
-  :symbolX [6 2]
-  :symbolY [18 2]
-  :symbolZ [20 2]
-  :closeParen3 [21 2]
+    :cp1 nil
+    }
+  ]})
 
-  :closeParen1 nil})
-
-(def ex1-pos8 {
-  :openParen1 nil
-  :arrow1 nil
-  :arrow2 nil
-
-  :openParen3 [1 1]
-  :symbolX [2 1]
-  :openParen2 [4 1]
-  :symbolB [5 1]
-  :symbolA [7 1]
-  :symbolC [9 1]
-  :symbolD [11 1]
-  :closeParen2 [12 1]
-  :symbolY [14 1]
-  :symbolZ [16 1]
-  :closeParen3 [17 1]
-
-  :closeParen1 nil})
+(log (max-width-of-frames (:frames thread-first-1)))
 
 ;;------------------------------------------------------------------------------
 ;; Example 2
@@ -240,11 +288,11 @@
   )
 
 (def ex2-pos1 {
-  :openParen1 [1 1]
-  :arrow1 [2 1]
-  :arrow2 [3 1]
+  :op1 [1 1]
+  :arr1 [2 1]
+  :arr2 [3 1]
 
-  :symbolM [5 1]
+  :m [5 1]
 
   :kwdA1 [7 1]
   :kwdA2 [8 1]
@@ -255,14 +303,37 @@
   :kwdC1 [12 1]
   :kwdC2 [13 1]
 
-  :openParen2 nil
-  :closeParen2 nil
+  :op2 nil
+  :cp2 nil
 
-  :openParen3 nil
-  :closeParen3 nil
+  :op3 nil
+  :cp3 nil
 
-  :closeParen1 [14 1]
+  :cp1 [14 1]
   })
+
+;;------------------------------------------------------------------------------
+;; Small Multiples
+;;------------------------------------------------------------------------------
+
+(hiccups/defhtml single-char [[k v]]
+  [:div {:id (name k)} v])
+
+(hiccups/defhtml chars-html [chars]
+  (map single-char chars))
+
+(hiccups/defhtml small-multiple-char [chars [k v]]
+  (when v
+    [:div.small-char-3142f (grid (first v) (second v) true)
+      (k chars)]))
+
+(hiccups/defhtml small-multiple [chars idx itm]
+  [:div.small-ac2ae
+    (map (partial small-multiple-char chars) itm)])
+
+(hiccups/defhtml small-multiples [animation]
+  (map-indexed (partial small-multiple (:chars animation)) (:frames animation))
+  [:div.clr-43e49])
 
 ;;------------------------------------------------------------------------------
 ;; Animation
@@ -277,22 +348,13 @@
     (.velocity $el
       (if fade-out?
         (js-obj "opacity" 0)
-        (js-obj "left" (* x-unit (dec (first v)))
+        (js-obj "left" (* reg-x-unit (dec (first v)))
                 "opacity" 1
-                "top" (* y-unit (dec (second v)))))
+                "top" (* reg-y-unit (dec (second v)))))
       (js-obj "duration" animation-duration))))
 
 (defn- animate-to-position [pos]
   (doall (map animate-single pos)))
-
-(defn- coords->style [x y]
-  (str "left: " (* x-unit (dec x)) "px; "
-       "top: " (* y-unit (dec y)) "px; "
-       "height: " y-unit "px; "
-       "width: " x-unit "px; "))
-
-(defn- grid [x y]
-  {:style (coords->style x y)})
 
 (defn- set-single! [[k v]]
   (let [fade-out? (nil? v)
@@ -302,14 +364,12 @@
       (if fade-out?
         (js-obj "opacity" 0)
         (js-obj
-          "left" (* x-unit (dec (first v)))
+          "left" (* reg-x-unit (dec (first v)))
           "opacity" 1
-          "top" (* y-unit (dec (second v))))))))
+          "top" (* reg-y-unit (dec (second v))))))))
 
 (defn- set-position-instant! [pos]
   (doall (map set-single! pos)))
-
-
 
 ;;------------------------------------------------------------------------------
 ;; Events
@@ -326,14 +386,14 @@
   (* n (+ animation-duration time-between)))
 
 (defn- animate! []
-  (set-position-instant! ex1-pos1)
-  (js/setTimeout #(animate-to-position ex1-pos2) (round 1))
-  (js/setTimeout #(animate-to-position ex1-pos3) (round 2))
-  (js/setTimeout #(animate-to-position ex1-pos4) (round 3))
-  (js/setTimeout #(animate-to-position ex1-pos5) (round 4))
-  (js/setTimeout #(animate-to-position ex1-pos6) (round 5))
-  (js/setTimeout #(animate-to-position ex1-pos7) (round 6))
-  (js/setTimeout #(animate-to-position ex1-pos8) (round 7))
+  ; (set-position-instant! ex1-pos1)
+  ; (js/setTimeout #(animate-to-position ex1-pos2) (round 1))
+  ; (js/setTimeout #(animate-to-position ex1-pos3) (round 2))
+  ; (js/setTimeout #(animate-to-position ex1-pos4) (round 3))
+  ; (js/setTimeout #(animate-to-position ex1-pos5) (round 4))
+  ; (js/setTimeout #(animate-to-position ex1-pos6) (round 5))
+  ; (js/setTimeout #(animate-to-position ex1-pos7) (round 6))
+  ; (js/setTimeout #(animate-to-position ex1-pos8) (round 7))
 
   ; (set-position-instant! ex1-pos6)
   ; (js/setTimeout #(animate-to-position ex1-pos5) (round 2))
@@ -343,10 +403,11 @@
   ; (js/setTimeout #(animate-to-position ex1-pos1) (round 6))
   )
 
+(defn- load-animation! [a]
+  (set-html! "smallMultiples" (small-multiples a))
+  (set-html! "bigScreen" (chars-html (:chars a))))
+
 (defn init!
   "Initialize the threading macro page."
   []
-  (set-html! "threadingMacroBody" (ex1-html))
-  ;(set-html! "threadingMacroBody" (ex2-html))
-  (animate!)
-  )
+  (load-animation! thread-first-1))
