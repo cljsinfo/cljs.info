@@ -1007,6 +1007,9 @@
       [:div.related-links-f8e49
         (map #(related-links-for-ns % r2) namespaces)])))
 
+(hiccups/defhtml inline-caret [tt]
+  [:i.fa.fa-caret-up {:id "caret-b316e"}])
+
 (hiccups/defhtml inline-tooltip [tt]
   (let [desc-html (:description-html tt)
         id (:id tt)
@@ -1019,7 +1022,6 @@
     [:div.inline-tooltip-8ca2a
       {:id id
        :style "display:none"}
-      [:i.fa.fa-caret-up]
       [:h4.tooltip-hdr-db7c5
         (when-not (= cljs-core-ns ns1)
           [:span.namespace-2e700 ns1 "/"])
