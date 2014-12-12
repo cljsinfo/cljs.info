@@ -8,12 +8,11 @@ cljs.core/str
 
 ===== Description
 
-With no args, returns the empty string.
+`(str)` and `(str nil)` return the empty string.
 
-With one arg `x`, returns `x.toString()`.
+`(str x)` returns `x.toString()`.
 
-`(str nil)` returns the empty string.
-
-With more than one arg, returns the concatenation of the str values of the args.
+With more than one argument, returns the concatenation of the `str` values of
+the arguments.
 
 ===== Related

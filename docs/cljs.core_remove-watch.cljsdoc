@@ -1,0 +1,12 @@
+===== Name
+cljs.core/remove-watch
+
+===== Signature
+[a key]
+
+===== Description
+
+Removes a watch function (set by `add-watch`) from atom `a`.
+
+===== Related
+cljs.core/add-watch

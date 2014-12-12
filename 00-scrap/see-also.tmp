@@ -1,10 +1,3 @@
-cljs.core/let
-    cljs.core/letfn
-    cljs.core/if-let
-
-cljs.core/declare
-    cljs.core/def
-
 cljs.core/ns
     cljs.core/use
     cljs.core/require
@@ -16,105 +9,8 @@ cljs.core/ns
     cljs.core/ns-map
     cljs.core/*ns*
 
-cljs.core/if
-    cljs.core/cond
-    cljs.core/when
-    cljs.core/if-let
-    cljs.core/if-not
-
-cljs.core/if-not
-    cljs.core/if
-    cljs.core/when-not
-
-cljs.core/when
-    cljs.core/when-not
-    cljs.core/when-let
-    cljs.core/if
-
-cljs.core/when-not
-    cljs.core/when
-    cljs.core/when-let
-    cljs.core/if
-
-cljs.core/when-let
-    cljs.core/if-let
-    cljs.core/when
-    cljs.core/when-not
-    cljs.core/if
-    cljs.core/when-first
-
-cljs.core/if-let
-    cljs.core/when-let
-    cljs.core/if
-
-cljs.core/cond
-    cljs.core/condp
-    cljs.core/case
-    cljs.core/if
-
-cljs.core/condp
-    cljs.core/cond
-    cljs.core/if
-
-cljs.core/case
-    cljs.core/cond
-    cljs.core/condp
-
-cljs.core/and
-    cljs.core/or
-    cljs.core/if
-
-cljs.core/or
-    cljs.core/and
-    cljs.core/if
-
-cljs.core/dotimes
-    cljs.core/repeat
-    cljs.core/for
-    cljs.core/doseq
-
-cljs.core/while
-    cljs.core/loop
-
 cljs.core/nil?
     cljs.core/identity
-
-cljs.core/fn
-    cljs.core/defn
-
-cljs.core/constantly
-    cljs.core/repeatedly
-
-cljs.core/comp
-    cljs.core/partial
-    cljs.core/juxt
-
-cljs.core/complement
-    cljs.core/not
-
-cljs.core/partial
-    cljs.core/comp
-    cljs.core/juxt
-
-cljs.core/juxt
-    cljs.core/partial
-    cljs.core/comp
-
-cljs.core/memoize
-    cljs.core/delay
-
-cljs.core/every-pred
-    cljs.core/some-fn
-
-cljs.core/some-fn
-    cljs.core/every-pred
-    cljs.core/some
-
-cljs.core/->
-    cljs.core/->>
-
-cljs.core/->>
-    cljs.core/->
 
 cljs.core/fn?
     cljs.core/ifn?
@@ -244,35 +140,12 @@ cljs.core/atom
     cljs.core/remove-watch
     cljs.core/set-validator!
 
-cljs.core/deref
-    cljs.core/atom
-    cljs.core/agent
-    cljs.core/ref
-
 cljs.core/swap!
     cljs.core/atom
     cljs.core/reset!
 
-cljs.core/reset!
-    cljs.core/swap!
-    cljs.core/compare-and-set!
-    cljs.core/atom
-
-cljs.core/compare-and-set!
-    cljs.core/atom
-    cljs.core/reset!
-    cljs.core/swap!
-
-cljs.core/add-watch
-    cljs.core/remove-watch
-
 cljs.core/remove-watch
     cljs.core/add-watch
-
-cljs.core/set-validator!
-    cljs.core/atom
-    cljs.core/agent
-    cljs.core/ref
 
 cljs.core/try
     cljs.core/catch
@@ -342,24 +215,6 @@ cljs.core/disj
     cljs.core/dissoc
     cljs.core/disj!
     clojure.set/difference
-
-cljs.core/sorted-map
-    cljs.core/sorted-map-by
-    cljs.core/subseq
-    cljs.core/rsubseq
-    cljs.core/sorted-set
-    cljs.core/array-map
-    cljs.core/hash-map
-
-cljs.core/sorted-map-by
-    cljs.core/sorted-map
-    cljs.core/subseq
-    cljs.core/rsubseq
-    cljs.core/sorted-set-by
-
-cljs.core/frequencies
-    cljs.core/group-by
-    cljs.core/distinct
 
 cljs.core/realized?
     cljs.core/promise

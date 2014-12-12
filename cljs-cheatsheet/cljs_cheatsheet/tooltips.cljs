@@ -135,6 +135,7 @@
         right-align-amt (- (- $innerWidth tooltip-right))
         right-align-position (- (- (- tooltip-right right-align-amt) 
           tooltip-width) 26)]
+        tooltip-top (+ link-y link-height 5)]
 
     ;; position the caret
     (.css $caret-el (js-obj
@@ -164,12 +165,12 @@
 
     ;; save the bounds of the tooltip and link elements
     ;; NOTE: these numbers allow for a smidge of padding on the outside of the
-    ;; link element    
+    ;; link element
     (reset! mousetrap-boxes {
       :link
-        {:x1 (- link-x 1)
+        {:x1 (- link-x 2)
          :x2 (+ link-x link-width 2)
-         :y1 link-y
+         :y1 (dec link-y)
          :y2 (+ link-y link-height 20)} ;; let them mouse down into the tooltip
 
       :tooltip

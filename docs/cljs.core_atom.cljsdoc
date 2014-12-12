@@ -3,26 +3,22 @@ cljs.core/atom
 
 ===== Signature
 [x]
-[x & {:keys [meta validator]}]
+[x opts]
 
 ===== Description
 
-Creates and returns an Atom with an initial value of `x` and zero or more
-options (in any order):
+Creates and returns an atom with an initial value of `x`.
 
-`:meta metadata-map`
+`opts` is an optional map with optional keys `:meta` and `:validator`.
 
-`:validator validate-fn`
+`:meta` should be a [metadata-map](http://clojure.org/metadata) for the atom.
 
-If metadata-map is supplied, it will be come the metadata on the atom.
-
-`validate-fn` must be `nil` or a side-effect-free function of one argument,
-which will be passed the intended new state on any state change. If the new
-state is unacceptable, the validate-fn should return `false` or throw an Error.
-If either of these error conditions occur, then the value of the atom will not
-change.
+`:validator` should be a validator function for the atom. See `set-validator!`
+for more information.
 
 ===== Related
 cljs.core/atom
 cljs.core/swap!
 cljs.core/reset!
+cljs.core/set-validator!
+cljs.core/get-validator

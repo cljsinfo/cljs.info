@@ -21,9 +21,9 @@
 ;;------------------------------------------------------------------------------
 
 (hiccups/defhtml ex1-html []
-  [:div#line1.line-num "1"]
-  [:div#line2.line-num "2"]
-  [:div#line3.line-num "3"]
+  [:div#line1.line-num (grid -1 1) "1"]
+  [:div#line2.line-num (grid -1 2) "2"]
+  [:div#line3.line-num (grid -1 3) "3"]
 
   [:div#openParen1 "("]
 
@@ -48,49 +48,66 @@
 
 (def ex1-pos1 {
   :openParen1 [1 1]
-
   :arrow1 [2 1]
   :arrow2 [3 1]
   :symbolA [5 1]
 
-  :openParen2 [3 2]
-  :symbolB [4 2]
-  :symbolC [6 2]
-  :symbolD [8 2]
-  :closeParen2 [9 2]
-
-  :openParen3 [3 3]
-  :symbolX [4 3]
-  :symbolY [6 3]
-  :symbolZ [8 3]
-  :closeParen3 [9 3]
-
-  :closeParen1 [10 3]})
-
-(def ex1-pos2 {
-  :openParen1 [1 1]
-
-  :arrow1 [2 1]
-  :arrow2 [3 1]
-
-  :openParen2 [3 2]
-  :symbolB [4 2]
-  :symbolA [6 2]
+  :openParen2 [5 2]
+  :symbolB [6 2]
   :symbolC [8 2]
   :symbolD [10 2]
   :closeParen2 [11 2]
 
-  :openParen3 [3 3]
-  :symbolX [4 3]
-  :symbolY [6 3]
-  :symbolZ [8 3]
-  :closeParen3 [9 3]
+  :openParen3 [5 3]
+  :symbolX [6 3]
+  :symbolY [8 3]
+  :symbolZ [10 3]
+  :closeParen3 [11 3]
 
-  :closeParen1 [10 3]})
+  :closeParen1 [12 3]})
+
+(def ex1-pos2 {
+  :openParen1 [1 1]
+  :arrow1 [2 1]
+  :arrow2 [3 1]
+  :symbolA [5 1]
+
+  :openParen2 [5 2]
+  :symbolB [6 2]
+  :symbolC [10 2]
+  :symbolD [12 2]
+  :closeParen2 [13 2]
+
+  :openParen3 [5 3]
+  :symbolX [6 3]
+  :symbolY [8 3]
+  :symbolZ [10 3]
+  :closeParen3 [11 3]
+
+  :closeParen1 [12 3]})
 
 (def ex1-pos3 {
   :openParen1 [1 1]
+  :arrow1 [2 1]
+  :arrow2 [3 1]
 
+  :openParen2 [5 2]
+  :symbolB [6 2]
+  :symbolA [8 2]
+  :symbolC [10 2]
+  :symbolD [12 2]
+  :closeParen2 [13 2]
+
+  :openParen3 [5 3]
+  :symbolX [6 3]
+  :symbolY [8 3]
+  :symbolZ [10 3]
+  :closeParen3 [11 3]
+
+  :closeParen1 [12 3]})
+
+(def ex1-pos4 {
+  :openParen1 [1 1]
   :arrow1 [2 1]
   :arrow2 [3 1]
 
@@ -101,55 +118,75 @@
   :symbolD [12 1]
   :closeParen2 [13 1]
 
-  :openParen3 [3 2]
-  :symbolX [4 2]
-  :symbolY [6 2]
-  :symbolZ [8 2]
-  :closeParen3 [9 2]
+  :openParen3 [5 2]
+  :symbolX [6 2]
+  :symbolY [8 2]
+  :symbolZ [10 2]
+  :closeParen3 [11 2]
 
-  :closeParen1 [10 2]})
+  :closeParen1 [12 2]})
 
-(def ex1-pos4 {
+(def ex1-pos5 {
   :openParen1 [1 1]
-
   :arrow1 [2 1]
   :arrow2 [3 1]
 
-  :openParen3 [3 2]
-  :symbolX [4 2]
-  :openParen2 [6 2]
-  :symbolB [7 2]
-  :symbolA [9 2]
-  :symbolC [11 2]
-  :symbolD [13 2]
-  :closeParen2 [14 2]
-  :symbolY [16 2]
-  :symbolZ [18 2]
-  :closeParen3 [19 2]
+  :openParen2 [5 1]
+  :symbolB [6 1]
+  :symbolA [8 1]
+  :symbolC [10 1]
+  :symbolD [12 1]
+  :closeParen2 [13 1]
 
-  :closeParen1 [20 2]})
+  :openParen3 [5 2]
+  :symbolX [6 2]
+  :symbolY [18 2]
+  :symbolZ [20 2]
+  :closeParen3 [21 2]
 
-(def ex1-pos5 {
+  :closeParen1 [22 2]})
+
+(def ex1-pos6 {
+  :openParen1 [1 1]
+  :arrow1 [2 1]
+  :arrow2 [3 1]
+
+  :openParen2 [8 2]
+  :symbolB [9 2]
+  :symbolA [11 2]
+  :symbolC [13 2]
+  :symbolD [15 2]
+  :closeParen2 [16 2]
+
+  :openParen3 [5 2]
+  :symbolX [6 2]
+  :symbolY [18 2]
+  :symbolZ [20 2]
+  :closeParen3 [21 2]
+
+  :closeParen1 [22 2]})
+
+(def ex1-pos7 {
   :openParen1 nil
-
   :arrow1 nil
   :arrow2 nil
 
-  :openParen3 [3 2]
-  :symbolX [4 2]
-  :openParen2 [6 2]
-  :symbolB [7 2]
-  :symbolA [9 2]
-  :symbolC [11 2]
-  :symbolD [13 2]
-  :closeParen2 [14 2]
-  :symbolY [16 2]
-  :symbolZ [18 2]
-  :closeParen3 [19 2]
+  :openParen2 [8 2]
+  :symbolB [9 2]
+  :symbolA [11 2]
+  :symbolC [13 2]
+  :symbolD [15 2]
+  :closeParen2 [16 2]
+
+  :openParen3 [5 2]
+  :symbolX [6 2]
+  :symbolY [18 2]
+  :symbolZ [20 2]
+  :closeParen3 [21 2]
 
   :closeParen1 nil})
 
-(def ex1-pos6 {
+(def ex1-pos8 {
   :openParen1 nil
   :arrow1 nil
   :arrow2 nil
@@ -289,11 +326,14 @@
   (* n (+ animation-duration time-between)))
 
 (defn- animate! []
-  ; (js/setTimeout #(animate-to-position ex1-pos2) (round 1))
-  ; (js/setTimeout #(animate-to-position ex1-pos3) (round 2))
-  ; (js/setTimeout #(animate-to-position ex1-pos4) (round 3))
-  ; (js/setTimeout #(animate-to-position ex1-pos5) (round 4))
-  ; (js/setTimeout #(animate-to-position ex1-pos6) (round 5))
+  (set-position-instant! ex1-pos1)
+  (js/setTimeout #(animate-to-position ex1-pos2) (round 1))
+  (js/setTimeout #(animate-to-position ex1-pos3) (round 2))
+  (js/setTimeout #(animate-to-position ex1-pos4) (round 3))
+  (js/setTimeout #(animate-to-position ex1-pos5) (round 4))
+  (js/setTimeout #(animate-to-position ex1-pos6) (round 5))
+  (js/setTimeout #(animate-to-position ex1-pos7) (round 6))
+  (js/setTimeout #(animate-to-position ex1-pos8) (round 7))
 
   ; (set-position-instant! ex1-pos6)
   ; (js/setTimeout #(animate-to-position ex1-pos5) (round 2))
@@ -301,17 +341,12 @@
   ; (js/setTimeout #(animate-to-position ex1-pos3) (round 4))
   ; (js/setTimeout #(animate-to-position ex1-pos2) (round 5))
   ; (js/setTimeout #(animate-to-position ex1-pos1) (round 6))
-
-
-  (set-position-instant! ex2-pos1)
-
-
   )
 
 (defn init!
   "Initialize the threading macro page."
   []
-  ;(set-html! "threadingMacroBody" (ex1-html))
-  (set-html! "threadingMacroBody" (ex2-html))
+  (set-html! "threadingMacroBody" (ex1-html))
+  ;(set-html! "threadingMacroBody" (ex2-html))
   (animate!)
   )
