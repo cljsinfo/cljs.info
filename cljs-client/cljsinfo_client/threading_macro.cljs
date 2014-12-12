@@ -17,6 +17,21 @@
 ;; Helpers
 ;;------------------------------------------------------------------------------
 
+;; TODO: I'm sure this could be combined with the functions below
+(defn- max-x-in-frame [f]
+  (->> f
+       vals
+       (remove nil?)
+       (map first)
+       (apply max)))
+
+(defn- max-y-in-frame [f]
+  (->> f
+       vals
+       (remove nil?)
+       (map second)
+       (apply max)))
+
 (defn- max-x-value-in-frames [frames]
   (->> frames
        (map vals)
@@ -333,13 +348,25 @@
     [:div.small-char-3142f (grid (first v) (second v) true)
       (k chars)]))
 
-(hiccups/defhtml small-multiple [chars idx itm]
-  [:div.small-ac2ae
-    (map (partial small-multiple-char chars) itm)])
+(hiccups/defhtml small-multiple [chars frame-idx frame]
+  (let [max-x (max-x-in-frame frame)
+        width (* max-x small-x-unit)
+        max-y (max-y-in-frame frame)
+        height (* max-y small-y-unit)]
+    [:div.small-ac2ae
+      {:style (str "height: " height "px; width: " width "px")}
+      (map (partial small-multiple-char chars) frame)]))
 
 (hiccups/defhtml small-multiples [animation]
-  (map-indexed (partial small-multiple (:chars animation)) (:frames animation))
-  [:div.clr-43e49])
+  (let [chars (:chars animation)
+        frames (:frames animation)
+        max-x (max-x-value-in-frames frames)
+        width (* max-x reg-x-unit)
+        max-y (max-y-value-in-frames frames)
+        height (* max-y small-y-unit)]
+    [:div {:style (str "height: " height "px; width: " width "px")}
+      (map-indexed (partial small-multiple chars) frames)
+      [:div.clr-43e49]]))
 
 ;;------------------------------------------------------------------------------
 ;; Animation
