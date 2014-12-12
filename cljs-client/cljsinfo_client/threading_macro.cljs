@@ -17,13 +17,21 @@
 ;; Helpers
 ;;------------------------------------------------------------------------------
 
-;; TODO: need to finish this...
-(defn- max-width-of-frames [frames]
+(defn- max-x-value-in-frames [frames]
   (->> frames
        (map vals)
-       ;(map flatten)
-       ;(map first)
-       ))
+       (apply concat)
+       (remove nil?)
+       (map first)
+       (apply max)))
+
+(defn- max-y-value-in-frames [frames]
+  (->> frames
+       (map vals)
+       (apply concat)
+       (remove nil?)
+       (map second)
+       (apply max)))
 
 (defn- coords->style [x y small?]
   (let [x-unit (if small? small-x-unit reg-x-unit)
@@ -250,8 +258,6 @@
     :cp1 nil
     }
   ]})
-
-(log (max-width-of-frames (:frames thread-first-1)))
 
 ;;------------------------------------------------------------------------------
 ;; Example 2
