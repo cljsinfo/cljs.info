@@ -2,7 +2,7 @@
   (:require
     [cljsinfo-server.config :refer [config]]
     [cljsinfo-server.html :as html]
-    [cljsinfo-server.util :as util]))
+    [cljsinfo-server.util :refer [js-log log ts-log]]))
 
 (enable-console-print!)
 
@@ -48,6 +48,6 @@
       (.listen server (:port config) (:host config))
       (.listen server (:port config)))
 
-    (util/tlog "cljs.info server listening on port " (:port config))))
+    (ts-log "cljs.info server listening on port " (:port config))))
 
 (set! *main-cli-fn* -main)

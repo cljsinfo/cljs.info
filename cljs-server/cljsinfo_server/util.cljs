@@ -22,7 +22,7 @@
 ;; TODO: investigate using a proper logging library
 ;; - https://github.com/flatiron/winston
 ;; - https://github.com/trentm/node-bunyan
-(defn tlog
+(defn ts-log
   "Timestampped log."
   [& msgs]
   (js-log (str "[" (now) "] " (apply str msgs))))
