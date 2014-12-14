@@ -389,14 +389,17 @@
 (hiccups/defhtml bubble-links [a]
   (map-indexed bubble-link (:frames a))
   [:br]
-  [:button#playButton.play-btn-db258
+  [:button#pauseButton.btn-db258
+    {:style "display:none"}
+    [:i.fa.fa-pause] "Pause"]
+  [:button#playButton.btn-db258
     [:i.fa.fa-play] "Play"])
 
 ;;------------------------------------------------------------------------------
 ;; Animation
 ;;------------------------------------------------------------------------------
 
-(def animation-duration 800)
+(def main-animation-speed 800)
 
 (defn- animate-single! [[k v]]
   (let [fade-out? (nil? v)
@@ -408,7 +411,7 @@
         (js-obj "left" (* reg-x-unit (dec (first v)))
                 "opacity" 1
                 "top" (* reg-y-unit (dec (second v)))))
-      (js-obj "duration" animation-duration))))
+      (js-obj "duration" main-animation-speed))))
 
 (defn- animate-to-position! [pos]
   (doall (map animate-single! pos)))
@@ -454,7 +457,7 @@
 (def current-frame-index (atom 0))
 (def active-bubble-class "active-bubble-51cf5")
 (def active-frame-class "active-frame-938e5")
-(def small-multiple-animation-speed 150)
+(def frame-animation-speed (half main-animation-speed))
 
 ;; TODO: make this programmatic
 (def half-big-screen-width 500)
@@ -471,7 +474,7 @@
 (defn- position-small-frame! [idx frames]
   (.velocity ($ (str "#smallMultiples"))
     (js-obj "left" (center-frame-left idx frames))
-    (js-obj "duration" small-multiple-animation-speed)))
+    (js-obj "duration" frame-animation-speed)))
 
 (defn- on-change-frame [_kwd _atom old-idx new-idx]
   (let [animation @current-animation
@@ -485,7 +488,7 @@
     (.removeClass ($ (str "#smallMultiple-" old-idx)) active-frame-class)
     (.addClass    ($ (str "#smallMultiple-" new-idx)) active-frame-class)
 
-    ;; position the small multiple frame
+    ;; position the frame
     (position-small-frame! new-idx frames)
 
     ;; animate if the frames are adjacent, else set position instantly
@@ -494,6 +497,48 @@
       (set-position-instant! new-frame))))
 
 (add-watch current-frame-index :change on-change-frame)
+
+;;------------------------------------------------------------------------------
+;; Play / Pause Button
+;;------------------------------------------------------------------------------
+
+(def time-between-rounds (* main-animation-speed 2))
+
+(def playing? (atom false))
+
+(defn- on-last-frame? []
+  (= (count (:frames @current-animation))
+     (inc @current-frame-index)))
+
+(defn- next-animation-step! []
+  (let [last-frame? (on-last-frame?)]
+    (when (and @playing?
+               (not last-frame?))
+      (swap! current-frame-index inc)
+      (js/setTimeout next-animation-step! time-between-rounds))
+
+    ;; animation is over
+    (when last-frame?
+      (reset! playing? false))))
+
+(defn- on-change-playing [_kwd _atom _old p?]
+  ;; toggle play / pause buttons
+  (if p?
+    (do (hide-el! "playButton")
+        (show-el! "pauseButton"))
+    (do (show-el! "playButton")
+        (hide-el! "pauseButton")))
+
+  ;; reset to frame 0 if we are on the last frame
+  (when (and p?
+             (on-last-frame?))
+    (reset! current-frame-index 0))
+
+  ;; kick off the animation
+  (when p?
+    (js/setTimeout next-animation-step! main-animation-speed)))
+
+(add-watch playing? :change on-change-playing)
 
 ;;------------------------------------------------------------------------------
 ;; Events
@@ -507,8 +552,10 @@
       (reset! current-frame-index frame-index))))
 
 (defn- click-play-btn [js-evt]
-  ;; TODO: write me
-  )
+  (reset! playing? true))
+
+(defn- click-pause-btn [js-evt]
+  (reset! playing? false))
 
 (def events-added? (atom false))
 
@@ -517,7 +564,8 @@
   (when-not @events-added?
     (doto ($ "body")
       (.on "click" ".bubble-0374c, .small-frame-ac2ae" click-frame-link)
-      (.on "click" ".play-btn-db258" click-play-btn))
+      (.on "click" "#playButton" click-play-btn)
+      (.on "click" "#pauseButton" click-pause-btn))
     (reset! events-added? true)))
 
 ;;------------------------------------------------------------------------------
