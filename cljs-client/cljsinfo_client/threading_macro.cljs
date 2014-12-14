@@ -13,11 +13,16 @@
 (defn- twice [x]
   (* 2 x))
 
+(defn- one? [x]
+  (= 1 x))
+
 (def reg-x-unit 40)
 (def reg-y-unit (twice reg-x-unit))
 
 (def small-x-unit 10)
 (def small-y-unit (twice small-x-unit))
+
+;; TODO: add red arrow class back in
 
 ;;------------------------------------------------------------------------------
 ;; Helpers
@@ -72,36 +77,13 @@
 ;; Thread First 1
 ;;------------------------------------------------------------------------------
 
-(hiccups/defhtml thread-first-1-html []
-  [:div#line1.line-num (grid -1 1) "1"]
-  [:div#line2.line-num (grid -1 2) "2"]
-  [:div#line3.line-num (grid -1 3) "3"]
-
-  [:div#openParen1 "("]
-
-  [:div#arrow1.arrow "-"]
-  [:div#arrow2.arrow ">"]
-  [:div#symbolA "a"]
-
-  [:div#openParen2 "("]
-  [:div#symbolB "b"]
-  [:div#symbolC "c"]
-  [:div#symbolD "d"]
-  [:div#closeParen2 ")"]
-
-  [:div#openParen3 "("]
-  [:div#symbolX "x"]
-  [:div#symbolY "y"]
-  [:div#symbolZ "z"]
-  [:div#closeParen3 ")"]
-
-  [:div#closeParen1 ")"])
+(def red-symbol-class "red-ccca5")
 
 (def thread-first-1 {
   :chars {
     :op1  "("
-    :arr1 "-"
-    :arr2 ">"
+    :arr1 ["-" red-symbol-class]
+    :arr2 [">" red-symbol-class]
     :a    "a"
 
     :op2 "("
@@ -343,8 +325,13 @@
 ;; Small Multiples
 ;;------------------------------------------------------------------------------
 
-(hiccups/defhtml single-char [[k v]]
-  [:div.big-char-6b108 {:id (name k)} v])
+(hiccups/defhtml big-char [[k v]]
+  (let [char (if (vector? v) (first v) v)
+        extra-class (if (vector? v) (second v))]
+    [:div
+      {:class (str "big-char-6b108" (when extra-class (str " " extra-class)))
+       :id (name k)}
+      char]))
 
 (hiccups/defhtml big-line-number [n]
   [:div.big-num-c7cf6 (grid -1 n) n])
@@ -355,36 +342,43 @@
         chars (:chars a)]
     (list
       (map big-line-number (range 1 (inc max-y)))
-      (map single-char chars))))
+      (map big-char chars))))
 
 (hiccups/defhtml small-multiple-char [chars [k v]]
   (when v
-    [:div.small-char-3142f (grid (first v) (second v) true)
-      (k chars)]))
+    (let [ch1 (k chars)
+          ch2 (if (vector? ch1) (first ch1) ch1)
+          extra-class (if (vector? ch1) (second ch1))]
+      [:div
+        (merge {:class (str "small-char-3142f" (when extra-class
+                                                 (str " " extra-class)))}
+               (grid (first v) (second v) true))
+        ch2])))
 
 (hiccups/defhtml small-line-number [n]
   [:div.small-num-59b3c (grid -1 n true) n])
 
-(hiccups/defhtml small-multiple [chars frame-idx frame]
+(hiccups/defhtml small-multiple [chars max-y frame-idx frame]
   (let [max-x (max-x-in-frame frame)
         width (* max-x small-x-unit)
-        max-y (max-y-in-frame frame)
         height (* max-y small-y-unit)]
-    [:div.small-ac2ae
-      {:id (str "smallMultiple-" frame-idx)
+    [:div.small-frame-ac2ae
+      {:data-frame-index frame-idx
+       :id (str "smallMultiple-" frame-idx)
        :style (str "height: " height "px; width: " width "px")}
       [:span.step-e483d (str "Step " (inc frame-idx))]
       (map (partial small-multiple-char chars) frame)
-      (map small-line-number (range 1 (inc max-y)))]))
+      (map small-line-number (range 1 (inc max-y)))
+      [:div.underscore-e6a9f]]))
 
-(hiccups/defhtml small-multiples [animation]
+(hiccups/defhtml small-frames [animation]
   (let [chars (:chars animation)
         frames (:frames animation)
         max-x (max-x-value-in-frames frames)
         width (* max-x reg-x-unit)
         max-y (max-y-value-in-frames frames)
         height (* max-y small-y-unit)]
-    (map-indexed (partial small-multiple chars) frames)))
+    (map-indexed (partial small-multiple chars max-y) frames)))
 
 ;;------------------------------------------------------------------------------
 ;; Bubble Links
@@ -441,7 +435,7 @@
 (def current-animation (atom nil))
 
 (defn- load-animation! [a]
-  (set-html! "smallMultiples" (small-multiples a))
+  (set-html! "smallMultiples" (small-frames a))
   (set-html! "bubblesContainer" (bubble-links a))
   (set-html! "bigScreen" (big-screen-chars a))
   (let [max-y (max-y-value-in-frames (:frames a))
@@ -458,35 +452,46 @@
 ;;------------------------------------------------------------------------------
 
 (def current-frame-index (atom 0))
-(def active-bubble-class "active-51cf5")
-(def small-multiple-animation-speed 100)
+(def active-bubble-class "active-bubble-51cf5")
+(def active-frame-class "active-frame-938e5")
+(def small-multiple-animation-speed 150)
 
-(defn- small-code-left [idx frames]
+;; TODO: make this programmatic
+(def half-big-screen-width 500)
+
+(defn- center-frame-left [idx frames]
   (let [$el ($ (str "#smallMultiple-" idx))
         js-pos (.position $el)
+        frame-width (.width $el)
         left (int (aget js-pos "left"))]
-    (+ (* -1 left) 500)))
+    (+ (* -1 left)
+       half-big-screen-width
+       (* -1 (half frame-width)))))
 
 (defn- position-small-frame! [idx frames]
   (.velocity ($ (str "#smallMultiples"))
-    (js-obj "left" (small-code-left idx frames))
+    (js-obj "left" (center-frame-left idx frames))
     (js-obj "duration" small-multiple-animation-speed)))
 
 (defn- on-change-frame [_kwd _atom old-idx new-idx]
   (let [animation @current-animation
         frames (:frames animation)
         new-frame (nth frames new-idx)]
-    ;; toggle bubble classes
+    ;; toggle active bubble
     (.removeClass ($ (str "#bubbleLink-" old-idx)) active-bubble-class)
     (.addClass    ($ (str "#bubbleLink-" new-idx)) active-bubble-class)
+
+    ;; toggle active frame
+    (.removeClass ($ (str "#smallMultiple-" old-idx)) active-frame-class)
+    (.addClass    ($ (str "#smallMultiple-" new-idx)) active-frame-class)
 
     ;; position the small multiple frame
     (position-small-frame! new-idx frames)
 
     ;; animate if the frames are adjacent, else set position instantly
-    (animate-to-position! new-frame)
-
-    ))
+    (if (one? (js/Math.abs (- new-idx old-idx)))
+      (animate-to-position! new-frame)
+      (set-position-instant! new-frame))))
 
 (add-watch current-frame-index :change on-change-frame)
 
@@ -494,7 +499,7 @@
 ;; Events
 ;;------------------------------------------------------------------------------
 
-(defn- click-bubble [js-evt]
+(defn- click-frame-link [js-evt]
   (let [$current-target ($ (aget js-evt "currentTarget"))
         frame-index (int (.attr $current-target "data-frame-index"))]
     ;; TODO: verify that frame-index is valid here
@@ -506,35 +511,12 @@
 ;; NOTE: this is a "run once" function
 (defn- add-events! []
   (when-not @events-added?
-    (.on ($ "body") "click" ".bubble-0374c" click-bubble)
+    (.on ($ "body") "click" ".bubble-0374c, .small-frame-ac2ae" click-frame-link)
     (reset! events-added? true)))
 
 ;;------------------------------------------------------------------------------
 ;; Init
 ;;------------------------------------------------------------------------------
-
-(def time-between 1200)
-
-(defn- round [n]
-  (* n (+ animation-duration time-between)))
-
-(defn- animate! []
-  ; (set-position-instant! ex1-pos1)
-  ; (js/setTimeout #(animate-to-position ex1-pos2) (round 1))
-  ; (js/setTimeout #(animate-to-position ex1-pos3) (round 2))
-  ; (js/setTimeout #(animate-to-position ex1-pos4) (round 3))
-  ; (js/setTimeout #(animate-to-position ex1-pos5) (round 4))
-  ; (js/setTimeout #(animate-to-position ex1-pos6) (round 5))
-  ; (js/setTimeout #(animate-to-position ex1-pos7) (round 6))
-  ; (js/setTimeout #(animate-to-position ex1-pos8) (round 7))
-
-  ; (set-position-instant! ex1-pos6)
-  ; (js/setTimeout #(animate-to-position ex1-pos5) (round 2))
-  ; (js/setTimeout #(animate-to-position ex1-pos4) (round 3))
-  ; (js/setTimeout #(animate-to-position ex1-pos3) (round 4))
-  ; (js/setTimeout #(animate-to-position ex1-pos2) (round 5))
-  ; (js/setTimeout #(animate-to-position ex1-pos1) (round 6))
-  )
 
 (defn init!
   "Initialize the threading macro page."
