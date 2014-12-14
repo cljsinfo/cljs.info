@@ -439,7 +439,7 @@
   (set-html! "bubblesContainer" (bubble-links a))
   (set-html! "bigScreen" (big-screen-chars a))
   (let [max-y (max-y-value-in-frames (:frames a))
-        big-screen-height (* (inc max-y) reg-y-unit)]
+        big-screen-height (+ (* max-y reg-y-unit) (half reg-y-unit))]
     (.height ($ "#bigScreen") big-screen-height)))
 
 (defn- on-change-animation [_kwd _atom old-a new-a]
