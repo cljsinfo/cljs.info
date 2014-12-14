@@ -324,12 +324,12 @@
 ;;------------------------------------------------------------------------------
 
 (hiccups/defhtml big-char [[k v]]
-  (let [char (if (vector? v) (first v) v)
+  (let [the-char (if (vector? v) (first v) v)
         extra-class (if (vector? v) (second v))]
     [:div
       {:class (str "big-char-6b108" (when extra-class (str " " extra-class)))
        :id (name k)}
-      char]))
+      the-char]))
 
 (hiccups/defhtml big-line-number [n]
   [:div.big-num-c7cf6 (grid -1 n) n])
@@ -366,8 +366,7 @@
        :style (str "height: " height "px; width: " width "px")}
       [:span.step-e483d (str "Step " (inc frame-idx))]
       (map (partial small-multiple-char chars) frame)
-      (map small-line-number (range 1 (inc max-y)))
-      [:div.underscore-e6a9f]]))
+      (map small-line-number (range 1 (inc max-y)))]))
 
 (hiccups/defhtml small-frames [animation]
   (let [chars (:chars animation)
@@ -388,7 +387,10 @@
      :id (str "bubbleLink-" idx)}])
 
 (hiccups/defhtml bubble-links [a]
-  (map-indexed bubble-link (:frames a)))
+  (map-indexed bubble-link (:frames a))
+  [:br]
+  [:button#playButton.play-btn-db258
+    [:i.fa.fa-play] "Play"])
 
 ;;------------------------------------------------------------------------------
 ;; Animation
@@ -504,12 +506,18 @@
     (when-not (= frame-index @current-frame-index)
       (reset! current-frame-index frame-index))))
 
+(defn- click-play-btn [js-evt]
+  ;; TODO: write me
+  )
+
 (def events-added? (atom false))
 
 ;; NOTE: this is a "run once" function
 (defn- add-events! []
   (when-not @events-added?
-    (.on ($ "body") "click" ".bubble-0374c, .small-frame-ac2ae" click-frame-link)
+    (doto ($ "body")
+      (.on "click" ".bubble-0374c, .small-frame-ac2ae" click-frame-link)
+      (.on "click" ".play-btn-db258" click-play-btn))
     (reset! events-added? true)))
 
 ;;------------------------------------------------------------------------------
