@@ -332,7 +332,7 @@
       the-char]))
 
 (hiccups/defhtml big-line-number [n]
-  [:div.big-num-c7cf6 (grid -1 n) n])
+  [:div.big-num-c7cf6 (grid -0.5 n) n])
 
 (hiccups/defhtml big-screen-chars [a]
   (let [frames (:frames a)
@@ -342,7 +342,7 @@
       (map big-line-number (range 1 (inc max-y)))
       (map big-char chars))))
 
-(hiccups/defhtml small-multiple-char [chars [k v]]
+(hiccups/defhtml frame-char [chars [k v]]
   (when v
     (let [ch1 (k chars)
           ch2 (if (vector? ch1) (first ch1) ch1)
@@ -353,42 +353,37 @@
                (grid (first v) (second v) true))
         ch2])))
 
-(hiccups/defhtml small-line-number [n]
-  [:div.small-num-59b3c (grid -1 n true) n])
+(hiccups/defhtml frame-line-number [n]
+  [:div.small-num-59b3c (grid -0.5 n true) n])
 
-(hiccups/defhtml small-multiple [chars max-y frame-idx frame]
+(hiccups/defhtml frame-html [chars max-y frame-idx frame]
   (let [max-x (max-x-in-frame frame)
         width (* max-x small-x-unit)
         height (* max-y small-y-unit)]
     [:div.small-frame-ac2ae
       {:data-frame-index frame-idx
-       :id (str "smallMultiple-" frame-idx)
+       :id (str "frame-" frame-idx)
        :style (str "height: " height "px; width: " width "px")}
       [:span.step-e483d (str "Step " (inc frame-idx))]
-      (map (partial small-multiple-char chars) frame)
-      (map small-line-number (range 1 (inc max-y)))]))
+      (map (partial frame-char chars) frame)
+      (map frame-line-number (range 1 (inc max-y)))]))
 
-(hiccups/defhtml small-frames [animation]
+(hiccups/defhtml frames-html [animation]
   (let [chars (:chars animation)
         frames (:frames animation)
         max-x (max-x-value-in-frames frames)
         width (* max-x reg-x-unit)
         max-y (max-y-value-in-frames frames)
         height (* max-y small-y-unit)]
-    (map-indexed (partial small-multiple chars max-y) frames)))
+    (list
+      (map-indexed (partial frame-html chars max-y) frames)
+      [:div.clr-43e49])))
 
 ;;------------------------------------------------------------------------------
-;; Bubble Links
+;; Buttons
 ;;------------------------------------------------------------------------------
 
-(hiccups/defhtml bubble-link [idx frame]
-  [:i.fa.fa-circle.bubble-0374c
-    {:data-frame-index idx
-     :id (str "bubbleLink-" idx)}])
-
-(hiccups/defhtml bubble-links [a]
-  (map-indexed bubble-link (:frames a))
-  [:br]
+(hiccups/defhtml buttons [a]
   [:button#pauseButton.btn-db258
     {:style "display:none"}
     [:i.fa.fa-pause] "Pause"]
@@ -438,9 +433,9 @@
 (def current-animation (atom nil))
 
 (defn- load-animation! [a]
-  (set-html! "smallMultiples" (small-frames a))
-  (set-html! "bubblesContainer" (bubble-links a))
   (set-html! "bigScreen" (big-screen-chars a))
+  (set-html! "framesContainer" (frames-html a))
+  (set-html! "buttonsContainer" (buttons a))
   (let [max-y (max-y-value-in-frames (:frames a))
         big-screen-height (+ (* max-y reg-y-unit) (half reg-y-unit))]
     (.height ($ "#bigScreen") big-screen-height)))
@@ -455,41 +450,15 @@
 ;;------------------------------------------------------------------------------
 
 (def current-frame-index (atom 0))
-(def active-bubble-class "active-bubble-51cf5")
 (def active-frame-class "active-frame-938e5")
-(def frame-animation-speed (half main-animation-speed))
-
-;; TODO: make this programmatic
-(def half-big-screen-width 500)
-
-(defn- center-frame-left [idx frames]
-  (let [$el ($ (str "#smallMultiple-" idx))
-        js-pos (.position $el)
-        frame-width (.width $el)
-        left (int (aget js-pos "left"))]
-    (+ (* -1 left)
-       half-big-screen-width
-       (* -1 (half frame-width)))))
-
-(defn- position-small-frame! [idx frames]
-  (.velocity ($ (str "#smallMultiples"))
-    (js-obj "left" (center-frame-left idx frames))
-    (js-obj "duration" frame-animation-speed)))
 
 (defn- on-change-frame [_kwd _atom old-idx new-idx]
   (let [animation @current-animation
         frames (:frames animation)
         new-frame (nth frames new-idx)]
-    ;; toggle active bubble
-    (.removeClass ($ (str "#bubbleLink-" old-idx)) active-bubble-class)
-    (.addClass    ($ (str "#bubbleLink-" new-idx)) active-bubble-class)
-
     ;; toggle active frame
-    (.removeClass ($ (str "#smallMultiple-" old-idx)) active-frame-class)
-    (.addClass    ($ (str "#smallMultiple-" new-idx)) active-frame-class)
-
-    ;; position the frame
-    (position-small-frame! new-idx frames)
+    (.removeClass ($ (str "#frame-" old-idx)) active-frame-class)
+    (.addClass    ($ (str "#frame-" new-idx)) active-frame-class)
 
     ;; animate if the frames are adjacent, else set position instantly
     (if (one? (js/Math.abs (- new-idx old-idx)))
@@ -502,9 +471,8 @@
 ;; Play / Pause Button
 ;;------------------------------------------------------------------------------
 
-(def time-between-rounds (* main-animation-speed 2))
-
 (def playing? (atom false))
+(def time-between-rounds (* main-animation-speed 2))
 
 (defn- on-last-frame? []
   (= (count (:frames @current-animation))
@@ -544,7 +512,7 @@
 ;; Events
 ;;------------------------------------------------------------------------------
 
-(defn- click-frame-link [js-evt]
+(defn- click-frame [js-evt]
   (let [$current-target ($ (aget js-evt "currentTarget"))
         frame-index (int (.attr $current-target "data-frame-index"))]
     ;; TODO: verify that frame-index is valid here
@@ -563,7 +531,7 @@
 (defn- add-events! []
   (when-not @events-added?
     (doto ($ "body")
-      (.on "click" ".bubble-0374c, .small-frame-ac2ae" click-frame-link)
+      (.on "click" ".small-frame-ac2ae" click-frame)
       (.on "click" "#playButton" click-play-btn)
       (.on "click" "#pauseButton" click-pause-btn))
     (reset! events-added? true)))
