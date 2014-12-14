@@ -320,7 +320,7 @@
   })
 
 ;;------------------------------------------------------------------------------
-;; Small Multiples
+;; Markup
 ;;------------------------------------------------------------------------------
 
 (hiccups/defhtml big-char [[k v]]
@@ -356,9 +356,8 @@
 (hiccups/defhtml frame-line-number [n]
   [:div.small-num-59b3c (grid -0.5 n true) n])
 
-(hiccups/defhtml frame-html [chars max-y frame-idx frame]
-  (let [max-x (max-x-in-frame frame)
-        width (* max-x small-x-unit)
+(hiccups/defhtml frame-html [chars max-x max-y frame-idx frame]
+  (let [width (* max-x small-x-unit)
         height (* max-y small-y-unit)]
     [:div.small-frame-ac2ae
       {:data-frame-index frame-idx
@@ -376,12 +375,8 @@
         max-y (max-y-value-in-frames frames)
         height (* max-y small-y-unit)]
     (list
-      (map-indexed (partial frame-html chars max-y) frames)
+      (map-indexed (partial frame-html chars max-x max-y) frames)
       [:div.clr-43e49])))
-
-;;------------------------------------------------------------------------------
-;; Buttons
-;;------------------------------------------------------------------------------
 
 (hiccups/defhtml buttons [a]
   [:button#pauseButton.btn-db258
