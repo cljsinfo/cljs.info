@@ -438,6 +438,35 @@ em {
   }
 }
 
+.inlineTooltipCaret() {
+  bottom: 100%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(51, 51, 51, 0);
+  border-bottom-color: @tooltipBackgroundColor;
+  border-width: 5px;
+  margin-left: -5px;
+}
+
+.centered-53ffd:after {
+  .inlineTooltipCaret();
+  left: 50%;
+}
+
+.push-right-6e671:after {
+  .inlineTooltipCaret();
+  left: 50px;
+}
+
+.push-left-267d7:after {
+  .inlineTooltipCaret();
+  right: 35px;
+}
+
 .left-arr-42ea1:after {
   right: 100%;
   top: 26px;
@@ -692,12 +721,6 @@ em {
   td {
     vertical-align: top;
   }
-}
-
-#caret-b316e {
-  color: #333;
-  font-size: 22px;
-  position: absolute;
 }
 
 //------------------------------------------------------------------------------

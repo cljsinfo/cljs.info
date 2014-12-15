@@ -3,7 +3,7 @@
     [clojure.string :refer [blank? replace split]]
     [clojure.walk :refer [keywordize-keys]]
     [cljs-cheatsheet.dom :refer [by-id get-element-box set-html!]]
-    [cljs-cheatsheet.html :refer [inline-caret inline-tooltip]]
+    [cljs-cheatsheet.html :refer [inline-tooltip]]
     [cljs-cheatsheet.state :refer [active-tooltip mouse-position mousetrap-boxes]]
     [cljs-cheatsheet.util :refer [half js-log log point-inside-box? uuid]]))
 
@@ -27,27 +27,21 @@
 (defn- create-inline-tooltip! [tt]
   (.append ($ "body") (inline-tooltip tt)))
 
-(defn- create-caret! [tt]
-  (.append ($ "body") (inline-caret tt)))
-
 ;;------------------------------------------------------------------------------
 ;; Hide and Show
 ;;------------------------------------------------------------------------------
 
 (defn- fade-out-tooltip!
-  ([tt] (fade-out-tooltip! tt false))
+  ([tt]
+    (fade-out-tooltip! tt false))
   ([tt destroy?]
-    (let [id (:id tt)
-          sel (str "#" id)
-          $el ($ sel)]
+    (let [$el ($ (str "#" (:id tt)))]
       (if destroy?
         (.fadeOut $el fade-speed #(.remove $el))
         (.fadeOut $el fade-speed)))))
 
 (defn- fade-in-tooltip! [tt]
-  (let [id (:id tt)
-        sel (str "#" id)
-        $el ($ sel)]
+  (let [$el ($ (str "#" (:id tt)))]
     (.fadeIn $el fade-speed)))
 
 ;;------------------------------------------------------------------------------
@@ -111,57 +105,39 @@
          :y1 (- tooltip-top tooltip-mouseout-buffer)
          :y2 (+ tooltip-top tooltip-height tooltip-mouseout-buffer)}})))
 
-;; TODO: need to deal with tooltips tooltips at the bottom of the 
+;; TODO: need to deal with tooltips tooltips at the bottom of the
 ;; page (flip up)
 (defn- position-inline-tooltip! [tt]
   (let [$link-el (:$link-el tt)
-        $innerWidth (.-innerWidth js/window)
-        offset (.offset $link-el)
-        link-x (aget offset "left")
-        link-y (aget offset "top")
+        window-width (.width ($ js/window))
+        link-offset (.offset $link-el)
+        link-x (aget link-offset "left")
+        link-y (aget link-offset "top")
         link-height (.outerHeight $link-el)
         link-width (.outerWidth $link-el)
-        caret (by-id "caret-b316e")
-        caret-id (.-id caret)
-        $caret-el ($ (str "#" caret-id))
-        link-center (+ link-x (/ link-width 4))
-        link-bottom (- (+ link-y link-height) 10)
         $tooltip-el ($ (str "#" (:id tt)))
         tooltip-height (.outerHeight $tooltip-el)
         tooltip-width (.outerWidth $tooltip-el)
         tooltip-left (- (+ link-x (half link-width)) (half tooltip-width))
-        tooltip-right (+ (+ link-x (half link-width)) (half tooltip-width))
-        tooltip-top (+ link-y link-height 4)
-        right-align-amt (- (- $innerWidth tooltip-right))
-        right-align-position (- (- (- tooltip-right right-align-amt) 
-          tooltip-width) 26)]
+        tooltip-right (+ tooltip-left tooltip-width)
+        push-right? (neg? (- link-x (half tooltip-width)))
+        push-left? (> (+ tooltip-right 10) window-width)
+        tooltip-left (cond
+                       push-right? (+ tooltip-left 150)
+                       push-left?  (- tooltip-left 160)
+                       :else       tooltip-left)
         tooltip-top (+ link-y link-height 5)]
-
-    ;; position the caret
-    (.css $caret-el (js-obj
-      "left" link-center
-      "top" link-bottom))
+    ;; add the correct arrow class
+    (.addClass $tooltip-el
+      (cond
+        push-right? "push-right-6e671"
+        push-left?  "push-left-267d7"
+        :else       "centered-53ffd"))
 
     ;; position the el
     (.css $tooltip-el (js-obj
       "left" tooltip-left
-      "top" tooltip-top))
-
-    ;; position el to align with left edge of browser (plus padding) or
-    ;; center on link if not on edge
-    (when (and (<= tooltip-left 200)
-               (< $innerWidth min-brwsr-wdth-tt-algn))
-      (.css $tooltip-el (js-obj
-        "left" 10
-        "top" tooltip-top)))
-
-    ;; position el to align with right edge of browser (plus padding) or
-    ;; center on link if not on edge
-    (when (and (>= tooltip-right (- $innerWidth 25))
-               (< $innerWidth min-brwsr-wdth-tt-algn))
-      (.css $tooltip-el (js-obj
-        "left" right-align-position
-        "top" tooltip-top)))
+      "top"  tooltip-top))
 
     ;; save the bounds of the tooltip and link elements
     ;; NOTE: these numbers allow for a smidge of padding on the outside of the
@@ -195,7 +171,6 @@
 
   ;; open inline tooltip
   (when (and new-tt (= (:tt-type new-tt) :inline))
-    (create-caret! new-tt)
     (create-inline-tooltip! new-tt)
     (position-inline-tooltip! new-tt)
     (fade-in-tooltip! new-tt)))
@@ -263,8 +238,7 @@
         :tt-type :info }))))
 
 (defn- mouseenter-link [js-evt]
-  (let [link-el (aget js-evt "currentTarget")
-        $link-el ($ link-el)
+  (let [$link-el ($ (aget js-evt "currentTarget"))
         full-name (.attr $link-el "data-full-name")
         tooltip-data (keywordize-keys (get @docs full-name))
         tooltip-already-showing? (and @active-tooltip
