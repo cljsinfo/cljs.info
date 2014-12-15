@@ -22,6 +22,8 @@
 (def small-x-unit 10)
 (def small-y-unit (twice small-x-unit))
 
+(def red-symbol-class "red-ccca5")
+
 ;;------------------------------------------------------------------------------
 ;; Helpers
 ;;------------------------------------------------------------------------------
@@ -60,10 +62,8 @@
 (defn- coords->style [x y small?]
   (let [x-unit (if small? small-x-unit reg-x-unit)
         y-unit (if small? small-y-unit reg-y-unit)]
-    (str "left: " (* x-unit (dec x)) "px; "
-         "top: " (* y-unit (dec y)) "px; "
-         "height: " y-unit "px; "
-         "width: " x-unit "px; ")))
+    (str "left:" (* x-unit (dec x)) "px;"
+         "top:" (* y-unit (dec y)) "px;")))
 
 (defn- grid
   ([x y]
@@ -75,13 +75,10 @@
 ;; Thread First 1
 ;;------------------------------------------------------------------------------
 
-(def red-symbol-class "red-ccca5")
-
 (def thread-first-1 {
   :chars {
     :op1  "("
-    :arr1 ["-" red-symbol-class]
-    :arr2 [">" red-symbol-class]
+    :arrow ["->" red-symbol-class]
     :a    "a"
 
     :op2 "("
@@ -100,10 +97,9 @@
   }
   :frames [
     {
-    :op1  [1 1]
-    :arr1 [2 1]
-    :arr2 [3 1]
-    :a    [5 1]
+    :op1   [1 1]
+    :arrow [2 1]
+    :a     [5 1]
 
     :op2 [5 2]
     :b   [6 2]
@@ -120,10 +116,9 @@
     :cp1 [12 3]
     }
     {
-    :op1  [1 1]
-    :arr1 [2 1]
-    :arr2 [3 1]
-    :a    [5 1]
+    :op1   [1 1]
+    :arrow [2 1]
+    :a     [5 1]
 
     :op2 [5 2]
     :b   [6 2]
@@ -140,9 +135,8 @@
     :cp1 [12 3]
     }
     {
-    :op1  [1 1]
-    :arr1 [2 1]
-    :arr2 [3 1]
+    :op1   [1 1]
+    :arrow [2 1]
 
     :op2 [5 2]
     :b   [6 2]
@@ -160,9 +154,8 @@
     :cp1 [12 3]
     }
     {
-    :op1 [1 1]
-    :arr1 [2 1]
-    :arr2 [3 1]
+    :op1   [1 1]
+    :arrow [2 1]
 
     :op2 [5 1]
     :b [6 1]
@@ -180,9 +173,8 @@
     :cp1 [12 2]
     }
     {
-    :op1 [1 1]
-    :arr1 [2 1]
-    :arr2 [3 1]
+    :op1   [1 1]
+    :arrow [2 1]
 
     :op2 [5 1]
     :b [6 1]
@@ -200,9 +192,8 @@
     :cp1 [22 2]
     }
     {
-    :op1 [1 1]
-    :arr1 [2 1]
-    :arr2 [3 1]
+    :op1   [1 1]
+    :arrow [2 1]
 
     :op2 [8 2]
     :b [9 2]
@@ -221,8 +212,7 @@
     }
     {
     :op1 nil
-    :arr1 nil
-    :arr2 nil
+    :arrow nil
 
     :op2 [8 2]
     :b [9 2]
@@ -241,8 +231,7 @@
     }
     {
     :op1 nil
-    :arr1 nil
-    :arr2 nil
+    :arrow nil
 
     :op3 [1 1]
     :x [2 1]
@@ -261,63 +250,292 @@
   ]})
 
 ;;------------------------------------------------------------------------------
-;; Example 2
+;; Thread First 2
 ;;------------------------------------------------------------------------------
 
-(hiccups/defhtml ex2-html []
-  [:div#line1.line-num (grid -1 1) "1"]
-  [:div#line2.line-num (grid -1 2) "2"]
-  [:div#line3.line-num (grid -1 3) "3"]
+(def thread-first-2 {
+  :chars {
+    :op1  "("
+    :op2  "("
+    :op3  "("
+    :op4  "("
 
-  [:div#openParen1 "("]
+    :cp1 ")"
+    :cp2 ")"
+    :cp3 ")"
+    :cp4 ")"
 
-  [:div#arrow1.arrow "-"]
-  [:div#arrow2.arrow ">"]
+    :arrow ["->" red-symbol-class]
+    :m "m"
 
-  [:div#symbolM "m"]
+    :kwd-a ":a"
+    :kwd-b ":b"
+    :kwd-c ":c"
+  }
+  :frames [
+    { ;; Frame 1
+      :op1 [1 1]
+      :arrow [2 1]
+      :m [5 1]
+      :kwd-a [7 1]
+      :kwd-b [10 1]
+      :kwd-c [13 1]
+      :cp1 [15 1]
 
-  [:div#kwdA1 ":"]
-  [:div#kwdA2 "a"]
+      :op2 nil
+      :op3 nil
+      :op4 nil
+      :cp2 nil
+      :cp3 nil
+      :cp4 nil
+    }
+    { ;; Frame 2
+      :op1 [1 1]
+      :arrow [2 1]
+      :m [5 1]
+      :kwd-a [5 2]
+      :kwd-b [5 3]
+      :kwd-c [5 4]
+      :cp1 [7 4]
 
-  [:div#kwdB1 ":"]
-  [:div#kwdB2 "b"]
+      :op2 nil
+      :op3 nil
+      :op4 nil
+      :cp2 nil
+      :cp3 nil
+      :cp4 nil
+    }
+    { ;; Frame 3
+      :op1 [1 1]
+      :arrow [2 1]
+      :m [5 1]
+      :op2 [5 2]
+      :kwd-a [6 2]
+      :cp2 [8 2]
+      :kwd-b [5 3]
+      :kwd-c [5 4]
+      :cp1 [7 4]
 
-  [:div#kwdC1 ":"]
-  [:div#kwdC2 "c"]
+      :op3 nil
+      :op4 nil
+      :cp3 nil
+      :cp4 nil
+    }
+    { ;; Frame 4
+      :op1 [1 1]
+      :arrow [2 1]
+      :m [5 1]
+      :op2 [5 2]
+      :kwd-a [6 2]
+      :cp2 [10 2]
+      :kwd-b [5 3]
+      :kwd-c [5 4]
+      :cp1 [7 4]
 
-  [:div#openParen2 "("]
-  [:div#closeParen2 ")"]
+      :op3 nil
+      :op4 nil
+      :cp3 nil
+      :cp4 nil
+    }
+    { ;; Frame 5
+      :op1 [1 1]
+      :arrow [2 1]
+      :op2 [5 2]
+      :kwd-a [6 2]
+      :m [9 2]
+      :cp2 [10 2]
+      :kwd-b [5 3]
+      :kwd-c [5 4]
+      :cp1 [7 4]
 
-  [:div#openParen3 "("]
-  [:div#closeParen3 ")"]
+      :op3 nil
+      :op4 nil
+      :cp3 nil
+      :cp4 nil
+    }
+    { ;; Frame 6
+      :op1 [1 1]
+      :arrow [2 1]
+      :op2 [5 1]
+      :kwd-a [6 1]
+      :m [9 1]
+      :cp2 [10 1]
+      :kwd-b [5 2]
+      :kwd-c [5 3]
+      :cp1 [7 3]
 
-  [:div#closeParen1  ")"]
-  )
+      :op3 nil
+      :op4 nil
+      :cp3 nil
+      :cp4 nil
+    }
+    { ;; Frame 7
+      :op1 [1 1]
+      :arrow [2 1]
+      :op2 [5 1]
+      :kwd-a [6 1]
+      :m [9 1]
+      :cp2 [10 1]
 
-(def ex2-pos1 {
-  :op1 [1 1]
-  :arr1 [2 1]
-  :arr2 [3 1]
+      :op3 [5 2]
+      :kwd-b [6 2]
+      :cp3 [8 2]
 
-  :m [5 1]
+      :kwd-c [5 3]
+      :cp1 [7 3]
 
-  :kwdA1 [7 1]
-  :kwdA2 [8 1]
+      :op4 nil
+      :cp4 nil
+    }
+    { ;; Frame 8
+      :op1 [1 1]
+      :arrow [2 1]
+      :op2 [5 1]
+      :kwd-a [6 1]
+      :m [9 1]
+      :cp2 [10 1]
 
-  :kwdB1 [9 1]
-  :kwdB2 [10 1]
+      :op3 [5 2]
+      :kwd-b [6 2]
+      :cp3 [15 2]
 
-  :kwdC1 [12 1]
-  :kwdC2 [13 1]
+      :kwd-c [5 3]
+      :cp1 [7 3]
 
-  :op2 nil
-  :cp2 nil
+      :op4 nil
+      :cp4 nil
+    }
+    { ;; Frame 9
+      :op1 [1 1]
+      :arrow [2 1]
 
-  :op3 nil
-  :cp3 nil
+      :op3 [5 2]
+      :kwd-b [6 2]
+      :op2 [9 2]
+      :kwd-a [10 2]
+      :m [13 2]
+      :cp2 [14 2]
+      :cp3 [15 2]
 
-  :cp1 [14 1]
+      :kwd-c [5 3]
+      :cp1 [7 3]
+
+      :op4 nil
+      :cp4 nil
+    }
+    { ;; Frame 10
+      :op1 [1 1]
+      :arrow [2 1]
+
+      :op3 [5 1]
+      :kwd-b [6 1]
+      :op2 [9 1]
+      :kwd-a [10 1]
+      :m [13 1]
+      :cp2 [14 1]
+      :cp3 [15 1]
+
+      :kwd-c [5 2]
+      :cp1 [7 2]
+
+      :op4 nil
+      :cp4 nil
+    }
+    { ;; Frame 11
+      :op1 [1 1]
+      :arrow [2 1]
+
+      :op3 [5 1]
+      :kwd-b [6 1]
+      :op2 [9 1]
+      :kwd-a [10 1]
+      :m [13 1]
+      :cp2 [14 1]
+      :cp3 [15 1]
+
+      :op4 [5 2]
+      :kwd-c [6 2]
+      :cp4 [8 2]
+      :cp1 [9 2]
+    }
+    { ;; Frame 12
+      :op1 [1 1]
+      :arrow [2 1]
+
+      :op3 [5 1]
+      :kwd-b [6 1]
+      :op2 [9 1]
+      :kwd-a [10 1]
+      :m [13 1]
+      :cp2 [14 1]
+      :cp3 [15 1]
+
+      :op4 [5 2]
+      :kwd-c [6 2]
+      :cp4 [20 2]
+      :cp1 [21 2]
+    }
+    { ;; Frame 13
+      :op1 [1 1]
+      :arrow [2 1]
+
+      :op4 [5 2]
+      :kwd-c [6 2]
+      :op3 [9 2]
+      :kwd-b [10 2]
+      :op2 [13 2]
+      :kwd-a [14 2]
+      :m [17 2]
+      :cp2 [18 2]
+      :cp3 [19 2]
+      :cp4 [20 2]
+      :cp1 [21 2]
+    }
+    { ;; Frame 14
+      :op1 nil
+      :arrow nil
+
+      :op4 [5 2]
+      :kwd-c [6 2]
+      :op3 [9 2]
+      :kwd-b [10 2]
+      :op2 [13 2]
+      :kwd-a [14 2]
+      :m [17 2]
+      :cp2 [18 2]
+      :cp3 [19 2]
+      :cp4 [20 2]
+
+      :cp1 nil
+    }
+    { ;; Frame 15
+      :op1 nil
+      :arrow nil
+
+      :op4 [1 1]
+      :kwd-c [2 1]
+      :op3 [5 1]
+      :kwd-b [6 1]
+      :op2 [9 1]
+      :kwd-a [10 1]
+      :m [13 1]
+      :cp2 [14 1]
+      :cp3 [15 1]
+      :cp4 [16 1]
+
+      :cp1 nil
+    }
+  ]
   })
+
+;;------------------------------------------------------------------------------
+;; Animations
+;;------------------------------------------------------------------------------
+
+(def animations [
+  thread-first-1
+  thread-first-2
+  ])
 
 ;;------------------------------------------------------------------------------
 ;; Markup
@@ -328,7 +546,7 @@
         extra-class (if (vector? v) (second v))]
     [:div
       {:class (str "big-char-6b108" (when extra-class (str " " extra-class)))
-       :id (name k)}
+       :id (str "bigChar-" (name k))}
       the-char]))
 
 (hiccups/defhtml big-line-number [n]
@@ -391,35 +609,46 @@
 
 (def main-animation-speed 800)
 
-(defn- animate-single! [[k v]]
-  (let [fade-out? (nil? v)
-        sel (str "#" (name k))
-        $el ($ sel)]
+;; TODO: this function could be cleaner
+(defn- animate-char! [[k v]]
+  (let [$el ($ (str "#bigChar-" (name k)))
+        el-hidden? (= "0" (.css $el "opacity"))
+        fade-out? (nil? v)
+        fade-in? (and el-hidden? (not fade-out?))
+        left (if-not fade-out? (* reg-x-unit (dec (first v))))
+        top (if-not fade-out? (* reg-y-unit (dec (second v))))]
+    ;; position the character instantly if we are fading in
+    (when fade-in?
+      (.css $el (js-obj "left" left "top" top)))
+
+    ;; animate
     (.velocity $el
+      (cond
+        fade-out?
+          (js-obj "opacity" 0)
+        fade-in?
+          (js-obj "opacity" 1)
+        :else
+          (js-obj "left" left
+                  "opacity" 1
+                  "top" top))
+      (js-obj "duration" main-animation-speed))))
+
+(defn- animate-to-position! [pos]
+  (doall (map animate-char! pos)))
+
+(defn- set-char! [[k v]]
+  (let [fade-out? (nil? v)
+        $el ($ (str "#bigChar-" (name k)))]
+    (.css $el
       (if fade-out?
         (js-obj "opacity" 0)
         (js-obj "left" (* reg-x-unit (dec (first v)))
                 "opacity" 1
-                "top" (* reg-y-unit (dec (second v)))))
-      (js-obj "duration" main-animation-speed))))
-
-(defn- animate-to-position! [pos]
-  (doall (map animate-single! pos)))
-
-(defn- set-single! [[k v]]
-  (let [fade-out? (nil? v)
-        sel (str "#" (name k))
-        $el ($ sel)]
-    (.css $el
-      (if fade-out?
-        (js-obj "opacity" 0)
-        (js-obj
-          "left" (* reg-x-unit (dec (first v)))
-          "opacity" 1
-          "top" (* reg-y-unit (dec (second v))))))))
+                "top" (* reg-y-unit (dec (second v))))))))
 
 (defn- set-position-instant! [pos]
-  (doall (map set-single! pos)))
+  (doall (map set-char! pos)))
 
 ;;------------------------------------------------------------------------------
 ;; Current Animation
@@ -539,5 +768,5 @@
   "Initialize the threading macro page."
   []
   (add-events!)
-  (reset! current-animation thread-first-1)
+  (reset! current-animation thread-first-2)
   (reset! current-frame-index 0))
