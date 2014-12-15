@@ -105,6 +105,8 @@
          :y1 (- tooltip-top tooltip-mouseout-buffer)
          :y2 (+ tooltip-top tooltip-height tooltip-mouseout-buffer)}})))
 
+(def link-mousetrap-padding 2.5)
+
 ;; TODO: need to deal with tooltips tooltips at the bottom of the
 ;; page (flip up)
 (defn- position-inline-tooltip! [tt]
@@ -144,10 +146,10 @@
     ;; link element
     (reset! mousetrap-boxes {
       :link
-        {:x1 (- link-x 2)
-         :x2 (+ link-x link-width 2)
-         :y1 (dec link-y)
-         :y2 (+ link-y link-height 20)} ;; let them mouse down into the tooltip
+        {:x1 (- link-x link-mousetrap-padding)
+         :x2 (+ link-x link-width link-mousetrap-padding)
+         :y1 (- link-y link-mousetrap-padding)
+         :y2 (+ link-y link-height 15)} ;; let them mouse down into the tooltip
 
       :tooltip
         {:x1 tooltip-left
