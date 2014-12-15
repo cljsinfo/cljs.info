@@ -76,6 +76,7 @@
 ;;------------------------------------------------------------------------------
 
 (def thread-first-1 {
+  :name "Generic Thread First"
   :chars {
     :op1  "("
     :arrow ["->" red-symbol-class]
@@ -96,156 +97,156 @@
     :cp1 ")"
   }
   :frames [
-    {
-    :op1   [1 1]
-    :arrow [2 1]
-    :a     [5 1]
+    { ;; Frame 1
+      :op1   [1 1]
+      :arrow [2 1]
+      :a     [5 1]
 
-    :op2 [5 2]
-    :b   [6 2]
-    :c   [8 2]
-    :d   [10 2]
-    :cp2 [11 2]
+      :op2 [5 2]
+      :b   [6 2]
+      :c   [8 2]
+      :d   [10 2]
+      :cp2 [11 2]
 
-    :op3 [5 3]
-    :x   [6 3]
-    :y   [8 3]
-    :z   [10 3]
-    :cp3 [11 3]
+      :op3 [5 3]
+      :x   [6 3]
+      :y   [8 3]
+      :z   [10 3]
+      :cp3 [11 3]
 
-    :cp1 [12 3]
+      :cp1 [12 3]
     }
-    {
-    :op1   [1 1]
-    :arrow [2 1]
-    :a     [5 1]
+    { ;; Frame 2
+      :op1   [1 1]
+      :arrow [2 1]
+      :a     [5 1]
 
-    :op2 [5 2]
-    :b   [6 2]
-    :c   [10 2]
-    :d   [12 2]
-    :cp2 [13 2]
+      :op2 [5 2]
+      :b   [6 2]
+      :c   [10 2]
+      :d   [12 2]
+      :cp2 [13 2]
 
-    :op3 [5 3]
-    :x   [6 3]
-    :y   [8 3]
-    :z   [10 3]
-    :cp3 [11 3]
+      :op3 [5 3]
+      :x   [6 3]
+      :y   [8 3]
+      :z   [10 3]
+      :cp3 [11 3]
 
-    :cp1 [12 3]
+      :cp1 [12 3]
     }
-    {
-    :op1   [1 1]
-    :arrow [2 1]
+    { ;; Frame 3
+      :op1   [1 1]
+      :arrow [2 1]
 
-    :op2 [5 2]
-    :b   [6 2]
-    :a   [8 2]
-    :c   [10 2]
-    :d   [12 2]
-    :cp2 [13 2]
+      :op2 [5 2]
+      :b   [6 2]
+      :a   [8 2]
+      :c   [10 2]
+      :d   [12 2]
+      :cp2 [13 2]
 
-    :op3 [5 3]
-    :x   [6 3]
-    :y   [8 3]
-    :z   [10 3]
-    :cp3 [11 3]
+      :op3 [5 3]
+      :x   [6 3]
+      :y   [8 3]
+      :z   [10 3]
+      :cp3 [11 3]
 
-    :cp1 [12 3]
+      :cp1 [12 3]
     }
-    {
-    :op1   [1 1]
-    :arrow [2 1]
+    { ;; Frame 4
+      :op1   [1 1]
+      :arrow [2 1]
 
-    :op2 [5 1]
-    :b [6 1]
-    :a [8 1]
-    :c [10 1]
-    :d [12 1]
-    :cp2 [13 1]
+      :op2 [5 1]
+      :b [6 1]
+      :a [8 1]
+      :c [10 1]
+      :d [12 1]
+      :cp2 [13 1]
 
-    :op3 [5 2]
-    :x [6 2]
-    :y [8 2]
-    :z [10 2]
-    :cp3 [11 2]
+      :op3 [5 2]
+      :x [6 2]
+      :y [8 2]
+      :z [10 2]
+      :cp3 [11 2]
 
-    :cp1 [12 2]
+      :cp1 [12 2]
     }
-    {
-    :op1   [1 1]
-    :arrow [2 1]
+    { ;; Frame 5
+      :op1   [1 1]
+      :arrow [2 1]
 
-    :op2 [5 1]
-    :b [6 1]
-    :a [8 1]
-    :c [10 1]
-    :d [12 1]
-    :cp2 [13 1]
+      :op2 [5 1]
+      :b [6 1]
+      :a [8 1]
+      :c [10 1]
+      :d [12 1]
+      :cp2 [13 1]
 
-    :op3 [5 2]
-    :x [6 2]
-    :y [18 2]
-    :z [20 2]
-    :cp3 [21 2]
+      :op3 [5 2]
+      :x [6 2]
+      :y [18 2]
+      :z [20 2]
+      :cp3 [21 2]
 
-    :cp1 [22 2]
+      :cp1 [22 2]
     }
-    {
-    :op1   [1 1]
-    :arrow [2 1]
+    { ;; Frame 6
+      :op1   [1 1]
+      :arrow [2 1]
 
-    :op2 [8 2]
-    :b [9 2]
-    :a [11 2]
-    :c [13 2]
-    :d [15 2]
-    :cp2 [16 2]
+      :op2 [8 2]
+      :b [9 2]
+      :a [11 2]
+      :c [13 2]
+      :d [15 2]
+      :cp2 [16 2]
 
-    :op3 [5 2]
-    :x [6 2]
-    :y [18 2]
-    :z [20 2]
-    :cp3 [21 2]
+      :op3 [5 2]
+      :x [6 2]
+      :y [18 2]
+      :z [20 2]
+      :cp3 [21 2]
 
-    :cp1 [22 2]
+      :cp1 [22 2]
     }
-    {
-    :op1 nil
-    :arrow nil
+    { ;; Frame 7
+      :op1 nil
+      :arrow nil
 
-    :op2 [8 2]
-    :b [9 2]
-    :a [11 2]
-    :c [13 2]
-    :d [15 2]
-    :cp2 [16 2]
+      :op2 [8 2]
+      :b [9 2]
+      :a [11 2]
+      :c [13 2]
+      :d [15 2]
+      :cp2 [16 2]
 
-    :op3 [5 2]
-    :x [6 2]
-    :y [18 2]
-    :z [20 2]
-    :cp3 [21 2]
+      :op3 [5 2]
+      :x [6 2]
+      :y [18 2]
+      :z [20 2]
+      :cp3 [21 2]
 
-    :cp1 nil
+      :cp1 nil
     }
-    {
-    :op1 nil
-    :arrow nil
+    { ;; Frame 8
+      :op1 nil
+      :arrow nil
 
-    :op3 [1 1]
-    :x [2 1]
-    :op2 [4 1]
-    :b [5 1]
-    :a [7 1]
-    :c [9 1]
-    :d [11 1]
-    :cp2 [12 1]
-    :y [14 1]
-    :z [16 1]
-    :cp3 [17 1]
+      :op3 [1 1]
+      :x [2 1]
+      :op2 [4 1]
+      :b [5 1]
+      :a [7 1]
+      :c [9 1]
+      :d [11 1]
+      :cp2 [12 1]
+      :y [14 1]
+      :z [16 1]
+      :cp3 [17 1]
 
-    :cp1 nil
+      :cp1 nil
     }
   ]})
 
@@ -254,6 +255,7 @@
 ;;------------------------------------------------------------------------------
 
 (def thread-first-2 {
+  :name "Thread First with Keywords"
   :chars {
     :op1  "("
     :op2  "("
@@ -541,6 +543,13 @@
 ;; Markup
 ;;------------------------------------------------------------------------------
 
+(hiccups/defhtml option [idx a]
+  [:option {:value idx} (:name a)])
+
+(hiccups/defhtml dropdown []
+  [:select#animationSelect
+    (map-indexed option animations)])
+
 (hiccups/defhtml big-char [[k v]]
   (let [the-char (if (vector? v) (first v) v)
         extra-class (if (vector? v) (second v))]
@@ -736,6 +745,13 @@
 ;; Events
 ;;------------------------------------------------------------------------------
 
+(defn- change-animation-select []
+  (let [anim-index (int (.val ($ "#animationSelect")))
+        anim (nth animations anim-index false)]
+    (when anim
+      (reset! current-animation anim)
+      (reset! current-frame-index 0))))
+
 (defn- click-frame [js-evt]
   (let [$current-target ($ (aget js-evt "currentTarget"))
         frame-index (int (.attr $current-target "data-frame-index"))]
@@ -755,6 +771,7 @@
 (defn- add-events! []
   (when-not @events-added?
     (doto ($ "body")
+      (.on "change" "#animationSelect" change-animation-select)
       (.on "click" ".small-frame-ac2ae" click-frame)
       (.on "click" "#playButton" click-play-btn)
       (.on "click" "#pauseButton" click-pause-btn))
@@ -767,6 +784,6 @@
 (defn init!
   "Initialize the threading macro page."
   []
+  (set-html! "top" (dropdown))
   (add-events!)
-  (reset! current-animation thread-first-2)
-  (reset! current-frame-index 0))
+  (.change ($ "#animationSelect")))
