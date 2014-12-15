@@ -1006,6 +1006,9 @@
       [:div.related-links-f8e49
         (map #(related-links-for-ns % r2) namespaces)])))
 
+(hiccups/defhtml inline-caret [tt]
+  [:i.fa.fa-caret-up {:id "caret-b316e"}])
+
 (hiccups/defhtml inline-tooltip [tt]
   (let [desc-html (:description-html tt)
         id (:id tt)

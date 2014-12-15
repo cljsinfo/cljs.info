@@ -3,7 +3,7 @@
     [clojure.string :refer [blank? replace split]]
     [clojure.walk :refer [keywordize-keys]]
     [cljs-cheatsheet.dom :refer [by-id get-element-box set-html!]]
-    [cljs-cheatsheet.html :refer [inline-tooltip]]
+    [cljs-cheatsheet.html :refer [inline-caret inline-tooltip]]
     [cljs-cheatsheet.state :refer [active-tooltip mouse-position mousetrap-boxes]]
     [cljs-cheatsheet.util :refer [half js-log log point-inside-box? uuid]]))
 
@@ -17,6 +17,7 @@
 (def right-arrow-class "right-arr-d3345")
 (def arrow-classes (str left-arrow-class " " right-arrow-class))
 
+(def min-brwsr-wdth-tt-algn 1460)
 (def fade-speed 100)
 
 ;;------------------------------------------------------------------------------
@@ -25,6 +26,9 @@
 
 (defn- create-inline-tooltip! [tt]
   (.append ($ "body") (inline-tooltip tt)))
+
+(defn- create-caret! [tt]
+  (.append ($ "body") (inline-caret tt)))
 
 ;;------------------------------------------------------------------------------
 ;; Hide and Show
@@ -80,6 +84,7 @@
         tooltip-left (if flip? (- icon-x tooltip-width 11)
                                (+ icon-x 18))
         tooltip-top (- icon-y 22)]
+
     ;; toggle arrow classes
     (.removeClass $tooltip-el arrow-classes)
     (if flip?
@@ -106,24 +111,57 @@
          :y1 (- tooltip-top tooltip-mouseout-buffer)
          :y2 (+ tooltip-top tooltip-height tooltip-mouseout-buffer)}})))
 
-;; TODO: need to deal with tooltips on the edge of the page
-;; and tooltips at the bottom of the page (flip up)
+;; TODO: need to deal with tooltips tooltips at the bottom of the 
+;; page (flip up)
 (defn- position-inline-tooltip! [tt]
   (let [$link-el (:$link-el tt)
+        $innerWidth (.-innerWidth js/window)
         offset (.offset $link-el)
         link-x (aget offset "left")
         link-y (aget offset "top")
         link-height (.outerHeight $link-el)
         link-width (.outerWidth $link-el)
+        caret (by-id "caret-b316e")
+        caret-id (.-id caret)
+        $caret-el ($ (str "#" caret-id))
+        link-center (+ link-x (/ link-width 4))
+        link-bottom (- (+ link-y link-height) 10)
         $tooltip-el ($ (str "#" (:id tt)))
         tooltip-height (.outerHeight $tooltip-el)
         tooltip-width (.outerWidth $tooltip-el)
         tooltip-left (- (+ link-x (half link-width)) (half tooltip-width))
+        tooltip-right (+ (+ link-x (half link-width)) (half tooltip-width))
+        tooltip-top (+ link-y link-height 4)
+        right-align-amt (- (- $innerWidth tooltip-right))
+        right-align-position (- (- (- tooltip-right right-align-amt) 
+          tooltip-width) 26)]
         tooltip-top (+ link-y link-height 5)]
+
+    ;; position the caret
+    (.css $caret-el (js-obj
+      "left" link-center
+      "top" link-bottom))
+
     ;; position the el
     (.css $tooltip-el (js-obj
       "left" tooltip-left
       "top" tooltip-top))
+
+    ;; position el to align with left edge of browser (plus padding) or
+    ;; center on link if not on edge
+    (when (and (<= tooltip-left 200)
+               (< $innerWidth min-brwsr-wdth-tt-algn))
+      (.css $tooltip-el (js-obj
+        "left" 10
+        "top" tooltip-top)))
+
+    ;; position el to align with right edge of browser (plus padding) or
+    ;; center on link if not on edge
+    (when (and (>= tooltip-right (- $innerWidth 25))
+               (< $innerWidth min-brwsr-wdth-tt-algn))
+      (.css $tooltip-el (js-obj
+        "left" right-align-position
+        "top" tooltip-top)))
 
     ;; save the bounds of the tooltip and link elements
     ;; NOTE: these numbers allow for a smidge of padding on the outside of the
@@ -157,6 +195,7 @@
 
   ;; open inline tooltip
   (when (and new-tt (= (:tt-type new-tt) :inline))
+    (create-caret! new-tt)
     (create-inline-tooltip! new-tt)
     (position-inline-tooltip! new-tt)
     (fade-in-tooltip! new-tt)))
