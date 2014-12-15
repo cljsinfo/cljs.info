@@ -106,6 +106,8 @@
          :y2 (+ tooltip-top tooltip-height tooltip-mouseout-buffer)}})))
 
 (def link-mousetrap-padding 2.5)
+(def push-right 150)
+(def push-left 160)
 
 ;; TODO: need to deal with tooltips tooltips at the bottom of the
 ;; page (flip up)
@@ -125,8 +127,8 @@
         push-right? (neg? (- link-x (half tooltip-width)))
         push-left? (> (+ tooltip-right 10) window-width)
         tooltip-left (cond
-                       push-right? (+ tooltip-left 150)
-                       push-left?  (- tooltip-left 160)
+                       push-right? (+ tooltip-left push-right)
+                       push-left?  (- tooltip-left push-left)
                        :else       tooltip-left)
         tooltip-top (+ link-y link-height 5)]
     ;; add the correct arrow class
