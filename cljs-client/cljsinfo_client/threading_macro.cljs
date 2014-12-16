@@ -77,6 +77,7 @@
 
 (def thread-first-1 {
   :name "Generic Thread First"
+
   :chars {
     :op1  "("
     :arrow ["->" red-symbol-class]
@@ -96,6 +97,9 @@
 
     :cp1 ")"
   }
+
+  :steps [0 3 6 8]
+
   :frames [
     { ;; Frame 1
       :op1   [1 1]
@@ -159,16 +163,16 @@
       :arrow [2 1]
 
       :op2 [5 1]
-      :b [6 1]
-      :a [8 1]
-      :c [10 1]
-      :d [12 1]
+      :b   [6 1]
+      :a   [8 1]
+      :c   [10 1]
+      :d   [12 1]
       :cp2 [13 1]
 
       :op3 [5 2]
-      :x [6 2]
-      :y [8 2]
-      :z [10 2]
+      :x   [6 2]
+      :y   [8 2]
+      :z   [10 2]
       :cp3 [11 2]
 
       :cp1 [12 2]
@@ -178,16 +182,16 @@
       :arrow [2 1]
 
       :op2 [5 1]
-      :b [6 1]
-      :a [8 1]
-      :c [10 1]
-      :d [12 1]
+      :b   [6 1]
+      :a   [8 1]
+      :c   [10 1]
+      :d   [12 1]
       :cp2 [13 1]
 
       :op3 [5 2]
-      :x [6 2]
-      :y [18 2]
-      :z [20 2]
+      :x   [6 2]
+      :y   [18 2]
+      :z   [20 2]
       :cp3 [21 2]
 
       :cp1 [22 2]
@@ -197,53 +201,72 @@
       :arrow [2 1]
 
       :op2 [8 2]
-      :b [9 2]
-      :a [11 2]
-      :c [13 2]
-      :d [15 2]
+      :b   [9 2]
+      :a   [11 2]
+      :c   [13 2]
+      :d   [15 2]
       :cp2 [16 2]
 
       :op3 [5 2]
-      :x [6 2]
-      :y [18 2]
-      :z [20 2]
+      :x   [6 2]
+      :y   [18 2]
+      :z   [20 2]
       :cp3 [21 2]
 
       :cp1 [22 2]
     }
     { ;; Frame 7
-      :op1 nil
+      :op1   [1 1]
+      :arrow [2 1]
+
+      :op3 [5 1]
+      :x   [6 1]
+
+      :op2 [8 1]
+      :b   [9 1]
+      :a   [11 1]
+      :c   [13 1]
+      :d   [15 1]
+      :cp2 [16 1]
+
+      :y   [18 1]
+      :z   [20 1]
+      :cp3 [21 1]
+
+      :cp1 [22 1]
+    }
+    { ;; Frame 8
+      :op1   nil
       :arrow nil
 
-      :op2 [8 2]
-      :b [9 2]
-      :a [11 2]
-      :c [13 2]
-      :d [15 2]
-      :cp2 [16 2]
-
-      :op3 [5 2]
-      :x [6 2]
-      :y [18 2]
-      :z [20 2]
-      :cp3 [21 2]
+      :op3 [5 1]
+      :x   [6 1]
+      :op2 [8 1]
+      :b   [9 1]
+      :a   [11 1]
+      :c   [13 1]
+      :d   [15 1]
+      :cp2 [16 1]
+      :y   [18 1]
+      :z   [20 1]
+      :cp3 [21 1]
 
       :cp1 nil
     }
-    { ;; Frame 8
-      :op1 nil
+    { ;; Frame 9
+      :op1   nil
       :arrow nil
 
       :op3 [1 1]
-      :x [2 1]
+      :x   [2 1]
       :op2 [4 1]
-      :b [5 1]
-      :a [7 1]
-      :c [9 1]
-      :d [11 1]
+      :b   [5 1]
+      :a   [7 1]
+      :c   [9 1]
+      :d   [11 1]
       :cp2 [12 1]
-      :y [14 1]
-      :z [16 1]
+      :y   [14 1]
+      :z   [16 1]
       :cp3 [17 1]
 
       :cp1 nil
@@ -583,26 +606,29 @@
 (hiccups/defhtml frame-line-number [n]
   [:div.small-num-59b3c (grid -0.5 n true) n])
 
-(hiccups/defhtml frame-html [chars max-x max-y frame-idx frame]
+(hiccups/defhtml frame-html [chars max-x max-y step-idx frame]
   (let [width (* max-x small-x-unit)
         height (* max-y small-y-unit)]
-    [:div.small-frame-ac2ae
-      {:data-frame-index frame-idx
-       :id (str "frame-" frame-idx)
-       :style (str "height: " height "px; width: " width "px")}
-      [:span.step-e483d (str "Step " (inc frame-idx))]
+    [:div.step-ac2ae
+      {:data-step-index step-idx
+       :id (str "step-" step-idx)
+       :style (str "height:" height "px;"
+                   "width:" width "px;")}
+      [:span.step-label-e483d (str "Step " (inc step-idx))]
       (map (partial frame-char chars) frame)
       (map frame-line-number (range 1 (inc max-y)))]))
 
-(hiccups/defhtml frames-html [animation]
+(hiccups/defhtml steps-html [animation]
   (let [chars (:chars animation)
-        frames (:frames animation)
-        max-x (max-x-value-in-frames frames)
+        all-frames (:frames animation)
+        step-indexes (:steps animation)
+        step-frames (map #(all-frames %) step-indexes)
+        max-x (max-x-value-in-frames step-frames)
         width (* max-x reg-x-unit)
-        max-y (max-y-value-in-frames frames)
+        max-y (max-y-value-in-frames step-frames)
         height (* max-y small-y-unit)]
     (list
-      (map-indexed (partial frame-html chars max-x max-y) frames)
+      (map-indexed (partial frame-html chars max-x max-y) step-frames)
       [:div.clr-43e49])))
 
 (hiccups/defhtml buttons [a]
@@ -617,6 +643,10 @@
 ;;------------------------------------------------------------------------------
 
 (def main-animation-speed 800)
+
+(defn- animation-finished! []
+  (js-log (uuid))
+  )
 
 ;; TODO: this function could be cleaner
 (defn- animate-char! [[k v]]
@@ -644,7 +674,8 @@
       (js-obj "duration" main-animation-speed))))
 
 (defn- animate-to-position! [pos]
-  (doall (map animate-char! pos)))
+  (doall (map animate-char! pos))
+  (js/setTimeout animation-finished! main-animation-speed))
 
 (defn- set-char! [[k v]]
   (let [fade-out? (nil? v)
@@ -665,16 +696,13 @@
 
 (def current-animation (atom nil))
 
-(defn- load-animation! [a]
-  (set-html! "bigScreen" (big-screen-chars a))
-  (set-html! "framesContainer" (frames-html a))
-  (set-html! "buttonsContainer" (buttons a))
-  (let [max-y (max-y-value-in-frames (:frames a))
-        big-screen-height (+ (* max-y reg-y-unit) (half reg-y-unit))]
+(defn- on-change-animation [_kwd _atom _old-a new-a]
+  (set-html! "bigScreen" (big-screen-chars new-a))
+  (set-html! "buttonsContainer" (buttons new-a))
+  (set-html! "stepsContainer" (steps-html new-a))
+  (let [max-y (max-y-value-in-frames (:frames new-a))
+        big-screen-height (* max-y reg-y-unit)]
     (.height ($ "#bigScreen") big-screen-height)))
-
-(defn- on-change-animation [_kwd _atom old-a new-a]
-  (load-animation! new-a))
 
 (add-watch current-animation :change on-change-animation)
 
@@ -683,22 +711,42 @@
 ;;------------------------------------------------------------------------------
 
 (def current-frame-index (atom 0))
-(def active-frame-class "active-frame-938e5")
 
 (defn- on-change-frame [_kwd _atom old-idx new-idx]
   (let [animation @current-animation
         frames (:frames animation)
-        new-frame (nth frames new-idx)]
-    ;; toggle active frame
-    (.removeClass ($ (str "#frame-" old-idx)) active-frame-class)
-    (.addClass    ($ (str "#frame-" new-idx)) active-frame-class)
-
-    ;; animate if the frames are adjacent, else set position instantly
-    (if (one? (js/Math.abs (- new-idx old-idx)))
-      (animate-to-position! new-frame)
-      (set-position-instant! new-frame))))
+        new-frame (nth frames new-idx false)]
+    ;; NOTE: safeguard; this should never happen
+    (when new-frame
+      ;; animate if the frames are adjacent, else set position instantly
+      (if (one? (js/Math.abs (- new-idx old-idx)))
+        (animate-to-position! new-frame)
+        (set-position-instant! new-frame)))))
 
 (add-watch current-frame-index :change on-change-frame)
+
+;;------------------------------------------------------------------------------
+;; Current Step
+;;------------------------------------------------------------------------------
+
+(def current-step-index (atom 0))
+(def active-step-class "active-step-938e5")
+
+(defn- on-change-step [_kwd _atom old-idx new-idx]
+  (let [animation @current-animation
+        frames (:frames animation)
+        new-frame (nth frames new-idx)]
+    ;; toggle active step
+    (.removeClass ($ (str "#step-" old-idx)) active-step-class)
+    (.addClass    ($ (str "#step-" new-idx)) active-step-class)
+
+    ;; animate if the frames are adjacent, else set position instantly
+    ; (if (one? (js/Math.abs (- new-idx old-idx)))
+    ;   (animate-to-position! new-frame)
+    ;   (set-position-instant! new-frame))
+    ))
+
+(add-watch current-step-index :change on-change-step)
 
 ;;------------------------------------------------------------------------------
 ;; Play / Pause Button
@@ -726,7 +774,7 @@
   ;; toggle play / pause buttons
   (if p?
     (do (hide-el! "playButton")
-        (show-el! "pauseButton"))
+        (hide-el! "pauseButton"))
     (do (show-el! "playButton")
         (hide-el! "pauseButton")))
 
@@ -750,17 +798,21 @@
         anim (nth animations anim-index false)]
     (when anim
       (reset! current-animation anim)
-      (reset! current-frame-index 0))))
+      (reset! current-step-index 0))))
 
-(defn- click-frame [js-evt]
-  (let [$current-target ($ (aget js-evt "currentTarget"))
-        frame-index (int (.attr $current-target "data-frame-index"))]
-    ;; TODO: verify that frame-index is valid here
-    (when-not (= frame-index @current-frame-index)
-      (reset! current-frame-index frame-index))))
+(defn- click-step [js-evt]
+  (let [$target-el ($ (aget js-evt "currentTarget"))
+        step-index (int (.attr $target-el "data-step-index"))
+        ;;frame-index (nth (:steps @current-animation) step-index false)
+        ]
+    ;; TODO: verify that step-index is valid
+    (when-not (= step-index @current-step-index)
+      (reset! current-step-index step-index))))
 
 (defn- click-play-btn [js-evt]
-  (reset! playing? true))
+  (swap! current-frame-index inc)
+  ;;(reset! playing? true)
+  )
 
 (defn- click-pause-btn [js-evt]
   (reset! playing? false))
@@ -772,7 +824,7 @@
   (when-not @events-added?
     (doto ($ "body")
       (.on "change" "#animationSelect" change-animation-select)
-      (.on "click" ".small-frame-ac2ae" click-frame)
+      (.on "click" ".step-ac2ae" click-step)
       (.on "click" "#playButton" click-play-btn)
       (.on "click" "#pauseButton" click-pause-btn))
     (reset! events-added? true)))
