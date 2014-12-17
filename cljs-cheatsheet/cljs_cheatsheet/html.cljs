@@ -95,8 +95,14 @@
         [:tr.odd-372e6
           [:td.label-9e0b7 "Compare"]
           [:td.body-885f4
-            (fn-link "and" )
-            (fn-link "or")]]
+            (fn-link "=")
+            (fn-link "not=")
+            (fn-link "and")
+            (fn-link "or")
+            ;; TODO: need to add the .cljsdoc file for these
+            ;; (fn-link "not")
+            ;; (fn-link "identical?")
+            (fn-link "compare")]]
         [:tr.even-ff837
           [:td.label-9e0b7 "Loop"]
           [:td.body-885f4
@@ -191,7 +197,8 @@
             (fn-link "<")
             (fn-link ">")
             (fn-link "<=")
-            (fn-link ">=")]]
+            (fn-link ">=")
+            (fn-link "compare")]]
         [:tr.even-ff837
           [:td.label-9e0b7 "Cast"]
           [:td.body-885f4
