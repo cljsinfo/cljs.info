@@ -484,6 +484,8 @@ function buildCheatsheetSanityCheck() {
   if (! grunt.file.exists('public/js/cheatsheet.min.js')) {
     grunt.fail.warn('Could not find public/js/cheatsheet.min.js! Aborting...');
   }
+
+  // TODO: check to make sure the ctime on cheatsheet.min.js is pretty fresh (< 5 minutes)
 }
 
 function hashCheatsheetFiles() {
