@@ -42,7 +42,7 @@
     (if (:minified-client config)
       [:script {:src (asset "js/client.min.js")}]
       [:script {:src (asset "js/client.js")}])
-    (if init-page
+    (when init-page
       [:script "CLJSINFO.init('" init-page "');"])
     "</body>"
     "</html>"))
@@ -53,14 +53,13 @@
 
 (hiccups/defhtml homepage []
   (site-head "Home")
-  [:div.wrapper-cc101
-    [:div.js-48d1f "JavaScript"]
-    [:div.made-6bccb "made"]
-
-    [:div.simple-ef853 "Simple"]
-    ;;[:h1.title-0b151 [:span "JavaScript"] [:span.made-6bccb "made"] "Simple"]
-    ]
-  ;;[:h1 "Welcome to ClojureScript.info!"]
+  [:div.title-outer-16d0f
+    [:div.title-inner-df992
+      [:h1.title-2febf "ClojureScript"]
+      [:h2.sub-d57b3 "JavaScript made simple"]]]
+  [:div.header-outer-a295e
+    [:div.header-inner-e9e98
+      [:a.main-link-bb01a {:href ""} "cljs" [:span.info-9c06a ".info"]]]]
   (site-footer "homepage"))
 
 ;;------------------------------------------------------------------------------
