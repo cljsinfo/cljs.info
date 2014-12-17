@@ -95,8 +95,14 @@
         [:tr.odd-372e6
           [:td.label-9e0b7 "Compare"]
           [:td.body-885f4
-            (fn-link "and" )
-            (fn-link "or")]]
+            (fn-link "=")
+            (fn-link "not=")
+            (fn-link "and")
+            (fn-link "or")
+            ;; TODO: need to add the .cljsdoc file for these
+            ;; (fn-link "not")
+            ;; (fn-link "identical?")
+            (fn-link "compare")]]
         [:tr.even-ff837
           [:td.label-9e0b7 "Loop"]
           [:td.body-885f4
@@ -191,7 +197,8 @@
             (fn-link "<")
             (fn-link ">")
             (fn-link "<=")
-            (fn-link ">=")]]
+            (fn-link ">=")
+            (fn-link "compare")]]
         [:tr.even-ff837
           [:td.label-9e0b7 "Cast"]
           [:td.body-885f4
@@ -902,8 +909,8 @@
       "Most literal lists represent a function call."]
     [:p.info-2e4f9
       [:code "(a b c)"] " is a list of three things, and it also means "
-      "\"call the function " [:em "a"] " with two arguments: " [:em "b"]
-      " and " [:em "c"] "\""]]
+      "\"call the function " [:code "a"] " with two arguments: " [:code "b"]
+      " and " [:code "c"] "\""]]
 
   [:div#tooltip-vectors.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]

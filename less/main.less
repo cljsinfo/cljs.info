@@ -91,6 +91,13 @@
   font-weight: 600;
 }
 
+.font-mono(@size) {
+  font-family: 'Droid Sans Mono', monospace;
+  font-size: @size;
+  font-style: normal;
+  font-weight: 400;
+}
+
 //------------------------------------------------------------------------------
 // Variables
 //------------------------------------------------------------------------------
@@ -123,6 +130,7 @@ body {
 
 code, pre {
   font-family: "Droid Sans Mono";
+  font-weight: 400;
 }
 
 em {
@@ -335,8 +343,7 @@ em {
 
 .code(@size: 13px) {
   display: inline-block;
-  font-family: "Droid Sans Mono", monospace;
-  font-size: @size;
+  .font-mono(@size);
 }
 
 .literal-c3029 {
@@ -459,10 +466,20 @@ em {
 
 .push-right-6e671:after {
   .inlineTooltipCaret();
+  left: 125px;
+}
+
+.push-right-further-76f02:after {
+  .inlineTooltipCaret();
   left: 50px;
 }
 
 .push-left-267d7:after {
+  .inlineTooltipCaret();
+  right: 120px;
+}
+
+.push-left-further-38c9b:after {
   .inlineTooltipCaret();
   right: 35px;
 }
@@ -506,8 +523,7 @@ em {
 }
 
 .tooltip-hdr-db7c5 {
-  font-family: "Droid Sans Mono";
-  font-size: 22px;
+  .font-mono(22px);
   margin: 0;
   padding: 10px 0 10px 10px;
 }
@@ -518,8 +534,7 @@ em {
 
 .code-b64c8 {
   display: block;
-  font-family: "Droid Sans Mono";
-  font-size: 13px;
+  .font-mono(13px);
   margin: 0;
   padding: 6px 10px;
 }
@@ -528,6 +543,13 @@ em {
   .font-normal(14px);
   margin: 1em 10px;
   padding: 0;
+
+  code {
+    background: @darkEvenColor;
+    display: inline-block;
+    .font-mono(13px);
+    padding: 2px;
+  }
 }
 
 .signature-4086a {
@@ -546,8 +568,7 @@ em {
   code {
     background: @darkEvenColor;
     display: inline-block;
-    font-family: "Droid Sans Mono";
-    font-size: 13px;
+    .font-mono(13px);
     padding: 2px;
   }
 
@@ -602,8 +623,7 @@ em {
 .related-link-674b6 {
   color: @insideTooltipLinkColor;
   display: inline-block;
-  font-family: "Droid Sans Mono";
-  font-size: 13px;
+  .font-mono(13px);
   margin-right: 10px;
   text-decoration: none;
 }
@@ -633,8 +653,7 @@ em {
   padding: 8px 10px;
 
   pre {
-    font-family: "Droid Sans Mono";
-    font-size: 12px;
+    .font-mono(12px);
     margin: 0;
     padding: 0;
   }
@@ -643,16 +662,14 @@ em {
 .signature-1bc0e {
   background: @darkEvenColor;
   color: #fff;
-  font-family: "Droid Sans Mono";
-  font-size: 13px;
+  .font-mono(13px);
   line-height: 20px;
   margin: 0;
   padding: 5px 10px;
 }
 
 .code-72fa0 {
-  font-family: "Droid Sans Mono";
-  font-size: 12px;
+  .font-mono(12px);
   padding: 10px;
   vertical-align: top;
 
@@ -728,3 +745,4 @@ em {
 //------------------------------------------------------------------------------
 
 @import "threading-macro-animations.less";
+@import "homepage.less";

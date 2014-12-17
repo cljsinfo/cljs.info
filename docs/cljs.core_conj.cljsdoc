@@ -23,3 +23,6 @@ cljs.core/cons
 cljs.core/into
 cljs.core/peek
 cljs.core/pop
+
+===== TODO
+should add a table here of how things are "added" to different collection types

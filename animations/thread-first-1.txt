@@ -26,8 +26,10 @@
     (x (b a c d) y z))
 
 ===== Frame 7
-
-    (x (b a c d) y z)
+(-> (x (b a c d) y z))
 
 ===== Frame 8
+    (x (b a c d) y z)
+
+===== Frame 9
 (x (b a c d) y z)
