@@ -106,8 +106,10 @@
          :y2 (+ tooltip-top tooltip-height tooltip-mouseout-buffer)}})))
 
 (def link-mousetrap-padding 2.5)
-(def push-right 150)
-(def push-left 160)
+(def push-right 75)
+(def push-right-further 150)
+(def push-left 75)
+(def push-left-further 160)
 
 ;; TODO: need to deal with tooltips tooltips at the bottom of the
 ;; page (flip up)
@@ -124,19 +126,33 @@
         tooltip-width (.outerWidth $tooltip-el)
         tooltip-left (- (+ link-x (half link-width)) (half tooltip-width))
         tooltip-right (+ tooltip-left tooltip-width)
-        push-right? (neg? (- link-x (half tooltip-width)))
-        push-left? (> (+ tooltip-right 10) window-width)
+
+        ;; TODO: all of this push left/right logic should probably be in it's
+        ;; own function
+        push-right? (and (neg? (- tooltip-left 10))
+                         (pos? (- (+ tooltip-left push-right) 10)))
+        push-right-further? (and (not push-right?)
+                                 (neg? tooltip-left)
+                                 (pos? (+ tooltip-left push-right-further)))
+        push-left? (and (> (+ tooltip-right 10) window-width)
+                        (< (- (+ tooltip-right 10) push-left) window-width))
+        push-left-further? (and (not push-left?)
+                                (> tooltip-right window-width))
         tooltip-left (cond
                        push-right? (+ tooltip-left push-right)
-                       push-left?  (- tooltip-left push-left)
-                       :else       tooltip-left)
+                       push-right-further? (+ tooltip-left push-right-further)
+                       push-left? (- tooltip-left push-left)
+                       push-left-further? (- tooltip-left push-left-further)
+                       :else tooltip-left)
         tooltip-top (+ link-y link-height 5)]
     ;; add the correct arrow class
     (.addClass $tooltip-el
       (cond
         push-right? "push-right-6e671"
-        push-left?  "push-left-267d7"
-        :else       "centered-53ffd"))
+        push-right-further? "push-right-further-76f02"
+        push-left? "push-left-267d7"
+        push-left-further? "push-left-further-38c9b"
+        :else "centered-53ffd"))
 
     ;; position the el
     (.css $tooltip-el (js-obj
