@@ -902,8 +902,8 @@
       "Most literal lists represent a function call."]
     [:p.info-2e4f9
       [:code "(a b c)"] " is a list of three things, and it also means "
-      "\"call the function " [:em "a"] " with two arguments: " [:em "b"]
-      " and " [:em "c"] "\""]]
+      "\"call the function " [:code "a"] " with two arguments: " [:code "b"]
+      " and " [:code "c"] "\""]]
 
   [:div#tooltip-vectors.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
