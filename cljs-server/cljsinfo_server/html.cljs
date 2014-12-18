@@ -29,7 +29,7 @@
   [:head
     [:meta {:charset "utf-8"}]
     [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge"}]
-    [:title page-title]
+    [:title "cljs.info &raquo; " page-title]
     [:meta {:name "viewport" :content "width=device-width"}]
     [:link {:rel "shortcut icon" :href "favicon.png" :type "image/png"}]
     [:link {:rel "stylesheet" :href (asset "css/main.min.css")}]]
@@ -58,6 +58,7 @@
         [:a.main-link-bb01a {:href ""} "cljs" [:span.info-9c06a ".info"]]]
       [:div.right-e461e
         [:a.nav-link-890a3 {:href "/getting-started"} "Getting Started"]
+        [:a.nav-link-890a3 {:href "/faq"} "FAQ"]
         [:a.nav-link-890a3 {:href "/docs"} "Documentation"]
         [:a.nav-link-890a3 {:href "/tutorials"} "Tutorials"]
         [:a.nav-link-890a3 {:href "/community"} "Community"]]
@@ -66,18 +67,29 @@
 (hiccups/defhtml jumbotron []
   [:div.title-outer-16d0f
     [:div.title-inner-df992
-      [:h1.title-2febf "ClojureScript"]
-      [:h2.sub-d57b3 "JavaScript made simple"]
-      [:p.blurb-7fa5b
-        "ClojureScript is a functional programming language that targets "
-        "JavaScript. It comes with a rich set of data types, an extensive core "
-        "library, and a novel approach to state."]
-      [:p.blurb-7fa5b
-        "Programming for the browser" [:i.fa.fa-asterisk] " will never be the "
-        "same."]]])
+      [:div.left-1764b
+        [:h1.title-2febf "ClojureScript"]
+        [:h2.sub-d57b3 "JavaScript made simple"]
+        [:p.blurb-7fa5b
+          "ClojureScript is a functional programming language that targets "
+          "JavaScript. It comes with a rich set of data types, an extensive "
+          "core library, and a novel approach to state."]
+        [:p.blurb-7fa5b
+          "Programming for the browser" [:i.fa.fa-asterisk] " will never be "
+          "the same."]
+        [:p.additional-c55c0
+          [:i.fa.fa-asterisk] "ClojureScript also works with Node.js."]]
+      [:div.jumbo-right-94c4b
+        [:a.primary-btn-7fcef {:href "/getting-started"} "Get Started"]
+        [:div.btns-a0ca1
+          [:a.left-btn-2f03d {:href "/rationale"} "Rationale"]
+          [:a.right-btn-33d5b {:href "/docs"} "Docs"]]
+        [:div.version-974cf "Latest: 0.0-2496"]
+        [:div.version-974cf "Released 4 days ago"]]
+      [:div.clr-43e49]]])
 
 (hiccups/defhtml homepage []
-  (site-head "Home")
+  (site-head "ClojureScript - JavaScript made simple")
   (jumbotron)
   (top-nav-bar)
   (site-footer "homepage"))
