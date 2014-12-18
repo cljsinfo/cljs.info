@@ -88,10 +88,60 @@
         [:div.version-974cf "Released 4 days ago"]]
       [:div.clr-43e49]]])
 
+(hiccups/defhtml blurbs []
+  [:div.outer-5cceb
+    [:div.inner-a5192
+      [:div.row-382d3
+        [:div.selling-point-c4f14.left-1764b
+          [:h4.hdr-e4d24 "100% JavaScript"]
+          [:p.p-382d3
+            "Use any JavaScript library from ClojureScript. Write a ClojureScript library to
+            be used by JavaScript. 100% compatibility; no exceptions."]]
+        [:div.selling-point-c4f14.right-e461e
+          [:h4.hdr-e4d24 "Build-in Code Organization"]
+          [:p.p-382d3
+            "Namespace and package management support are built directly into the
+            ClojureScript language. No more depending on an external library and getting
+            everyone on your team to follow the same conventions. It just works."]]
+        [:div.clr-43e49]]
+
+      [:div.row-382d3
+        [:div.selling-point-c4f14.left-1764b
+          [:h4.hdr-e4d24 "Whole Program Optimization"]
+          [:p.p-382d3
+            "ClojureScript uses the Google Closure Compiler in Advanced Optimizations mode to
+            automatically remove dead code. Add as much code to your ClojureScript project
+            as needed. The end result will always be as small as possible."]]
+        [:div.selling-point-c4f14.right-e461e
+          [:h4.hdr-e4d24 "Sane Approach to State"]
+          [:p.p-382d3
+            "Reasoning about state is simple in ClojureScript. All data is immutable by
+            default, so you never have to worry about the value of something at one time vs
+            another. When mutability is needed, ClojureScript distinguishes between setting
+            and retrieving values so it's easy to keep track of what's going on in your
+            program."]]
+        [:div.clr-43e49]]
+
+      [:div.row-382d3
+        [:div.selling-point-c4f14.left-1764b
+          [:h4.hdr-e4d24 "Unrivaled Syntax Power"]
+          [:p.p-382d3
+            "Say goodbye to boilerplate code with macros! ClojureScript is a LISP and allows
+            for programmatic access to its syntax at the lowest level. Write powerful
+            libraries and extend the language exactly as your program requires."]]
+        [:div.selling-point-c4f14.right-e461e
+          [:h4.hdr-e4d24 "You're in good hands"]
+          [:p.p-382d3
+            "The ClojureScript community is part of the broader Clojure community, a popular
+            language that runs on the JVM. Clojure programmers are known for being fun,
+            helpful, and very smart. We're glad you're here."]]
+        [:div.clr-43e49]]]])
+
 (hiccups/defhtml homepage []
   (site-head "ClojureScript - JavaScript made simple")
   (jumbotron)
   (top-nav-bar)
+  (blurbs)
   (site-footer "homepage"))
 
 ;;------------------------------------------------------------------------------
