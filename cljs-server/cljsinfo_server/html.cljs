@@ -98,7 +98,7 @@
             "Use any JavaScript library from ClojureScript. Write a ClojureScript library to
             be used by JavaScript. 100% compatibility; no exceptions."]]
         [:div.selling-point-c4f14.right-e461e
-          [:h4.hdr-e4d24 "Build-in Code Organization"]
+          [:h4.hdr-e4d24 "Built-in Code Organization"]
           [:p.p-382d3
             "Namespace and package management support are built directly into the
             ClojureScript language. No more depending on an external library and getting
