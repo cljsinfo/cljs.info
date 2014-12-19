@@ -2,6 +2,15 @@
 // Homepage
 //------------------------------------------------------------------------------
 
+@pageWidth: 1200px;
+
+@cljLogoGreen: #60ac30;
+@cljLogoDarkBlue: #5a83d5;
+@cljLogoLightBlue: #90b4fe;
+
+// NOTE: this is @cljLogoLightBlue with 50% opactiy
+@cljLogoLightBlueHalf: rgba(144, 180, 254, 0.5);
+
 .title-outer-16d0f {
   background: #f3f3f3;
 }
@@ -9,7 +18,7 @@
 .title-inner-df992 {
   margin: 0 auto;
   padding: 120px 0;
-  width: 1200px;
+  width: @pageWidth;
 }
 
 .title-2febf {
@@ -68,13 +77,6 @@
   }
 }
 
-@cljLogoGreen: #60ac30;
-@cljLogoDarkBlue: #5a83d5;
-@cljLogoLightBlue: #90b4fe;
-
-// NOTE: this is @cljLogoLightBlue with 50% opactiy
-@cljLogoLightBlueHalf: rgba(144, 180, 254, 0.5);
-
 .primary-btn-7fcef {
   .box-sizing();
   background: @cljLogoGreen;
@@ -123,20 +125,42 @@
   color: #fff;
   margin: 0 auto;
   padding: 20px 0;
-  width: 1200px;
+  width: @pageWidth;
 }
 
 .main-link-bb01a {
   color: #fff;
-  .font-bold(26px);
+  .font-bold(28px);
   text-decoration: none;
-  text-transform: uppercase;
+}
+
+@footerBottomTextColor: #666;
+
+.ftr-home-link-2c3b4 {
+  color: @footerBottomTextColor;
+  display: inline-block;
+  .font-bold(28px);
+  text-decoration: none;
 }
 
 .info-9c06a {
   color: #fff;
   .font-light(18px);
   text-transform: lowercase;
+}
+
+.ftr-info-a5716 {
+  color: @footerBottomTextColor;
+  .font-light(18px);
+  text-transform: lowercase;
+}
+
+.ftr-home-link-2c3b4:hover {
+  color: #fff;
+
+  .ftr-info-a5716 {
+    color: #fff;
+  }
 }
 
 .left-1764b {
@@ -160,15 +184,12 @@
 
 .outer-5cceb {
   background: @cljLogoLightBlueHalf;
-
-  // TODO: temporary
-  margin-bottom: 400px;
 }
 
 .inner-a5192 {
   margin: 0 auto;
   padding: 40px 0;
-  width: 1200px;
+  width: @pageWidth;
 }
 
 .row-382d3 {
@@ -218,4 +239,78 @@
 
 .more-link-1a354:hover {
   text-decoration: underline;
+}
+
+.footer-outer-5c647 {
+  background: #222;
+
+  // TODO: this is temporary
+  min-height: 200px;
+}
+
+.footer-inner-022c2 {
+  margin: 0 auto;
+  width: @pageWidth;
+}
+
+.faqs-outer-dac3a {
+  background: rgba(90, 131, 213, 0.75);
+}
+
+.faqs-inner-e9036 {
+  margin: 0 auto;
+  width: @pageWidth;
+}
+
+.col-ace4b {
+  .box-sizing();
+  float: left;
+  width: 25%;
+
+  ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.hdr-856fa {
+  color: #fff;
+  .font-bold(14px);
+  margin: 30px 0 10px 0;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+.ftr-link-67c8e {
+  color: #aaa;
+  display: inline-block;
+  font-size: 14px;
+  margin: 5px 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+.ftr-link-67c8e:hover {
+  text-decoration: underline;
+}
+
+.bottom-31b43 {
+  padding: 40px 0;
+}
+
+.small-14fbc {
+  color: @footerBottomTextColor;
+  font-size: 12px;
+  margin: 0;
+  padding: 0 0 5px 0;
+
+  a {
+    color: @cljLogoLightBlueHalf;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
 }
