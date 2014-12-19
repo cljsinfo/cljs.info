@@ -72,6 +72,9 @@
 @cljLogoDarkBlue: #5a83d5;
 @cljLogoLightBlue: #90b4fe;
 
+// NOTE: this is @cljLogoLightBlue with 50% opactiy
+@cljLogoLightBlueHalf: rgba(144, 180, 254, 0.5);
+
 .primary-btn-7fcef {
   .box-sizing();
   background: @cljLogoGreen;
@@ -156,8 +159,7 @@
 }
 
 .outer-5cceb {
-  // NOTE: this is @cljLogoLightBlue with 50% opactiy
-  background: rgba(144, 180, 254, 0.5);
+  background: @cljLogoLightBlueHalf;
 
   // TODO: temporary
   margin-bottom: 400px;
@@ -178,6 +180,7 @@
   color: #fff;
   height: 170px;
   padding: 20px;
+  position: relative;
   .rounded(6px);
   width: 46%;
 }
@@ -193,4 +196,26 @@
   font-size: 14px;
   line-height: 1.5em;
   margin: 0;
+
+  a {
+    color: @cljLogoLightBlue;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+.more-link-1a354 {
+  bottom: 15px;
+  color: @cljLogoLightBlueHalf;
+  .font-bold(14px);
+  text-decoration: none;
+  text-transform: uppercase;
+  position: absolute;
+}
+
+.more-link-1a354:hover {
+  text-decoration: underline;
 }
