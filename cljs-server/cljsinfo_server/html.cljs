@@ -48,6 +48,71 @@
     "</html>"))
 
 ;;------------------------------------------------------------------------------
+;; Footer
+;;------------------------------------------------------------------------------
+
+(def github-url "https://github.com/clojure/clojurescript")
+(def issues-url "http://dev.clojure.org/jira/browse/CLJS")
+(def mailing-list-url "http://groups.google.com/group/clojurescript")
+
+(hiccups/defhtml footer-docs-list []
+  [:div.col-ace4b
+    [:h5.hdr-856fa "Documentation"]
+    [:ul
+      [:li [:a.ftr-link-67c8e {:href "/getting-started"} "Getting Started"]]
+      [:li [:a.ftr-link-67c8e {:href "/tutorials"} "Tutorials"]]
+      [:li [:a.ftr-link-67c8e {:href "/docs"} "Docs"]]
+      [:li [:a.ftr-link-67c8e {:href "/cheatsheet"} "Cheatsheet"]]]])
+
+(hiccups/defhtml footer-learn-list []
+  [:div.col-ace4b
+    [:h5.hdr-856fa "Learn"]
+    [:ul
+      [:li [:a.ftr-link-67c8e {:href "/rationale"} "Rationale"]]
+      [:li [:a.ftr-link-67c8e {:href "/faq"} "FAQ"]]]])
+
+(hiccups/defhtml footer-community-list []
+  [:div.col-ace4b
+    [:h5.hdr-856fa "Community"]
+    [:ul
+      [:li [:a.ftr-link-67c8e {:href mailing-list-url} "Mailing List"]]
+      [:li [:a.ftr-link-67c8e {:href "#"} "IRC: #clojurescript"]]]])
+
+(hiccups/defhtml footer-contribute-list []
+  [:div.col-ace4b
+    [:h5.hdr-856fa "Contribute"]
+    [:ul
+      [:li [:a.ftr-link-67c8e {:href github-url} "GitHub"]]
+      [:li [:a.ftr-link-67c8e {:href issues-url} "JIRA / Issues"]]]])
+
+(def cljsinfo-license-url "https://github.com/oakmac/cljs.info/blob/master/LICENSE.md")
+(def clojurescript-license-url "https://github.com/clojure/clojurescript#license")
+
+(hiccups/defhtml footer-bottom []
+  [:div.bottom-31b43
+    [:div.left-1764b
+      [:p.small-14fbc
+        "ClojureScript is released under the "
+        [:a {:href clojurescript-license-url} "Eclipse Public License 1.0"]
+        " and is Copyright &copy; Rich Hickey."]
+      [:p.small-14fbc
+        "cljs.info is released under the "
+        [:a {:href cljsinfo-license-url} "MIT License"] "."]]
+    [:div.right-e461e
+      [:a.ftr-home-link-2c3b4 {:href ""} "cljs" [:span.ftr-info-a5716 ".info"]]]
+    [:div.clr-43e49]])
+
+(hiccups/defhtml footer []
+  [:div.footer-outer-5c647
+    [:div.footer-inner-022c2
+      (footer-docs-list)
+      (footer-learn-list)
+      (footer-community-list)
+      (footer-contribute-list)
+      [:div.clr-43e49]
+      (footer-bottom)]])
+
+;;------------------------------------------------------------------------------
 ;; Homepage
 ;;------------------------------------------------------------------------------
 
@@ -175,67 +240,6 @@
     [:div.faqs-inner-e9036
       "faqs"
       ]])
-
-(def github-url "https://github.com/clojure/clojurescript")
-(def issues-url "http://dev.clojure.org/jira/browse/CLJS")
-(def mailing-list-url "http://groups.google.com/group/clojurescript")
-
-(hiccups/defhtml footer-docs-list []
-  [:div.col-ace4b
-    [:h5.hdr-856fa "Documentation"]
-    [:ul
-      [:li [:a.ftr-link-67c8e {:href "/getting-started"} "Getting Started"]]
-      [:li [:a.ftr-link-67c8e {:href "/tutorials"} "Tutorials"]]
-      [:li [:a.ftr-link-67c8e {:href "/docs"} "Docs"]]
-      [:li [:a.ftr-link-67c8e {:href "/cheatsheet"} "Cheatsheet"]]]])
-
-(hiccups/defhtml footer-learn-list []
-  [:div.col-ace4b
-    [:h5.hdr-856fa "Learn"]
-    [:ul
-      [:li [:a.ftr-link-67c8e {:href "/rationale"} "Rationale"]]
-      [:li [:a.ftr-link-67c8e {:href "/faq"} "FAQ"]]]])
-
-(hiccups/defhtml footer-community-list []
-  [:div.col-ace4b
-    [:h5.hdr-856fa "Community"]
-    [:ul
-      [:li [:a.ftr-link-67c8e {:href mailing-list-url} "Mailing List"]]
-      [:li [:a.ftr-link-67c8e {:href "#"} "IRC: #clojurescript"]]]])
-
-(hiccups/defhtml footer-contribute-list []
-  [:div.col-ace4b
-    [:h5.hdr-856fa "Contribute"]
-    [:ul
-      [:li [:a.ftr-link-67c8e {:href github-url} "GitHub"]]
-      [:li [:a.ftr-link-67c8e {:href issues-url} "JIRA / Issues"]]]])
-
-(def cljsinfo-license-url "https://github.com/oakmac/cljs.info/blob/master/LICENSE.md")
-(def clojurescript-license-url "https://github.com/clojure/clojurescript#license")
-
-(hiccups/defhtml footer-bottom []
-  [:div.bottom-31b43
-    [:div.left-1764b
-      [:p.small-14fbc
-        "ClojureScript is released under the "
-        [:a {:href clojurescript-license-url} "Eclipse Public License 1.0"]
-        " and is Copyright &copy; Rich Hickey."]
-      [:p.small-14fbc
-        "cljs.info is released under the "
-        [:a {:href cljsinfo-license-url} "MIT License"] "."]]
-    [:div.right-e461e
-      [:a.ftr-home-link-2c3b4 {:href ""} "cljs" [:span.ftr-info-a5716 ".info"]]]
-    [:div.clr-43e49]])
-
-(hiccups/defhtml footer []
-  [:div.footer-outer-5c647
-    [:div.footer-inner-022c2
-      (footer-docs-list)
-      (footer-learn-list)
-      (footer-community-list)
-      (footer-contribute-list)
-      [:div.clr-43e49]
-      (footer-bottom)]])
 
 (hiccups/defhtml homepage []
   (site-head "ClojureScript - JavaScript made simple")
