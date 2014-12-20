@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<svg width="580" height="400" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <g>
+  <title>background</title>
+  <rect fill="#fff" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <ellipse stroke="#60ac30" ry="150" rx="150" id="svg_1" cy="189.500009" cx="288.500007" stroke-width="4" fill="#f0db4f"/>
+  <text stroke="#000" transform="matrix(3.9466789199103514,0,0,3.7498956116145896,-1027.6525901876566,-574.3979730842922) " xml:space="preserve" text-anchor="left" font-family="'Trebuchet MS', Gadget, sans-serif" font-size="24" id="svg_3" y="221.41494" x="316.771449" stroke-opacity="null" stroke-width="0" fill="#323330">CLJS</text>
+ </g>
+</svg>
