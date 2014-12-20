@@ -20,13 +20,6 @@ docs, etc.
     # install node.js dependencies
     npm install
 
-    # checkout clojure/clojurescript repos for doc generation
-    git submodule init
-    git submodule update
-
-    # generate api docs
-    ./gen-docs.sh
-
     # compile LESS file
     grunt
 
