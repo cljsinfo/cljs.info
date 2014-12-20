@@ -23,7 +23,9 @@ generated-docs.json
 /public/js/cheatsheet.js
 /public/js/cheatsheet.min.js
 /public/out/
+
 publish.sh
+server-publish.sh
 
 .DS_Store
 

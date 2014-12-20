@@ -8,7 +8,10 @@
 @cljLogoDarkBlue: #5a83d5;
 @cljLogoLightBlue: #90b4fe;
 
-// NOTE: this is @cljLogoLightBlue with 50% opactiy
+@darkBackground: #444;
+
+// NOTE: this is @cljLogoLightBlue with 50% opacity
+// I know there is a LESS function to do this, but not sure how...
 @cljLogoLightBlueHalf: rgba(144, 180, 254, 0.5);
 
 .title-outer-16d0f {
@@ -94,7 +97,7 @@
 
 .secondaryBtn() {
   .box-sizing();
-  background: #555;
+  background: @darkBackground;
   color: #fff;
   cursor: pointer;
   display: inline-block;
@@ -197,7 +200,7 @@
 }
 
 .blurb-c4f14 {
-  background: #555;
+  background: @darkBackground;
   color: #fff;
   height: 170px;
   padding: 20px;
