@@ -30,6 +30,8 @@
     [:meta {:charset "utf-8"}]
     [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge"}]
     [:title "cljs.info &raquo; " page-title]
+    (when-let [base-href (:base-href config)]
+      [:base {:href base-href}])
     [:meta {:name "viewport" :content "width=device-width"}]
     [:link {:rel "shortcut icon" :href "favicon.png" :type "image/png"}]
     [:link {:rel "stylesheet" :href (asset "css/main.min.css")}]]
@@ -59,17 +61,17 @@
   [:div.col-ace4b
     [:h5.hdr-856fa "Documentation"]
     [:ul
-      [:li [:a.ftr-link-67c8e {:href "/getting-started"} "Getting Started"]]
-      [:li [:a.ftr-link-67c8e {:href "/tutorials"} "Tutorials"]]
-      [:li [:a.ftr-link-67c8e {:href "/docs"} "Docs"]]
-      [:li [:a.ftr-link-67c8e {:href "/cheatsheet"} "Cheatsheet"]]]])
+      [:li [:a.ftr-link-67c8e {:href "getting-started"} "Getting Started"]]
+      [:li [:a.ftr-link-67c8e {:href "tutorials"} "Tutorials"]]
+      [:li [:a.ftr-link-67c8e {:href "docs"} "Docs"]]
+      [:li [:a.ftr-link-67c8e {:href "cheatsheet"} "Cheatsheet"]]]])
 
 (hiccups/defhtml footer-learn-list []
   [:div.col-ace4b
     [:h5.hdr-856fa "Learn"]
     [:ul
-      [:li [:a.ftr-link-67c8e {:href "/rationale"} "Rationale"]]
-      [:li [:a.ftr-link-67c8e {:href "/faq"} "FAQ"]]]])
+      [:li [:a.ftr-link-67c8e {:href "rationale"} "Rationale"]]
+      [:li [:a.ftr-link-67c8e {:href "faq"} "FAQ"]]]])
 
 (hiccups/defhtml footer-community-list []
   [:div.col-ace4b
@@ -122,11 +124,11 @@
       [:div.left-1764b
         [:a.main-link-bb01a {:href ""} "cljs" [:span.info-9c06a ".info"]]]
       [:div.right-e461e
-        [:a.nav-link-890a3 {:href "/getting-started"} "Getting Started"]
-        [:a.nav-link-890a3 {:href "/faq"} "FAQ"]
-        [:a.nav-link-890a3 {:href "/docs"} "Documentation"]
-        [:a.nav-link-890a3 {:href "/tutorials"} "Tutorials"]
-        [:a.nav-link-890a3 {:href "/community"} "Community"]]
+        [:a.nav-link-890a3 {:href "getting-started"} "Getting Started"]
+        [:a.nav-link-890a3 {:href "faq"} "FAQ"]
+        [:a.nav-link-890a3 {:href "docs"} "Documentation"]
+        [:a.nav-link-890a3 {:href "tutorials"} "Tutorials"]
+        [:a.nav-link-890a3 {:href "community"} "Community"]]
       [:div.clr-43e49]]])
 
 (hiccups/defhtml jumbotron []
@@ -145,10 +147,10 @@
         [:p.additional-c55c0
           [:i.fa.fa-asterisk] "ClojureScript also works with Node.js."]]
       [:div.jumbo-right-94c4b
-        [:a.primary-btn-7fcef {:href "/getting-started"} "Get Started"]
+        [:a.primary-btn-7fcef {:href "getting-started"} "Get Started"]
         [:div.btns-a0ca1
-          [:a.left-btn-2f03d {:href "/rationale"} "Rationale"]
-          [:a.right-btn-33d5b {:href "/docs"} "Docs"]]
+          [:a.left-btn-2f03d {:href "rationale"} "Rationale"]
+          [:a.right-btn-33d5b {:href "docs"} "Docs"]]
         [:div.version-974cf "Latest: 0.0-2496"]
         [:div.version-974cf "Released 4 days ago"]]
       [:div.clr-43e49]]])
