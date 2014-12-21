@@ -135,7 +135,7 @@
 (hiccups/defhtml jumbotron []
   [:div.title-outer-16d0f
     [:div.title-inner-df992
-      [:div.left-1764b
+      [:div.jumbo-left-80c52
         [:h1.title-2febf "ClojureScript"]
         [:h2.sub-d57b3 "JavaScript made simple"]
         [:p.blurb-7fa5b
@@ -148,10 +148,11 @@
         [:p.additional-c55c0
           [:i.fa.fa-asterisk] "ClojureScript also works with Node.js."]]
       [:div.jumbo-right-94c4b
-        [:a.primary-btn-7fcef {:href "getting-started"} "Get Started"]
+        [:a.get-started-518a6 {:href "getting-started"} "Get Started"]
         [:div.btns-a0ca1
           [:a.left-btn-2f03d {:href "rationale"} "Rationale"]
-          [:a.right-btn-33d5b {:href "docs"} "Docs"]]
+          [:a.right-btn-33d5b {:href "docs"} "Docs"]
+          [:div.clr-43e49]]
         [:div.version-974cf "Latest: 0.0-2496"]
         [:div.version-974cf "Released 4 days ago"]]
       [:div.clr-43e49]]])
