@@ -6,6 +6,7 @@
     [cljsinfo-server.util :as util]))
 
 (def fs (js/require "fs"))
+(def marked (js/require "marked"))
 
 ;;------------------------------------------------------------------------------
 ;; URLs
@@ -270,10 +271,14 @@
 ;; FAQ
 ;;------------------------------------------------------------------------------
 
+;; TODO: need to throw a useful error when faq.md does not exist
+(def faq-html (marked (.readFileSync fs "00-scrap/faqs.md" "utf-8")))
+
 (hiccups/defhtml faq-page []
   (site-head "Frequently Asked Questions")
   (top-nav-bar)
-  "TODO: FAQ"
+  [:div.body-outer-b72e9
+    [:div.body-inner-e70fb faq-html]]
   (footer)
   (site-footer))
 
