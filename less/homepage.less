@@ -2,8 +2,6 @@
 // Homepage
 //------------------------------------------------------------------------------
 
-@pageWidth: 1200px;
-
 @cljLogoGreen: #60ac30;
 @cljLogoDarkBlue: #5a83d5;
 @cljLogoLightBlue: #90b4fe;
@@ -14,6 +12,32 @@
 // I know there is a LESS function to do this, but not sure how...
 @cljLogoLightBlueHalf: rgba(144, 180, 254, 0.5);
 
+
+@regularWidth: 960px;
+@widestWidth: 1200px;
+
+.reg-width-aa3fc {
+  .title-inner-df992, .header-inner-e9e98, .inner-a5192, .footer-inner-022c2,
+  .faqs-inner-e9036 {
+    width: @regularWidth;
+  }
+
+  .blurb-c4f14 {
+    height: 215px;
+  }
+}
+
+.widest-6792e {
+  .title-inner-df992, .header-inner-e9e98, .inner-a5192, .footer-inner-022c2,
+  .faqs-inner-e9036 {
+    width: @widestWidth;
+  }
+
+  .blurb-c4f14 {
+    height: 195px;
+  }
+}
+
 .title-outer-16d0f {
   background: #f3f3f3;
 }
@@ -21,7 +45,6 @@
 .title-inner-df992 {
   margin: 0 auto;
   padding: 120px 0;
-  width: @pageWidth;
 }
 
 .title-2febf {
@@ -128,7 +151,6 @@
   color: #fff;
   margin: 0 auto;
   padding: 20px 0;
-  width: @pageWidth;
 }
 
 .main-link-bb01a {
@@ -192,7 +214,6 @@
 .inner-a5192 {
   margin: 0 auto;
   padding: 40px 0;
-  width: @pageWidth;
 }
 
 .row-4e0be {
@@ -202,11 +223,10 @@
 .blurb-c4f14 {
   background: @darkBackground;
   color: #fff;
-  height: 170px;
   padding: 20px;
   position: relative;
   .rounded(6px);
-  width: 46%;
+  width: 49%;
 }
 
 .hdr-e4d24 {
@@ -249,7 +269,6 @@
 
 .footer-inner-022c2 {
   margin: 0 auto;
-  width: @pageWidth;
 }
 
 .faqs-outer-dac3a {
@@ -258,7 +277,6 @@
 
 .faqs-inner-e9036 {
   margin: 0 auto;
-  width: @pageWidth;
 }
 
 .col-ace4b {

@@ -44,8 +44,9 @@
     (if (:minified-client config)
       [:script {:src (asset "js/client.min.js")}]
       [:script {:src (asset "js/client.js")}])
-    (when init-page
-      [:script "CLJSINFO.init('" init-page "');"])
+    (if init-page
+      [:script "CLJSINFO.init('" init-page "');"]
+      [:script "CLJSINFO.init();"])
     "</body>"
     "</html>"))
 
