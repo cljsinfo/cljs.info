@@ -296,8 +296,8 @@
 (hiccups/defhtml faq-page []
   (site-head "Frequently Asked Questions")
   (top-nav-bar)
-  [:div.faq-outer-b72e9
-    [:div.faq-inner-e70fb faq-html]]
+  [:div.body-outer-b72e9
+    [:div.body-inner-e70fb faq-html]]
   (footer)
   (site-footer))
 
@@ -327,10 +327,14 @@
 ;; Rationale
 ;;------------------------------------------------------------------------------
 
+;; TODO: throw a useful error when rationale.md does not exist
+(def rationale-html (marked (.readFileSync fs "md/rationale.md" "utf-8")))
+
 (hiccups/defhtml rationale []
   (site-head "Rationale")
   (top-nav-bar)
-  "TODO: rationale"
+  [:div.body-outer-b72e9
+    [:div.body-inner-e70fb rationale-html]]
   (footer)
   (site-footer))
 

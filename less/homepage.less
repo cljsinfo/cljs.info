@@ -6,6 +6,7 @@
 @cljLogoDarkBlue: #5a83d5;
 @cljLogoLightBlue: #90b4fe;
 
+@backgroundLightGrey: #f3f3f3;
 @darkBackground: #444;
 
 // NOTE: this is @cljLogoLightBlue with 50% opacity
@@ -18,7 +19,7 @@
 
 .reg-width-aa3fc {
   .title-inner-df992, .header-inner-e9e98, .inner-a5192, .footer-inner-022c2,
-  .faqs-inner-e9036, .faq-inner-e70fb {
+  .faqs-inner-e9036, .body-inner-e70fb {
     width: @regularWidth;
   }
 
@@ -29,7 +30,7 @@
 
 .widest-6792e {
   .title-inner-df992, .header-inner-e9e98, .inner-a5192, .footer-inner-022c2,
-  .faqs-inner-e9036, .faq-inner-e70fb {
+  .faqs-inner-e9036, .body-inner-e70fb {
     width: @widestWidth;
   }
 
@@ -39,7 +40,7 @@
 }
 
 .title-outer-16d0f {
-  background: #f3f3f3;
+  background: @backgroundLightGrey;
 }
 
 .title-inner-df992 {
@@ -341,25 +342,29 @@
   }
 }
 
-.faq-outer-b72e9 {
-
+.body-outer-b72e9 {
+  background: @backgroundLightGrey;
 }
 
-.faq-inner-e70fb {
+.body-inner-e70fb {
   margin: 0 auto;
 
   p {
     line-height: 1.5em;
+    margin: 0;
+    padding: 0.5em 0;
     width: 600px;
   }
 }
 
 .question-4800e {
+  margin: 0;
+  padding: 30px 0 10px 0;
   position: relative;
 }
 
 .faq-link-cdef1 {
-  color: #fff;
+  color: @backgroundLightGrey;
   font-size: 14px;
   left: -20px;
   position: absolute;
