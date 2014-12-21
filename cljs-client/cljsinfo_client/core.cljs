@@ -43,6 +43,9 @@
     (when (not= size @current-size)
       (reset! current-size size))))
 
+;; trigger initial resize
+(on-window-resize)
+
 ;;------------------------------------------------------------------------------
 ;; Global Events
 ;;------------------------------------------------------------------------------
@@ -58,9 +61,6 @@
 (defn- init! [page]
   ;; add global events
   (add-events!)
-
-  ;; trigger window resize event
-  (on-window-resize)
 
   ;; initialize a specific page
   (case page

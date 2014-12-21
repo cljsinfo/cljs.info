@@ -15,16 +15,6 @@
 (def js-http        (js/require "http"))
 
 ;;------------------------------------------------------------------------------
-;; Pages
-;;------------------------------------------------------------------------------
-
-(defn- homepage [_js-req js-res]
-  (.send js-res (html/homepage)))
-
-(defn- doc-page [_js-req js-res]
-  (.send js-res (html/doc-page)))
-
-;;------------------------------------------------------------------------------
 ;; Main
 ;;------------------------------------------------------------------------------
 
@@ -36,9 +26,17 @@
       ;; gzip everything
       (.use (js-compression))
 
-      ;; pages
-      (.get "/" homepage)
-      (.get "/docs/foo" doc-page)
+      ;; static pages
+      (.get "/"          #(.send %2 (html/homepage)))
+      (.get "/community" #(.send %2 (html/community-page)))
+      (.get "/docs"      #(.send %2 (html/docs-index)))
+      (.get "/faq"       #(.send %2 (html/faq-page)))
+      (.get "/getting-started" #(.send %2 (html/getting-started)))
+      (.get "/rationale" #(.send %2 (html/rationale)))
+      (.get "/tutorials" #(.send %2 (html/tutorials-index)))
+
+      ;; TODO: docs
+      ;; (.get "/docs/foo" doc-page)
 
       ;; serve static files out of /public
       (.use (.static js-express (str js/__dirname "/public"))))

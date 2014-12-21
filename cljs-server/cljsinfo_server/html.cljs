@@ -8,6 +8,15 @@
 (def fs (js/require "fs"))
 
 ;;------------------------------------------------------------------------------
+;; URLs
+;;------------------------------------------------------------------------------
+
+(defn- url [path]
+  (if-let [base-href (:base-href config)]
+    (str base-href "/" path)
+    path))
+
+;;------------------------------------------------------------------------------
 ;; Hashed Assets
 ;;------------------------------------------------------------------------------
 
@@ -30,8 +39,6 @@
     [:meta {:charset "utf-8"}]
     [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge"}]
     [:title "cljs.info &raquo; " page-title]
-    (when-let [base-href (:base-href config)]
-      [:base {:href base-href}])
     [:meta {:name "viewport" :content "width=device-width"}]
     [:link {:rel "shortcut icon" :href "favicon.png" :type "image/png"}]
     [:link {:rel "stylesheet" :href (asset "css/main.min.css")}]]
@@ -62,31 +69,35 @@
   [:div.col-ace4b
     [:h5.hdr-856fa "Documentation"]
     [:ul
-      [:li [:a.ftr-link-67c8e {:href "getting-started"} "Getting Started"]]
-      [:li [:a.ftr-link-67c8e {:href "tutorials"} "Tutorials"]]
-      [:li [:a.ftr-link-67c8e {:href "docs"} "Docs"]]
-      [:li [:a.ftr-link-67c8e {:href "cheatsheet"} "Cheatsheet"]]]])
+      [:li [:a.ftr-link-67c8e {:href (url "/getting-started")} "Getting Started"]]
+      [:li [:a.ftr-link-67c8e {:href (url "/tutorials")} "Tutorials"]]
+      [:li [:a.ftr-link-67c8e {:href (url "/docs")} "Docs"]]
+      [:li [:a.ftr-link-67c8e {:href (url "/cheatsheet")} "Cheatsheet"]]]])
 
 (hiccups/defhtml footer-learn-list []
   [:div.col-ace4b
     [:h5.hdr-856fa "Learn"]
     [:ul
-      [:li [:a.ftr-link-67c8e {:href "rationale"} "Rationale"]]
-      [:li [:a.ftr-link-67c8e {:href "faq"} "FAQ"]]]])
+      [:li [:a.ftr-link-67c8e {:href (url "/rationale")} "Rationale"]]
+      [:li [:a.ftr-link-67c8e {:href (url "/faq")} "FAQ"]]]])
 
 (hiccups/defhtml footer-community-list []
   [:div.col-ace4b
     [:h5.hdr-856fa "Community"]
     [:ul
-      [:li [:a.ftr-link-67c8e {:href mailing-list-url} "Mailing List"]]
+      [:li [:a.ftr-link-67c8e {:href mailing-list-url}
+        "Mailing List" [:i.fa.fa-external-link]]]
+      ;; TODO: either make this a link or figure out how to style it as a non-link
       [:li [:a.ftr-link-67c8e {:href "#"} "IRC: #clojurescript"]]]])
 
 (hiccups/defhtml footer-contribute-list []
   [:div.col-ace4b
     [:h5.hdr-856fa "Contribute"]
     [:ul
-      [:li [:a.ftr-link-67c8e {:href github-url} "GitHub"]]
-      [:li [:a.ftr-link-67c8e {:href issues-url} "JIRA / Issues"]]]])
+      [:li [:a.ftr-link-67c8e {:href github-url}
+        "GitHub" [:i.fa.fa-external-link]]]
+      [:li [:a.ftr-link-67c8e {:href issues-url}
+        "JIRA / Issues" [:i.fa.fa-external-link]]]]])
 
 (def cljsinfo-license-url "https://github.com/oakmac/cljs.info/blob/master/LICENSE.md")
 (def clojurescript-license-url "https://github.com/clojure/clojurescript#license")
@@ -102,7 +113,7 @@
         "cljs.info is released under the "
         [:a {:href cljsinfo-license-url} "MIT License"] "."]]
     [:div.right-e461e
-      [:a.ftr-home-link-2c3b4 {:href ""} "cljs" [:span.ftr-info-a5716 ".info"]]]
+      [:a.ftr-home-link-2c3b4 {:href (url "/")} "cljs" [:span.ftr-info-a5716 ".info"]]]
     [:div.clr-43e49]])
 
 (hiccups/defhtml footer []
@@ -123,13 +134,13 @@
   [:div.header-outer-a295e
     [:div.header-inner-e9e98
       [:div.left-1764b
-        [:a.main-link-bb01a {:href ""} "cljs" [:span.info-9c06a ".info"]]]
+        [:a.main-link-bb01a {:href (url "/")} "cljs" [:span.info-9c06a ".info"]]]
       [:div.right-e461e
-        [:a.nav-link-890a3 {:href "getting-started"} "Getting Started"]
-        [:a.nav-link-890a3 {:href "faq"} "FAQ"]
-        [:a.nav-link-890a3 {:href "docs"} "Documentation"]
-        [:a.nav-link-890a3 {:href "tutorials"} "Tutorials"]
-        [:a.nav-link-890a3 {:href "community"} "Community"]]
+        [:a.nav-link-890a3 {:href (url "/getting-started")} "Getting Started"]
+        [:a.nav-link-890a3 {:href (url "/faq")} "FAQ"]
+        [:a.nav-link-890a3 {:href (url "/docs")} "Documentation"]
+        [:a.nav-link-890a3 {:href (url "/tutorials")} "Tutorials"]
+        [:a.nav-link-890a3 {:href (url "/community")} "Community"]]
       [:div.clr-43e49]]])
 
 (hiccups/defhtml jumbotron []
@@ -148,11 +159,12 @@
         [:p.additional-c55c0
           [:i.fa.fa-asterisk] "ClojureScript also works with Node.js."]]
       [:div.jumbo-right-94c4b
-        [:a.get-started-518a6 {:href "getting-started"} "Get Started"]
+        [:a.get-started-518a6 {:href (url "/getting-started")} "Get Started"]
         [:div.btns-a0ca1
-          [:a.left-btn-2f03d {:href "rationale"} "Rationale"]
-          [:a.right-btn-33d5b {:href "docs"} "Docs"]
+          [:a.left-btn-2f03d {:href (url "/rationale")} "Rationale"]
+          [:a.right-btn-33d5b {:href (url "/docs")} "Docs"]
           [:div.clr-43e49]]
+        ;; TODO: make these dynamic
         [:div.version-974cf "Latest: 0.0-2496"]
         [:div.version-974cf "Released 4 days ago"]]
       [:div.clr-43e49]]])
@@ -255,14 +267,67 @@
   (site-footer))
 
 ;;------------------------------------------------------------------------------
+;; FAQ
+;;------------------------------------------------------------------------------
+
+(hiccups/defhtml faq-page []
+  (site-head "Frequently Asked Questions")
+  (top-nav-bar)
+  "TODO: FAQ"
+  (footer)
+  (site-footer))
+
+;;------------------------------------------------------------------------------
+;; Getting Started
+;;------------------------------------------------------------------------------
+
+(hiccups/defhtml getting-started []
+  (site-head "Getting Started")
+  (top-nav-bar)
+  "TODO: getting started"
+  (footer)
+  (site-footer))
+
+;;------------------------------------------------------------------------------
 ;; Doc Pages
 ;;------------------------------------------------------------------------------
 
-(hiccups/defhtml doc-body [d]
-  [:div "docs body"]
-  )
+(hiccups/defhtml docs-index []
+  (site-head "Documentation")
+  (top-nav-bar)
+  "TODO: docs"
+  (footer)
+  (site-footer))
 
-(hiccups/defhtml doc-page [d]
-  (site-head "cljs.core/foo")
-  (doc-body d)
+;;------------------------------------------------------------------------------
+;; Rationale
+;;------------------------------------------------------------------------------
+
+(hiccups/defhtml rationale []
+  (site-head "Rationale")
+  (top-nav-bar)
+  "TODO: rationale"
+  (footer)
+  (site-footer))
+
+;;------------------------------------------------------------------------------
+;; Tutorials
+;;------------------------------------------------------------------------------
+
+(hiccups/defhtml tutorials-index []
+  (site-head "Tutorials")
+  (top-nav-bar)
+  "TODO: tutorials"
+  (footer)
+  (site-footer))
+
+;;------------------------------------------------------------------------------
+;; Community
+;;------------------------------------------------------------------------------
+
+(hiccups/defhtml community-page []
+  (site-head "Community")
+  (top-nav-bar)
+  "TODO: community"
+  (footer)
   (site-footer))
