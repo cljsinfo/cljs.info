@@ -1,4 +1,4 @@
-## Why should I use ClojureScript over JavaScript?
+### %why-clojurescript% Why should I use ClojureScript over JavaScript?
 
 Like any decision that depends on multiple factors, the answer to this question
 will vary based on person and project. Below are some common reasons why you
@@ -23,8 +23,8 @@ community in recent years are things that other languages have had for years.
 Many more important constructs are missing from the language and will likely
 never have a resolution.
 
-TODO: The role of a language in a program. The importance of defaults in 
-programming languages and environments. Defaults inform convention and set the 
+TODO: The role of a language in a program. The importance of defaults in
+programming languages and environments. Defaults inform convention and set the
 tone for everything else.
 
 Why should I use ClojureScript instead of &lt;other language that compiles to JS&gt;?
@@ -43,7 +43,7 @@ handful of ideas to JavaScript. Few languages change the defaults of JS,
 resulting in programs that have similar structure (and similar bugs and
 problems) despite being written in a "different language".
 
-## When is JavaScript a better choice than ClojureScript?
+### %why-not-clojurescript% When is JavaScript a better choice than ClojureScript?
 
 Sometimes the inverse of a question can provide insight to the original (TODO:
 link to original here). There are some cases where JavaScript might prove to be
@@ -72,7 +72,7 @@ using, it's your development environment
 * I won't be able to hire anyone who knows ClojureScript. Answer: don't hire for
  specific technology skill; hire good developers and teach them.
 
-## What is the best way to learn ClojureScript? I'm sold on the ideas, but intimidated by the syntax.
+### %syntax% What is the best way to learn ClojureScript? I'm sold on the ideas, but intimidated by the syntax.
 
 TODO: address intimidation concerns, mention simplicity of syntax
 maybe the "best way to learn" and "intimidated" are two different sections
@@ -92,15 +92,21 @@ If you get stuck, there are many excellent community resources (TODO: links).
 The ClojureScript community is full of smart people and has a reputation for
 being friendly.
 
-## But JavaScript has so many libraries!
+### %js-libraries% But JavaScript has so many libraries!
 
 You can use *any* JavaScript library from ClojureScript. No exceptions.
 
-## Can I use ClojureScript with node.js?
+### %node.js% Can I use ClojureScript with Node.js?
 
 Yes. See examples 4000, 4001 and this tutorial.
 
-## Is ClojureScript fast?
+### %license% Is ClojureScript open source?
+
+Yes, ClojureScript is released under the Eclipse Public License 1.0.
+
+TODO: more here
+
+### %speed% Is ClojureScript fast?
 
 Yes.
 
@@ -124,18 +130,18 @@ for certain kinds of operations. (link to David Nolen's talk about this)
 
 Link to examples of the Core team focusing on speed. Speed tests, etc.
 
-## Can I use jQuery with ClojureScript?
+### %jquery% Can I use jQuery with ClojureScript?
 
 Absolutely! You can use any JavaScript library from ClojureScript. Check out
 Examples 1000 and 1001 and read about JavaScript Interop for more information.
 
-## Is ClojureScript a good fit for a single-page application (SPA)?
+### %single-page-applications% Is ClojureScript a good fit for a single-page application (SPA)?
 
 Yes, very much so. Dead code removal, real namespaces, package management, etc.
 You get a lot of stuff baked into the language that otherwise has to be
 accomplished with libraries or conventions in JS.
 
-## What is the relationship between Clojure and ClojureScript? Are they the same thing?
+### %relationship-to-clojure% What is the relationship between Clojure and ClojureScript? Are they the same thing?
 
 Clojure is a language that targets the JVM. ClojureScript is a language that
 targets JavaScript. Both languages share a similar syntax and most core library
@@ -152,11 +158,11 @@ data structures: same - persistent data structures
 numbers: Java numbers, JavaScript as one number type
 strings: same
 
-## Why does ClojureScript require the JVM / Java? I thought this was a JavaScript thing.
+### %jvm% Why does ClojureScript require the JVM / Java? I thought this was a JavaScript thing.
 
 ClojureScript *is* a JavaScript thing.
 
-## What is Leiningen? Why do I need this for ClojureScript?
+### %leiningen% What is Leiningen? Why do I need this for ClojureScript?
 
 Leiningen is a popular build tool for Clojure projects. The ClojureScript
 compiler relies on Clojure, so in a sense, a ClojureScript project is also a
@@ -169,16 +175,34 @@ coming from singular language ecosystems, but the symbiosis between the two and
 their fundamentally similar syntax allow for a lot of useful overlap in tooling.
 Leiningen is a good example of this.
 
-## What is `project.clj`?
+### %project.clj% What is `project.clj`?
 
-`project.clj` is a Leiningen project file. If you are familiar with common
-node.js conventions, `project.clj` acts like a combination of `package.json` and
-`Gruntfile.js`. TODO: need more language comparisons here
+`project.clj` is a [Leiningen] project file. If you are familiar with common
+Node.js conventions, `project.clj` acts like a combination of `package.json` and
+`Gruntfile.js`.
 
-## Can I share ClojureScript code between the client and a node.js server?
+[Leiningen]:http://leiningen.org/
 
-Yes. TODO: link to tutorial on how to do this
+TODO: provide more language comparisons here
 
-## Where can I find ClojureScript libraries?
+### %sharing-code% Can I share ClojureScript code between the client and a Node.js server?
 
-TODO: this is a damn good question that I don't know the answer to right now
+Yes.
+
+TODO: link to tutorial on how to do this
+
+### %libraries% Where & can I find ClojureScript libraries?
+
+[Clojars] is a popular repository of open source Clojure libraries.
+
+[npm] is a huge repository of JavaScript libraries. You can use any JavaScript
+library with ClojureScript.
+
+Finally, the [Google Closure Library] is shipped as part of ClojureScript, and
+can be added to a namespace using `:import`.
+
+TODO: link to namespace tutorial here
+
+[Clojars]:https://clojars.org/
+[npm]:https://www.npmjs.com/
+[Google Closure Library]:https://developers.google.com/closure/library/

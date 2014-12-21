@@ -1,9 +1,10 @@
 (ns cljsinfo-server.html
   (:require-macros [hiccups.core :as hiccups])
   (:require
+    [clojure.string :refer [replace trim]]
     hiccups.runtime
     [cljsinfo-server.config :refer [config]]
-    [cljsinfo-server.util :as util]))
+    [cljsinfo-server.util :refer [js-log log]]))
 
 (def fs (js/require "fs"))
 (def marked (js/require "marked"))
@@ -271,14 +272,31 @@
 ;; FAQ
 ;;------------------------------------------------------------------------------
 
+(def faq-renderer (marked.Renderer.))
+
+(aset faq-renderer "heading" (fn [raw-html lvl]
+  (let [id (-> raw-html
+               trim
+               (replace #"^%" "")
+               (replace #"%.+$" ""))
+        html-without-id (-> raw-html
+                            (replace (str "%" id "%") "")
+                            trim)]
+    (str "<h" lvl " id='" id "'>"
+         "<a href='#" id "'>"
+         html-without-id
+         "</a>"
+         "</h" lvl ">"))))
+
 ;; TODO: need to throw a useful error when faq.md does not exist
-(def faq-html (marked (.readFileSync fs "00-scrap/faqs.md" "utf-8")))
+(def faq-html (marked (.readFileSync fs "md/faq.md" "utf-8")
+                      #js {:renderer faq-renderer}))
 
 (hiccups/defhtml faq-page []
   (site-head "Frequently Asked Questions")
   (top-nav-bar)
-  [:div.body-outer-b72e9
-    [:div.body-inner-e70fb faq-html]]
+  [:div.faq-outer-b72e9
+    [:div.faq-inner-e70fb faq-html]]
   (footer)
   (site-footer))
 
