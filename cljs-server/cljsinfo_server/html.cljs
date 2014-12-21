@@ -282,13 +282,14 @@
         html-without-id (-> raw-html
                             (replace (str "%" id "%") "")
                             trim)]
-    (str "<h" lvl " id='" id "'>"
-         "<a href='#" id "'>"
+    (str "<h" lvl " class='question-4800e' id='" id "'>"
+         "<a class='question-link-6d31a' href='#" id "'>"
+         "<i class='fa fa-link faq-link-cdef1'></i>"
          html-without-id
          "</a>"
          "</h" lvl ">"))))
 
-;; TODO: need to throw a useful error when faq.md does not exist
+;; TODO: throw a useful error when faq.md does not exist
 (def faq-html (marked (.readFileSync fs "md/faq.md" "utf-8")
                       #js {:renderer faq-renderer}))
 
