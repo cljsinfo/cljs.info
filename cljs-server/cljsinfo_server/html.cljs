@@ -15,7 +15,7 @@
 
 (defn- url [path]
   (if-let [base-href (:base-href config)]
-    (str base-href "/" path)
+    (str (replace base-href #"/$" "") path)
     path))
 
 ;;------------------------------------------------------------------------------
