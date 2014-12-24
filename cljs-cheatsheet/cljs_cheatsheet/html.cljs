@@ -98,9 +98,8 @@
             (fn-link "not=")
             (fn-link "and")
             (fn-link "or")
-            ;; TODO: need to add the .cljsdoc file for these
-            ;; (fn-link "not")
-            ;; (fn-link "identical?")
+            (fn-link "not")
+            (fn-link "identical?")
             (fn-link "compare")]]
         [:tr.even-ff837
           [:td.label-9e0b7 "Loop"]
