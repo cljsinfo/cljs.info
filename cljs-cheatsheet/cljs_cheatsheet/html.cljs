@@ -1049,28 +1049,29 @@
     ;   [:i.fa.fa-check-square-o] "Show tooltips?"]
     [:div.clr-43e49]])
 
+(def clojure-cheatsheet-href "http://clojure.org/cheatsheet")
+(def clojure-tooltip-cheatsheet-href "http://jafingerhut.github.io/cheatsheet/clojuredocs/cheatsheet-tiptip-cdocs-summary.html")
+(def clojurescript-github-href "https://github.com/clojure/clojurescript")
+(def cljsinfo-github-href "https://github.com/oakmac/cljs.info/")
+(def cljsinfo-license-href "https://github.com/oakmac/cljs.info/blob/master/LICENSE.md")
+
 ;; include this? "Please copy, improve, and share this work."
 (hiccups/defhtml footer []
   [:div.footer-2137e
     [:div.inner-cb85a
       [:div.links-446e0
         [:label.quiet-5d4e8 "reference: "]
-        [:a.ftr-link-e980e {:href "http://clojure.org/cheatsheet"}
-          "Clojure cheatsheet"]
+        [:a.ftr-link-e980e {:href clojure-cheatsheet-href} "Clojure cheatsheet"]
         ", "
-        [:a.ftr-link-e980e {:href "http://jafingerhut.github.io/cheatsheet/clojuredocs/cheatsheet-tiptip-cdocs-summary.html"}
-          "Cheatsheet with tooltips"]
+        [:a.ftr-link-e980e {:href clojure-tooltip-cheatsheet-href} "Cheatsheet with tooltips"]
         ", "
-        [:a.ftr-link-e980e {:href "https://github.com/clojure/clojurescript"}
-          "ClojureScript source"]]
+        [:a.ftr-link-e980e {:href clojurescript-github-href} "ClojureScript source"]]
       [:div.links-446e0
         [:label.quiet-5d4e8 "source: "]
-        [:a.ftr-link-e980e {:href "https://github.com/oakmac/cljs.info/"}
-          "github.com/oakmac/cljs.info"]]
+        [:a.ftr-link-e980e {:href cljsinfo-github-href} "github.com/oakmac/cljs.info"]]
       [:div.links-446e0
         [:label.quiet-5d4e8 "license: "]
-        [:a.ftr-link-e980e {:href "https://github.com/oakmac/cljs.info/blob/master/LICENSE.md"}
-          "MIT"]]]])
+        [:a.ftr-link-e980e {:href cljsinfo-license-href} "MIT"]]]])
 
 ;;------------------------------------------------------------------------------
 ;; Section Layouts
