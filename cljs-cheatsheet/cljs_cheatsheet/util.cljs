@@ -1,6 +1,7 @@
-(ns cljs-cheatsheet.util)
-
-(def $ js/jQuery)
+(ns cljs-cheatsheet.util
+  (:require
+    [clojure.walk :refer [keywordize-keys]]
+    [cognitect.transit :as transit]))
 
 ;;------------------------------------------------------------------------------
 ;; Util Functions
@@ -53,3 +54,37 @@
          (<= px (:x2 box))
          (>= py (:y1 box))
          (<= py (:y2 box)))))
+
+;;------------------------------------------------------------------------------
+;; AJAX
+;;------------------------------------------------------------------------------
+
+(def transit-json-rdr (transit/reader :json))
+
+(defn- http-success? [status]
+  (and (>= status 200)
+       (< status 400)))
+
+(defn- fetch-clj-success [js-evt success-fn error-fn]
+  (let [status (aget js-evt "target" "status")]
+    (if-not (http-success? status)
+      (error-fn)
+      (let [response-text (aget js-evt "target" "responseText")]
+        (if-let [clj-result (try (transit/read transit-json-rdr response-text)
+                                 (catch js/Error _error nil))]
+          (success-fn (keywordize-keys clj-result))
+          (error-fn))))))
+
+(defn fetch-clj
+  "Makes an AJAX request to an HTTP GET endpoint expecting JSON.
+   Parses JSON into CLJ using transit.cljs and keywordizes map keys.
+   transit.cljs is faster than using js->clj: http://tinyurl.com/ntgxyt8"
+  ([url success-fn]
+    (fetch-clj url success-fn (fn [] nil)))
+  ([url success-fn error-fn]
+    (doto (js/XMLHttpRequest.)
+      (.addEventListener "load" #(fetch-clj-success % success-fn error-fn))
+      (.addEventListener "error" error-fn)
+      (.addEventListener "abort" error-fn)
+      (.open "get" url)
+      (.send))))

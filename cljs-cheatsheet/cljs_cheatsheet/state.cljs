@@ -6,10 +6,3 @@
 (def active-tooltip (atom nil))
 (def mouse-position (atom nil))
 (def mousetrap-boxes (atom nil))
-
-(defn- logger [_ _ o n]
-  (log o)
-  (log n)
-  (js-log "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"))
-
-;; (add-watch active-tooltip :log logger)

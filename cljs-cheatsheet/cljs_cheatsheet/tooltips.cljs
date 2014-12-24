@@ -1,11 +1,10 @@
 (ns cljs-cheatsheet.tooltips
   (:require
     [clojure.string :refer [blank? replace split]]
-    [clojure.walk :refer [keywordize-keys]]
     [cljs-cheatsheet.dom :refer [by-id get-element-box set-html!]]
     [cljs-cheatsheet.html :refer [inline-tooltip]]
     [cljs-cheatsheet.state :refer [active-tooltip mouse-position mousetrap-boxes]]
-    [cljs-cheatsheet.util :refer [half js-log log point-inside-box? uuid]]))
+    [cljs-cheatsheet.util :refer [fetch-clj half js-log log point-inside-box? uuid]]))
 
 (def $ js/jQuery)
 (def has-touch-events? (aget js/window "hasTouchEvents"))
@@ -218,21 +217,11 @@
 ;; Docs for Inline Tooltips
 ;;------------------------------------------------------------------------------
 
-;; TODO
-;; - switch to transit.cljs
-;; - save to localStorage for some period of time?
+;; TODO: cache docs in localStorage for some period of time?
 
 (def docs (atom {}))
 
-(defn- fetch-docs-success [js-response]
-  (reset! docs (js->clj js-response)))
-
-(defn- fetch-docs! []
-  (.ajax $ (js-obj
-    "success" fetch-docs-success
-    "url" "docs.json")))
-
-(fetch-docs!)
+(fetch-clj "docs.json" #(reset! docs %))
 
 ;;------------------------------------------------------------------------------
 ;; Events
@@ -260,7 +249,7 @@
 (defn- mouseenter-link [js-evt]
   (let [$link-el ($ (aget js-evt "currentTarget"))
         full-name (.attr $link-el "data-full-name")
-        tooltip-data (keywordize-keys (get @docs full-name))
+        tooltip-data (get @docs (keyword full-name))
         tooltip-already-showing? (and @active-tooltip
                                       (= full-name (:full-name @active-tooltip)))]
     (when (and tooltip-data
