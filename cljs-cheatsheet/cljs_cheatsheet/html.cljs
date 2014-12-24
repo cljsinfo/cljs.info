@@ -35,8 +35,7 @@
     uri-encode))
 
 (defn- docs-href [nme nme-space]
-
-  ;; TEMPORARY UNTIL SYMBOL TOOLTIPS ARE LIVE
+  ;; NOTE: this is temporary until we can link to docs on cljs.info
   (let [n2 (replace nme-space cljs-core-ns "clojure.core")]
 
     (str "http://clojuredocs.org/"
