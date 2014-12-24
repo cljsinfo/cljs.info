@@ -226,7 +226,8 @@
           [:td.label-9e0b7 "Create"]
           [:td.body-885f4
             (literal "\"abc\"")
-            (fn-link "str")]]
+            (fn-link "str")
+            (fn-link "name")]]
         [:tr.even-ff837
           [:td.label-9e0b7 "Use"]
           [:td.body-885f4
