@@ -67,9 +67,7 @@
 
         ;; this little hack prevents bugs with the tooltip width calculation
         ;; when it is near the edge of the page
-        _ (.css $tooltip-el (js-obj "display" "none"
-                                    "left" 0
-                                    "top" 0))
+        _ (.css $tooltip-el #js {:display "none", :left 0, :top 0})
 
         tooltip-height (.outerHeight $tooltip-el)
         tooltip-width (.outerWidth $tooltip-el)
