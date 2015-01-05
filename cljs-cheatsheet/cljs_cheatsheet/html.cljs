@@ -74,6 +74,7 @@
             (fn-link "defn")
             (fn-link "defn-")
             (fn-link "let")
+            (fn-link "letfn")
             (fn-link "declare")
             (fn-link "ns")]]
         [:tr.even-ff837

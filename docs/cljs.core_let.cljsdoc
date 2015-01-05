@@ -21,13 +21,15 @@ Another way to think about this is that the binding symbols in `let` are like
 local `def`s that are only available within `let`'s scope.
 
 In addition to direct symbol binding, `let` supports a destructuring syntax to
-"break apart" collections into multiple symbols. This destructuring syntax
-is like it's own [mini-language](http://blog.jayfields.com/2010/07/clojure-destructuring.html)
-and allows for succinct code.
+"break apart" collections into multiple symbols. This destructuring syntax is
+like it's own [mini-language] and allows for succinct code.
 
-`let` is one of ClojureScript's [special forms](http://clojure.org/special_forms)
-and is a fundamental building block of the language. Many macros rely on `let`s
-binding syntax and scope rules.
+`let` is one of ClojureScript's [special forms] and is a fundamental building
+block of the language. Many macros rely on `let`s binding syntax and scope
+rules.
+
+[mini-language]:http://blog.jayfields.com/2010/07/clojure-destructuring.html
+[special forms]:http://clojure.org/special_forms
 
 ===== Related
 cljs.core/letfn
