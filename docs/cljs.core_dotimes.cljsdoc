@@ -10,17 +10,9 @@ macro
 ===== Description
 
 Repeatedly executes `body` (presumably for side-effects) with `name` bound to
-integers from 0 through<br />`n`-1.
+integers from 0 through `n`-1.
 
 ===== Related
 cljs.core/repeat
 cljs.core/for
 cljs.core/doseq
-
-===== NOTE
-
-the <br /> here is because the 400px tooltip wraps "n-1" at the edge of the
-tooltip and it's difficult to understand / read
-
-this looks cleaner, but if you change the text of the description in the future
-feel free to remove it
