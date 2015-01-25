@@ -1042,7 +1042,7 @@
 
 (hiccups/defhtml header []
   [:div.header-2a8a6
-    [:img.logo-6ced3 {:src "/img/clojure-logo.png" :alt "Clojure Logo"}]
+    [:img.logo-6ced3 {:src "/img/cljs-ring.svg" :alt "ClojureScript Logo"}]
     [:h1.title-7a29c "ClojureScript Cheatsheet"]
     [:input#searchInput.search-70fb8 {:type "text" :placeholder "Search"}]
     ; [:label#toggleTooltips.tooltips-label-68aa0
