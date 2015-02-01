@@ -340,20 +340,20 @@
         [:a.secondary-btn-2b577 {:href (url "/docs")} "Docs"]]
       [:div.clr-43e49]]])
 
-;; I hope the Internet doesn't skewer me here for using tables here...
+;; I hope the Internet doesn't skewer me for using a table for layout here...
 (hiccups/defhtml blurbs2 []
   [:div.outer-799fb
     [:div.inner-2b584
       [:table.blurbs-tbl-2ebec
         [:tbody
           [:tr
-            [:td.cell-b7906 (interop-blurb2)]
-            [:td.cell-b7906 (code-organization-blurb2)]
+            [:td.cell-b7906.bottom-right-c760b (interop-blurb2)]
+            [:td.cell-b7906.bottom-right-c760b (code-organization-blurb2)]
             [:td.right-cell-66dc9 (whole-program-optimization-blurb2)]]
           [:tr
             [:td.bottom-cell-280bb (state-blurb2)]
-            [:td.bottom-cell-280bb (macros-blurb2)]
-            [:td (community-blurb2)]]]]]])
+            [:td.bottom-cell-280bb.top-left-9deaa (macros-blurb2)]
+            [:td.top-left-9deaa (community-blurb2)]]]]]])
 
 (hiccups/defhtml footer2 []
   [:div.ftr-outer-1f0f3
