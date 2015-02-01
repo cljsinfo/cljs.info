@@ -314,11 +314,11 @@
     [:div.inner-3064a
       [:img.logo-3ed24 {:src "img/cljs-logo.svg"}]
       [:div.nav-links-6320a
-        [:a.nav-link-4db37 {:href "/getting-started"} "Get Started"]
-        [:a.nav-link-4db37 {:href "/faq"} "FAQ"]
-        [:a.nav-link-4db37 {:href "/docs"} "Documentation"]
-        [:a.nav-link-4db37 {:href "/tutorials"} "Tutorials"]
-        [:a.nav-link-4db37 {:href "/community"} "Community"]]]])
+        [:a.nav-link-4db37 {:href (url "/getting-started")} "Get Started"]
+        [:a.nav-link-4db37 {:href (url "/faq")} "FAQ"]
+        [:a.nav-link-4db37 {:href (url "/docs")} "Documentation"]
+        [:a.nav-link-4db37 {:href (url "/tutorials")} "Tutorials"]
+        [:a.nav-link-4db37 {:href (url "/community")} "Community"]]]])
 
 (hiccups/defhtml jumbotron2 []
   [:div.outer-a6683
@@ -334,10 +334,10 @@
           "the same."]]
       [:div.right-1b23f
         [:h2.tagline-aae79 "JavaScript made simple."]
-        [:a.big-cta-7f0a0 {:href "/getting-started"} "Get Started"]
+        [:a.big-cta-7f0a0 {:href (url "/getting-started")} "Get Started"]
         [:br]
-        [:a.secondary-btn-2b577 {:href "/rationale"} "Rationale"]
-        [:a.secondary-btn-2b577 {:href "/docs"} "Docs"]]
+        [:a.secondary-btn-2b577 {:href (url "/rationale")} "Rationale"]
+        [:a.secondary-btn-2b577 {:href (url "/docs")} "Docs"]]
       [:div.clr-43e49]]])
 
 ;; I hope the Internet doesn't skewer me here for using tables here...
@@ -360,14 +360,14 @@
     [:div.ftr-inner-0483e
       [:div.nav-list-3a2bf
         [:h5.ftr-header-c261a "Documentation"]
-        [:a {:href "/getting-started"} "Getting Started"]
-        [:a {:href "/tutorials"} "Tutorials"]
-        [:a {:href "/docs"} "Docs"]
-        [:a {:href "/cheatsheet"} "Cheatsheet"]]
+        [:a {:href (url "/getting-started")} "Getting Started"]
+        [:a {:href (url "/tutorials")} "Tutorials"]
+        [:a {:href (url "/docs")} "Docs"]
+        [:a {:href (url "/cheatsheet")} "Cheatsheet"]]
       [:div.nav-list-3a2bf
         [:h5.ftr-header-c261a "Learn"]
-        [:a {:href "/rationale"} "Rationale"]
-        [:a {:href "/faq"} "FAQ"]]
+        [:a {:href (url "/rationale")} "Rationale"]
+        [:a {:href (url "/faq")} "FAQ"]]
       [:div.nav-list-3a2bf
         [:h5.ftr-header-c261a "Community"]
         [:a {:href mailing-list-url} "Mailing List" [:i.fa.fa-external-link]]
