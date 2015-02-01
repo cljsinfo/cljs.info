@@ -182,6 +182,11 @@
     ; [:a.more-link-1a354 {:href "/tutorials/interop"} "JavaScript Interop &raquo;"]
     ])
 
+(hiccups/defhtml interop-blurb2 []
+  [:h4 "100% JavaScript"]
+  [:p "Use any JavaScript library from ClojureScript. Write a ClojureScript "
+      "library to be used by JavaScript. 100% compatibility; no exceptions."])
+
 (hiccups/defhtml code-organization-blurb []
   [:div.blurb-c4f14.right-e461e
     [:h4.hdr-e4d24 "Built-in Code Organization"]
@@ -191,6 +196,12 @@
       "everyone on your team to follow the same conventions. It just works."]
     ; [:a.more-link-1a354 {:href "/tutorials/namespaces"} "Namespaces &raquo;"]
     ])
+
+(hiccups/defhtml code-organization-blurb2 []
+  [:h4 "Built-in Code Organization"]
+  [:p "Namespace and package management support are built directly into the "
+      "ClojureScript language. No more depending on an external library and getting "
+      "everyone on your team to follow the same conventions. It just works."])
 
 (hiccups/defhtml whole-program-optimization-blurb []
   [:div.blurb-c4f14.left-1764b
@@ -202,6 +213,13 @@
       "result will always be as small as possible."]
     ; [:a.more-link-1a354 {:href "/tutorials/compiling"} "Compiling &raquo;"]
     ])
+
+(hiccups/defhtml whole-program-optimization-blurb2 []
+  [:h4 "Whole Program Optimization"]
+  [:p "ClojureScript uses the Google Closure Compiler"
+      " in Advanced Optimizations mode to automatically remove dead code. "
+      "Add as much code to your ClojureScript project as needed. The end "
+      "result will always be as small as possible."])
 
 (hiccups/defhtml state-blurb []
   [:div.blurb-c4f14.right-e461e
@@ -215,6 +233,15 @@
     ; [:a.more-link-1a354 {:href "/tutorials/state"} "Atoms &raquo;"]
     ])
 
+(hiccups/defhtml state-blurb2 []
+  [:h4 "Sane Approach to State"]
+  [:p
+    "Reasoning about state is simple in ClojureScript. All data is immutable by "
+    "default, so you never have to worry about the value of something at one time vs "
+    "another. When mutability is needed, ClojureScript distinguishes between setting "
+    "and retrieving values so it's easy to keep track of what's going on in your "
+    "program."])
+
 (hiccups/defhtml macros-blurb []
   [:div.blurb-c4f14.left-1764b
     [:h4.hdr-e4d24 "Unrivaled Syntax Power"]
@@ -225,6 +252,13 @@
     ; [:a.more-link-1a354 {:href "/tutorials/macros"} "Macros &raquo;"]
     ])
 
+(hiccups/defhtml macros-blurb2 []
+  [:h4 "Unrivaled Syntax Power"]
+  [:p
+    "Say goodbye to boilerplate code with macros! ClojureScript is a LISP and allows "
+    "for programmatic access to its syntax at the lowest level. Write powerful "
+    "libraries and extend the language exactly as your program requires."])
+
 (hiccups/defhtml community-blurb []
   [:div.blurb-c4f14.right-e461e
     [:h4.hdr-e4d24 "Great Language, Great People"]
@@ -234,6 +268,13 @@
       "helpful, and very smart. We're glad you're here."]
     ; [:a.more-link-1a354 {:href "/community"} "Community &raquo;"]
     ])
+
+(hiccups/defhtml community-blurb2 []
+  [:h4 "Great Language, Great People"]
+  [:p
+    "The ClojureScript community is part of the broader Clojure community, a popular "
+    "language that runs on the JVM. Clojure programmers are known for being fun, "
+    "helpful, and very smart. We're glad you're here."])
 
 (hiccups/defhtml blurbs []
   [:div.outer-5cceb
@@ -266,6 +307,94 @@
   (blurbs)
   ; (common-faqs)
   (footer)
+  (site-footer))
+
+(hiccups/defhtml header2 []
+  [:div.outer-a0feb
+    [:div.inner-3064a
+      [:img.logo-3ed24 {:src "img/cljs-logo.svg"}]
+      [:div.nav-links-6320a
+        [:a.nav-link-4db37 {:href "/getting-started"} "Get Started"]
+        [:a.nav-link-4db37 {:href "/faq"} "FAQ"]
+        [:a.nav-link-4db37 {:href "/docs"} "Documentation"]
+        [:a.nav-link-4db37 {:href "/tutorials"} "Tutorials"]
+        [:a.nav-link-4db37 {:href "/community"} "Community"]]]])
+
+(hiccups/defhtml jumbotron2 []
+  [:div.outer-a6683
+    [:div.inner-959a0
+      [:div.left-958bf
+        [:h1.big-title-c3dbd "ClojureScript"]
+        [:p.blurb-ec58e
+          "ClojureScript is a functional programming language that targets "
+          "JavaScript. It comes with a rich set of data types, an extensive "
+          "core library, and a novel approach to state."]
+        [:p.blurb-ec58e
+          "Programming for the browser" #_[:i.fa.fa-asterisk] " will never be "
+          "the same."]]
+      [:div.right-1b23f
+        [:h2.tagline-aae79 "JavaScript made simple."]
+        [:a.big-cta-7f0a0 {:href "/getting-started"} "Get Started"]
+        [:br]
+        [:a.secondary-btn-2b577 {:href "/rationale"} "Rationale"]
+        [:a.secondary-btn-2b577 {:href "/docs"} "Docs"]]
+      [:div.clr-43e49]]])
+
+;; I hope the Internet doesn't skewer me here for using tables here...
+(hiccups/defhtml blurbs2 []
+  [:div.outer-799fb
+    [:div.inner-2b584
+      [:table.blurbs-tbl-2ebec
+        [:tbody
+          [:tr
+            [:td.cell-b7906 (interop-blurb2)]
+            [:td.cell-b7906 (code-organization-blurb2)]
+            [:td.right-cell-66dc9 (whole-program-optimization-blurb2)]]
+          [:tr
+            [:td.bottom-cell-280bb (state-blurb2)]
+            [:td.bottom-cell-280bb (macros-blurb2)]
+            [:td (community-blurb2)]]]]]])
+
+(hiccups/defhtml footer2 []
+  [:div.ftr-outer-1f0f3
+    [:div.ftr-inner-0483e
+      [:div.nav-list-3a2bf
+        [:h5.ftr-header-c261a "Documentation"]
+        [:a {:href "/getting-started"} "Getting Started"]
+        [:a {:href "/tutorials"} "Tutorials"]
+        [:a {:href "/docs"} "Docs"]
+        [:a {:href "/cheatsheet"} "Cheatsheet"]]
+      [:div.nav-list-3a2bf
+        [:h5.ftr-header-c261a "Learn"]
+        [:a {:href "/rationale"} "Rationale"]
+        [:a {:href "/faq"} "FAQ"]]
+      [:div.nav-list-3a2bf
+        [:h5.ftr-header-c261a "Community"]
+        [:a {:href mailing-list-url} "Mailing List" [:i.fa.fa-external-link]]
+        [:span.small-64bf7 "IRC: #clojurescript"]]
+      [:div.nav-list-3a2bf
+        [:h5.ftr-header-c261a "Contribute"]
+        [:a {:href github-url} "GitHub" [:i.fa.fa-external-link]]
+        [:a {:href issues-url} "JIRA / Issues" [:i.fa.fa-external-link]]]
+      [:div.version-eb1a6
+        [:p "Latest: 0.0-2740"]
+        [:p "Released 4 days ago"]]
+      [:div.clr-43e49]
+      [:div.bottom-f931d
+        [:p.small-1c732
+          "ClojureScript is released under the "
+          [:a {:href clojurescript-license-url} "Eclipse Public License 1.0"]
+          " and is Copyright &copy; Rich Hickey."]
+        [:p.small-1c732
+          "cljs.info is released under the "
+          [:a {:href cljsinfo-license-url} "MIT License"] "."]]]])
+
+(hiccups/defhtml homepage2 []
+  (site-head "ClojureScript - JavaScript made simple")
+  (header2)
+  (jumbotron2)
+  (blurbs2)
+  (footer2)
   (site-footer))
 
 ;;------------------------------------------------------------------------------

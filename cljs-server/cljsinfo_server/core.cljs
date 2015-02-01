@@ -28,6 +28,7 @@
 
       ;; static pages
       (.get "/"          #(.send %2 (html/homepage)))
+      (.get "/index2"    #(.send %2 (html/homepage2)))
       (.get "/community" #(.send %2 (html/community-page)))
       (.get "/docs"      #(.send %2 (html/docs-index)))
       (.get "/faq"       #(.send %2 (html/faq-page)))
