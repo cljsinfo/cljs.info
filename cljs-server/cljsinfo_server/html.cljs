@@ -41,7 +41,7 @@
     [:meta {:charset "utf-8"}]
     [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge"}]
     [:title "cljs.info &raquo; " page-title]
-    [:meta {:name "viewport" :content "width=device-width"}]
+    [:meta {:name "viewport" :content "width=1200, initial-scale=1"}]
     [:link {:rel "shortcut icon" :href "favicon.png" :type "image/png"}]
     [:link {:rel "stylesheet" :href (asset "css/main.min.css")}]]
   "<body>")
