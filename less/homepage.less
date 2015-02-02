@@ -422,24 +422,40 @@
 
 .outer-a6683 {
   background: @footerBlue;
+  height: 350px;
 }
 
 .inner-959a0 {
   margin: 0 auto;
   padding: 60px 100px;
+  position: relative;
   width: 1200px;
+}
+
+.background-img-4ff34 {
+  left: 0;
+  .opacity(0.2);
+  position: absolute;
+  top: 0;
+  z-index: 1;
 }
 
 .left-958bf {
   .box-sizing();
-  float: left;
+  left: 100px;
+  top: 45px;
+  position: absolute;
   width: 55%;
+  z-index: 2;
 }
 
 .right-1b23f {
   .box-sizing();
-  float: right;
+  right: 0;
+  position: absolute;
+  top: 45px;
   width: 35%;
+  z-index: 2;
 }
 
 .big-title-c3dbd {

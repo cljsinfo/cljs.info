@@ -323,6 +323,7 @@
 (hiccups/defhtml jumbotron2 []
   [:div.outer-a6683
     [:div.inner-959a0
+      [:img.background-img-4ff34 {:src "/img/cheatsheet-background.png"}]
       [:div.left-958bf
         [:h1.big-title-c3dbd "ClojureScript"]
         [:p.blurb-ec58e
@@ -337,8 +338,7 @@
         [:a.big-cta-7f0a0 {:href (url "/getting-started")} "Get Started"]
         [:br]
         [:a.secondary-btn-2b577 {:href (url "/rationale")} "Rationale"]
-        [:a.secondary-btn-2b577 {:href (url "/docs")} "Docs"]]
-      [:div.clr-43e49]]])
+        [:a.secondary-btn-2b577 {:href (url "/docs")} "Docs"]]]])
 
 ;; I hope the Internet doesn't skewer me for using a table for layout here...
 (hiccups/defhtml blurbs2 []
