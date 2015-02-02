@@ -323,7 +323,7 @@
 (hiccups/defhtml jumbotron2 []
   [:div.outer-a6683
     [:div.inner-959a0
-      [:img.background-img-4ff34 {:src "/img/cheatsheet-background.png"}]
+      [:img.background-img-4ff34 {:src (url "/img/cheatsheet-background.png")}]
       [:div.left-958bf
         [:h1.big-title-c3dbd "ClojureScript"]
         [:p.blurb-ec58e
