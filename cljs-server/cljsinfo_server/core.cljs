@@ -28,13 +28,14 @@
 
       ;; static pages
       (.get "/"          #(.send %2 (html/homepage)))
-      (.get "/index2"    #(.send %2 (html/homepage2)))
       (.get "/community" #(.send %2 (html/community-page)))
       (.get "/docs"      #(.send %2 (html/docs-index)))
       (.get "/faq"       #(.send %2 (html/faq-page)))
       (.get "/getting-started" #(.send %2 (html/getting-started)))
       (.get "/rationale" #(.send %2 (html/rationale)))
       (.get "/tutorials" #(.send %2 (html/tutorials-index)))
+
+      (.get "/old-homepage" #(.send %2 (html/old-homepage)))
 
       ;; TODO: docs
       ;; (.get "/docs/foo" doc-page)

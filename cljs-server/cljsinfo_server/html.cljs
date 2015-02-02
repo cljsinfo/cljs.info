@@ -128,6 +128,40 @@
       [:div.clr-43e49]
       (footer-bottom)]])
 
+(hiccups/defhtml footer2 []
+  [:div.ftr-outer-1f0f3
+    [:div.ftr-inner-0483e
+      [:div.nav-list-3a2bf
+        [:h5.ftr-header-c261a "Documentation"]
+        [:a {:href (url "/getting-started")} "Getting Started"]
+        [:a {:href (url "/tutorials")} "Tutorials"]
+        [:a {:href (url "/docs")} "Docs"]
+        [:a {:href (url "/cheatsheet")} "Cheatsheet"]]
+      [:div.nav-list-3a2bf
+        [:h5.ftr-header-c261a "Learn"]
+        [:a {:href (url "/rationale")} "Rationale"]
+        [:a {:href (url "/faq")} "FAQ"]]
+      [:div.nav-list-3a2bf
+        [:h5.ftr-header-c261a "Community"]
+        [:a {:href mailing-list-url} "Mailing List" [:i.fa.fa-external-link]]
+        [:span.small-64bf7 "IRC: #clojurescript"]]
+      [:div.nav-list-3a2bf
+        [:h5.ftr-header-c261a "Contribute"]
+        [:a {:href github-url} "GitHub" [:i.fa.fa-external-link]]
+        [:a {:href issues-url} "JIRA / Issues" [:i.fa.fa-external-link]]]
+      [:div.version-eb1a6
+        [:p "Latest: 0.0-2740"]
+        [:p "Released 4 days ago"]]
+      [:div.clr-43e49]
+      [:div.bottom-f931d
+        [:p.small-1c732
+          "ClojureScript is released under the "
+          [:a {:href clojurescript-license-url} "Eclipse Public License 1.0"]
+          " and is Copyright &copy; Rich Hickey."]
+        [:p.small-1c732
+          "cljs.info is released under the "
+          [:a {:href cljsinfo-license-url} "MIT License"] "."]]]])
+
 ;;------------------------------------------------------------------------------
 ;; Homepage
 ;;------------------------------------------------------------------------------
@@ -300,7 +334,7 @@
       "faqs"
       ]])
 
-(hiccups/defhtml homepage []
+(hiccups/defhtml old-homepage []
   (site-head "ClojureScript - JavaScript made simple")
   (jumbotron)
   (top-nav-bar)
@@ -355,41 +389,7 @@
             [:td.bottom-cell-280bb.top-left-9deaa (macros-blurb2)]
             [:td.top-left-9deaa (community-blurb2)]]]]]])
 
-(hiccups/defhtml footer2 []
-  [:div.ftr-outer-1f0f3
-    [:div.ftr-inner-0483e
-      [:div.nav-list-3a2bf
-        [:h5.ftr-header-c261a "Documentation"]
-        [:a {:href (url "/getting-started")} "Getting Started"]
-        [:a {:href (url "/tutorials")} "Tutorials"]
-        [:a {:href (url "/docs")} "Docs"]
-        [:a {:href (url "/cheatsheet")} "Cheatsheet"]]
-      [:div.nav-list-3a2bf
-        [:h5.ftr-header-c261a "Learn"]
-        [:a {:href (url "/rationale")} "Rationale"]
-        [:a {:href (url "/faq")} "FAQ"]]
-      [:div.nav-list-3a2bf
-        [:h5.ftr-header-c261a "Community"]
-        [:a {:href mailing-list-url} "Mailing List" [:i.fa.fa-external-link]]
-        [:span.small-64bf7 "IRC: #clojurescript"]]
-      [:div.nav-list-3a2bf
-        [:h5.ftr-header-c261a "Contribute"]
-        [:a {:href github-url} "GitHub" [:i.fa.fa-external-link]]
-        [:a {:href issues-url} "JIRA / Issues" [:i.fa.fa-external-link]]]
-      [:div.version-eb1a6
-        [:p "Latest: 0.0-2740"]
-        [:p "Released 4 days ago"]]
-      [:div.clr-43e49]
-      [:div.bottom-f931d
-        [:p.small-1c732
-          "ClojureScript is released under the "
-          [:a {:href clojurescript-license-url} "Eclipse Public License 1.0"]
-          " and is Copyright &copy; Rich Hickey."]
-        [:p.small-1c732
-          "cljs.info is released under the "
-          [:a {:href cljsinfo-license-url} "MIT License"] "."]]]])
-
-(hiccups/defhtml homepage2 []
+(hiccups/defhtml homepage []
   (site-head "ClojureScript - JavaScript made simple")
   (header2)
   (jumbotron2)
