@@ -529,21 +529,28 @@
            (replace "]" ""))
        ")"))
 
-(hiccups/defhtml signature-row [symbol-str idx s]
-  [:tr
-    [:td.arity-57d70 (determine-arity s)]
-    [:td
-      {:class (str "signature-b147a " (if (even? idx) "even-3c2da" "odd-d1a05"))}
-      (build-signature-str symbol-str s)]])
+(hiccups/defhtml signature-line [symbol-str idx s]
+  [:div {:class (str "signature-line-b147a " (if (even? idx) "even-3c2da"
+                                                             "odd-d1a05"))}
+    (build-signature-str symbol-str s)])
 
-(hiccups/defhtml signature-table [symbol-str sig]
-  [:table
-    [:thead
-      [:tr
-        [:th.label-8bc3b "Arity"]
-        [:th.label-8bc3b "Signature"]]]
-    [:tbody
-      (map-indexed (partial signature-row symbol-str) sig)]])
+(hiccups/defhtml signature [symbol-str sig]
+  [:div.signature-7b710
+    (map-indexed (partial signature-line symbol-str) sig)])
+
+(hiccups/defhtml file-link [docs]
+  (let [github-link (get docs "github")
+        filename (get docs "filename")]
+    [:a {:href (replace github-link #"#.+$" "")}
+      (replace filename #"^clojurescript/src/" "")]))
+
+(hiccups/defhtml lines-link [docs]
+  (let [github-link (get docs "github")]
+    [:a {:href github-link}
+      (-> github-link
+          (replace #"^.+#" "")
+          (replace "L" "")
+          (replace "-" " - "))]))
 
 (hiccups/defhtml source-link [docs]
   (let [github-link (get docs "github")
@@ -559,37 +566,44 @@
           ))]))
 
 (hiccups/defhtml docs-info-table [docs]
-  [:table
-    [:tbody
-      [:tr
-        [:td.label-8bc3b "Namespace"]
-        [:td (get docs "full-name")]]
-      [:tr
-        [:td.label-8bc3b "Symbol"]
-        [:td (get docs "full-name")]]
-      [:tr
-        [:td.label-8bc3b "Type"]
-        [:td (capitalize (get docs "type"))]]
-      (when (get docs "return type")
+  (let [full-name (get docs "full-name")
+        [namespace-str symbol-str] (split full-name "/")]
+    [:table
+      [:tbody
         [:tr
-          [:td.label-8bc3b "Return Type"]
-          [:td (capitalize (get docs "return type"))]])
-      [:tr
-        [:td.label-8bc3b "Source"]
-        [:td (source-link docs)]]
-        ]])
+          [:td.label-8bc3b "Namespace"]
+          [:td [:code namespace-str]]]
+        [:tr
+          [:td.label-8bc3b "Symbol"]
+          [:td [:code symbol-str]]]
+        [:tr
+          [:td.label-8bc3b "Type"]
+          [:td (capitalize (get docs "type"))]]
+        (when (get docs "return type")
+          [:tr
+            [:td.label-8bc3b "Return Type"]
+            [:td (capitalize (get docs "return type"))]])
+        [:tr
+          [:td.label-8bc3b "File"]
+          [:td (file-link docs)]]
+        [:tr
+          [:td.label-8bc3b "Lines"]
+          [:td (lines-link docs)]]]]))
 
 (hiccups/defhtml docs-source [docs]
-  [:h2 "Source"]
+  [:h2.section-99c9a "Source"
+    [:a.source-link-352de
+      {:href (get docs "github")}
+      "view on GitHub"]]
   [:pre
     [:code {:class "lang-clj"} (get docs "source")]])
 
 (hiccups/defhtml examples [docs]
-  [:h2 "Examples"]
+  [:h2.section-99c9a "Examples"]
   [:div "TODO: examples go in here"]
   )
 
-(defn- doc-page-title [namespace-str symbol-str]
+(hiccups/defhtml doc-page-title [namespace-str symbol-str]
   [:h1.doc-title-6036e
     (when-not (= namespace-str cljs-core-ns)
       [:span.namespace-ca326 (str namespace-str "/")])
@@ -602,13 +616,15 @@
       (site-head full-name)
       (header)
       [:div.blue-bar-3d910]
-      [:div.body-inner-9185d
-        (doc-page-title namespace-str symbol-str)
-        (signature-table symbol-str (get docs "signature"))
-        [:div.description-71ed4 (get docs "description-html")]
-        (docs-info-table docs)
-        (examples docs)
-        (docs-source docs)]
+      [:div.body-outer-6bef5
+        [:div.body-inner-9185d
+          [:div.inner-left-0193f
+            (doc-page-title namespace-str symbol-str)
+            (signature symbol-str (get docs "signature"))
+            [:div.description-71ed4 (get docs "description-html")]]
+          [:div.inner-right-f3567 (docs-info-table docs)]
+          [:div.clr-43e49]
+          (examples docs)
+          (docs-source docs)]]
       (footer2)
-      (site-footer "docs")
-      )))
+      (site-footer "docs"))))
