@@ -31,8 +31,6 @@
 
 (def docs (join-the-docs-for-now))
 
-;; (js-log (.stringify js/JSON (clj->js docs) nil 2))
-
 (defn- decode-symbol-url [s]
   (-> s
       (replace "DOT"   ".")

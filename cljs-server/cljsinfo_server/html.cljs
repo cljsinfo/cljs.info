@@ -57,8 +57,8 @@
       [:script {:src (asset "/js/client.min.js")}]
       [:script {:src (asset "/js/client.js")}])
     (if init-page
-      [:script "if (window.CLJSINFO && CLJSINFO.init) { CLJSINFO.init('" init-page "'); }"]
-      [:script "if (window.CLJSINFO && CLJSINFO.init) { CLJSINFO.init(); }"])
+      [:script "if(window.CLJSINFO && CLJSINFO.init){CLJSINFO.init('" init-page "');}"]
+      [:script "if(window.CLJSINFO && CLJSINFO.init){CLJSINFO.init();}"])
     "</body>"
     "</html>"))
 
@@ -349,7 +349,7 @@
 (hiccups/defhtml header []
   [:header
     [:div.inner-24d98
-      [:img.img-acd65 {:src "/img/cljs-logo.svg"}]
+      [:a {:href "/"} [:img.img-acd65 {:src "/img/cljs-logo.svg"}]]
       [:a.nav-link-18d62 {:href "/getting-started"} "Getting Started"]
       [:a.nav-link-18d62 {:href "/faq"} "FAQ"]
       [:a.nav-link-18d62 {:href "/docs"} "Documentation"]
