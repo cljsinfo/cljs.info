@@ -9,6 +9,7 @@
   "dependencies": {
     "compression": "1.0.10",
     "express": "4.9.5",
+    "fs-extra": "0.16.5",
     "grunt": "0.4.x",
     "grunt-contrib-clean": "0.6.0",
     "grunt-contrib-copy": "0.7.0",

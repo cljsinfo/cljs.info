@@ -1,12 +1,12 @@
 (ns cljsinfo-server.html
   (:require-macros [hiccups.core :as hiccups])
   (:require
-    [clojure.string :refer [replace trim]]
+    [clojure.string :refer [capitalize replace split trim]]
     hiccups.runtime
     [cljsinfo-server.config :refer [config]]
     [cljsinfo-server.util :refer [js-log log]]))
 
-(def fs (js/require "fs"))
+(def fs     (js/require "fs-extra"))
 (def marked (js/require "marked"))
 
 ;;------------------------------------------------------------------------------
@@ -40,22 +40,25 @@
   [:head
     [:meta {:charset "utf-8"}]
     [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge"}]
-    [:title "cljs.info &raquo; " page-title]
+    [:title page-title " - cljs.info"]
     [:meta {:name "viewport" :content "width=1200, initial-scale=1"}]
     [:link {:rel "shortcut icon" :href "favicon.png" :type "image/png"}]
-    [:link {:rel "stylesheet" :href (asset "css/main.min.css")}]]
+    [:link {:rel "stylesheet" :href (asset "/css/main.min.css")}]]
   "<body>")
 
 (hiccups/defhtml site-footer
-  ([] (site-footer nil))
+  ([]
+    (site-footer nil))
   ([init-page]
-    [:script {:src "js/libs/jquery-2.1.1.min.js"}]
+    [:script {:src "/js/libs/jquery-2.1.1.min.js"}]
+    [:script {:src "/js/libs/highlight-8.4.custom.min.js"}]
+    ;; [:script "hljs.initHighlightingOnLoad();"]
     (if (:minified-client config)
-      [:script {:src (asset "js/client.min.js")}]
-      [:script {:src (asset "js/client.js")}])
+      [:script {:src (asset "/js/client.min.js")}]
+      [:script {:src (asset "/js/client.js")}])
     (if init-page
-      [:script "CLJSINFO.init('" init-page "');"]
-      [:script "CLJSINFO.init();"])
+      [:script "if (window.CLJSINFO && CLJSINFO.init) { CLJSINFO.init('" init-page "'); }"]
+      [:script "if (window.CLJSINFO && CLJSINFO.init) { CLJSINFO.init(); }"])
     "</body>"
     "</html>"))
 
@@ -343,7 +346,18 @@
   (footer)
   (site-footer))
 
-(hiccups/defhtml header2 []
+(hiccups/defhtml header []
+  [:header
+    [:div.inner-24d98
+      [:img.img-acd65 {:src "/img/cljs-logo.svg"}]
+      [:a.nav-link-18d62 {:href "/getting-started"} "Getting Started"]
+      [:a.nav-link-18d62 {:href "/faq"} "FAQ"]
+      [:a.nav-link-18d62 {:href "/docs"} "Documentation"]
+      [:a.nav-link-18d62 {:href "/tutorials"} "Tutorials"]
+      [:a.nav-link-18d62 {:href "/community"} "Community"]
+      [:div.clr-43e49]]])
+
+(hiccups/defhtml homepage-header []
   [:div.outer-a0feb
     [:div.inner-3064a
       [:img.logo-3ed24 {:src "img/cljs-logo.svg"}]
@@ -391,7 +405,7 @@
 
 (hiccups/defhtml homepage []
   (site-head "ClojureScript - JavaScript made simple")
-  (header2)
+  (homepage-header)
   (jumbotron2)
   (blurbs2)
   (footer2)
@@ -488,3 +502,113 @@
   "TODO: community"
   (footer)
   (site-footer))
+
+;;------------------------------------------------------------------------------
+;; 404
+;;------------------------------------------------------------------------------
+
+(hiccups/defhtml not-found []
+  [:h1 "Page not found."]
+  [:p "TODO: make this page more useful"])
+
+;;------------------------------------------------------------------------------
+;; Doc Page
+;;------------------------------------------------------------------------------
+
+(def cljs-core-ns "cljs.core")
+
+(defn- determine-arity [s]
+  (if (not= (.indexOf s "&") -1)
+    "V"
+    (count (split s " "))))
+
+(defn- build-signature-str [symbol-str s]
+  (str "(" symbol-str " "
+       (-> s
+           (replace "[" "")
+           (replace "]" ""))
+       ")"))
+
+(hiccups/defhtml signature-row [symbol-str idx s]
+  [:tr
+    [:td.arity-57d70 (determine-arity s)]
+    [:td
+      {:class (str "signature-b147a " (if (even? idx) "even-3c2da" "odd-d1a05"))}
+      (build-signature-str symbol-str s)]])
+
+(hiccups/defhtml signature-table [symbol-str sig]
+  [:table
+    [:thead
+      [:tr
+        [:th.label-8bc3b "Arity"]
+        [:th.label-8bc3b "Signature"]]]
+    [:tbody
+      (map-indexed (partial signature-row symbol-str) sig)]])
+
+(hiccups/defhtml source-link [docs]
+  (let [github-link (get docs "github")
+        filename (get docs "filename")]
+    [:a {:href github-link}
+      (str
+        (replace filename #"^clojurescript/" "")
+        " "
+        (-> github-link
+            (replace #"^.+#" "")
+            (replace #"^L" "lines ")
+            (replace #"-L" "-")
+          ))]))
+
+(hiccups/defhtml docs-info-table [docs]
+  [:table
+    [:tbody
+      [:tr
+        [:td.label-8bc3b "Namespace"]
+        [:td (get docs "full-name")]]
+      [:tr
+        [:td.label-8bc3b "Symbol"]
+        [:td (get docs "full-name")]]
+      [:tr
+        [:td.label-8bc3b "Type"]
+        [:td (capitalize (get docs "type"))]]
+      (when (get docs "return type")
+        [:tr
+          [:td.label-8bc3b "Return Type"]
+          [:td (capitalize (get docs "return type"))]])
+      [:tr
+        [:td.label-8bc3b "Source"]
+        [:td (source-link docs)]]
+        ]])
+
+(hiccups/defhtml docs-source [docs]
+  [:h2 "Source"]
+  [:pre
+    [:code {:class "lang-clj"} (get docs "source")]])
+
+(hiccups/defhtml examples [docs]
+  [:h2 "Examples"]
+  [:div "TODO: examples go in here"]
+  )
+
+(defn- doc-page-title [namespace-str symbol-str]
+  [:h1.doc-title-6036e
+    (when-not (= namespace-str cljs-core-ns)
+      [:span.namespace-ca326 (str namespace-str "/")])
+    symbol-str])
+
+(defn doc-page [docs]
+  (let [full-name (get docs "full-name")
+        [namespace-str symbol-str] (split full-name "/")]
+    (hiccups/html
+      (site-head full-name)
+      (header)
+      [:div.blue-bar-3d910]
+      [:div.body-inner-9185d
+        (doc-page-title namespace-str symbol-str)
+        (signature-table symbol-str (get docs "signature"))
+        [:div.description-71ed4 (get docs "description-html")]
+        (docs-info-table docs)
+        (examples docs)
+        (docs-source docs)]
+      (footer2)
+      (site-footer "docs")
+      )))

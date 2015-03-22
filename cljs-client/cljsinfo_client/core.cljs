@@ -50,6 +50,13 @@
 ;; Global Events
 ;;------------------------------------------------------------------------------
 
+(defn- docs-page-init! []
+  (apply (aget js/hljs "initHighlightingOnLoad") []))
+
+;;------------------------------------------------------------------------------
+;; Global Events
+;;------------------------------------------------------------------------------
+
 ;; some global events
 (defn- add-events! []
   (.resize $window on-window-resize))
@@ -64,8 +71,8 @@
 
   ;; initialize a specific page
   (case page
-    ;;"homepage" ()
     "threading-macro" (threading-macro/init!)
+    "docs"            (docs-page-init!)
     nil))
 
 (js/goog.exportSymbol "CLJSINFO.init" init!)
