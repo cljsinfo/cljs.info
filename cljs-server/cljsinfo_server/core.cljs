@@ -31,6 +31,7 @@
 
 (def docs (join-the-docs-for-now))
 
+;; TODO: this belongs in some sort of shared util namespace
 (defn- decode-symbol-url [s]
   (-> s
       (replace "DOT"   ".")

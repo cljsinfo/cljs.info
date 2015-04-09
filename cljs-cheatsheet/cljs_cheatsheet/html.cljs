@@ -29,18 +29,23 @@
 (hiccups/defhtml literal [n]
   [:span.literal-c3029 n])
 
-(defn- nme->cljdocs-url [nme]
-  (-> nme
-    (replace "?" "_q")
-    uri-encode))
+;; TODO: this belongs in some sort of shared util namespace
+(defn- encode-symbol-url [s]
+  (-> s
+      (replace "." "DOT")
+      (replace ">" "GT")
+      (replace "<" "LT")
+      (replace "!" "BANG")
+      (replace "?" "QMARK")
+      (replace "*" "STAR")
+      (replace "+" "PLUS")
+      (replace "=" "EQ")))
 
 (defn- docs-href [nme nme-space]
-  ;; NOTE: this is temporary until we can link to docs on cljs.info
-  (let [n2 (replace nme-space cljs-core-ns "clojure.core")]
-
-    (str "http://clojuredocs.org/"
-         (uri-encode n2) "/"
-         (nme->cljdocs-url nme))))
+  (str "/docs/"
+       (uri-encode nme-space)
+       "/"
+       (uri-encode (encode-symbol-url nme))))
 
 (hiccups/defhtml fn-link
   ([nme] (fn-link nme cljs-core-ns))
