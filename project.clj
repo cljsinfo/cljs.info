@@ -9,21 +9,21 @@
 
   :dependencies [
     [org.clojure/clojure "1.6.0"]
-    [org.clojure/clojurescript "0.0-2740"]
+    [org.clojure/clojurescript "0.0-3126"]
     [com.cognitect/transit-cljs "0.8.194"]
     [hiccups "0.3.0"]]
 
-  :plugins [[lein-cljsbuild "1.0.4"]]
+  :plugins [[lein-cljsbuild "1.0.5"]]
 
   :source-paths ["src"]
 
   :clean-targets [
+    "app.js"
     "out"
     "public/js/cheatsheet.js"
     "public/js/cheatsheet.min.js"
     "public/js/client.js"
-    "public/js/client.min.js"
-    "app.js"]
+    "public/js/client.min.js"]
 
   :cljsbuild {
     :builds {
