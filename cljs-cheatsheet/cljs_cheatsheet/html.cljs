@@ -37,6 +37,7 @@
       (replace "<" "LT")
       (replace "!" "BANG")
       (replace "?" "QMARK")
+      (replace "/" "SLASH")
       (replace "*" "STAR")
       (replace "+" "PLUS")
       (replace "=" "EQ")))
