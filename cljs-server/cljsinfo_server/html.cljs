@@ -9,6 +9,13 @@
 (def fs     (js/require "fs-extra"))
 (def marked (js/require "marked"))
 
+;; TODO: this belong in util
+(defn- split-full-name [full-name]
+  (let [first-slash-idx (.indexOf full-name "/")
+        namespace-str (.substring full-name 0 first-slash-idx)
+        symbol-str (.substring full-name (inc first-slash-idx))]
+    [namespace-str symbol-str]))
+
 ;;------------------------------------------------------------------------------
 ;; URLs
 ;;------------------------------------------------------------------------------
@@ -567,7 +574,7 @@
 
 (hiccups/defhtml docs-info-table [docs]
   (let [full-name (get docs "full-name")
-        [namespace-str symbol-str] (split full-name "/")]
+        [namespace-str symbol-str] (split-full-name full-name)]
     [:table
       [:tbody
         [:tr
@@ -611,7 +618,7 @@
 
 (defn doc-page [docs]
   (let [full-name (get docs "full-name")
-        [namespace-str symbol-str] (split full-name "/")]
+        [namespace-str symbol-str] (split-full-name full-name)]
     (hiccups/html
       (site-head full-name)
       (header)
