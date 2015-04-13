@@ -251,8 +251,7 @@ function convertSectionIntoArray(s) {
   return arr2;
 }
 
-// parse description as Markdown and some minor trimming
-function parseDescription(d) {
+function parseMarkdown(d) {
   return marked(d)
     .trim()
     .replace(/<\/p> <p>/g, '</p><p>');
@@ -264,12 +263,13 @@ function transformDocObj(obj) {
   delete obj["name"];
 
   // parse description
-  obj["description-html"] = parseDescription(obj["description"]);
+  obj.descriptionHTML = parseMarkdown(obj["description"]);
   delete obj["description"];
 
   // type is either "special form", "macro", or "function"
   // "function" is the default if not specified
-  if (obj["type"] !== "special form" && obj["type"] !== "macro") {
+  if (obj["type"] !== "special form" &&
+      obj["type"] !== "macro") {
     delete obj["type"];
   }
 
@@ -280,24 +280,52 @@ function transformDocObj(obj) {
     obj.related = convertSectionIntoArray(obj.related);
   }
 
+  // examples
+  if (obj.hasOwnProperty('exampleIds')) {
+    obj.examples = [];
+    var exampleIds = obj.exampleIds.split(',');
+
+    for (var i = 0; i < exampleIds.length; i++) {
+      if (exampleIds[i] === '') continue;
+
+      var id = exampleIds[i];
+      obj.examples.push({
+        id: id.replace(/example#/, ''),
+        exampleHTML: parseMarkdown(obj[id])
+      });
+
+      delete obj[id];
+    }
+
+    delete obj['exampleIds'];
+  }
+
   return obj;
 }
 
 function parseDocFileIntoObject(fileContent) {
   var contentArr = fileContent.split("\n"),
-    currentSection = false,
-    obj = {};
+      currentSection = false,
+      obj = {};
 
   for (var i = 0; i < contentArr.length; i++) {
     var line = contentArr[i];
 
     if (isSectionLine(line) === true) {
       currentSection = line.replace(/^=====/, "").trim().toLowerCase();
+
+      if (currentSection.search('example') !== -1) {
+        obj.exampleIds = obj.exampleIds || '';
+        obj.exampleIds += currentSection + ',';
+      }
+
       obj[currentSection] = "";
+
       continue;
     }
 
     if (currentSection === false) continue;
+
 
     obj[currentSection] += line + "\n";
   }

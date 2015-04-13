@@ -605,10 +605,16 @@
   [:pre
     [:code {:class "lang-clj"} (get docs "source")]])
 
+(hiccups/defhtml single-example [ex]
+  (let [id (str "example-" (get ex "id"))]
+    (list
+      [:a {:href (str "#" id)} "[link]"]
+      [:div.example-wrapper-7ea9f {:id id}
+        (get ex "exampleHTML")])))
+
 (hiccups/defhtml examples [docs]
   [:h2.section-99c9a "Examples"]
-  [:div "TODO: examples go in here"]
-  )
+  (map single-example (get docs "examples")))
 
 (hiccups/defhtml doc-page-title [namespace-str symbol-str]
   [:h1.doc-title-6036e
@@ -628,10 +634,10 @@
           [:div.inner-left-0193f
             (doc-page-title namespace-str symbol-str)
             (signature symbol-str (get docs "signature"))
-            [:div.description-71ed4 (get docs "description-html")]]
+            [:div.description-71ed4 (get docs "descriptionHTML")]]
           [:div.inner-right-f3567 (docs-info-table docs)]
           [:div.clr-43e49]
-          (examples docs)
+          (when (get docs "examples") (examples docs))
           (docs-source docs)]]
       (footer2)
       (site-footer "docs"))))
