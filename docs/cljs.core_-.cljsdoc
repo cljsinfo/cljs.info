@@ -13,3 +13,16 @@ from `x` and returns the result.
 
 ===== Related
 cljs.core/+
+
+===== Example#0a974e
+
+```
+(- 1)
+;;=> -1
+
+(- 6 3)
+;;=> 3
+
+(- 10 3 2)
+;;=> 5
+```

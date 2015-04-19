@@ -16,6 +16,16 @@ arguments to `args`.
 ===== Related
 cljs.core/map
 
-===== TODO
+===== Example#174052
 
-This needs an example.
+```
+(max 1 2 3)
+;;=> 3
+
+(apply max [1 2 3])
+;;=> 3
+
+(apply max 1 [2 3])
+;;=> 3
+```
+

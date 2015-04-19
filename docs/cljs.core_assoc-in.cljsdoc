@@ -16,3 +16,26 @@ cljs.core/assoc
 cljs.core/update-in
 cljs.core/dissoc-in
 cljs.core/get-in
+
+===== Example#e76f20
+
+```
+(def users [{:name "James" :age 26}
+            {:name "John" :age 43}])
+```
+
+Update the age of the second (index 1) user:
+
+```
+(assoc-in users [1 :age] 44)
+;;=> [{:name "James", :age 26}
+;;    {:name "John", :age 44}]
+```
+
+Insert the password of the second (index 1) user:
+
+```
+(assoc-in users [1 :password] "nhoJ")
+;;=> [{:name "James", :age 26}
+;;    {:password "nhoJ", :name "John", :age 43}]
+```

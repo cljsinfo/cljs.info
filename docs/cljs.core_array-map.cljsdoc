@@ -6,7 +6,7 @@ cljs.core/array-map
 
 ===== Description
 
-Returns a new array map with supplied mappings.
+Returns a new array map (a map implemented with arrays) with the supplied mappings.
 
 `keyvals` must be an even number of forms.
 
@@ -14,3 +14,13 @@ Returns a new array map with supplied mappings.
 cljs.core/assoc
 cljs.core/hash-map
 cljs.core/sorted-map
+
+===== Example#198026
+
+```
+(array-map :a 10)
+;;=> {:a 10}
+
+(array-map :a 10 :b 20)
+;;=> {:a 10 :b 20}
+```

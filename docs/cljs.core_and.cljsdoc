@@ -20,3 +20,46 @@ of the other arguments, otherwise it returns the value of the last argument.
 ===== Related
 cljs.core/or
 cljs.core/if
+
+===== Example#a39a73
+
+```
+(and)
+;;=> true
+
+(and false)
+;;=> false
+
+(and true)
+;;=> true
+
+(and true true)
+;;=> true
+
+(and true false)
+;;=> false
+
+(and false false)
+;;=> false
+```
+
+===== Example#766638
+
+`nil` and `false` are the only falsy values and everything else is truthy:
+
+```
+(and "foo" "bar")
+;;=> "bar"
+
+(and "foo" nil)
+;;=> nil
+
+(and "foo" false)
+;;=> false
+
+(and nil "foo")
+;;=> nil
+
+(and false "foo")
+;;=> false
+```

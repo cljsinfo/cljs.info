@@ -10,3 +10,16 @@ Returns true if `x` is a JavaScript array, false otherwise.
 
 ===== Related
 cljs.core/object?
+
+===== Example#39913c
+
+```
+(array? #js [1 2 3])
+;;=> true
+
+(array? [1 2 3])
+;;=> false
+
+(array? "hi")
+;;=> false
+```

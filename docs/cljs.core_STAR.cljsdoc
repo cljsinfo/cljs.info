@@ -16,3 +16,21 @@ Returns the product of nums.
 ===== Related
 cljs.core/+
 cljs.core//
+
+===== Example#bc4a1f
+
+```
+;; there is an implicit 1
+(*)
+;;=> 1
+
+;; the implicit 1 comes into play
+(* 6)
+;;=> 6
+
+(* 2 3)
+;;=> 6
+
+(* 2 3 4)
+;;=> 24
+```

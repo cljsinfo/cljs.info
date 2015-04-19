@@ -22,3 +22,20 @@ cljs.core/swap!
 cljs.core/reset!
 cljs.core/set-validator!
 cljs.core/get-validator
+
+===== Example#e6a38a
+
+```
+(def a (atom 1))
+
+@a
+;;=> 1
+
+(reset! a 2)
+@a
+;;=> 2
+
+(swap! a inc)
+@a
+;;=> 3
+```

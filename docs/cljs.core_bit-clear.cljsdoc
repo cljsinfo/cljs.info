@@ -6,7 +6,24 @@ cljs.core/bit-clear
 
 ===== Description
 
-Clear bit at index `n`
+Clear bit at index `n`.  Same as `x & ~(1 << y)` in JavaScript.
 
 ===== Related
 cljs.core/bit-set
+
+===== Example#0f6748
+
+Bits can be entered using radix notation:
+
+```
+(bit-clear 2r1111 2)
+;;=> 11
+;; 11 = 2r1011
+```
+
+Same numbers in decimal:
+
+```
+(bit-clear 15 2)
+;;=> 11 
+```
