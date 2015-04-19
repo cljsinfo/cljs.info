@@ -160,7 +160,7 @@
         [:a {:href github-url} "GitHub" [:i.fa.fa-external-link]]
         [:a {:href issues-url} "JIRA / Issues" [:i.fa.fa-external-link]]]
       [:div.version-eb1a6
-        [:p "Latest: 0.0-2740"]
+        [:p "Latest: 0.0-3196"]
         [:p "Released 4 days ago"]]
       [:div.clr-43e49]
       [:div.bottom-f931d
