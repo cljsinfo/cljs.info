@@ -14,6 +14,7 @@ docs, etc.
 ## Development Setup
 
 1. Install [Leiningen] and [Node.js].
+1. Install or upgrade to Java 7 or 8
 1. Run from the project directory:
 
     ```sh
