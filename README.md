@@ -24,7 +24,7 @@ docs, etc.
     grunt
 
     # compile ClojureScript files (this may take a minute)
-    lein cljsbuild clean && lein cljsbuild once
+    lein clean && lein cljsbuild once
 
     # copy the example config file (edit as needed)
     cp example.config.json config.json
