@@ -4,7 +4,7 @@
     [clojure.walk :refer [keywordize-keys]]
     [cljsinfo-server.config :refer [config]]
     [cljsinfo-server.html :as html]
-    [cljsinfo-server.util :refer [js-log log ts-log]]))
+    [cljsinfo-server.util :refer [hard-quit! js-log log ts-log]]))
 
 (enable-console-print!)
 
@@ -18,18 +18,31 @@
 (def js-http        (js/require "http"))
 
 ;;------------------------------------------------------------------------------
+;; Load Documentation
+;;------------------------------------------------------------------------------
+
+(def js-docs (.readJsonSync fs "docs.json" (js-obj "throws" false)))
+
+(when-not js-docs
+  (js-log "Could not load docs.json file. Please run 'grunt docs' to generate the docs.json file.")
+  (js-log "Exiting...")
+  (hard-quit!))
+
+(def docs (js->clj js-docs))
+
+;;------------------------------------------------------------------------------
 ;; Pages
 ;;------------------------------------------------------------------------------
 
-;; TODO: this needs to be improved / defensive if the files don't exist
-;; just rolling with it for now
-(defn- join-the-docs-for-now []
-  (let [hand-docs (js->clj (js/require "./docs.json"))
-        gen-docs  (js->clj (js/require "./generated-docs.json"))]
-    ;; lol
-    (merge-with merge gen-docs hand-docs)))
+; ;; TODO: this needs to be improved / defensive if the files don't exist
+; ;; just rolling with it for now
+; (defn- join-the-docs-for-now []
+;   (let [hand-docs (js->clj (js/require "./docs.json"))
+;         gen-docs  (js->clj (js/require "./generated-docs.json"))]
+;     ;; lol
+;     (merge-with merge gen-docs hand-docs)))
 
-(def docs (join-the-docs-for-now))
+; (def docs (join-the-docs-for-now))
 
 ;; TODO: this belongs in some sort of shared util namespace
 (defn- decode-symbol-url [s]

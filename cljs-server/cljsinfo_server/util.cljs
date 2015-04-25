@@ -38,3 +38,14 @@
         (.toString (bit-or (* 16 (.random js/Math)) 0) 16)
         x))
     "00000000-0000-4000-0000-000000000000")))
+
+(defn hard-quit!
+  "Goodbye for real. Do not pass Go. Do not collect $200."
+  []
+  (.exit js/process))
+
+(defn split-full-name [full-name]
+  (let [first-slash-idx (.indexOf full-name "/")
+        namespace-str (.substring full-name 0 first-slash-idx)
+        symbol-str (.substring full-name (inc first-slash-idx))]
+    [namespace-str symbol-str]))

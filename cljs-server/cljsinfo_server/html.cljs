@@ -4,17 +4,10 @@
     [clojure.string :refer [capitalize replace split trim]]
     hiccups.runtime
     [cljsinfo-server.config :refer [config]]
-    [cljsinfo-server.util :refer [js-log log]]))
+    [cljsinfo-server.util :refer [js-log log split-full-name]]))
 
 (def fs     (js/require "fs-extra"))
 (def marked (js/require "marked"))
-
-;; TODO: this belong in util
-(defn- split-full-name [full-name]
-  (let [first-slash-idx (.indexOf full-name "/")
-        namespace-str (.substring full-name 0 first-slash-idx)
-        symbol-str (.substring full-name (inc first-slash-idx))]
-    [namespace-str symbol-str]))
 
 ;;------------------------------------------------------------------------------
 ;; URLs
@@ -29,10 +22,8 @@
 ;; Hashed Assets
 ;;------------------------------------------------------------------------------
 
-(def assets
-  (if (.existsSync fs "assets.json")
-    (js->clj (js/require "./assets.json"))
-    {}))
+(def js-assets (.readJsonSync fs "assets.json" (js-obj "throws" false)))
+(def assets (if js-assets (js->clj js-assets) {}))
 
 (defn- asset [f]
   (get assets f f))
