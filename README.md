@@ -2,6 +2,8 @@
 
 An upcoming website for ClojureScript at <http://cljs.info>.
 
+![homepage](screenshots/homepage00.png)
+
 ## Goal
 
 Make an awesome website for ClojureScript. Right now the project mostly consists
