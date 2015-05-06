@@ -952,7 +952,7 @@
       "In JavaScript, Objects are commonly used as a de facto map using "
       "strings as keys. "
       "A key in a ClojureScript map can be any value, although keywords are "
-      "commonly used."]]
+      "commonly used. Keywords should not start with a number."]]
 
   [:div#tooltip-keywords-as-fn.tooltip-53dde {:style "display:none"}
     [:i.fa.fa-thumb-tack.pin-0ad63]
