@@ -16,6 +16,8 @@ docs, etc.
 ## Development Setup
 
 1. Install [Leiningen] and [Node.js].
+1. Install node and npm
+1. Install or upgrade to Java 7 or 8
 1. Run from the project directory:
 
     ```sh
@@ -29,7 +31,7 @@ docs, etc.
     lein clean && lein cljsbuild once
 
     # copy the example config file (edit as needed)
-    cp example.config.json config.json
+    cp config.json.example config.json
 
     # start the node.js server
     node app.js
@@ -42,4 +44,5 @@ All code licensed under the terms of the [MIT License].
 [cheatsheet]:http://cljs.info/cheatsheet
 [Leiningen]:http://leiningen.org
 [Node.js]:http://nodejs.org
+[Java]:http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 [MIT License]:https://github.com/oakmac/cljs.info/blob/master/LICENSE.md
