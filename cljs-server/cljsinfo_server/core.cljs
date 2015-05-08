@@ -80,6 +80,21 @@
       (.send js-res (html/not-found)))))
 
 ;;------------------------------------------------------------------------------
+;; API
+;;------------------------------------------------------------------------------
+
+;; this endpoint is mainly for CI integration so we can push to the server to
+;; update docs instead of having to poll GitHub
+(defn- refresh-docs-api [js-req js-res]
+  (let [key-from-config (:refresh-docs-key config)
+        key-from-client (aget js-req "query" "key")]
+    (if (and key-from-config
+             (= key-from-client key-from-config))
+      (do (fetch-and-update-docs!)
+           (.send js-res "refreshing the docs..."))
+      (.send js-res "wrong key"))))
+
+;;------------------------------------------------------------------------------
 ;; Main
 ;;------------------------------------------------------------------------------
 
@@ -102,6 +117,9 @@
 
       ;; docs pages
       (.get "/docs/:namespace/:symbol" doc-page)
+
+      ;; api
+      (.get "/api/refresh-docs" refresh-docs-api)
 
       ;; serve static files out of /public
       (.use (.static js-express (str js/__dirname "/public"))))

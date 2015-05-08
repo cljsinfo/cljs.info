@@ -2,5 +2,6 @@
   "fetch-docs-on-load?": false,
   "fetch-docs-every-n-seconds": false,
   "minified-client?": false,
-  "port": 9292
+  "port": 9292,
+  "refresh-docs-key": "SUPER_SECRET_KEY"
 }
