@@ -1,6 +1,6 @@
 {
   "fetch-docs-on-load?": false,
-  "fetch-docs-every-N-seconds": false,
+  "fetch-docs-every-n-seconds": false,
   "minified-client?": false,
   "port": 9292
 }

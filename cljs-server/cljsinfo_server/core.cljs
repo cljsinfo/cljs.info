@@ -50,8 +50,8 @@
   (fetch-and-update-docs!))
 
 ;; begin polling for doc updates (config option)
-(when (number? (:fetch-docs-every-N-seconds config))
-  (js/setInterval fetch-and-update-docs! (* 1000 (:fetch-docs-every-N-seconds config))))
+(when (number? (:fetch-docs-every-n-seconds config))
+  (js/setInterval fetch-and-update-docs! (* 1000 (:fetch-docs-every-n-seconds config))))
 
 ;;------------------------------------------------------------------------------
 ;; Pages
