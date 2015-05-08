@@ -164,240 +164,42 @@ function squeezeClasses() {
 }
 
 //------------------------------------------------------------------------------
-// Doc Files
+// Cheatsheet Publish
 //------------------------------------------------------------------------------
 
-function extractNamespace(fullName) {
-  fullName = fullName + "";
-  var slash = fullName.indexOf("/");
-  return fullName.substr(0, slash);
-}
-
-function extractName(fullName) {
-  fullName = fullName + "";
-  var slash = (fullName + "").indexOf("/");
-  return fullName.substr(slash + 1);
-}
-
-function isSectionLine(line) {
-  return line.search(/^=====/) !== -1;
-}
-
-// converts each non-empty line of a section into an array
-function convertSectionIntoArray(s) {
-  // NOTE: this condtion should never happen
-  if (s === "") return [];
-
-  var arr1 = s.split("\n"),
-    arr2 = [];
-
-  // trim each line and remove empty lines
-  for (var i = 0; i < arr1.length; i++) {
-    var line = arr1[i].trim();
-    if (line === "") continue;
-
-    arr2.push(line);
+function buildCheatsheetSanityCheck() {
+  if (! grunt.file.exists('public/js/cheatsheet.min.js')) {
+    grunt.fail.warn('Could not find public/js/cheatsheet.min.js! Aborting...');
   }
 
-  return arr2;
+  // TODO: check to make sure the ctime on cheatsheet.min.js is pretty fresh (< 5 minutes)
 }
 
-function parseMarkdown(d) {
-  return marked(d)
-    .trim()
-    .replace(/<\/p> <p>/g, '</p><p>');
-}
+function hashCheatsheetFiles() {
+  var cssFile = grunt.file.read('00-publish/css/main.min.css'),
+    cssHash = md5(cssFile).substr(0, 8),
+    jsFile = grunt.file.read('00-publish/js/cheatsheet.min.js'),
+    jsHash = md5(jsFile).substr(0, 8),
+    htmlFile = grunt.file.read('00-publish/cheatsheet/index.html');
 
-function transformDocObj(obj) {
-  // rename "name" to "full-name"
-  obj["full-name"] = obj["name"];
-  delete obj["name"];
+  // write the new files
+  grunt.file.write('00-publish/css/main.min.' + cssHash + '.css', cssFile);
+  grunt.file.write('00-publish/js/cheatsheet.min.' + jsHash + '.js', jsFile);
 
-  // parse description
-  obj.descriptionHTML = parseMarkdown(obj["description"]);
-  delete obj["description"];
+  // delete the old files
+  grunt.file.delete('00-publish/css/main.min.css');
+  grunt.file.delete('00-publish/js/cheatsheet.min.js');
 
-  // type is either "special form", "macro", or "function"
-  // "function" is the default if not specified
-  if (obj["type"] !== "special form" &&
-      obj["type"] !== "macro") {
-    delete obj["type"];
-  }
+  // update the HTML file
+  grunt.file.write('00-publish/cheatsheet/index.html',
+    htmlFile.replace('main.min.css', 'main.min.' + cssHash + '.css')
+    .replace('cheatsheet.min.js', 'cheatsheet.min.' + jsHash + '.js'));
 
-  // convert some sections into arrays
-  obj.signature = convertSectionIntoArray(obj.signature);
-
-  if (obj.hasOwnProperty("related") === true) {
-    obj.related = convertSectionIntoArray(obj.related);
-  }
-
-  // examples
-  if (obj.hasOwnProperty('exampleIds')) {
-    obj.examples = [];
-    var exampleIds = obj.exampleIds.split(',');
-
-    for (var i = 0; i < exampleIds.length; i++) {
-      if (exampleIds[i] === '') continue;
-
-      var id = exampleIds[i];
-      obj.examples.push({
-        id: id.replace(/example#/, ''),
-        exampleHTML: parseMarkdown(obj[id])
-      });
-
-      delete obj[id];
-    }
-
-    delete obj['exampleIds'];
-  }
-
-  return obj;
-}
-
-function parseDocFileIntoObject(fileContent) {
-  var contentArr = fileContent.split("\n"),
-      currentSection = false,
-      obj = {};
-
-  for (var i = 0; i < contentArr.length; i++) {
-    var line = contentArr[i];
-
-    if (isSectionLine(line) === true) {
-      currentSection = line.replace(/^=====/, "").trim().toLowerCase();
-
-      if (currentSection.search('example') !== -1) {
-        obj.exampleIds = obj.exampleIds || '';
-        obj.exampleIds += currentSection + ',';
-      }
-
-      obj[currentSection] = "";
-
-      continue;
-    }
-
-    if (currentSection === false) continue;
-
-
-    obj[currentSection] += line + "\n";
-  }
-
-  // trim everything and delete empty sections
-  var obj2 = {};
-  for (var i in obj) {
-    if (obj.hasOwnProperty(i) !== true) continue;
-
-    obj[i] = obj[i].trim();
-    if (obj[i] !== "") {
-      obj2[i] = obj[i];
-    }
-  }
-
-  return obj2;
-}
-
-// quick check that the file has everything we are expecting
-function validDocObj(obj) {
-  return obj.hasOwnProperty("name") &&
-         obj.hasOwnProperty("signature") &&
-         obj.hasOwnProperty("description");
-}
-
-function parsedStatus(parsed, skipped) {
-  var msg = 'Parsed ' + parsed + ' files';
-
-  if (skipped !== 0) {
-    msg += ', skipped ' + skipped;
-  }
-
-  msg += '.';
-
-  return msg;
-}
-
-// http://tinyurl.com/nxszt3y
-function bytes (b) {
-  var tb = ((1 << 30) * 1024), gb = 1 << 30, mb = 1 << 20, kb = 1 << 10, abs = Math.abs(b);
-  if (abs >= tb) return (Math.round(b / tb * 100) / 100) + 'tb';
-  if (abs >= gb) return (Math.round(b / gb * 100) / 100) + 'gb';
-  if (abs >= mb) return (Math.round(b / mb * 100) / 100) + 'mb';
-  if (abs >= kb) return (Math.round(b / kb * 100) / 100) + 'kb';
-  return b + 'b';
-}
-
-function filesize(filename) {
- var stats = fs.statSync(filename),
-   size = stats["size"];
-
- return bytes(size);
-}
-
-function buildDocs() {
-  var docs = {},
-    parsed = 0,
-    skipped = 0;
-
-  grunt.file.recurse('docs', function(filePath) {
-    // skip non .cljsdoc files
-    if (filePath.search(/\.cljsdoc$/) === -1) return;
-
-    var content = grunt.file.read(filePath),
-      obj = parseDocFileIntoObject(content);
-
-    // quick sanity check that the file is in a good format
-    if (validDocObj(obj) !== true) {
-      skipped++;
-      grunt.log.error("Skipped file '" + filePath + "'. Invalid format.");
-      return;
-    }
-
-    parsed++;
-
-    // clean and transform the data
-    obj = transformDocObj(obj);
-
-    docs[ obj["full-name"] ] = obj;
-  });
-
-  var docsFile = 'docs.json',
-    cheatsheetDocsFile = 'public/cheatsheet/docs.json';
-  grunt.file.write(docsFile, JSON.stringify(docs, null, 2));
-  grunt.file.write(cheatsheetDocsFile, JSON.stringify(docs));
-
-  // log status
-  grunt.log.writeln(parsedStatus(parsed, skipped));
-  grunt.log.writeln('Created ' + docsFile + ' (' + filesize(docsFile) + ')');
-  grunt.log.writeln('Created ' + cheatsheetDocsFile + ' (' + filesize(cheatsheetDocsFile) + ')');
-}
-
-function buildGenDocs() {
-  // make sure the generated docs folder exists
-  if (grunt.file.isDir('docs-generated') !== true) {
-    grunt.fail.warn('Could not find /docs-generated folder. Please run ./gen-docs.sh. Aborting...');
-    return;
-  }
-
-  var docs = {},
-    parsed = 0,
-    skipped = 0;
-
-  grunt.file.recurse('docs-generated', function(filePath) {
-    // skip non .cljsdoc files
-    if (filePath.search(/\.cljsdoc$/) === -1) return;
-
-    var content = grunt.file.read(filePath),
-      obj = parseDocFileIntoObject(content);
-
-    parsed++;
-
-    docs[ obj["name"] ] = obj;
-  });
-
-  var docsFile = 'generated-docs.json';
-  grunt.file.write(docsFile, JSON.stringify(docs, null, 2));
-
-  // log status
-  grunt.log.writeln(parsedStatus(parsed, skipped));
-  grunt.log.writeln('Created ' + docsFile + ' (' + filesize(docsFile) + ')');
+  // show some output
+  grunt.log.writeln('00-publish/css/main.min.css → ' +
+                    '00-publish/css/main.min.' + cssHash + '.css');
+  grunt.log.writeln('00-publish/js/cheatsheet.min.js → ' +
+                    '00-publish/js/cheatsheet.min.' + jsHash + '.js');
 }
 
 //------------------------------------------------------------------------------
@@ -449,50 +251,10 @@ grunt.initConfig({
     less: {
       files: "less/*.less",
       tasks: "less:watch"
-    },
-
-    docs: {
-      files: "docs/*.cljsdoc",
-      tasks: "build-docs"
     }
   }
 
 });
-
-function buildCheatsheetSanityCheck() {
-  if (! grunt.file.exists('public/js/cheatsheet.min.js')) {
-    grunt.fail.warn('Could not find public/js/cheatsheet.min.js! Aborting...');
-  }
-
-  // TODO: check to make sure the ctime on cheatsheet.min.js is pretty fresh (< 5 minutes)
-}
-
-function hashCheatsheetFiles() {
-  var cssFile = grunt.file.read('00-publish/css/main.min.css'),
-    cssHash = md5(cssFile).substr(0, 8),
-    jsFile = grunt.file.read('00-publish/js/cheatsheet.min.js'),
-    jsHash = md5(jsFile).substr(0, 8),
-    htmlFile = grunt.file.read('00-publish/cheatsheet/index.html');
-
-  // write the new files
-  grunt.file.write('00-publish/css/main.min.' + cssHash + '.css', cssFile);
-  grunt.file.write('00-publish/js/cheatsheet.min.' + jsHash + '.js', jsFile);
-
-  // delete the old files
-  grunt.file.delete('00-publish/css/main.min.css');
-  grunt.file.delete('00-publish/js/cheatsheet.min.js');
-
-  // update the HTML file
-  grunt.file.write('00-publish/cheatsheet/index.html',
-    htmlFile.replace('main.min.css', 'main.min.' + cssHash + '.css')
-    .replace('cheatsheet.min.js', 'cheatsheet.min.' + jsHash + '.js'));
-
-  // show some output
-  grunt.log.writeln('00-publish/css/main.min.css → ' +
-                    '00-publish/css/main.min.' + cssHash + '.css');
-  grunt.log.writeln('00-publish/js/cheatsheet.min.js → ' +
-                    '00-publish/js/cheatsheet.min.' + jsHash + '.js');
-}
 
 // load tasks from npm
 grunt.loadNpmTasks('grunt-contrib-clean');
@@ -500,8 +262,6 @@ grunt.loadNpmTasks('grunt-contrib-copy');
 grunt.loadNpmTasks('grunt-contrib-less');
 grunt.loadNpmTasks('grunt-contrib-watch');
 
-grunt.registerTask('build-docs', buildDocs);
-grunt.registerTask('build-gen-docs', buildGenDocs);
 grunt.registerTask('build-cheatsheet-sanity-check', buildCheatsheetSanityCheck);
 grunt.registerTask('hash-cheatsheet', hashCheatsheetFiles);
 grunt.registerTask('squeeze-classes', squeezeClasses);
@@ -510,7 +270,6 @@ grunt.registerTask('build-cheatsheet', [
   'build-cheatsheet-sanity-check',
   'clean:pre',
   'less',
-  'build-docs',
   'copy:cheatsheet',
   'hash-cheatsheet'
 ]);

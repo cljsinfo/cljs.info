@@ -13,8 +13,7 @@ pom.xml
 00-publish
 app.js
 config.json
-docs.json
-generated-docs.json
+docs.edn
 /node_modules/
 /public/cheatsheet/docs.json
 /public/css/main.min.css
@@ -31,5 +30,3 @@ server-publish.sh
 
 # ignore diffs
 *.diff
-
-/docs-generated

@@ -1,16 +1,16 @@
 (defproject cljs.info "0.1.0"
 
   :description "A cool ClojureScript website."
-  :url "https://github.com/oakmac/cljs.info"
+  :url "https://github.com/cljsinfo/cljs.info"
   :license {
     :name "MIT License"
-    :url "https://github.com/oakmac/cljs.info/blob/master/LICENSE.md"
+    :url "https://github.com/cljsinfo/cljs.info/blob/master/LICENSE.md"
     :distribution :repo }
 
   :dependencies [
     [org.clojure/clojure "1.6.0"]
     [org.clojure/clojurescript "0.0-3126"]
-    [com.cognitect/transit-cljs "0.8.194"]
+    [com.cognitect/transit-cljs "0.8.207"]
     [hiccups "0.3.0"]]
 
   :plugins [[lein-cljsbuild "1.0.5"]]

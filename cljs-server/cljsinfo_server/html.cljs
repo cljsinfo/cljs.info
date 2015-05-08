@@ -542,70 +542,56 @@
     [:a {:href (replace github-link #"#.+$" "")}
       (replace filename #"^clojurescript/src/" "")]))
 
-(hiccups/defhtml lines-link [docs]
-  (let [github-link (get docs "github")]
-    [:a {:href github-link}
-      (-> github-link
-          (replace #"^.+#" "")
-          (replace "L" "")
-          (replace "-" " - "))]))
+(hiccups/defhtml format-lines-link [source-link]
+  [:a {:href source-link}
+    (-> source-link
+        (replace #"^.+#" "")
+        (replace "L" "")
+        (replace "-" " - "))])
 
-(hiccups/defhtml source-link [docs]
-  (let [github-link (get docs "github")
-        filename (get docs "filename")]
-    [:a {:href github-link}
-      (str
-        (replace filename #"^clojurescript/" "")
-        " "
-        (-> github-link
-            (replace #"^.+#" "")
-            (replace #"^L" "lines ")
-            (replace #"-L" "-")
-          ))]))
+(defn- format-filename [filename]
+  (replace filename #"^clojurescript/" ""))
 
 (hiccups/defhtml docs-info-table [docs]
-  (let [full-name (get docs "full-name")
-        [namespace-str symbol-str] (split-full-name full-name)]
-    [:table
-      [:tbody
-        [:tr
-          [:td.label-8bc3b "Namespace"]
-          [:td [:code namespace-str]]]
-        [:tr
-          [:td.label-8bc3b "Symbol"]
-          [:td [:code symbol-str]]]
-        [:tr
-          [:td.label-8bc3b "Type"]
-          [:td (capitalize (get docs "type"))]]
-        (when (get docs "return type")
-          [:tr
-            [:td.label-8bc3b "Return Type"]
-            [:td (capitalize (get docs "return type"))]])
-        [:tr
-          [:td.label-8bc3b "File"]
-          [:td (file-link docs)]]
-        [:tr
-          [:td.label-8bc3b "Lines"]
-          [:td (lines-link docs)]]]]))
+  [:table [:tbody
+    [:tr
+      [:td.label-8bc3b "Namespace"]
+      [:td [:code (:ns docs)]]]
+    [:tr
+      [:td.label-8bc3b "Symbol"]
+      [:td [:code (:name docs)]]]
+    [:tr
+      [:td.label-8bc3b "Type"]
+      [:td (-> docs :type str capitalize)]]
+    (when (:return-type docs)
+      [:tr
+        [:td.label-8bc3b "Return Type"]
+        [:td (-> docs :return-type str capitalize)]])
+    [:tr
+      [:td.label-8bc3b "File"]
+      [:td (-> docs :source-filename format-filename)]]
+    [:tr
+      [:td.label-8bc3b "Lines"]
+      [:td (-> docs :source-link format-lines-link)]]]])
 
 (hiccups/defhtml docs-source [docs]
   [:h2.section-99c9a "Source"
     [:a.source-link-352de
-      {:href (get docs "github")}
+      {:href (:source-link docs)}
       "view on GitHub"]]
   [:pre
-    [:code {:class "lang-clj"} (get docs "source")]])
+    [:code {:class "lang-clj"} (:source docs)]])
 
 (hiccups/defhtml single-example [ex]
-  (let [id (str "example-" (get ex "id"))]
+  (let [id (str "example-" (:id ex))]
     (list
       [:a {:href (str "#" id)} "[link]"]
       [:div.example-wrapper-7ea9f {:id id}
-        (get ex "exampleHTML")])))
+        (marked (:content ex))])))
 
-(hiccups/defhtml examples [docs]
+(hiccups/defhtml examples [exs]
   [:h2.section-99c9a "Examples"]
-  (map single-example (get docs "examples")))
+  (map single-example exs))
 
 (hiccups/defhtml doc-page-title [namespace-str symbol-str]
   [:h1.doc-title-6036e
@@ -614,8 +600,9 @@
     symbol-str])
 
 (defn doc-page [docs]
-  (let [full-name (get docs "full-name")
-        [namespace-str symbol-str] (split-full-name full-name)]
+  (let [full-name (:full-name docs)
+        namespace-str (:ns docs)
+        symbol-str (:name docs)]
     (hiccups/html
       (site-head full-name)
       (header)
@@ -624,11 +611,11 @@
         [:div.body-inner-9185d
           [:div.inner-left-0193f
             (doc-page-title namespace-str symbol-str)
-            (signature symbol-str (get docs "signature"))
-            [:div.description-71ed4 (get docs "descriptionHTML")]]
+            (signature symbol-str (:signature docs))
+            [:div.description-71ed4 (marked (:description docs))]]
           [:div.inner-right-f3567 (docs-info-table docs)]
           [:div.clr-43e49]
-          (when (get docs "examples") (examples docs))
+          (when-let [exs (:examples docs)] (examples exs))
           (docs-source docs)]]
       (footer2)
       (site-footer "docs"))))
