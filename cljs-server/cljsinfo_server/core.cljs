@@ -91,7 +91,7 @@
     (if (and key-from-config
              (= key-from-client key-from-config))
       (do (fetch-and-update-docs!)
-           (.send js-res "refreshing the docs..."))
+          (.send js-res "refreshing the docs..."))
       (.send js-res "wrong key"))))
 
 ;;------------------------------------------------------------------------------
