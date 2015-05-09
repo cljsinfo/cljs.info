@@ -515,11 +515,6 @@
 
 (def cljs-core-ns "cljs.core")
 
-(defn- determine-arity [s]
-  (if (not= (.indexOf s "&") -1)
-    "V"
-    (count (split s " "))))
-
 (defn- build-signature-str [symbol-str s]
   (str "(" symbol-str " "
        (-> s
@@ -535,12 +530,6 @@
 (hiccups/defhtml signature [symbol-str sig]
   [:div.signature-7b710
     (map-indexed (partial signature-line symbol-str) sig)])
-
-(hiccups/defhtml file-link [docs]
-  (let [github-link (get docs "github")
-        filename (get docs "filename")]
-    [:a {:href (replace github-link #"#.+$" "")}
-      (replace filename #"^clojurescript/src/" "")]))
 
 (hiccups/defhtml format-lines-link [source-link]
   [:a {:href source-link}
