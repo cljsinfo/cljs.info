@@ -125,6 +125,7 @@
       (.use (.static js-express (str js/__dirname "/public"))))
 
     ;; start server
+    ;; TODO: throw a clean error if port already in use
     (if (:host config)
       (.listen server (:port config) (:host config))
       (.listen server (:port config)))
