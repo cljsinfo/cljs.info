@@ -1,6 +1,4 @@
-var fs = require('fs'),
-  marked = require('marked'),
-  md5 = require('MD5');
+var md5 = require('MD5');
 
 module.exports = function(grunt) {
 'use strict';

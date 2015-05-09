@@ -4,7 +4,7 @@
     [clojure.string :refer [capitalize replace split trim]]
     hiccups.runtime
     [cljsinfo-server.config :refer [config]]
-    [cljsinfo-server.util :refer [js-log log split-full-name]]))
+    [cljsinfo-server.util :refer [js-log log]]))
 
 (def fs     (js/require "fs-extra"))
 (def marked (js/require "marked"))
