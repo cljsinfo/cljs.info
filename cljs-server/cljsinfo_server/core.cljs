@@ -95,14 +95,34 @@
       (.send js-res "wrong key"))))
 
 ;;------------------------------------------------------------------------------
+;; Server Errors
+;;------------------------------------------------------------------------------
+
+(defn- port-already-in-use []
+  (ts-log (str
+    "Failed to start the server because port " (:port config) " is already in use. "
+    "Are you already running an instance of the server?")))
+
+(defn- unknown-failure [js-err]
+  (ts-log "The server has died and I'm not sure why. Here's the error message that caused it:")
+  (js-log js-err)
+  (js-log "Hopefully you can figure it out. Goodbye and good luck!"))
+
+(defn- on-server-error [js-err]
+  (let [code (aget js-err "code")]
+    (case code
+      "EADDRINUSE" (port-already-in-use)
+      (unknown-failure js-err))))
+
+;;------------------------------------------------------------------------------
 ;; Main
 ;;------------------------------------------------------------------------------
 
 (defn -main []
-  (let [app (js-express)
-        server (.createServer js-http app)]
+  (let [js-app (js-express)
+        js-server (.createServer js-http js-app)]
     ;; configure express app
-    (doto app
+    (doto js-app
       ;; gzip everything
       (.use (js-compression))
 
@@ -124,11 +144,13 @@
       ;; serve static files out of /public
       (.use (.static js-express (str js/__dirname "/public"))))
 
+    ;; catch errors
+    (.on js-server "error" on-server-error)
+
     ;; start server
-    ;; TODO: throw a clean error if port already in use
     (if (:host config)
-      (.listen server (:port config) (:host config))
-      (.listen server (:port config)))
+      (.listen js-server (:port config) (:host config))
+      (.listen js-server (:port config)))
 
     (ts-log "cljs.info server listening on port " (:port config))))
 
