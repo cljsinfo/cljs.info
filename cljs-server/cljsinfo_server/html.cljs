@@ -26,7 +26,7 @@
 (def assets (if js-assets (js->clj js-assets) {}))
 
 (defn- asset [f]
-  (get assets f f))
+  (url (get assets f f)))
 
 ;;------------------------------------------------------------------------------
 ;; Site Head / Footer
@@ -40,7 +40,7 @@
     [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge"}]
     [:title page-title " - cljs.info"]
     [:meta {:name "viewport" :content "width=1200, initial-scale=1"}]
-    [:link {:rel "shortcut icon" :href "favicon.png" :type "image/png"}]
+    [:link {:rel "shortcut icon" :href (asset "/favicon.png") :type "image/png"}]
     [:link {:rel "stylesheet" :href (asset "/css/main.min.css")}]]
   "<body>")
 
@@ -48,8 +48,8 @@
   ([]
     (site-footer nil))
   ([init-page]
-    [:script {:src "/js/libs/jquery-2.1.1.min.js"}]
-    [:script {:src "/js/libs/highlight-8.4.custom.min.js"}]
+    [:script {:src (asset "/js/libs/jquery-2.1.1.min.js")}]
+    [:script {:src (asset "/js/libs/highlight-8.4.custom.min.js")}]
     ;; [:script "hljs.initHighlightingOnLoad();"]
     (if (:minified-client config)
       [:script {:src (asset "/js/client.min.js")}]
@@ -347,18 +347,18 @@
 (hiccups/defhtml header []
   [:header
     [:div.inner-24d98
-      [:a {:href "/"} [:img.img-acd65 {:src "/img/cljs-logo.svg"}]]
-      [:a.nav-link-18d62 {:href "/getting-started"} "Getting Started"]
-      [:a.nav-link-18d62 {:href "/faq"} "FAQ"]
-      [:a.nav-link-18d62 {:href "/docs"} "Documentation"]
-      [:a.nav-link-18d62 {:href "/tutorials"} "Tutorials"]
-      [:a.nav-link-18d62 {:href "/community"} "Community"]
+      [:a {:href (url "/")} [:img.img-acd65 {:src (asset "/img/cljs-logo.svg")}]]
+      [:a.nav-link-18d62 {:href (url "/getting-started")} "Getting Started"]
+      [:a.nav-link-18d62 {:href (url "/faq")} "FAQ"]
+      [:a.nav-link-18d62 {:href (url "/docs")} "Documentation"]
+      [:a.nav-link-18d62 {:href (url "/tutorials")} "Tutorials"]
+      [:a.nav-link-18d62 {:href (url "/community")} "Community"]
       [:div.clr-43e49]]])
 
 (hiccups/defhtml homepage-header []
   [:div.outer-a0feb
     [:div.inner-3064a
-      [:img.logo-3ed24 {:src "img/cljs-logo.svg"}]
+      [:img.logo-3ed24 {:src (asset "/img/cljs-logo.svg")}]
       [:div.nav-links-6320a
         [:a.nav-link-4db37 {:href (url "/getting-started")} "Get Started"]
         [:a.nav-link-4db37 {:href (url "/faq")} "FAQ"]
@@ -369,7 +369,7 @@
 (hiccups/defhtml jumbotron2 []
   [:div.outer-a6683
     [:div.inner-959a0
-      [:img.background-img-4ff34 {:src (url "/img/cheatsheet-background.png")}]
+      [:img.background-img-4ff34 {:src (asset "/img/cheatsheet-background.png")}]
       [:div.left-958bf
         [:h1.big-title-c3dbd "ClojureScript"]
         [:p.blurb-ec58e

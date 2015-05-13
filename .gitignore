@@ -23,6 +23,7 @@ docs.edn
 /public/js/cheatsheet.min.js
 /public/out/
 
+publish.sh
 publish-cheatsheet.sh
 server-publish.sh
 
