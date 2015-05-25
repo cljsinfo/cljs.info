@@ -3,7 +3,6 @@
     [clojure.string :refer [replace]]
     [cljsinfo-server.config :refer [config]]
     [cljsinfo-server.html :as html]
-    [cljsinfo-server.latest-release :refer [fetch-latest-release!]]
     [cljsinfo-server.util :refer [hard-quit! js-log log ts-log]]
     [cljs.reader :refer [read-string]]))
 
@@ -153,9 +152,6 @@
       (.listen js-server (:port config) (:host config))
       (.listen js-server (:port config)))
 
-    (ts-log "cljs.info server listening on port " (:port config)))
-
-  ;; fetch latest CLJS version at startup
-  (fetch-latest-release!))
+    (ts-log "cljs.info server listening on port " (:port config))))
 
 (set! *main-cli-fn* -main)

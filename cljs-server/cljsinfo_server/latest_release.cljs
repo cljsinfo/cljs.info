@@ -1,21 +1,17 @@
 (ns cljsinfo-server.latest-release
   (:require
-    [cljsinfo-server.util :refer [ts-log now]]))
+    [cljsinfo-server.util :refer [ts-log]]))
 
 ;;------------------------------------------------------------------------------
 ;; Fetch the latest CLJS release from GitHub
 ;;------------------------------------------------------------------------------
 
+(def fs (js/require "fs-extra"))
 (def js-moment  (js/require "moment"))
 (def js-request (js/require "request"))
 
 (def latest-release-api-url
   "https://api.github.com/repos/clojure/clojurescript/releases/latest")
-
-(def latest (atom nil))
-
-;; TODO: store latest version on disk and load on startup so we don't have to
-;; hit GitHub everytime the server restarts
 
 ;; User-Agent is required for the GitHub API
 (def js-request-options (js-obj
@@ -35,6 +31,18 @@
         b (js-moment)]
     (.from a b)))
 
+(defn- create-latest-from-api-result [js-result]
+  {:release-date (aget js-result "created_at")
+   :time-ago     (time-ago (aget js-result "created_at"))
+   :version      (aget js-result "name")})
+
+;; load the latest from disk if we have it
+(def latest (atom
+  (if-let [js-result (.readJsonSync fs "latest-release.json" (js-obj "throws" false))]
+    (do (ts-log "Loaded latest CLJS release from latest-release.json")
+        (create-latest-from-api-result js-result))
+    nil)))
+
 (defn- request-callback [err js-resp body-txt]
   (let [js-result (try (.parse js/JSON body-txt)
                     (catch js/Error err false))]
@@ -49,9 +57,8 @@
 
       (response-looks-good? js-result)
         (do (ts-log (str "Updated latest release version: " (aget js-result "name")))
-            (reset! latest {:release-date (aget js-result "created_at")
-                            :time-ago (time-ago (aget js-result "created_at"))
-                            :version (aget js-result "name")}))
+            (.writeJson fs "latest-release.json" js-result)
+            (reset! latest (create-latest-from-api-result js-result)))
 
       :else
         (ts-log (str "Latest release from GitHub API didn't look right. "
@@ -64,3 +71,7 @@
 ;; poll for update every hour
 (def one-hour-in-ms (* 1000 60 60))
 (js/setTimeout fetch-latest-release! one-hour-in-ms)
+
+;; fetch now if we didn't load from disk
+(when-not @latest
+  (fetch-latest-release!))
