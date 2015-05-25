@@ -4,10 +4,12 @@
     [clojure.string :refer [capitalize replace split trim]]
     hiccups.runtime
     [cljsinfo-server.config :refer [config]]
+    [cljsinfo-server.latest-release :refer [latest]]
     [cljsinfo-server.util :refer [js-log log]]))
 
 (def fs     (js/require "fs-extra"))
 (def marked (js/require "marked"))
+(def moment (js/require "moment"))
 
 ;;------------------------------------------------------------------------------
 ;; URLs
@@ -150,9 +152,10 @@
         [:h5.ftr-header-c261a "Contribute"]
         [:a {:href github-url} "GitHub" [:i.fa.fa-external-link]]
         [:a {:href issues-url} "JIRA / Issues" [:i.fa.fa-external-link]]]
-      [:div.version-eb1a6
-        [:p "Latest: 0.0-3196"]
-        [:p "Released 4 days ago"]]
+      (when-let [l @latest]
+        [:div.version-eb1a6
+          [:p (str "Latest: " (:version l))]
+          [:p (str "Released " (:time-ago l))]])
       [:div.clr-43e49]
       [:div.bottom-f931d
         [:p.small-1c732
@@ -178,32 +181,6 @@
         [:a.nav-link-890a3 {:href (url "/docs")} "Documentation"]
         [:a.nav-link-890a3 {:href (url "/tutorials")} "Tutorials"]
         [:a.nav-link-890a3 {:href (url "/community")} "Community"]]
-      [:div.clr-43e49]]])
-
-(hiccups/defhtml jumbotron []
-  [:div.title-outer-16d0f
-    [:div.title-inner-df992
-      [:div.jumbo-left-80c52
-        [:h1.title-2febf "ClojureScript"]
-        [:h2.sub-d57b3 "JavaScript made simple"]
-        [:p.blurb-7fa5b
-          "ClojureScript is a functional programming language that targets "
-          "JavaScript. It comes with a rich set of data types, an extensive "
-          "core library, and a novel approach to state."]
-        [:p.blurb-7fa5b
-          "Programming for the browser" [:i.fa.fa-asterisk] " will never be "
-          "the same."]
-        [:p.additional-c55c0
-          [:i.fa.fa-asterisk] "ClojureScript also works with Node.js."]]
-      [:div.jumbo-right-94c4b
-        [:a.get-started-518a6 {:href (url "/getting-started")} "Get Started"]
-        [:div.btns-a0ca1
-          [:a.left-btn-2f03d {:href (url "/rationale")} "Rationale"]
-          [:a.right-btn-33d5b {:href (url "/docs")} "Docs"]
-          [:div.clr-43e49]]
-        ;; TODO: make these dynamic
-        [:div.version-974cf "Latest: 0.0-2496"]
-        [:div.version-974cf "Released 4 days ago"]]
       [:div.clr-43e49]]])
 
 (def closure-compiler-url "https://developers.google.com/closure/compiler/docs/compilation_levels")
@@ -311,38 +288,11 @@
     "language that runs on the JVM. Clojure programmers are known for being fun, "
     "helpful, and very smart. We're glad you're here."])
 
-(hiccups/defhtml blurbs []
-  [:div.outer-5cceb
-    [:div.inner-a5192
-      [:div.row-4e0be
-        (interop-blurb)
-        (code-organization-blurb)
-        [:div.clr-43e49]]
-
-      [:div.row-4e0be
-        (whole-program-optimization-blurb)
-        (state-blurb)
-        [:div.clr-43e49]]
-
-      [:div.row-4e0be
-        (macros-blurb)
-        (community-blurb)
-        [:div.clr-43e49]]]])
-
 (hiccups/defhtml common-faqs []
   [:div.faqs-outer-dac3a
     [:div.faqs-inner-e9036
       "faqs"
       ]])
-
-(hiccups/defhtml old-homepage []
-  (site-head "ClojureScript - JavaScript made simple")
-  (jumbotron)
-  (top-nav-bar)
-  (blurbs)
-  ; (common-faqs)
-  (footer)
-  (site-footer))
 
 (hiccups/defhtml header []
   [:header
@@ -366,7 +316,7 @@
         [:a.nav-link-4db37 {:href (url "/tutorials")} "Tutorials"]
         [:a.nav-link-4db37 {:href (url "/community")} "Community"]]]])
 
-(hiccups/defhtml jumbotron2 []
+(hiccups/defhtml jumbotron []
   [:div.outer-a6683
     [:div.inner-959a0
       [:img.background-img-4ff34 {:src (asset "/img/cheatsheet-background.png")}]
@@ -387,7 +337,7 @@
         [:a.secondary-btn-2b577 {:href (url "/docs")} "Docs"]]]])
 
 ;; I hope the Internet doesn't skewer me for using a table for layout here...
-(hiccups/defhtml blurbs2 []
+(hiccups/defhtml blurbs []
   [:div.outer-799fb
     [:div.inner-2b584
       [:table.blurbs-tbl-2ebec
@@ -404,8 +354,8 @@
 (hiccups/defhtml homepage []
   (site-head "ClojureScript - JavaScript made simple")
   (homepage-header)
-  (jumbotron2)
-  (blurbs2)
+  (jumbotron)
+  (blurbs)
   (footer2)
   (site-footer))
 

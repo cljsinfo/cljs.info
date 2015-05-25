@@ -25,6 +25,7 @@ docs.edn
 
 publish.sh
 publish-cheatsheet.sh
+quick-publish.sh
 server-publish.sh
 
 .DS_Store

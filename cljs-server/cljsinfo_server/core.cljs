@@ -1,9 +1,9 @@
 (ns cljsinfo-server.core
   (:require
     [clojure.string :refer [replace]]
-    [clojure.walk :refer [keywordize-keys]]
     [cljsinfo-server.config :refer [config]]
     [cljsinfo-server.html :as html]
+    [cljsinfo-server.latest-release :refer [fetch-latest-release!]]
     [cljsinfo-server.util :refer [hard-quit! js-log log ts-log]]
     [cljs.reader :refer [read-string]]))
 
@@ -23,7 +23,8 @@
 ;; Docs
 ;;------------------------------------------------------------------------------
 
-(def latest-docs-url "https://github.com/cljsinfo/api-docs/releases/download/docs-release/cljsdocs-full.edn")
+(def latest-docs-url
+  "https://github.com/cljsinfo/api-docs/releases/download/docs-release/cljsdocs-full.edn")
 
 (def docs (atom {}))
 
@@ -152,6 +153,9 @@
       (.listen js-server (:port config) (:host config))
       (.listen js-server (:port config)))
 
-    (ts-log "cljs.info server listening on port " (:port config))))
+    (ts-log "cljs.info server listening on port " (:port config)))
+
+  ;; fetch latest CLJS version at startup
+  (fetch-latest-release!))
 
 (set! *main-cli-fn* -main)
