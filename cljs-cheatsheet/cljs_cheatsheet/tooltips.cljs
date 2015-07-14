@@ -4,7 +4,7 @@
     [cljs-cheatsheet.dom :refer [by-id get-element-box set-html!]]
     [cljs-cheatsheet.html :refer [inline-tooltip]]
     [cljs-cheatsheet.state :refer [active-tooltip mouse-position mousetrap-boxes]]
-    [cljs-cheatsheet.util :refer [fetch-clj half js-log log point-inside-box? uuid]]))
+    [cljs-cheatsheet.util :refer [fetch-clj half js-log log point-inside-box?]]))
 
 (def $ js/jQuery)
 (def has-touch-events? (aget js/window "hasTouchEvents"))
@@ -253,7 +253,7 @@
     (when (and tooltip-data
                (not tooltip-already-showing?))
       (reset! active-tooltip (merge tooltip-data {
-        :id (uuid)
+        :id (random-uuid)
         :$link-el $link-el
         :tt-type :inline })))))
 

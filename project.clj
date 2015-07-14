@@ -8,8 +8,8 @@
     :distribution :repo }
 
   :dependencies [
-    [org.clojure/clojure "1.6.0"]
-    [org.clojure/clojurescript "0.0-3126"]
+    [org.clojure/clojure "1.7.0"]
+    [org.clojure/clojurescript "0.0-3308"]
     [com.cognitect/transit-cljs "0.8.207"]
     [hiccups "0.3.0"]]
 

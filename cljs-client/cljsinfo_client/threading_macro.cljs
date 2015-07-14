@@ -3,7 +3,7 @@
   (:require
     hiccups.runtime
     [cljsinfo-client.dom :refer [by-id set-html! show-el! hide-el!]]
-    [cljsinfo-client.util :refer [js-log log uuid]]))
+    [cljsinfo-client.util :refer [js-log log]]))
 
 (def $ js/jQuery)
 
@@ -645,8 +645,7 @@
 (def main-animation-speed 800)
 
 (defn- animation-finished! []
-  (js-log (uuid))
-  )
+  (js-log "animation finished!"))
 
 ;; TODO: this function could be cleaner
 (defn- animate-char! [[k v]]

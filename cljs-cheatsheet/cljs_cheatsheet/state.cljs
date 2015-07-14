@@ -1,6 +1,6 @@
 (ns cljs-cheatsheet.state
   (:require
-    [cljs-cheatsheet.util :refer [js-log log uuid]]))
+    [cljs-cheatsheet.util :refer [js-log log]]))
 
 ;; these atoms are used in multiple modules
 (def active-tooltip (atom nil))
