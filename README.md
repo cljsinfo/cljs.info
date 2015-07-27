@@ -15,7 +15,7 @@ docs, etc.
 
 ## Development Setup
 
-1. Install [Leiningen] and [Node.js].
+1. Install Java ([JRE >= 7]), [Leiningen], and [Node.js].
 1. Run from the project directory:
 
     ```sh
@@ -39,6 +39,7 @@ docs, etc.
 
 All code licensed under the terms of the [MIT License].
 
+[JRE >= 7]:http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html
 [cheatsheet]:http://cljs.info/cheatsheet
 [Leiningen]:http://leiningen.org
 [Node.js]:http://nodejs.org
