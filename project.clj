@@ -9,7 +9,7 @@
 
   :dependencies [
     [org.clojure/clojure "1.7.0"]
-    [org.clojure/clojurescript "0.0-3308"]
+    [org.clojure/clojurescript "1.7.28"]
     [com.cognitect/transit-cljs "0.8.207"]
     [hiccups "0.3.0"]]
 
