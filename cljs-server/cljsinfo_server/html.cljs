@@ -1,11 +1,11 @@
 (ns cljsinfo-server.html
   (:require-macros [hiccups.core :as hiccups])
   (:require
-    [clojure.string :refer [capitalize replace split trim]]
-    hiccups.runtime
     [cljsinfo-server.config :refer [config]]
     [cljsinfo-server.latest-release :refer [latest]]
-    [cljsinfo-server.util :refer [js-log log]]))
+    [cljsinfo-server.util :refer [js-log log]]
+    [clojure.string :refer [capitalize replace split trim]]
+    hiccups.runtime))
 
 (def fs     (js/require "fs-extra"))
 (def marked (js/require "marked"))
@@ -380,38 +380,46 @@
         (replace "L" "")
         (replace "-" " - "))])
 
-(defn- format-filename [filename]
-  (replace filename #"^clojurescript/" ""))
-
 (hiccups/defhtml docs-info-table [docs]
-  [:table [:tbody
-    [:tr
-      [:td.label-8bc3b "Namespace"]
-      [:td [:code (:ns docs)]]]
-    [:tr
-      [:td.label-8bc3b "Symbol"]
-      [:td [:code (:name docs)]]]
-    [:tr
-      [:td.label-8bc3b "Type"]
-      [:td (-> docs :type str capitalize)]]
-    (when (:return-type docs)
+  [:table
+    [:tbody
       [:tr
-        [:td.label-8bc3b "Return Type"]
-        [:td (-> docs :return-type str capitalize)]])
-    [:tr
-      [:td.label-8bc3b "File"]
-      [:td (-> docs :source-filename format-filename)]]
-    [:tr
-      [:td.label-8bc3b "Lines"]
-      [:td (-> docs :source-link format-lines-link)]]]])
+        [:td.label-8bc3b "Namespace"]
+        [:td [:code (:ns docs)]]]
+      [:tr
+        [:td.label-8bc3b "Symbol"]
+        [:td [:code (:name docs)]]]
+      [:tr
+        [:td.label-8bc3b "Type"]
+        [:td (-> docs :type str capitalize)]]
+      (when (:return-type docs)
+        [:tr
+          [:td.label-8bc3b "Return Type"]
+          [:td (-> docs :return-type str capitalize)]])
+      [:tr
+        [:td.label-8bc3b "File"]
+        [:td (-> docs :source :filename)]]
+      (when-let [lines (-> docs :source :lines)]
+        [:tr
+          [:td.label-8bc3b "Lines"]
+          [:td (str (first lines) " - " (second lines))]])]])
+
+(defn- github-link [src]
+  (let [filename (:filename src)
+        tag (:tag src)
+        repo (:repo src)
+        [line1 line2] (:lines src)]
+    (str "https://github.com/clojure/"
+         repo "/blob/" tag "/" filename
+         "#L" line1 "-L" line2)))
 
 (hiccups/defhtml docs-source [docs]
   [:h2.section-99c9a "Source"
     [:a.source-link-352de
-      {:href (:source-link docs)}
+      {:href (github-link (:source docs))}
       "view on GitHub"]]
   [:pre
-    [:code {:class "lang-clj"} (:source docs)]])
+    [:code {:class "lang-clj"} (-> docs :source :code)]])
 
 (hiccups/defhtml single-example [ex]
   (let [id (str "example-" (:id ex))]
