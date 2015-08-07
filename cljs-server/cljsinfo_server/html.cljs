@@ -451,7 +451,8 @@
           [:div.inner-left-0193f
             (doc-page-title namespace-str symbol-str)
             (signature symbol-str (:signature docs))
-            [:div.description-71ed4 (marked (:description docs))]]
+            [:div.description-71ed4 (when-let [desc (:description docs)]
+                                      (marked desc))]]
           [:div.inner-right-f3567 (docs-info-table docs)]
           [:div.clr-43e49]
           (when-let [exs (:examples docs)] (examples exs))
