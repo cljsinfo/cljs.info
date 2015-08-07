@@ -4,7 +4,7 @@
     [cljsinfo-server.config :refer [config]]
     [cljsinfo-server.latest-release :refer [latest]]
     [cljsinfo-server.util :refer [js-log log]]
-    [clojure.string :refer [capitalize replace split trim]]
+    [clojure.string :refer [capitalize replace split trim join]]
     hiccups.runtime))
 
 (def fs     (js/require "fs-extra"))
@@ -407,11 +407,10 @@
 (defn- github-link [src]
   (let [filename (:filename src)
         tag (:tag src)
-        repo (:repo src)
-        [line1 line2] (:lines src)]
+        repo (:repo src)]
     (str "https://github.com/clojure/"
          repo "/blob/" tag "/" filename
-         "#L" line1 "-L" line2)))
+         "#" (join "-" (map #(str "L" %) (:lines src))))))
 
 (hiccups/defhtml docs-source [docs]
   [:h2.section-99c9a "Source"
