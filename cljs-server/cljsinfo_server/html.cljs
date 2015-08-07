@@ -402,7 +402,7 @@
       (when-let [lines (-> docs :source :lines)]
         [:tr
           [:td.label-8bc3b "Lines"]
-          [:td (str (first lines) " - " (second lines))]])]])
+          [:td (join " - " lines)]])]])
 
 (defn- github-link [src]
   (let [filename (:filename src)
