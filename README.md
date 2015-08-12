@@ -2,16 +2,12 @@
 
 An upcoming website for ClojureScript at <http://cljs.info>.
 
-[![homepage](screenshots/homepage00.png)](https://github.com/cljsinfo/cljs.info/raw/master/screenshots/homepage00.png)
-
 ## Goal
 
 Make an awesome website for ClojureScript. Right now the project mostly consists
 of a [cheatsheet](http://cljs.info/cheatsheet) (screenshot below), and the
 long-term plan is to have a catchy homepage, tutorials, ClojureScript-specific
 docs, etc.
-
-[![cheatsheet](screenshots/cheatsheet00.png)](https://github.com/cljsinfo/cljs.info/raw/master/screenshots/cheatsheet00.png)
 
 ## Development Setup
 
