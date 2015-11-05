@@ -1058,8 +1058,8 @@
 (def clojure-cheatsheet-href "http://clojure.org/cheatsheet")
 (def clojure-tooltip-cheatsheet-href "http://jafingerhut.github.io/cheatsheet/clojuredocs/cheatsheet-tiptip-cdocs-summary.html")
 (def clojurescript-github-href "https://github.com/clojure/clojurescript")
-(def cljsinfo-github-href "https://github.com/oakmac/cljs.info/")
-(def cljsinfo-license-href "https://github.com/oakmac/cljs.info/blob/master/LICENSE.md")
+(def cljsinfo-github-href "https://github.com/cljsinfo/cljs.info/")
+(def cljsinfo-license-href "https://github.com/cljsinfo/cljs.info/blob/master/LICENSE.md")
 
 ;; include this? "Please copy, improve, and share this work."
 (hiccups/defhtml footer []
@@ -1074,7 +1074,7 @@
         [:a.ftr-link-e980e {:href clojurescript-github-href} "ClojureScript source"]]
       [:div.links-446e0
         [:label.quiet-5d4e8 "source: "]
-        [:a.ftr-link-e980e {:href cljsinfo-github-href} "github.com/oakmac/cljs.info"]]
+        [:a.ftr-link-e980e {:href cljsinfo-github-href} "github.com/cljsinfo/cljs.info"]]
       [:div.links-446e0
         [:label.quiet-5d4e8 "license: "]
         [:a.ftr-link-e980e {:href cljsinfo-license-href} "MIT"]]]])
